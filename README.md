@@ -75,9 +75,7 @@ Then, for either way:
 6. Remove the domain from Leadpages only after the GitHub site answers on `somin.ai`.
 7. Keep these hosts as they are — they are not part of this site: `cloud.somin.ai` (platform login), `share.somin.ai`.
 
-Before cut-over, add the case-studies hub at `content/pages/cases-ai-marketing-strategy.html`
-(it was intentionally not migrated; the **CASES** menu item and a few page links point to `/cases-ai-marketing-strategy/`
-and fall back to the 404 page until it exists).
+The preview build is served at `https://<user>.github.io/<repo>/` (all pages `noindex`); see section B above.
 
 > The site uses root-relative URLs, so preview it locally (`python3 build.py --serve`) rather than on a
 > `<user>.github.io/<repo>/` project URL.
@@ -92,7 +90,7 @@ and fall back to the 404 page until it exists).
 | Menu / footer | `site.config.json` → `nav`, `nav_cta`, `footer`. |
 | Redirect an old URL | `site.config.json` → `redirects` (`"/old/": "/new/"`). Generates a noindexed stub with canonical + instant redirect. |
 | Hide a page from search | meta `"robots": "noindex,follow"` (also drops it from the sitemap and `llms.txt`). |
-| Add a case-study PDF | Upload to the Drive folder, add an entry in `data/case-studies.json` (key = page slug). |
+| Add a case-study PDF | Upload it to the Drive folder, add an entry in `data/case-studies.json` (key = page slug or a short id) with a `hub` block (section, title, sector, market, summary, cover in `static/assets/img/cases/`). It appears on the hub, in the thank-you picks and in `llms.txt`. |
 | Change form / pixel IDs | `static/assets/js/tracking.js` → `CONFIG` block (the builder reads it too). |
 
 Run the checks before pushing:
@@ -126,10 +124,22 @@ Montserrat/Inter) and receive these hidden fields on every response:
 `utm_source, utm_medium, utm_campaign, utm_term, utm_content, gclid, gbraid, wbraid, fbclid, li_fat_id, msclkid, ttclid,
 landing_page, referrer, ga_client_id, fbp, fbc, page_url, page_path, cta_id, lead_type, case_study`.
 
+**Case-study hub.** `/cases-ai-marketing-strategy/` lists all 45 case studies (27 brands, 12 agencies, 6 creators) with
+section filters and search, built from `data/case-studies.json` (`hub` blocks carry the tile title, sector, market and
+summary from the Leadpages hub). Every tile's **Get the PDF** opens the case-study Typeform; tiles with a full story page
+also link to it.
+
 **Case-study release.** Submitting the case-study form redirects to `/thank-you-case-study/?cs=<key>&rid=<responseId>`,
-which shows the download/preview buttons for that PDF plus six other case studies. A direct visit without a submission
-shows a locked card that reopens the form. This is a soft gate (the Drive files are public-by-link), which matches how
-the Leadpages version worked. The Drive folder must stay shared as **Anyone with the link → Viewer**.
+which **starts the PDF download automatically** and shows Download / Open-in-browser buttons plus six more case studies.
+The page only unlocks after the form was submitted in that browser (or when arriving straight from the form with a real
+Typeform response id); a direct visit, or a made-up `rid`, shows a locked card that reopens the form. Drive file IDs are
+not in the page source in plain text.
+
+**Where the PDFs live: Google Drive, not the repo.** The 46 PDFs are 434 MB in total, five are over 25 MB and one
+(HEA Energy) is 140 MB, above GitHub's 100 MB file limit. Drive's direct endpoint
+(`drive.usercontent.google.com/download?id=…&export=download&confirm=t`) serves every file, including the 140 MB one,
+as an attachment without an interstitial, and replacing a PDF in Drive needs no redeploy. Keep the folder shared as
+**Anyone with the link → Viewer**. It is still a soft gate: anyone who has a Drive link can open it, as on Leadpages.
 
 **Calls.** Every `calendly.com` link opens the Calendly popup with the visitor's UTMs passed through. The
 **BOOK A CALL** button uses `calendly.com/filipp-lugovoi/30min`; the case-study pages keep `calendly.com/roman-vss/30min`.

@@ -39,3 +39,5 @@ Run all three before every commit that changes content, templates, CSS or JS.
    WebSite, WebPage and BreadcrumbList. Use `https://somin.ai/<path>/` (apex, trailing slash) in all schema URLs.
 9. **Noindex** thank-you pages, gated/lead pages and client-specific legal docs (`"robots": "noindex,follow"`).
 10. Python stays standard-library only; front-end stays dependency-free vanilla JS/CSS.
+11. **Case studies** live in `data/case-studies.json` (Drive IDs + hub tile text). PDFs stay on Google Drive; never commit
+    them to the repo (several exceed GitHub limits). Hub tile copy must come from the case study itself, never invented.

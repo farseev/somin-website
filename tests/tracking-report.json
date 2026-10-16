@@ -1,7 +1,7 @@
 {
  "base": "https://somin.ai",
- "passed": 48,
- "total": 48,
+ "passed": 59,
+ "total": 59,
  "results": [
   {
    "test": "tracking.js loaded once",
@@ -61,7 +61,7 @@
   {
    "test": "Attribution captured (utm + gclid + fbclid)",
    "ok": true,
-   "detail": "{\"utm_source\": \"test_src\", \"utm_medium\": \"cpc\", \"utm_campaign\": \"migration_qa\", \"gclid\": \"TEST_GCLID\", \"fbclid\": \"TEST_FBCLID\", \"landing_page\": \"/\", \"referrer\": \"\", \"ga_client_id\": \"141048283.17921605"
+   "detail": "{\"utm_source\": \"test_src\", \"utm_medium\": \"cpc\", \"utm_campaign\": \"migration_qa\", \"gclid\": \"TEST_GCLID\", \"fbclid\": \"TEST_FBCLID\", \"landing_page\": \"/\", \"referrer\": \"\", \"ga_client_id\": \"1837595580.1792167"
   },
   {
    "test": "Calendly opens as popup (not new tab)",
@@ -101,7 +101,7 @@
   {
    "test": "GA4 generate_lead (lead_type=calendly)",
    "ok": true,
-   "detail": "calendar_event_scheduled,generate_lead"
+   "detail": "calendar_event_type_viewed,calendar_event_type_viewed,calendar_event_scheduled,generate_lead"
   },
   {
    "test": "Meta Lead",
@@ -121,7 +121,7 @@
   {
    "test": "Hidden fields passed (utm_source, li_fat_id, page_path, lead_type)",
    "ok": true,
-   "detail": "#utm_source=linkedin&utm_campaign=q4_test&li_fat_id=TEST_LI&landing_page=/somin-for-brands/&ga_client_id=1569248424.1792160603&fbp=fb.1.1792160602822.991821986727926228&page_url=https://somin.ai/somin-for-brands/&page_pa"
+   "detail": "#utm_source=linkedin&utm_campaign=q4_test&li_fat_id=TEST_LI&landing_page=/somin-for-brands/&ga_client_id=201202876.1792167997&fbp=fb.1.1792167996796.633246014229168768&page_url=https://somin.ai/somin-for-brands/&page_pat"
   },
   {
    "test": "Typeform onReady \u2192 lead_form_ready",
@@ -134,12 +134,12 @@
    "detail": "https://somin.ai/thank-you-trial-somin/?rid=TEST-RID-TRIAL&from=%2Fsomin-for-brands%2F"
   },
   {
-   "test": "GA4 lead_form_open",
+   "test": "lead_form_open tracked",
    "ok": true,
    "detail": ""
   },
   {
-   "test": "GA4 trial_form_submit (response id passed)",
+   "test": "trial_form_submit tracked",
    "ok": true,
    "detail": ""
   },
@@ -184,19 +184,24 @@
    "detail": "https://somin.ai/thank-you-case-study/?rid=TEST-RID-CASE&cs=brands-fujifilm-case-study&from=%2Fbrands-fujifilm-case-study%2F"
   },
   {
-   "test": "Download released immediately with the right Drive file",
+   "test": "PDF download starts automatically after the form (once, page stays put)",
    "ok": true,
-   "detail": "https://drive.google.com/uc?export=download&id=1Y2aQnNb-5-XCsUwHd2lKb22feZ3ZThxx"
+   "detail": "https://drive.usercontent.google.com/download?id=1Y2aQnNb-5-XCsUwHd2lKb22feZ3ZThxx&export=download&confirm=t"
   },
   {
-   "test": "GA4 case_study_form_submit",
+   "test": "Download released immediately with the right Drive file",
+   "ok": true,
+   "detail": "https://drive.usercontent.google.com/download?id=1Y2aQnNb-5-XCsUwHd2lKb22feZ3ZThxx&export=download&confirm=t"
+  },
+  {
+   "test": "case_study_form_submit tracked",
    "ok": true,
    "detail": ""
   },
   {
    "test": "GA4 case_study_download",
    "ok": true,
-   "detail": "lead_form_open,cta_click,lead_form_ready,case_study_form_submit,page_view,generate_lead,thank_you_view,scroll,cta_click,case_study_download"
+   "detail": "lead_form_open,cta_click,lead_form_ready,case_study_form_submit,page_view,generate_lead,thank_you_view,scroll,case_study_auto_download,cta_click,case_study_download,click"
   },
   {
    "test": "GA4 generate_lead fired exactly once (GTM thank-you trigger)",
@@ -215,6 +220,56 @@
   },
   {
    "test": "Direct visit without submit stays locked",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Direct visit with a made-up response id stays locked",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "No Drive file IDs or links in the page source",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "No JavaScript errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Hub lists all 45 case studies",
+   "ok": true,
+   "detail": "45 cards"
+  },
+  {
+   "test": "Section filter works (creators = 6)",
+   "ok": true,
+   "detail": "6"
+  },
+  {
+   "test": "Get the PDF opens the case-study Typeform with case_study=maybank",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Redirect to /thank-you-case-study/?cs=maybank",
+   "ok": true,
+   "detail": "https://somin.ai/thank-you-case-study/?rid=TEST-RID-HUB&cs=maybank&from=%2Fcases-ai-marketing-strategy%2F"
+  },
+  {
+   "test": "Maybank PDF downloads automatically",
+   "ok": true,
+   "detail": "https://drive.usercontent.google.com/download?id=1i7FJg49PflUdT6-Um5BQTfoyNgDPXmpq&export=download&confirm=t"
+  },
+  {
+   "test": "case_study_form_submit + case_study_auto_download tracked",
+   "ok": true,
+   "detail": "cases_filter,cases_filter,lead_form_open,cta_click,scroll,lead_form_ready,case_study_form_submit,page_view,generate_lead,thank_you_view,scroll,case_study_auto_download"
+  },
+  {
+   "test": "Lead conversions fire exactly once (GA4 / Meta / LinkedIn 20526508)",
    "ok": true,
    "detail": ""
   },
@@ -239,7 +294,7 @@
    "detail": "article_read_50,article_read_90,cta_click,login_click,scroll"
   },
   {
-   "test": "All 97 pages load with no JS errors and exactly one GTM container",
+   "test": "All 98 pages load with no JS errors and exactly one GTM container",
    "ok": true,
    "detail": "[]"
   }

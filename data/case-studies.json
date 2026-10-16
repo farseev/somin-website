@@ -1,5 +1,5 @@
 {
- "_doc": "Case study downloads. Key = the case study page slug (or a short id for PDFs without a page yet). After a visitor submits the case-study Typeform, /thank-you-case-study/?cs=<key> releases the Drive link. The Drive folder must stay shared as \"Anyone with the link: Viewer\".",
+ "_doc": "Case studies. Key = the case study page slug (or a short id for PDFs without a page). 'hub' holds the tile shown on /cases-ai-marketing-strategy/ (section, title, sector, market, summary, cover) taken from the Leadpages hub. After a visitor submits the case-study Typeform, /thank-you-case-study/?cs=<key> starts the Drive download automatically. PDFs stay on Google Drive (434 MB in total, one file is 140 MB, above GitHub's 100 MB limit); the folder must stay 'Anyone with the link: Viewer'.",
  "drive_folder": "https://drive.google.com/drive/folders/18nBnSOmz897fJVLTdpj-cWYWQRQgTO0S",
  "items": {
   "brands-defender-case-study": {
@@ -7,294 +7,714 @@
    "drive_id": "1IVD6xxDWWYuq_46wKG4OPSlxW0CU4Xvu",
    "size_mb": 1.2,
    "category": "brands",
-   "page": "/brands-defender-case-study/"
+   "page": "/brands-defender-case-study/",
+   "hub": {
+    "order": 34,
+    "section": "brands",
+    "title": "Land Rover Defender",
+    "sector": "Automotive",
+    "market": "UK / Japan / US",
+    "summary": "Inside a SOMIN cross-market briefing: 766 posts across UK, Japan and US, three independent personas, and three market-specific pillars for Land Rover Defender.",
+    "cover": "/assets/img/cases/brands-defender-case-study.webp",
+    "source_tile": "NK3tBUrjbidaPEwj8PtuYB"
+   }
   },
   "brands-reassured-case-study": {
    "file": "REASSURED.pdf",
    "drive_id": "1z6E6VfszAmVm5Pk1m7Pui0bwc7MXpOMf",
    "size_mb": 3.7,
    "category": "brands",
-   "page": "/brands-reassured-case-study/"
+   "page": "/brands-reassured-case-study/",
+   "hub": {
+    "order": 38,
+    "section": "brands",
+    "title": "Reassured",
+    "sector": "Life Insurance Broker",
+    "market": "UK",
+    "summary": "SOMIN read Reassured’s 100% paid strategy against five UK life-insurance rivals at 75% organic: a 60-day, honest whitespace map across 157 items.",
+    "cover": "/assets/img/cases/brands-reassured-case-study.webp",
+    "source_tile": "FSpkVwi8qPYE4L8ZeknsCk"
+   }
   },
   "brands-miraflora-case-study": {
    "file": "MIRAFLORA.pdf",
    "drive_id": "1Ltyu6F1_9U7z5HbwdOG-28pI9WlLiti4",
    "size_mb": 3.6,
    "category": "brands",
-   "page": "/brands-miraflora-case-study/"
+   "page": "/brands-miraflora-case-study/",
+   "hub": {
+    "order": 25,
+    "section": "brands",
+    "title": "Miraflora",
+    "sector": "CBD",
+    "market": "USA",
+    "summary": "See how SOMIN benchmarked Miraflora against 7 CBD rivals, read 2,745 pieces of content, and built a plan to find real outlier posts, not vanity metrics.",
+    "cover": "/assets/img/cases/brands-miraflora-case-study.webp",
+    "source_tile": "evhCZ3Uer7NMo63AQo2fBk"
+   }
   },
   "case": {
    "file": "MIRAFLORA GWI.pdf",
    "drive_id": "1TZpoAbhEP6KD5XAsL4gYlnNX3xvaAk4Y",
    "size_mb": 31.1,
    "category": "brands",
-   "page": "/case/"
+   "page": "/case/",
+   "hub": {
+    "order": 29,
+    "section": "brands",
+    "title": "Miraflora Wagyu × GWI",
+    "sector": "eCommerce",
+    "market": "USA",
+    "summary": "See how SOMIN used GWI consumer analytics to uncover the personas and behaviors behind Miraflora's premium beef positioning and turned that into sharper, higher ROI.",
+    "cover": "/assets/img/cases/case.webp",
+    "source_tile": "48eVJmPWdoeHTwm46JSfzP"
+   }
   },
   "brands-pepsi-india-case-study": {
    "file": "PEPSI INDIA.pdf",
    "drive_id": "1cAIvdhtge9XWqydMPiiNUP7mYO_g86cF",
    "size_mb": 4.3,
    "category": "brands",
-   "page": "/brands-pepsi-india-case-study/"
+   "page": "/brands-pepsi-india-case-study/",
+   "hub": {
+    "order": 40,
+    "section": "brands",
+    "title": "Pepsi India",
+    "sector": "Beverages",
+    "market": "India",
+    "summary": "Inside a SOMIN brand briefing: 12 months of India cola-category data, 3 whitespace-backed pillars, and a 39-post calendar built for Pepsi in days, not weeks.",
+    "cover": "/assets/img/cases/brands-pepsi-india-case-study.webp",
+    "source_tile": "svbrswdSfx8hwjNPdq2gB8"
+   }
   },
   "brands-mothercare-sg-case-study": {
    "file": "MOTHERCARE SG.pdf",
    "drive_id": "1umkIB6PsqDltvLRuqIlSUnS0pwV5p5SS",
    "size_mb": 28.5,
    "category": "brands",
-   "page": "/brands-mothercare-sg-case-study/"
+   "page": "/brands-mothercare-sg-case-study/",
+   "hub": {
+    "order": 32,
+    "section": "brands",
+    "title": "Mothercare Singapore × GWI",
+    "sector": "Mother & Baby Products",
+    "market": "Singapore",
+    "summary": "How Mothercare Singapore used SOMIN and GWI behavioural data to cut research time 80%, triple audience segmentation accuracy, and save 74% on execution costs.",
+    "cover": "/assets/img/cases/brands-mothercare-sg-case-study.webp",
+    "source_tile": "LHSYDSLxg52U5rGtvGUNJd"
+   }
   },
   "brands-keeta-hk-case-study": {
    "file": "KEETA HK.pdf",
    "drive_id": "1cORxBr3uCMPmtrIG9f-rGDGc2IrmjmKC",
    "size_mb": 8.4,
    "category": "brands",
-   "page": "/brands-keeta-hk-case-study/"
+   "page": "/brands-keeta-hk-case-study/",
+   "hub": {
+    "order": 31,
+    "section": "brands",
+    "title": "Keeta HK",
+    "sector": "Food Delivery",
+    "market": "Hong Kong",
+    "summary": "Inside a SOMIN creative ideation sample: 145 benchmarked ads and 72 bilingual ad lines rewritten around real Hong Kong food-delivery audience data for Keeta HK.",
+    "cover": "/assets/img/cases/brands-keeta-hk-case-study.webp",
+    "source_tile": "kuA4R4EpmhBFWh7JwzYmNj"
+   }
   },
   "brands-viva-school-case-study": {
    "file": "VIVA SCHOOL OF MUSIC AND BALLET.pdf",
    "drive_id": "1mj3ZfOBfbyxC1eAJKdSWAzHSvip1vHRm",
    "size_mb": 4.4,
    "category": "brands",
-   "page": "/brands-viva-school-case-study/"
+   "page": "/brands-viva-school-case-study/",
+   "hub": {
+    "order": 36,
+    "section": "brands",
+    "title": "VIVA School of Music & Ballet",
+    "sector": "Arts Education",
+    "market": "Singapore",
+    "summary": "How SOMIN read two years of Singapore ballet-school content to find Viva’s uncontested music moat and a fast-rising ‘strength’ territory still open to claim.",
+    "cover": "/assets/img/cases/brands-viva-school-case-study.webp",
+    "source_tile": "RCijoMjuTVhS3va5BEFxxJ"
+   }
   },
   "brands-exostride-case-study": {
    "file": "EXOSTRIDE SG.pdf",
    "drive_id": "1LV_xAPNKVSRkZnLt6xlRSR8dOXUCIg12",
    "size_mb": 0.6,
    "category": "brands",
-   "page": "/brands-exostride-case-study/"
+   "page": "/brands-exostride-case-study/",
+   "hub": {
+    "order": 39,
+    "section": "brands",
+    "title": "ExoStride",
+    "sector": "Exoskeleton Technology",
+    "market": "Singapore",
+    "summary": "How SOMIN mapped HT Science’s ExoStride hip exoskeleton to three real Singapore journeys: rehabilitation, the outdoor trails, and the daily commute.",
+    "cover": "/assets/img/cases/brands-exostride-case-study.webp",
+    "source_tile": "43vZJawCJZcphuMGxmETXN"
+   }
   },
   "brands-sm-universe-case-study": {
    "file": "SM UNIVERSE.pdf",
    "drive_id": "1Id-__mBPAXygVNTAFhZdLTySCDTBgRFI",
    "size_mb": 5.4,
    "category": "brands",
-   "page": "/brands-sm-universe-case-study/"
+   "page": "/brands-sm-universe-case-study/",
+   "hub": {
+    "order": 37,
+    "section": "brands",
+    "title": "SM Universe",
+    "sector": "K-Pop Training Academy",
+    "market": "Singapore",
+    "summary": "See how SOMIN read 24 months of Singapore K-pop and vocal-academy content, found singing’s craft unclaimed, and built SM Universe a 39-post content calendar.",
+    "cover": "/assets/img/cases/brands-sm-universe-case-study.webp",
+    "source_tile": "Eerzddgq4AnRg59AaZVufT"
+   }
   },
   "brands-fujifilm-case-study": {
    "file": "FUJIFILM UK.pdf",
    "drive_id": "1Y2aQnNb-5-XCsUwHd2lKb22feZ3ZThxx",
    "size_mb": 4.9,
    "category": "brands",
-   "page": "/brands-fujifilm-case-study/"
+   "page": "/brands-fujifilm-case-study/",
+   "hub": {
+    "order": 6,
+    "section": "agencies",
+    "title": "Fujifilm UK",
+    "sector": "Camera & Imaging",
+    "market": "UK",
+    "summary": "Inside a SOMIN agency pitch: 12 months of category data, 3 whitespace-backed content pillars, and a 39-post calendar built for Fujifilm UK in days, not weeks.",
+    "cover": "/assets/img/cases/brands-fujifilm-case-study.webp",
+    "source_tile": "C7jSwatkGiLXqvw2u9avEE"
+   }
   },
   "agencies-blak-labs-case-study": {
    "file": "BLAK LABS.pdf",
    "drive_id": "1F6oVd_x738wMhTmVaEjfmr99mr5FbvTF",
    "size_mb": 0.9,
    "category": "agencies",
-   "page": "/agencies-blak-labs-case-study/"
+   "page": "/agencies-blak-labs-case-study/",
+   "hub": {
+    "order": 4,
+    "section": "agencies",
+    "title": "Blak Labs",
+    "sector": "Integrated Agency",
+    "market": "Singapore",
+    "summary": "How Blak Labs, a 50-person Singapore advertising agency, used SOMIN to cut brand analysis from 10 hours to 1 and client-reporting cost from $10K to $6K a month.",
+    "cover": "/assets/img/cases/agencies-blak-labs-case-study.webp",
+    "source_tile": "bET8ccLR5vRbQ7CinTbt7g"
+   }
   },
   "agencies-analytic-partners-case-study": {
    "file": "ANALYTIC PARTNERS COMMERCIAL.pdf",
    "drive_id": "1_8A95P9XeUSE7_BoGaCfo_tOSfd3NiX_",
    "size_mb": 3.7,
    "category": "agencies",
-   "page": "/agencies-analytic-partners-case-study/"
+   "page": "/agencies-analytic-partners-case-study/",
+   "hub": {
+    "order": 7,
+    "section": "agencies",
+    "title": "Analytic Partners",
+    "sector": "Commercial & Marketing",
+    "market": "USA",
+    "summary": "Inside a SOMIN cross-market briefing: 24 months of category data, 3 whitespace-backed pillars, and a 108-piece creative library built in days, not weeks.",
+    "cover": "/assets/img/cases/agencies-analytic-partners-case-study.webp",
+    "source_tile": "qv224rja64ZKKcFvQP7WR6"
+   }
   },
   "agencies-senoko-energy-case-study": {
    "file": "SENOKO AGENCY.pdf",
    "drive_id": "1Owr_uhAR6srsEqRTlk7dNTxcVsX8Z5JV",
    "size_mb": 2.1,
    "category": "agencies",
-   "page": "/agencies-senoko-energy-case-study/"
+   "page": "/agencies-senoko-energy-case-study/",
+   "hub": {
+    "order": 8,
+    "section": "agencies",
+    "title": "Senoko Energy",
+    "sector": "Energy & Utilities",
+    "market": "Singapore",
+    "summary": "Inside a SOMIN agency pitch: 6 months of category data, 3 whitespace-backed territories, and a 39-post calendar built for Senoko Energy in days, not weeks.",
+    "cover": "/assets/img/cases/agencies-senoko-energy-case-study.webp",
+    "source_tile": "cG2wPYwDvRA8DwHDvee7jX"
+   }
   },
   "agencies-click2view-asia-case-study": {
    "file": "CLICK2VIEW ASIA.pdf",
    "drive_id": "1lCZuPvJHL3DmMzo5xo_V0EQ75UB70n0f",
    "size_mb": 0.9,
    "category": "agencies",
-   "page": "/agencies-click2view-asia-case-study/"
+   "page": "/agencies-click2view-asia-case-study/",
+   "hub": {
+    "order": 3,
+    "section": "agencies",
+    "title": "Click2View Asia",
+    "sector": "Production Agency",
+    "market": "Singapore",
+    "summary": "How Click2View Asia, an APAC content marketing agency, used SOMIN to cut monthly reporting from 9 hours to 1 and competitive analysis from 18 hours to 3.",
+    "cover": "/assets/img/cases/agencies-click2view-asia-case-study.webp",
+    "source_tile": "pY4PBtLMwKPBDs2eCfRbpV"
+   }
   },
   "agencies-havas-media-case-study": {
    "file": "HAVAS MEDIA.pdf",
    "drive_id": "1805w1RSmQuOGDQNAvobjocCtF3YgyuuS",
    "size_mb": 0.9,
    "category": "agencies",
-   "page": "/agencies-havas-media-case-study/"
+   "page": "/agencies-havas-media-case-study/",
+   "hub": {
+    "order": 1,
+    "section": "agencies",
+    "title": "Havas Media",
+    "sector": "Media Agency",
+    "market": "Middle East",
+    "summary": "How Havas Media’s Middle East Performance Practice replaced manual competitor tracking with SOMIN’s real-time data and cut new client onboarding to day one.",
+    "cover": "/assets/img/cases/agencies-havas-media-case-study.webp",
+    "source_tile": "KkQKGoyEkNGayfv4bn5eSL"
+   }
   },
   "agencies-neo360": {
    "file": "NEO360.pdf",
    "drive_id": "1Emm34r8aBaiMXSsfBzVp3IJCrhXuQGMi",
    "size_mb": 0.8,
    "category": "agencies",
-   "page": "/agencies-neo360/"
+   "page": "/agencies-neo360/",
+   "hub": {
+    "order": 5,
+    "section": "agencies",
+    "title": "NEO360",
+    "sector": "SEO Agency",
+    "market": "Singapore",
+    "summary": "See how NEO360, a Singapore digital marketing agency, cut proposal team size from 3 to 1, turnaround from 4h to 2.5h, and cost per proposal 30% using SOMIN.",
+    "cover": "/assets/img/cases/agencies-neo360.webp",
+    "source_tile": "6yGm8QG3Qja34sSan7RUV2"
+   }
   },
   "agencies-samy-case-study": {
    "file": "SAMY.pdf",
    "drive_id": "1exyMpOMYi1E-pB1KDtQeABaokZ6wlP23",
    "size_mb": 0.9,
    "category": "agencies",
-   "page": "/agencies-samy-case-study/"
+   "page": "/agencies-samy-case-study/",
+   "hub": {
+    "order": 0,
+    "section": "agencies",
+    "title": "SAMY",
+    "sector": "Creative Agency",
+    "market": "USA",
+    "summary": "How SAMY, an independent creative agency, used SOMIN’s competitive intelligence to win a multi-million-pound retainer: 12x faster planning, 78% CTR accuracy.",
+    "cover": "/assets/img/cases/agencies-samy-case-study.webp",
+    "source_tile": "NtN7boX5sNSPmiZYkMjsrf"
+   }
   },
   "agencies-kpi-media-case-study": {
    "file": "KPI MEDIA.pdf",
    "drive_id": "1ClObXqwY6hLIPym-JLgpKT6qIhRqXV_I",
    "size_mb": 0.8,
    "category": "agencies",
-   "page": "/agencies-kpi-media-case-study/"
+   "page": "/agencies-kpi-media-case-study/",
+   "hub": {
+    "order": 2,
+    "section": "agencies",
+    "title": "KPI Media",
+    "sector": "Performance Agency",
+    "market": "Singapore",
+    "summary": "KPI Media, a Singapore performance marketing agency, used SOMIN to cut pitch prep from 1 week to 2 days, cut cost 75%, and close a new $5K/month retainer.",
+    "cover": "/assets/img/cases/agencies-kpi-media-case-study.webp",
+    "source_tile": "wyMeAzC7xBJ6pud8cpHxoL"
+   }
   },
   "agencies-vamp-creator-portfolio-case-stud": {
    "file": "VAMP CREATORS.pdf",
    "drive_id": "1y12vouTl-WhTAjSxaxcF1Kywi-OsqcEQ",
    "size_mb": 0.3,
    "category": "influencers",
-   "page": "/agencies-vamp-creator-portfolio-case-stud/"
+   "page": "/agencies-vamp-creator-portfolio-case-stud/",
+   "hub": {
+    "order": 15,
+    "section": "creators",
+    "title": "Vamp Creators",
+    "sector": "Influencer Marketing",
+    "market": "Global",
+    "summary": "Inside a SOMIN creator portfolio read: 12 months of engagement across Vamp’s 8-creator roster, mapped into 8 distinct, non-overlapping content territories.",
+    "cover": "/assets/img/cases/agencies-vamp-creator-portfolio-case-stud.webp",
+    "source_tile": "diJf2eoYDNyMxSuok7u44X"
+   }
   },
   "influencers-daisy-iggy-case-study": {
    "file": "DAISY IGGY.pdf",
    "drive_id": "1YAZm53xYbhE2WlTc9MGtXRA0w9Dtyr-P",
    "size_mb": 2.0,
    "category": "influencers",
-   "page": "/influencers-daisy-iggy-case-study/"
+   "page": "/influencers-daisy-iggy-case-study/",
+   "hub": {
+    "order": 12,
+    "section": "creators",
+    "title": "Daisy Iggy",
+    "sector": "Pet Influencer",
+    "market": "Singapore",
+    "summary": "Inside a SOMIN creator strategy for @daisy_iggy_levretka: real whitespace analysis, a named persona, and a 39-post calendar built from real engagement data.",
+    "cover": "/assets/img/cases/influencers-daisy-iggy-case-study.webp",
+    "source_tile": "WZv9bGrn7oPxwVrjFLHsE8"
+   }
   },
   "influencers-vamp-aaron-brooks-case-study": {
    "file": "VAMP CEO AARON.pdf",
    "drive_id": "1s59--jvjBU6SbX9DazEVX6BYKx2Bbq2t",
    "size_mb": 0.9,
    "category": "influencers",
-   "page": "/influencers-vamp-aaron-brooks-case-study/"
+   "page": "/influencers-vamp-aaron-brooks-case-study/",
+   "hub": {
+    "order": 16,
+    "section": "creators",
+    "title": "Vamp CEO Aaron Brooks",
+    "sector": "Influencer Marketing",
+    "market": "UK",
+    "summary": "SOMIN found Vamp CEO Aaron Brooks at 0% share of Entrepreneur content while 5 peers publish steadily, then built a whitespace pitch and 39-post calendar.",
+    "cover": "/assets/img/cases/influencers-vamp-aaron-brooks-case-study.webp",
+    "source_tile": "zuSsZqkHkVXVhkUogztMPg"
+   }
   },
   "influencers-nikki-taylor-case-study": {
    "file": "NIKKI TAYLOR.pdf",
    "drive_id": "1U8c1cmL2LMi3CF2BYfnYvtvIOxRav0_2",
    "size_mb": 1.5,
    "category": "influencers",
-   "page": "/influencers-nikki-taylor-case-study/"
+   "page": "/influencers-nikki-taylor-case-study/",
+   "hub": {
+    "order": 13,
+    "section": "creators",
+    "title": "Nikki Taylor",
+    "sector": "Marketing & Analytics",
+    "market": "Singapore",
+    "summary": "Inside a SOMIN creator strategy: 24 months of LinkedIn engagement data, a 5-name competitive set, and a whitespace-backed content plan for Nikki Taylor.",
+    "cover": "/assets/img/cases/influencers-nikki-taylor-case-study.webp",
+    "source_tile": "jigdbAv7NnBpsaSQUWuvKD"
+   }
   },
   "fjor": {
    "file": "FJOR.pdf",
    "drive_id": "1ev4B0A15SF6dNTc2DQArpvCqzItlYK15",
    "size_mb": 4.2,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 27,
+    "section": "brands",
+    "title": "Fjor",
+    "sector": "Keto Diet App",
+    "market": "USA",
+    "summary": "Inside a SOMIN creative ideation case study for Fjor: 3,676 benchmarked ads across 9 rivals, plus 18 GWI-refined ad lines built from real US keto-audience data.",
+    "cover": "/assets/img/cases/fjor.webp",
+    "source_tile": "G7VfnoTqXTe7pFPKgSSFA8"
+   }
   },
   "hea-energy": {
    "file": "HEA ENERGY.pdf",
    "drive_id": "1OPoN-wUn5m02ndDZSt04glu2LsYh8INs",
    "size_mb": 140.2,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 21,
+    "section": "brands",
+    "title": "HEA Energy",
+    "sector": "Electricity Market",
+    "market": "Singapore",
+    "summary": "How SOMIN benchmarked HEA Energy against 10 tracked names, including Singapore’s own regulator: referral codes, service and community over follower counts.",
+    "cover": "/assets/img/cases/hea-energy.webp",
+    "source_tile": "mFWQY66UkB7YyDbeiDSRsV"
+   }
   },
   "caltex-agency": {
    "file": "CALTEX AGENCY.pdf",
    "drive_id": "1_KBzEvkWWzEFZEsgEJeTN5DULr62Iftn",
    "size_mb": 2.9,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 41,
+    "section": "brands",
+    "title": "Caltex Malaysia",
+    "sector": "Fuel & Automotive Retail",
+    "market": "Malaysia",
+    "summary": "SOMIN read 12 months of Caltex, Shell, BHPetrol and Petron content and found engine-care whitespace no fuel brand has claimed, plus a 3-pillar challenger pitch.",
+    "cover": "/assets/img/cases/caltex-agency.webp",
+    "source_tile": "Rg3qyVKMRXbV84pjp6qKri"
+   }
   },
   "beme-group": {
    "file": "BEME GROUP.pdf",
    "drive_id": "1LVLpErccC3oCX4GylvqSTRAmF2XLHOpD",
    "size_mb": 2.4,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 24,
+    "section": "brands",
+    "title": "BeMe",
+    "sector": "Food Supplements",
+    "market": "USA",
+    "summary": "How SOMIN analyzed 3,222 ads and posts from BeMe and five rival supplement brands to map audience overlap, dominant content themes, and untapped creative angles.",
+    "cover": "/assets/img/cases/beme-group.webp",
+    "source_tile": "eNYFYAgoYL48FrozGoPZaS"
+   }
   },
   "tmc-wego-me": {
    "file": "TMC WEGO ME.pdf",
    "drive_id": "12Uz1CN_htigi1yMlOWIzUGguP0iPMW2V",
    "size_mb": 14.2,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 18,
+    "section": "brands",
+    "title": "Wego",
+    "sector": "Travel",
+    "market": "Middle East",
+    "summary": "Inside a SOMIN region study: 16,235 pieces of paid and organic media across 6 GCC markets and 8 travel brands showing Wego led share of voice in every market.",
+    "cover": "/assets/img/cases/tmc-wego-me.webp",
+    "source_tile": "iBmoqFpuCTQopvUhMV7eCJ"
+   }
   },
   "mothercare": {
    "file": "MOTHERCARE.pdf",
    "drive_id": "1DIH1dGIqPglbiBz-avMyMTdG3sicF3YJ",
    "size_mb": 49.2,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 19,
+    "section": "brands",
+    "title": "Mothercare Singapore — New Mothers",
+    "sector": "Mother & Baby",
+    "market": "Singapore",
+    "summary": "How SOMIN read 4,049 posts and ads from 11 competing Singapore baby & maternity brands to map how paid ads and organic content talk to new mothers differently.",
+    "cover": "/assets/img/cases/mothercare.webp",
+    "source_tile": "d8gQPRg5qbgKAdMYSP7ESc"
+   }
   },
   "png-philippines": {
    "file": "PNG PHILIPPINES.pdf",
    "drive_id": "1sNC6SSeCzy_FzjAkz-fJN-R8BR2cIcte",
    "size_mb": 19.7,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 20,
+    "section": "brands",
+    "title": "P&G Philippines",
+    "sector": "Haircare",
+    "market": "Philippines",
+    "summary": "SOMIN mapped 704 search text ads and 4,049 Meta posts and ads across P&G, Unilever, and Celeteque in the Philippines, revealing a real cross-channel gap.",
+    "cover": "/assets/img/cases/png-philippines.webp",
+    "source_tile": "y89ewzES5Hzsxy9Hu9dbyK"
+   }
   },
   "coca-cola": {
    "file": "COCA COLA.pdf",
    "drive_id": "1YVy35gLQaHDHUEs4FTrSrPiiu_ljsL3s",
    "size_mb": 0.4,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 33,
+    "section": "brands",
+    "title": "Coca-Cola",
+    "sector": "Beverage",
+    "market": "Global Markets",
+    "summary": "How SOMIN mapped Foodie-creator whitespace across India, the UK, Mexico and South Africa into a four-market Coca-Cola content strategy, one persona per market.",
+    "cover": "/assets/img/cases/coca-cola.webp",
+    "source_tile": "fy2rApHXKMNfEmbx6HiYrG"
+   }
   },
   "aplus-construction": {
    "file": "APLUS CONSTRUCTION.pdf",
    "drive_id": "16cOLUc9emMLg6vGVHcZOyqe3kGuY5PPd",
    "size_mb": 1.9,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 30,
+    "section": "brands",
+    "title": "A+ Construction",
+    "sector": "General Contractor",
+    "market": "USA",
+    "summary": "See how SOMIN turned 4 validated personas and a year of ADU-builder ad data into 18 tested ad copy variations for A+ Construction ADU Builders in Sacramento.",
+    "cover": "/assets/img/cases/aplus-construction.webp",
+    "source_tile": "LxdjFy4BzUijiyciRnvZXa"
+   }
   },
   "anti-scam": {
    "file": "ANTI SCAM.pdf",
    "drive_id": "1di1vppwb3Nsyp2yWHAp11ej2rZNGKk1s",
    "size_mb": 4.6,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 26,
+    "section": "brands",
+    "title": "Anti-Scam Communications",
+    "sector": "Anti Scam",
+    "market": "Singapore",
+    "summary": "See how SOMIN mapped a year of anti-scam communications across 34 Singapore brands and 9 industries, and modeled the vulnerable moments scammers exploit.",
+    "cover": "/assets/img/cases/anti-scam.webp",
+    "source_tile": "CvqvQahUcze6Vbor8cu5eY"
+   }
   },
   "maybank": {
    "file": "MAYBANK.pdf",
    "drive_id": "1i7FJg49PflUdT6-Um5BQTfoyNgDPXmpq",
    "size_mb": 31.4,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 28,
+    "section": "brands",
+    "title": "Maybank",
+    "sector": "Finance",
+    "market": "Singapore",
+    "summary": "SOMIN mapped 4,222 posts and ads across Maybank, CIMB, Citibank, HSBC and UOB into 27 real moments and 10 psychological angles from one Singapore tension.",
+    "cover": "/assets/img/cases/maybank.webp",
+    "source_tile": "tq25es4oWTNrLjuQPrwXn6"
+   }
   },
   "gojek": {
    "file": "GOJEK.pdf",
    "drive_id": "1uc24cogBf9YUfRm-IDj5I9xWlMYucHZQ",
    "size_mb": 8.5,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 22,
+    "section": "brands",
+    "title": "Gojek",
+    "sector": "Transportation, B2B",
+    "market": "Singapore",
+    "summary": "SOMIN read 8,363 pieces of content across 6 Singapore mobility brands to map Gojek’s B2B category buyer personas, whitespace, and an AI-generated story.",
+    "cover": "/assets/img/cases/gojek.webp",
+    "source_tile": "FwsXcbCxKHepetzsNzqZra"
+   }
   },
   "constructor-group": {
    "file": "CONSTRUCTOR GROUP.pdf",
    "drive_id": "1ZrcmDFqt-IMXpZTQnUHFzjZPs2ytWEZP",
    "size_mb": 1.0,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 23,
+    "section": "brands",
+    "title": "Constructor Group",
+    "sector": "Education",
+    "market": "USA",
+    "summary": "How SOMIN clustered 8,971 posts and ads from Constructor Group and 9 rival math-EdTech brands into 10 themes to find math anxiety as the real whitespace.",
+    "cover": "/assets/img/cases/constructor-group.webp",
+    "source_tile": "en39GRx4D97XYJ78j5K52d"
+   }
   },
   "ballroom-dance-academy": {
    "file": "BALLROOM DANCE ACADEMY.pdf",
    "drive_id": "1yikV4DN82iy3Ip5vY8BlZqtwCwggXuUU",
    "size_mb": 4.9,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 35,
+    "section": "brands",
+    "title": "Ballroom Dance Academy",
+    "sector": "Dance Academy",
+    "market": "Singapore",
+    "summary": "Inside a SOMIN market briefing: 24 months of category data show Ballroom Dance Academy outpublished 10x by Singapore rivals, absent from a paid beginner funnel.",
+    "cover": "/assets/img/cases/ballroom-dance-academy.webp",
+    "source_tile": "VTmEJM8APqNEQrye5yt8SC"
+   }
   },
   "thomson-medical-singapore-crossmarket-briefing": {
    "file": "Thomson Medical  Singapore CrossMarket Briefing.pdf",
    "drive_id": "1Q4mBSVr4UcoFoecVc_2NmZskgFEOPaTT",
    "size_mb": 8.6,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 42,
+    "section": "brands",
+    "title": "Thomson Medical",
+    "sector": "Private Healthcare",
+    "market": "Singapore",
+    "summary": "SOMIN mapped Thomson Medical's content against 6 competitors, found a key content whitespace, and built a 27-week calendar with scored creatives.",
+    "cover": "/assets/img/cases/thomson-medical-singapore-crossmarket-briefing.webp",
+    "source_tile": "4qA6H2GAGyJSayajcSbPuC"
+   }
   },
   "indrive-ph-google-paid-media-brief-final": {
    "file": "indrive_ph_google_paid_media_brief_FINAL.pdf",
    "drive_id": "1TBZetE9dv6CR494UPLXCzazBAWV_eOVz",
    "size_mb": 3.5,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 44,
+    "section": "brands",
+    "title": "inDrive Philippines",
+    "sector": "Ride-Hailing",
+    "market": "Philippines",
+    "summary": "inDrive Philippines Google Paid Media case study: SOMIN turned 24 months of Google Ads data into 3 whitespace pillars and 108 GDN creative banners.",
+    "cover": "/assets/img/cases/indrive-ph-google-paid-media-brief-final.webp",
+    "source_tile": "Pca7rJNg6YBDBEw2LTnD7Z"
+   }
   },
   "tonik-gdn-briefing": {
    "file": "Tonik_GDN_Briefing.pdf",
    "drive_id": "1RsjGrcCGrXhfCm7LDKCpKLZ-9xYDQi3O",
    "size_mb": 1.1,
    "category": "brands",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 43,
+    "section": "brands",
+    "title": "Tonik Bank",
+    "sector": "Digital Banking",
+    "market": "Philippines",
+    "summary": "Tonik Bank Google Ads audit: SOMIN data reveals a 5-month ad blackout, untapped whitespace, and 8 high-clickability creative concepts for PH digital banking.",
+    "cover": "/assets/img/cases/tonik-gdn-briefing.webp",
+    "source_tile": "2RrWuYuy8wPam6KyEkGTAH"
+   }
   },
   "caltex-creators": {
    "file": "CALTEX CREATORS.pdf",
    "drive_id": "1q1COdvIi7D_3BOOEWb2soqZmuc64OIgU",
    "size_mb": 1.6,
    "category": "influencers",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 14,
+    "section": "creators",
+    "title": "Caltex Creators",
+    "sector": "Fuel & Petroleum Retail",
+    "market": "Malaysia",
+    "summary": "How SOMIN mapped Caltex Malaysia’s 4-creator roster into 4 non-overlapping territories: 6.0M engagements, one proven flagship, three honestly-scored bets.",
+    "cover": "/assets/img/cases/caltex-creators.webp",
+    "source_tile": "44jEG6KQb5PKiBxKgFZJ4X"
+   }
   },
   "timhortons-singapore-briefing-full": {
    "file": "TimHortons_Singapore_Briefing_full.pdf",
    "drive_id": "1sWOKQG6jkbHdAxsu-fAFHZMujGL1FGaF",
    "size_mb": 4.4,
    "category": "influencers",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 17,
+    "section": "creators",
+    "title": "Tim Hortons Singapore",
+    "sector": "Coffee & Cafe Chain",
+    "market": "Singapore",
+    "summary": "SOMIN uncovers Tim Hortons Singapore's \"authentic discovery\" whitespace vs. 6 rivals, turning creator-content gaps into a data-backed Q4 content strategy.",
+    "cover": "/assets/img/cases/timhortons-singapore-briefing-full.webp",
+    "source_tile": "fVFScwYjS6W34Qbk5GZwfj"
+   }
   },
   "loreal-ugc-analysis-sample1-v2": {
    "file": "loreal_ugc_analysis_sample1_v2.pptx.pdf",
@@ -308,21 +728,51 @@
    "drive_id": "1rY6yAtX1RyVO4T0Tt2u_Axaf31JYnxgC",
    "size_mb": 3.0,
    "category": "agencies",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 10,
+    "section": "agencies",
+    "title": "SICCI",
+    "sector": "Business Chamber / Trade Association",
+    "market": "Singapore",
+    "summary": "How agency Fyreflyz used SOMIN data to pitch SICCI: exposing a 73:1 content gap vs. peer chambers and a people-first strategy that beat notices 176:6 in likes.",
+    "cover": "/assets/img/cases/fyreflyz-sicci-pitch-full.webp",
+    "source_tile": "2oD7v2LeiBwM9PYQPzMGUY"
+   }
   },
   "fyreflyz-x-heartware-pitch": {
    "file": "Fyreflyz_x_Heartware_Pitch.pdf",
    "drive_id": "1gAmc3FxTk0GrAEsWmtQedpLJuuiufGSr",
    "size_mb": 6.2,
    "category": "agencies",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 11,
+    "section": "agencies",
+    "title": "Heartware Network",
+    "sector": "Youth Volunteering / Social Enterprise",
+    "market": "Singapore",
+    "summary": "See how Fyreflyz used SOMIN to build a winning client pitch uncovering competitor content gaps, testing hypotheses, and shaping a data-driven strategy to win Heartware Network.",
+    "cover": "/assets/img/cases/fyreflyz-x-heartware-pitch.webp",
+    "source_tile": "Y32mJpkSsvSKvCd6gfSavZ"
+   }
   },
   "fyreflyz-ymca-singapore-pitch-full": {
    "file": "Fyreflyz_YMCA_Singapore_Pitch_full.pdf",
    "drive_id": "1bmrHwoqX4HG4QJozlZeSy6uUhkUSDDMa",
    "size_mb": 3.9,
    "category": "agencies",
-   "page": null
+   "page": null,
+   "hub": {
+    "order": 9,
+    "section": "agencies",
+    "title": "YMCA Singapore",
+    "sector": "Social Services Nonprofit",
+    "market": "Singapore",
+    "summary": "See how Fyreflyz used SOMIN’s analytics to build a data-backed pitch for YMCA Singapore, turning a distribution gap into a content and paid media growth strategy.",
+    "cover": "/assets/img/cases/fyreflyz-ymca-singapore-pitch-full.webp",
+    "source_tile": "TvLDgcFytCwPUn5r9Ch5WV"
+   }
   }
  }
 }

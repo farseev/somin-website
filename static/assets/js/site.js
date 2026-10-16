@@ -113,38 +113,96 @@
     });
   }
 
-  /* ---------- thank-you-case-study: release the download link ---------- */
+  /* ---------- thank-you-case-study: release + auto-start the download ---------- */
+  // Unlocked only after the case-study Typeform was submitted in this browser (tracking.js stores the flag on submit),
+  // or when arriving straight from the form redirect with a Typeform response id. Drive IDs are kept encoded in the page.
   var rel = d.querySelector('[data-cs-release]');
   if (rel) {
     var manifest = {};
     try { manifest = JSON.parse(d.getElementById('cs-manifest').textContent); } catch (e) {}
     var qs = new URLSearchParams(location.search);
     var key = qs.get('cs') || '';
+    var rid = qs.get('rid') || '';
     var item = manifest[key];
-    var unlocked = !!qs.get('rid');
-    try { unlocked = unlocked || !!localStorage.getItem('somin_cs_unlocked_' + key); } catch (e) {}
+    var flag = null;
+    try { flag = localStorage.getItem('somin_cs_unlocked_' + key) || sessionStorage.getItem('somin_cs_unlocked_' + key); } catch (e) {}
+    var fromSite = !!d.referrer && d.referrer.indexOf(location.origin) === 0;
+    var unlocked = !!flag || (/^[A-Za-z0-9_-]{16,}$/.test(rid) && fromSite);
     var show = function (sel) { d.querySelectorAll('[data-cs-state]').forEach(function (n) { n.hidden = n.getAttribute('data-cs-state') !== sel; }); };
+    var driveId = function (s) { try { return atob(String(s || '').split('').reverse().join('')); } catch (e) { return ''; } };
+    var shown = 0;
+    d.querySelectorAll('[data-cs-more]').forEach(function (n) { var hide = n.getAttribute('data-cs-key') === key || shown >= 6; n.hidden = hide; if (!hide) shown++; });
     if (!item) { show('unknown'); }
     else {
       d.querySelectorAll('[data-cs-title]').forEach(function (n) { n.textContent = item.title; });
-      d.querySelectorAll('[data-cs-meta]').forEach(function (n) { n.textContent = 'PDF · ' + item.size_mb + ' MB'; });
+      d.querySelectorAll('[data-cs-meta]').forEach(function (n) { n.textContent = (item.category ? item.category + ' · ' : '') + 'PDF · ' + item.size_mb + ' MB'; });
       d.querySelectorAll('[data-cs-cover]').forEach(function (n) { if (item.cover) { n.src = item.cover; n.hidden = false; } });
-      d.querySelectorAll('[data-cs-page]').forEach(function (n) { if (item.page) { n.href = item.page; n.hidden = false; } else n.hidden = true; });
+      d.querySelectorAll('[data-cs-page]').forEach(function (n) { n.href = item.page || '/cases-ai-marketing-strategy/'; if (!item.page) n.textContent = 'All case studies'; n.hidden = false; });
       d.querySelectorAll('[data-cs-request]').forEach(function (n) { n.setAttribute('data-case-study', key); n.setAttribute('data-case-study-label', item.title); n.href = '/get-case-study/?cs=' + encodeURIComponent(key); });
-      var shown = 0;
-      d.querySelectorAll('[data-cs-more]').forEach(function (n) { var hide = n.getAttribute('href') === item.page || shown >= 6; n.hidden = hide; if (!hide) shown++; });
-      if (unlocked) {
+      var id = driveId(item.f);
+      if (unlocked && id) {
         show('ready');
+        var dlUrl = 'https://drive.usercontent.google.com/download?id=' + encodeURIComponent(id) + '&export=download&confirm=t';
         var dl = d.querySelector('[data-cs-download]'), view = d.querySelector('[data-cs-view]');
-        dl.href = item.download; view.href = item.view;
+        dl.href = dlUrl; view.href = 'https://drive.google.com/file/d/' + encodeURIComponent(id) + '/view';
         [dl, view].forEach(function (a) {
           a.addEventListener('click', function () { track('case_study_download', { funnel_stage: 'conversion', case_study: key, cta_text: a.textContent.trim(), link_url: a.href }); });
         });
-        if (qs.get('rid') && !sessionStorage.getItem('somin_cs_auto_' + key)) {
-          try { sessionStorage.setItem('somin_cs_auto_' + key, '1'); } catch (e) {}
+        // first visit right after the form: start the download automatically (once per response)
+        var autoKey = 'somin_cs_auto_' + (rid || key);
+        var done = false; try { done = !!sessionStorage.getItem(autoKey); } catch (e) {}
+        if (rid && !done) {
+          try { sessionStorage.setItem(autoKey, '1'); } catch (e) {}
+          var note = d.querySelector('[data-cs-auto-note]'); if (note) note.hidden = false;
+          setTimeout(function () {
+            track('case_study_auto_download', { funnel_stage: 'conversion', case_study: key, link_url: dlUrl });
+            w.location.assign(dlUrl);   // served as an attachment, so the page stays put
+          }, 1200);
         }
       } else { show('locked'); }
     }
+  }
+
+  /* ---------- case-studies hub: section filter + search ---------- */
+  var hub = d.querySelector('[data-cs-hub]');
+  if (hub) {
+    var groups = [].slice.call(hub.querySelectorAll('[data-cs-group]'));
+    var fbtns = [].slice.call(d.querySelectorAll('[data-cs-filter]'));
+    var hinput = d.querySelector('[data-cs-search]');
+    var hempty = hub.querySelector('[data-cs-empty]');
+    var hs = { s: 'all', q: '' };
+    var happly = function () {
+      var total = 0;
+      groups.forEach(function (g) {
+        var sec = g.getAttribute('data-cs-group'), n = 0;
+        g.querySelectorAll('[data-cs-card]').forEach(function (c) {
+          var ok = (hs.s === 'all' || hs.s === sec) && (!hs.q || (c.getAttribute('data-q') || '').indexOf(hs.q) > -1);
+          c.hidden = !ok; if (ok) n++;
+        });
+        g.hidden = n === 0;
+        var cnt = g.querySelector('[data-cs-count]'); if (cnt) cnt.textContent = n;
+        total += n;
+      });
+      if (hempty) hempty.hidden = total > 0;
+      fbtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-cs-filter') === hs.s)); });
+    };
+    fbtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        hs.s = b.getAttribute('data-cs-filter'); happly();
+        try { history.replaceState(null, '', hs.s === 'all' ? location.pathname + location.search : '#' + hs.s); } catch (e) {}
+        track('cases_filter', { cta_text: hs.s, funnel_stage: 'awareness' });
+      });
+    });
+    if (hinput) {
+      var ht;
+      hinput.addEventListener('input', function () {
+        hs.q = hinput.value.trim().toLowerCase(); happly();
+        clearTimeout(ht); ht = setTimeout(function () { if (hs.q) track('cases_search', { cta_text: hs.q.slice(0, 60), funnel_stage: 'awareness' }); }, 900);
+      });
+    }
+    var hh = (location.hash || '').replace('#', '');
+    if (['brands', 'agencies', 'creators'].indexOf(hh) > -1) hs.s = hh;
+    happly();
   }
 
   /* ---------- get-case-study page: label from ?cs= ---------- */

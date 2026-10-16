@@ -30,6 +30,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { overflow-x: clip; -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--header-h) + 16px); }
 body { margin: 0; background: var(--ink); color: var(--on-ink); font-family: var(--body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; }
 img, svg, video { max-width: 100%; height: auto; }
@@ -373,3 +374,39 @@ html.nav-locked { overflow: hidden; }
 .nf .mini-grid { margin-top: 40px; text-align: left; }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+
+/* ---------------- case studies hub (/cases-ai-marketing-strategy/) ---------------- */
+.cases-hero h1 { max-width: 16ch; }
+.cases-stats { display: flex; flex-wrap: wrap; gap: 12px 36px; margin-top: 30px; }
+.cases-stats div { display: flex; align-items: baseline; gap: 10px; }
+.cases-stats strong { font-family: var(--display); font-weight: 900; font-size: clamp(30px, 3.4vw, 42px); color: #fff; line-height: 1; }
+.cases-stats span { color: var(--on-ink-2); font-size: 15px; }
+.cs-proof { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 36px; }
+.cs-proof a { display: block; padding: 18px 20px; border: 1px solid var(--ink-line); border-radius: 16px; background: rgba(255,255,255,.03); text-decoration: none; color: var(--on-ink-2); transition: border-color .2s, transform .2s; }
+.cs-proof a:hover { border-color: var(--teal); transform: translateY(-2px); }
+.cs-proof strong { display: block; font-family: var(--display); font-weight: 900; font-size: clamp(24px, 2.4vw, 30px); color: var(--teal); line-height: 1.1; }
+.cs-proof span { display: block; font-size: 14px; margin-top: 6px; }
+.cs-proof em { font-style: normal; color: #fff; font-weight: 600; }
+.cases-hero .blog-tools { margin-top: 40px; }
+.cases-hero .search input { width: 310px; }
+.cs-group + .cs-group { margin-top: 64px; }
+.cs-group[hidden], .cs-card[hidden] { display: none; }
+.cs-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.cs-card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--paper-line); border-radius: 18px; overflow: hidden; transition: transform .25s, box-shadow .25s, border-color .25s; }
+.cs-card:hover { transform: translateY(-4px); box-shadow: 0 22px 50px -24px rgba(22,32,31,.35); border-color: rgba(45,191,156,.55); }
+.cs-media { display: block; aspect-ratio: 40 / 21; background: var(--ink); overflow: hidden; }
+.cs-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
+.cs-card:hover .cs-media img { transform: scale(1.04); }
+.cs-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+.cs-kicker { margin: 0; font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); }
+.cs-card h3 { font-family: var(--display); font-weight: 800; font-size: 20px; line-height: 1.25; margin: 8px 0; color: var(--ink); }
+.cs-sum { margin: 0 0 18px; color: var(--text-2); font-size: 15px; line-height: 1.55; }
+.cs-actions { margin-top: auto; display: flex; align-items: center; gap: 10px 16px; flex-wrap: wrap; }
+.cs-actions .btn svg { width: 16px; height: 16px; }
+.cs-read { display: inline-flex; align-items: center; gap: 6px; font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--teal-600); text-decoration: none; }
+.cs-read svg { width: 14px; height: 14px; transition: transform .2s; }
+.cs-read:hover { color: var(--ink); }
+.cs-read:hover svg { transform: translateX(3px); }
+.cases-list .empty { margin-top: 24px; color: var(--text-2); }
+@media (max-width: 1000px) { .cs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cs-proof { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .cs-grid { grid-template-columns: 1fr; } .cases-hero .search { margin-left: 0; width: 100%; } .cases-hero .search input { width: 100%; } }

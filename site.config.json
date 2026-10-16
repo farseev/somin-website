@@ -1,358 +1,355 @@
 {
-  "_doc": "Site-wide settings used by build.py. Tracking IDs, Typeform IDs and Calendly links live in static/assets/js/tracking.js (CONFIG block) so there is one source of truth for everything the browser does.",
-  "site": {
-    "name": "SOMIN",
-    "url": "https://somin.ai",
-    "domain": "somin.ai",
-    "locale": "en_US",
-    "language": "en",
-    "fb_app_id": "4198265810445529",
-    "logo": "/assets/img/brand/somin-logo.png",
-    "favicon": "/assets/img/brand/favicon.png",
-    "default_og_image": "/assets/img/og/default.jpg",
-    "theme_color": "#16201F",
-    "tagline": "AI marketing intelligence & campaign planning platform",
-    "description": "SOMIN turns live competitor and audience data into pre-scored campaign concepts. Trusted by P&G, Audi, Dentsu & Havas across 11+ markets.",
-    "same_as": [
-      "https://sg.linkedin.com/company/somin",
-      "https://www.g2.com/products/somin-ai/reviews",
-      "https://www.capterra.com/p/237614/SoMin/",
-      "https://sourceforge.net/software/product/SoMin/",
-      "https://zapier.com/partnerdirectory/somin"
-    ]
-  },
-  "nav": [
+ "_doc": "Site-wide settings used by build.py. Tracking IDs, Typeform IDs and Calendly links live in static/assets/js/tracking.js (CONFIG block) so there is one source of truth for everything the browser does.",
+ "site": {
+  "name": "SOMIN",
+  "url": "https://somin.ai",
+  "domain": "somin.ai",
+  "locale": "en_US",
+  "language": "en",
+  "fb_app_id": "4198265810445529",
+  "logo": "/assets/img/brand/somin-logo.png",
+  "favicon": "/assets/img/brand/favicon.png",
+  "default_og_image": "/assets/img/og/default.jpg",
+  "theme_color": "#16201F",
+  "tagline": "AI marketing intelligence & campaign planning platform",
+  "description": "SOMIN turns live competitor and audience data into pre-scored campaign concepts. Trusted by P&G, Audi, Dentsu & Havas across 11+ markets.",
+  "same_as": [
+   "https://sg.linkedin.com/company/somin",
+   "https://www.g2.com/products/somin-ai/reviews",
+   "https://www.capterra.com/p/237614/SoMin/",
+   "https://sourceforge.net/software/product/SoMin/",
+   "https://zapier.com/partnerdirectory/somin"
+  ]
+ },
+ "nav": [
+  {
+   "label": "for BRANDS",
+   "href": "/somin-for-brands/",
+   "children": [
     {
-      "label": "for BRANDS",
-      "href": "/somin-for-brands/",
-      "children": [
-        {
-          "label": "Entertainment Education: SM Universe K-Pop Academy",
-          "href": "/brands-sm-universe-case-study/"
-        },
-        {
-          "label": "Arts Education: VIVA School of Music & Ballet",
-          "href": "/brands-viva-school-case-study/"
-        },
-        {
-          "label": "Consumer Electronics: Fujifilm UK",
-          "href": "/brands-fujifilm-case-study/"
-        },
-        {
-          "label": "Healthcare / MedTech: ExoStride Singapore",
-          "href": "/brands-exostride-case-study/"
-        },
-        {
-          "label": "Insurance / Finance: Reassured",
-          "href": "/brands-reassured-case-study/"
-        },
-        {
-          "label": "Automotive: Land Rover Defender",
-          "href": "/brands-defender-case-study/"
-        },
-        {
-          "label": "Food Delivery App: Keeta HK",
-          "href": "/brands-keeta-hk-case-study/"
-        },
-        {
-          "label": "Health & Wellness (CBD): Miraflora",
-          "href": "/brands-miraflora-case-study/"
-        },
-        {
-          "label": "Retail / Baby Goods: Mothercare Singapore",
-          "href": "/brands-mothercare-sg-case-study/"
-        },
-        {
-          "label": "FMCG / Beverage: Pepsi India",
-          "href": "/brands-pepsi-india-case-study/"
-        }
-      ]
+     "label": "Entertainment Education: SM Universe K-Pop Academy",
+     "href": "/brands-sm-universe-case-study/"
     },
     {
-      "label": "for AGENCIES",
-      "href": "/somin-for-agencies/",
-      "children": [
-        {
-          "label": "Production Agency: Senoko Energy",
-          "href": "/agencies-senoko-energy-case-study/"
-        },
-        {
-          "label": "Data Analytics Agency: Analytic Partners",
-          "href": "/agencies-analytic-partners-case-study/"
-        },
-        {
-          "label": "Media Agency: KPI Media",
-          "href": "/agencies-kpi-media-case-study/"
-        },
-        {
-          "label": "Digital Marketing Agency: NEO360",
-          "href": "/agencies-neo360/"
-        },
-        {
-          "label": "Global Media Agency: Havas Media",
-          "href": "/agencies-havas-media-case-study/"
-        },
-        {
-          "label": "Content Marketing Agency: Click2View Asia",
-          "href": "/agencies-click2view-asia-case-study/"
-        },
-        {
-          "label": "Creative Agency: SAMY",
-          "href": "/agencies-samy-case-study/"
-        },
-        {
-          "label": "Creative Agency: Blak Labs",
-          "href": "/agencies-blak-labs-case-study/"
-        }
-      ]
+     "label": "Arts Education: VIVA School of Music & Ballet",
+     "href": "/brands-viva-school-case-study/"
     },
     {
-      "label": "for CREATORS",
-      "href": "/somin-for-creators/",
-      "children": [
-        {
-          "label": "Influencer Agency: Vamp Portfolio",
-          "href": "/agencies-vamp-creator-portfolio-case-stud/"
-        },
-        {
-          "label": "Art & Illustration Creator: Aaron Brooks",
-          "href": "/influencers-vamp-aaron-brooks-case-study/"
-        },
-        {
-          "label": "B2B / LinkedIn Creator: Nikki Taylor",
-          "href": "/influencers-nikki-taylor-case-study/"
-        },
-        {
-          "label": "Pet Influencer: Daisy Iggy Levretka (The Dog)",
-          "href": "/influencers-daisy-iggy-case-study/"
-        }
-      ]
+     "label": "Consumer Electronics: Fujifilm UK",
+     "href": "/brands-fujifilm-case-study/"
     },
     {
-      "label": "AI AGENTS",
-      "href": "/ai-agents/",
-      "children": [
-        {
-          "label": "CREATOR MANAGEMENT",
-          "href": "/somin-influencer-gmv/"
-        },
-        {
-          "label": "CRM",
-          "href": "/somin-crm/"
-        },
-        {
-          "label": "SOCIAL MEDIA MANAGEMENT",
-          "href": "/somin-social-media-manager/"
-        },
-        {
-          "label": "PAID MEDIA",
-          "href": "/somin-paid-media/"
-        },
-        {
-          "label": "REPORTING",
-          "href": "/somin-reporting/"
-        },
-        {
-          "label": "STRATEGY",
-          "href": "/somin-strategy/"
-        }
-      ]
+     "label": "Healthcare / MedTech: ExoStride Singapore",
+     "href": "/brands-exostride-case-study/"
     },
     {
-      "label": "CASES",
-      "href": "/cases-ai-marketing-strategy/"
+     "label": "Insurance / Finance: Reassured",
+     "href": "/brands-reassured-case-study/"
     },
     {
-      "label": "BLOG",
-      "href": "/blog/"
+     "label": "Automotive: Land Rover Defender",
+     "href": "/brands-defender-case-study/"
     },
     {
-      "label": "LOGIN",
-      "href": "https://cloud.somin.ai/auth/signin",
-      "gtm_id": "nav_login"
+     "label": "Food Delivery App: Keeta HK",
+     "href": "/brands-keeta-hk-case-study/"
+    },
+    {
+     "label": "Health & Wellness (CBD): Miraflora",
+     "href": "/brands-miraflora-case-study/"
+    },
+    {
+     "label": "Retail / Baby Goods: Mothercare Singapore",
+     "href": "/brands-mothercare-sg-case-study/"
+    },
+    {
+     "label": "FMCG / Beverage: Pepsi India",
+     "href": "/brands-pepsi-india-case-study/"
     }
-  ],
-  "nav_cta": {
-    "label": "BOOK A CALL",
-    "href": "https://calendly.com/filipp-lugovoi/30min",
-    "gtm_id": "nav_book_a_call"
+   ]
   },
-  "footer": {
-    "compare": [
-      {
-        "label": "SOMIN vs Klaviyo, HubSpot & Persado",
-        "href": "/somin-vs-email-tools/"
-      },
-      {
-        "label": "SOMIN vs AdCreative.ai, Smartly & Meta Advantage+",
-        "href": "/somin-vs-paid-media-tools/"
-      },
-      {
-        "label": "SOMIN vs CreatorIQ, GRIN & Aspire",
-        "href": "/somin-vs-influencer-tools/"
-      },
-      {
-        "label": "SOMIN vs ChatGPT, Perplexity, Meltwater & GWI",
-        "href": "/somin-vs-strategy-tools/"
-      },
-      {
-        "label": "SOMIN vs Talkwalker, Rival IQ & Whatagraph",
-        "href": "/somin-vs-reporting-tools/"
-      },
-      {
-        "label": "SOMIN vs Buffer, Sprout Social & Jasper",
-        "href": "/somin-vs-social-tools/"
-      }
-    ],
-    "columns": [
-      {
-        "title": "Solutions",
-        "links": [
-          {
-            "label": "SOMIN for Brands",
-            "href": "/somin-for-brands/"
-          },
-          {
-            "label": "SOMIN for Agencies",
-            "href": "/somin-for-agencies/"
-          },
-          {
-            "label": "SOMIN for Creators",
-            "href": "/somin-for-creators/"
-          },
-          {
-            "label": "Case studies",
-            "href": "/cases-ai-marketing-strategy/"
-          }
-        ]
-      },
-      {
-        "title": "AI Agents",
-        "links": [
-          {
-            "label": "All AI agents",
-            "href": "/ai-agents/"
-          },
-          {
-            "label": "Strategy",
-            "href": "/somin-strategy/"
-          },
-          {
-            "label": "Paid media & ad scoring",
-            "href": "/somin-paid-media/"
-          },
-          {
-            "label": "Creator management & GMV",
-            "href": "/somin-influencer-gmv/"
-          },
-          {
-            "label": "Social media manager",
-            "href": "/somin-social-media-manager/"
-          },
-          {
-            "label": "CRM & email",
-            "href": "/somin-crm/"
-          },
-          {
-            "label": "Reporting",
-            "href": "/somin-reporting/"
-          }
-        ]
-      },
-      {
-        "title": "Company",
-        "links": [
-          {
-            "label": "Blog",
-            "href": "/blog/"
-          },
-          {
-            "label": "Our Vision",
-            "href": "/vision/"
-          },
-          {
-            "label": "Try SOMIN",
-            "href": "/try-somin/",
-            "lead_form": "trial",
-            "gtm_id": "footer_try_somin"
-          },
-          {
-            "label": "Book a call",
-            "href": "https://calendly.com/filipp-lugovoi/30min",
-            "gtm_id": "footer_book_a_call"
-          },
-          {
-            "label": "Login",
-            "href": "https://cloud.somin.ai/auth/signin",
-            "gtm_id": "footer_login"
-          }
-        ]
-      },
-      {
-        "title": "Legal",
-        "links": [
-          {
-            "label": "Privacy Policy",
-            "href": "/privacy-policy/"
-          },
-          {
-            "label": "SaaS Agreement",
-            "href": "/saas-terms-general/"
-          },
-          {
-            "label": "SaaS Agreement (Advanced)",
-            "href": "/saas-terms-advanced/"
-          },
-          {
-            "label": "SaaS Agreement (UK)",
-            "href": "/uk_saas-terms-advanced/"
-          }
-        ]
-      }
-    ],
-    "badges": [
-      {
-        "img": "/assets/img/brand/gartner-cool-vendor-2020.webp",
-        "alt": "Gartner Cool Vendor 2020",
-        "text": "Gartner's \"Cool Vendor\" in Marketing AI",
-        "href": "https://ddistenfield.medium.com/gsd-labs-company-somin-is-a-gartner-cool-ai-vendor-78da8fcd41ff"
-      },
-      {
-        "img": "/assets/img/brand/zapier-partner.webp",
-        "alt": "Zapier Partner",
-        "text": "Zapier's Partner in Agentic AI",
-        "href": "https://zapier.com/partnerdirectory/somin"
-      }
-    ],
-    "reviews": [
-      {
-        "label": "G2",
-        "href": "https://www.g2.com/products/somin-ai/reviews"
-      },
-      {
-        "label": "Capterra",
-        "href": "https://www.capterra.com/p/237614/SoMin/"
-      },
-      {
-        "label": "SourceForge",
-        "href": "https://sourceforge.net/software/product/SoMin/"
-      }
-    ]
+  {
+   "label": "for AGENCIES",
+   "href": "/somin-for-agencies/",
+   "children": [
+    {
+     "label": "Production Agency: Senoko Energy",
+     "href": "/agencies-senoko-energy-case-study/"
+    },
+    {
+     "label": "Data Analytics Agency: Analytic Partners",
+     "href": "/agencies-analytic-partners-case-study/"
+    },
+    {
+     "label": "Media Agency: KPI Media",
+     "href": "/agencies-kpi-media-case-study/"
+    },
+    {
+     "label": "Digital Marketing Agency: NEO360",
+     "href": "/agencies-neo360/"
+    },
+    {
+     "label": "Global Media Agency: Havas Media",
+     "href": "/agencies-havas-media-case-study/"
+    },
+    {
+     "label": "Content Marketing Agency: Click2View Asia",
+     "href": "/agencies-click2view-asia-case-study/"
+    },
+    {
+     "label": "Creative Agency: SAMY",
+     "href": "/agencies-samy-case-study/"
+    },
+    {
+     "label": "Creative Agency: Blak Labs",
+     "href": "/agencies-blak-labs-case-study/"
+    }
+   ]
   },
-  "redirects": {
-    "/forms/": "/",
-    "/pixel/": "/",
-    "/somin-comparisons/": "/somin-strategy/",
-    "/blog/expanding-horizons-leveraging-large-language-models-for-business-innovation-beyond-chatbots-copy/": "/blog/expanding-horizons-leveraging-large-language-models-for-business-innovation-beyond-chatbots/",
-    "/blog/page/2/": "/blog/",
-    "/blog/page/3/": "/blog/",
-    "/blog/page/4/": "/blog/",
-    "/thank-you/": "/thank-you-trial-somin/",
-    "/soads-case-study/": "/somin-paid-media/",
-    "/somin-lead-magnet-mothercare-case-study/": "/brands-mothercare-sg-case-study/",
-    "/somonitor-psg-ai-digital-marketing-grant-for-smes-in-singapore/": "https://share.somin.ai/psg"
+  {
+   "label": "for CREATORS",
+   "href": "/somin-for-creators/",
+   "children": [
+    {
+     "label": "Influencer Agency: Vamp Portfolio",
+     "href": "/agencies-vamp-creator-portfolio-case-stud/"
+    },
+    {
+     "label": "Art & Illustration Creator: Aaron Brooks",
+     "href": "/influencers-vamp-aaron-brooks-case-study/"
+    },
+    {
+     "label": "B2B / LinkedIn Creator: Nikki Taylor",
+     "href": "/influencers-nikki-taylor-case-study/"
+    },
+    {
+     "label": "Pet Influencer: Daisy Iggy Levretka (The Dog)",
+     "href": "/influencers-daisy-iggy-case-study/"
+    }
+   ]
   },
-  "not_migrated": {
-    "/cases-ai-marketing-strategy/": "Case-studies hub — regenerated separately. Links to it are kept; until it is added it falls back to 404.html."
+  {
+   "label": "AI AGENTS",
+   "href": "/ai-agents/",
+   "children": [
+    {
+     "label": "CREATOR MANAGEMENT",
+     "href": "/somin-influencer-gmv/"
+    },
+    {
+     "label": "CRM",
+     "href": "/somin-crm/"
+    },
+    {
+     "label": "SOCIAL MEDIA MANAGEMENT",
+     "href": "/somin-social-media-manager/"
+    },
+    {
+     "label": "PAID MEDIA",
+     "href": "/somin-paid-media/"
+    },
+    {
+     "label": "REPORTING",
+     "href": "/somin-reporting/"
+    },
+    {
+     "label": "STRATEGY",
+     "href": "/somin-strategy/"
+    }
+   ]
+  },
+  {
+   "label": "CASES",
+   "href": "/cases-ai-marketing-strategy/"
+  },
+  {
+   "label": "BLOG",
+   "href": "/blog/"
+  },
+  {
+   "label": "LOGIN",
+   "href": "https://cloud.somin.ai/auth/signin",
+   "gtm_id": "nav_login"
   }
+ ],
+ "nav_cta": {
+  "label": "BOOK A CALL",
+  "href": "https://calendly.com/filipp-lugovoi/30min",
+  "gtm_id": "nav_book_a_call"
+ },
+ "footer": {
+  "compare": [
+   {
+    "label": "SOMIN vs Klaviyo, HubSpot & Persado",
+    "href": "/somin-vs-email-tools/"
+   },
+   {
+    "label": "SOMIN vs AdCreative.ai, Smartly & Meta Advantage+",
+    "href": "/somin-vs-paid-media-tools/"
+   },
+   {
+    "label": "SOMIN vs CreatorIQ, GRIN & Aspire",
+    "href": "/somin-vs-influencer-tools/"
+   },
+   {
+    "label": "SOMIN vs ChatGPT, Perplexity, Meltwater & GWI",
+    "href": "/somin-vs-strategy-tools/"
+   },
+   {
+    "label": "SOMIN vs Talkwalker, Rival IQ & Whatagraph",
+    "href": "/somin-vs-reporting-tools/"
+   },
+   {
+    "label": "SOMIN vs Buffer, Sprout Social & Jasper",
+    "href": "/somin-vs-social-tools/"
+   }
+  ],
+  "columns": [
+   {
+    "title": "Solutions",
+    "links": [
+     {
+      "label": "SOMIN for Brands",
+      "href": "/somin-for-brands/"
+     },
+     {
+      "label": "SOMIN for Agencies",
+      "href": "/somin-for-agencies/"
+     },
+     {
+      "label": "SOMIN for Creators",
+      "href": "/somin-for-creators/"
+     },
+     {
+      "label": "Case studies",
+      "href": "/cases-ai-marketing-strategy/"
+     }
+    ]
+   },
+   {
+    "title": "AI Agents",
+    "links": [
+     {
+      "label": "All AI agents",
+      "href": "/ai-agents/"
+     },
+     {
+      "label": "Strategy",
+      "href": "/somin-strategy/"
+     },
+     {
+      "label": "Paid media & ad scoring",
+      "href": "/somin-paid-media/"
+     },
+     {
+      "label": "Creator management & GMV",
+      "href": "/somin-influencer-gmv/"
+     },
+     {
+      "label": "Social media manager",
+      "href": "/somin-social-media-manager/"
+     },
+     {
+      "label": "CRM & email",
+      "href": "/somin-crm/"
+     },
+     {
+      "label": "Reporting",
+      "href": "/somin-reporting/"
+     }
+    ]
+   },
+   {
+    "title": "Company",
+    "links": [
+     {
+      "label": "Blog",
+      "href": "/blog/"
+     },
+     {
+      "label": "Our Vision",
+      "href": "/vision/"
+     },
+     {
+      "label": "Try SOMIN",
+      "href": "/try-somin/",
+      "lead_form": "trial",
+      "gtm_id": "footer_try_somin"
+     },
+     {
+      "label": "Book a call",
+      "href": "https://calendly.com/filipp-lugovoi/30min",
+      "gtm_id": "footer_book_a_call"
+     },
+     {
+      "label": "Login",
+      "href": "https://cloud.somin.ai/auth/signin",
+      "gtm_id": "footer_login"
+     }
+    ]
+   },
+   {
+    "title": "Legal",
+    "links": [
+     {
+      "label": "Privacy Policy",
+      "href": "/privacy-policy/"
+     },
+     {
+      "label": "SaaS Agreement",
+      "href": "/saas-terms-general/"
+     },
+     {
+      "label": "SaaS Agreement (Advanced)",
+      "href": "/saas-terms-advanced/"
+     },
+     {
+      "label": "SaaS Agreement (UK)",
+      "href": "/uk_saas-terms-advanced/"
+     }
+    ]
+   }
+  ],
+  "badges": [
+   {
+    "img": "/assets/img/brand/gartner-cool-vendor-2020.webp",
+    "alt": "Gartner Cool Vendor 2020",
+    "text": "Gartner's \"Cool Vendor\" in Marketing AI",
+    "href": "https://ddistenfield.medium.com/gsd-labs-company-somin-is-a-gartner-cool-ai-vendor-78da8fcd41ff"
+   },
+   {
+    "img": "/assets/img/brand/zapier-partner.webp",
+    "alt": "Zapier Partner",
+    "text": "Zapier's Partner in Agentic AI",
+    "href": "https://zapier.com/partnerdirectory/somin"
+   }
+  ],
+  "reviews": [
+   {
+    "label": "G2",
+    "href": "https://www.g2.com/products/somin-ai/reviews"
+   },
+   {
+    "label": "Capterra",
+    "href": "https://www.capterra.com/p/237614/SoMin/"
+   },
+   {
+    "label": "SourceForge",
+    "href": "https://sourceforge.net/software/product/SoMin/"
+   }
+  ]
+ },
+ "redirects": {
+  "/forms/": "/",
+  "/pixel/": "/",
+  "/somin-comparisons/": "/somin-strategy/",
+  "/blog/expanding-horizons-leveraging-large-language-models-for-business-innovation-beyond-chatbots-copy/": "/blog/expanding-horizons-leveraging-large-language-models-for-business-innovation-beyond-chatbots/",
+  "/blog/page/2/": "/blog/",
+  "/blog/page/3/": "/blog/",
+  "/blog/page/4/": "/blog/",
+  "/thank-you/": "/thank-you-trial-somin/",
+  "/soads-case-study/": "/somin-paid-media/",
+  "/somin-lead-magnet-mothercare-case-study/": "/brands-mothercare-sg-case-study/",
+  "/somonitor-psg-ai-digital-marketing-grant-for-smes-in-singapore/": "https://share.somin.ai/psg"
+ }
 }

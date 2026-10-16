@@ -291,7 +291,11 @@
 
   function onLeadSubmitted(formType, ctx, rid, onDone) {
     var form = CONFIG.lead_forms[formType] || {};
-    if (formType === 'case_study' && ctx.case_study) store.set('somin_cs_unlocked_' + ctx.case_study, { rid: rid, ts: Date.now() });
+    if (formType === 'case_study' && ctx.case_study) {
+      // unlocks /thank-you-case-study/?cs=<key> in this browser (local + session, in case one of them is blocked)
+      store.set('somin_cs_unlocked_' + ctx.case_study, { rid: rid, ts: Date.now() });
+      store.set('somin_cs_unlocked_' + ctx.case_study, { rid: rid, ts: Date.now() }, true);
+    }
     store.set('somin_lead_' + formType, { rid: rid, ts: Date.now() }, true);
     fireConversions(formType, rid, ctx);
     var redirected = false;

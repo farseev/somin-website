@@ -487,34 +487,47 @@ def build_rss(posts):
 
 
 # ------------------------------------------------------------------ lead + thank-you pages
+def drive_download(drive_id):
+    # drive.usercontent serves the file as an attachment (no HTML interstitial, even for the 140 MB deck)
+    return f'https://drive.usercontent.google.com/download?id={drive_id}&export=download&confirm=t'
+
+
 def case_manifest():
+    """All case-study PDFs keyed like data/case-studies.json, enriched with titles, covers and links."""
     out = {}
     pages = {}
     for f in sorted((ROOT / 'content/pages').glob('*.html')):
         m, _ = read_content(f)
         pages[m['slug']] = m
-    # human labels for case studies come from the navigation ("Consumer Electronics: Fujifilm UK" -> "Fujifilm UK")
+    # fallback labels from the navigation ("Consumer Electronics: Fujifilm UK" -> "Fujifilm UK")
     nav_labels = {}
     for n in CFG['nav']:
         for c in n.get('children', []):
             nav_labels[c['href'].strip('/')] = (c['label'].split(':', 1)[-1].strip(), c['label'].split(':', 1)[0].strip() if ':' in c['label'] else '')
-    extra = {'case': ('Miraflora Wagyu × GWI', 'eCommerce')}
     for key, it in CASES['items'].items():
         pm = pages.get(key, {})
-        label, sector = nav_labels.get(key) or extra.get(key) or (None, '')
-        title = label or re.sub(r'\.pdf$', '', it['file'], flags=re.I).replace('_', ' ').title()
-        if sector:
-            it = dict(it, category=sector)
-        out[key] = {'title': title, 'download': f'https://drive.google.com/uc?export=download&id={it["drive_id"]}',
+        hub = it.get('hub') or {}
+        label, sector = nav_labels.get(key) or (None, '')
+        title = hub.get('title') or label or re.sub(r'\.pdf$', '', it['file'], flags=re.I).replace('_', ' ').title()
+        out[key] = {'title': title, 'download': drive_download(it['drive_id']), 'drive_id': it['drive_id'],
                     'view': f'https://drive.google.com/file/d/{it["drive_id"]}/view', 'size_mb': it['size_mb'],
-                    'page': it.get('page'), 'cover': pm.get('og_image'), 'category': it.get('category')}
+                    'page': it.get('page'), 'cover': hub.get('cover') or pm.get('og_image'),
+                    'category': hub.get('sector') or sector or it.get('category'), 'market': hub.get('market', ''),
+                    'section': hub.get('section') or {'influencers': 'creators'}.get(it.get('category'), it.get('category')),
+                    'summary': hub.get('summary', ''), 'order': hub.get('order', 999), 'on_hub': bool(hub)}
     return out
+
+
+def _obf(drive_id):
+    # keeps raw Drive IDs out of the page source (soft gate); site.js reverses it after the form is submitted
+    import base64
+    return base64.b64encode(drive_id.encode()).decode()[::-1]
 
 
 def build_lead_pages():
     manifest = case_manifest()
     # remove internals the browser does not need
-    public = {k: {kk: v[kk] for kk in ('title', 'size_mb', 'page', 'cover')} for k, v in manifest.items()}
+    public = {k: {kk: v[kk] for kk in ('title', 'size_mb', 'page', 'cover', 'category')} for k, v in manifest.items()}
     trial_id = TRACK['lead_forms']['trial']['typeform_id']
     cs_id = TRACK['lead_forms']['case_study']['typeform_id']
 
@@ -563,8 +576,20 @@ def build_lead_pages():
     write('/get-case-study/', page(meta, body, '/get-case-study/'))
 
     # ---- /thank-you-case-study/  (download release)
-    picks = [v for k, v in manifest.items() if v['page'] and k != 'case'][:7]
-    cards = ''.join(f'<a class="mini" href="{E(v["page"])}" data-cs-more><span>{E(v["category"] or "Case study")}</span><strong>{E(v["title"])}</strong></a>' for v in picks)
+    hub_items = sorted([(k, v) for k, v in manifest.items() if v['on_hub']], key=lambda kv: kv[1]['order'])
+    by_sec = {s: [kv for kv in hub_items if kv[1]['section'] == s] for s in ('brands', 'agencies', 'creators')}
+    picks, i = [], 0
+    while len(picks) < 9 and any(by_sec.values()):
+        s = ('brands', 'agencies', 'creators', 'brands')[i % 4]; i += 1
+        if by_sec[s]:
+            picks.append(by_sec[s].pop(0))
+
+    def mini(k, v):
+        if v['page']:
+            return f'<a class="mini" href="{E(v["page"])}" data-cs-more data-cs-key="{E(k)}"><span>{E(v["category"] or "Case study")}</span><strong>{E(v["title"])}</strong></a>'
+        return (f'<a class="mini" href="/get-case-study/?cs={E(k)}" data-lead-form="case_study" data-case-study="{E(k)}" data-case-study-label="{E(v["title"])}" '
+                f'data-cs-more data-cs-key="{E(k)}"><span>{E(v["category"] or "Case study")}</span><strong>{E(v["title"])}</strong></a>')
+    cards = ''.join(mini(k, v) for k, v in picks)
     body = f'''<section class="hero"><div class="container" style="max-width:980px" data-cs-release>
   <div class="ty-card" data-cs-state="ready" hidden>
     <div class="ty-check">{ICON['check']}</div>
@@ -578,7 +603,8 @@ def build_lead_pages():
           <a class="btn btn--solid" data-cs-download href="#" rel="noopener" data-gtm-id="case_study_download_pdf">{ICON['download']} Download PDF</a>
           <a class="btn btn--ghost" data-cs-view href="#" target="_blank" rel="noopener" data-gtm-id="case_study_view_pdf">Open in browser</a>
         </div>
-        <p class="dl-note">The link stays on this page for this browser session. Large decks can take a few seconds to start downloading.</p>
+        <p class="dl-note" data-cs-auto-note hidden><strong>Your download has started.</strong> Check your browser's downloads; if nothing appears in a few seconds, use the Download PDF button.</p>
+        <p class="dl-note">Large decks can take a few seconds to start. The PDF stays available on this page in this browser.</p>
       </div>
     </div>
   </div>
@@ -606,8 +632,9 @@ def build_lead_pages():
     </div>
   </div>
 </div></section>
-<section class="section" style="padding-top:0"><div class="container" style="max-width:980px"><h2 class="section-title">More SOMIN case studies</h2><div class="mini-grid">{cards}</div></div></section>
-<script type="application/json" id="cs-manifest">{json.dumps({k: dict(public[k], download=v['download'], view=v['view']) for k, v in manifest.items()}, ensure_ascii=False)}</script>'''
+<section class="section" style="padding-top:0"><div class="container" style="max-width:980px"><h2 class="section-title">More SOMIN case studies</h2><div class="mini-grid">{cards}</div>
+<p style="margin-top:22px"><a class="btn btn--ghost" href="/cases-ai-marketing-strategy/" data-gtm-id="thank_you_case_all_cases">Browse all {sum(1 for v in manifest.values() if v['on_hub'])} case studies</a></p></div></section>
+<script type="application/json" id="cs-manifest">{json.dumps({k: dict(public[k], f=_obf(v['drive_id'])) for k, v in manifest.items()}, ensure_ascii=False)}</script>'''
     meta = {'title': 'Your SOMIN Case Study Download', 'description': 'Download your SOMIN case study.', 'type': 'thank_you', 'lead_type': 'case_study',
             'layout': 'thank-you', 'robots': 'noindex,nofollow', 'group': 'thank_you'}
     write('/thank-you-case-study/', page(meta, body, '/thank-you-case-study/'))
@@ -633,6 +660,80 @@ def build_lead_pages():
             'layout': 'thank-you', 'robots': 'noindex,nofollow', 'group': 'thank_you'}
     write('/thank-you-trial-somin/', page(meta, body, '/thank-you-trial-somin/'))
     return manifest
+
+
+def build_cases_hub(manifest):
+    """/cases-ai-marketing-strategy/ — every case study as a tile; 'Get the PDF' opens the case-study Typeform."""
+    path = '/cases-ai-marketing-strategy/'
+    # within each section: case studies with a full story page first, then PDF-only ones (both in the original hub order)
+    items = sorted([(k, v) for k, v in manifest.items() if v['on_hub']], key=lambda kv: (not kv[1]['page'], kv[1]['order']))
+    sections = [('brands', 'For brands', 'brand'), ('agencies', 'For agencies', 'agency'), ('creators', 'For creators', 'creator')]
+    count = {s: sum(1 for _, v in items if v['section'] == s) for s, _, _ in sections}
+    total = len(items)
+
+    def card(k, v):
+        kicker = ' · '.join(x for x in (v['category'], v['market']) if x)
+        lead = (f'href="/get-case-study/?cs={E(k)}" data-lead-form="case_study" data-case-study="{E(k)}" '
+                f'data-case-study-label="{E(v["title"])}"')
+        media_href = f'href="{E(v["page"])}"' if v['page'] else lead
+        q = ' '.join([v['title'], v['category'] or '', v['market'], v['summary'], v['section']]).lower()
+        read = (f'<a class="cs-read" href="{E(v["page"])}" data-gtm-id="cases_hub_read_{E(k[:40])}">Read the story {ICON["arrow"]}</a>'
+                if v['page'] else '')
+        return f"""<article class="cs-card" data-cs-card data-q="{E(q)}">
+  <a class="cs-media" {media_href} tabindex="-1" aria-hidden="true"><img src="{E(v['cover'])}" alt="" width="800" height="420" loading="lazy" decoding="async"></a>
+  <div class="cs-body">
+    <p class="cs-kicker">{E(kicker)}</p>
+    <h3>{E(v['title'])}</h3>
+    <p class="cs-sum">{E(v['summary'])}</p>
+    <div class="cs-actions"><a class="btn btn--solid btn--sm" {lead} data-gtm-id="cases_hub_pdf_{E(k[:40])}">{ICON['download']} Get the PDF</a>{read}</div>
+  </div>
+</article>"""
+
+    groups = ''
+    for s, label, word in sections:
+        cards = ''.join(card(k, v) for k, v in items if v['section'] == s)
+        groups += (f'<div class="cs-group" data-cs-group="{s}" id="{s}"><div class="blog-list-head"><h2>{label}</h2>'
+                   f'<p><span data-cs-count>{count[s]}</span> case studies</p></div><div class="cs-grid">{cards}</div></div>')
+    chips = (f'<button class="chip" type="button" data-cs-filter="all" aria-pressed="true">All ({total})</button>' +
+             ''.join(f'<button class="chip" type="button" data-cs-filter="{s}" aria-pressed="false">{label} ({count[s]})</button>' for s, label, _ in sections))
+    # measured results quoted from the case-study tiles themselves
+    proof = [('12x', 'faster planning', 'agencies-samy-case-study'), ('75%', 'lower pitch cost', 'agencies-kpi-media-case-study'),
+             ('9h → 1h', 'monthly reporting', 'agencies-click2view-asia-case-study'), ('80%', 'less research time', 'brands-mothercare-sg-case-study')]
+    proof_html = ''.join(f'<a href="{E(manifest[k]["page"])}" data-gtm-id="cases_hub_proof_{E(k[:40])}"><strong>{E(n)}</strong><span>{E(txt)} · <em>{E(manifest[k]["title"])}</em></span></a>'
+                         for n, txt, k in proof if k in manifest and manifest[k]['page'])
+    body = f"""<section class="hero cases-hero"><div class="container">
+  <p class="eyebrow">Case studies</p>
+  <h1>What SOMIN finds in <em>real</em> categories.</h1>
+  <p class="lede">{total} case studies from brands, agencies and creators across Asia-Pacific, the Middle East, Europe and the Americas: competitor reads, whitespace maps, content calendars and the time and cost savings agencies measured. Every full PDF is free: fill in a short form and the download starts straight away.</p>
+  <div class="cases-stats"><div><strong>{count['brands']}</strong><span>brand studies</span></div><div><strong>{count['agencies']}</strong><span>agency stories</span></div><div><strong>{count['creators']}</strong><span>creator strategies</span></div></div>
+  <div class="cs-proof" aria-label="Measured results">{proof_html}</div>
+  <div class="blog-tools"><div class="chips" role="group" aria-label="Filter case studies">{chips}</div>
+    <label class="search"><span class="visually-hidden">Search case studies</span>{ICON['search']}<input type="search" placeholder="Search brand, sector or market" data-cs-search></label></div>
+</div></section>
+<section class="blog-list cases-list" data-cs-hub><div class="container">
+  {groups}
+  <p class="empty" data-cs-empty hidden>No case studies match that search. Try a brand, a sector (e.g. “banking”) or a market (e.g. “Singapore”).</p>
+</div></section>
+<section class="cta-band"><div class="container"><h2>Thinking about giving it a shot for <em>your business</em>?</h2><p>Book a session with our team to walk through the platform and discover insights relevant to you or your clients.</p>
+<div class="cta-row"><a class="btn btn--solid" href="{CAL_DEFAULT}" data-gtm-id="cases_hub_book_call">Book a call with the team</a><a class="btn btn--ghost" href="/try-somin/" data-lead-form="trial" data-gtm-id="cases_hub_try">Try SOMIN</a></div></div></section>"""
+
+    def item_url(k, v):
+        return absu(v['page']) if v['page'] else absu(f'/get-case-study/?cs={k}')
+    desc = (f'{total} SOMIN case studies for brands, agencies and creators: competitor intelligence, category whitespace, '
+            'content calendars and measured ROI. Download any full PDF free.')
+    coll = {"@type": "CollectionPage", "@id": f"{BASE}{path}#webpage", "url": f"{BASE}{path}", "name": "SOMIN Case Studies",
+            "description": desc, "inLanguage": "en", "isPartOf": {"@id": f"{BASE}/#website"}, "about": {"@id": f"{BASE}/#organization"},
+            "primaryImageOfPage": absu('/assets/img/og/cases-hub.jpg'),
+            "mainEntity": {"@type": "ItemList", "numberOfItems": total, "itemListElement": [
+                {"@type": "ListItem", "position": i + 1, "url": item_url(k, v), "name": v['title'], "description": v['summary']}
+                for i, (k, v) in enumerate(items)]}}
+    meta = {'title': 'AI Marketing Case Studies for Brands & Agencies | SOMIN', 'description': desc,
+            'og_title': 'SOMIN Case Studies: what AI marketing intelligence finds in real categories',
+            'type': 'cases_hub', 'layout': 'hub', 'og_image': '/assets/img/og/cases-hub.jpg', 'group': 'case_study',
+            'keywords': 'AI marketing case studies, competitor intelligence case study, agency pitch case study, creator strategy, SOMIN, SOMONITOR',
+            '_schema': [org_node(), website_node(), coll, breadcrumbs([('Home', '/'), ('Case studies', path)])]}
+    write(path, page(meta, body, path))
+    add_sitemap(path, TODAY, '0.8')
 
 
 def build_404():
@@ -706,7 +807,7 @@ Sitemap: {BASE}/sitemap.xml
     (OUT / 'robots.txt').write_text(txt, encoding='utf-8')
 
 
-def build_llms(pages, posts):
+def build_llms(pages, posts, manifest=None):
     by = lambda t: [m for m in pages if m.get('type') == t and m.get('robots', 'index').startswith('index')]
     def line(m):
         return f'- [{m["title"].split(" | ")[0]}]({absu(url_for(m["slug"]))}): {m.get("description") or ""}'
@@ -719,7 +820,11 @@ def build_llms(pages, posts):
     parts += [line(m) for m in by('solution')]
     parts += ['', '## AI agents and products'] + [line(m) for m in by('product')]
     parts += ['', '## Comparisons'] + [line(m) for m in by('comparison')]
-    parts += ['', '## Case studies'] + [line(m) for m in by('case_study')]
+    parts += ['', '## Case studies', f'- [All SOMIN case studies]({BASE}/cases-ai-marketing-strategy/): every case study with a summary; the full PDFs are free after a short form.']
+    parts += [line(m) for m in by('case_study')]
+    if manifest:
+        more = sorted([v for v in manifest.values() if v['on_hub'] and not v['page']], key=lambda v: v['order'])
+        parts += ['', '### More case studies (PDF on the case-studies page)'] + [f'- {v["title"]} ({", ".join(x for x in (v["category"], v["market"]) if x)}): {v["summary"]}' for v in more]
     parts += ['', '## Blog (latest first)'] + [f'- [{p["title"]}]({absu(url_for(p["slug"]))}): {p["description"]}' for p in posts]
     parts += ['', '## Company & legal', f'- [Our Vision]({BASE}/vision/)', f'- [Privacy Policy]({BASE}/privacy-policy/)', f'- [SaaS Agreement]({BASE}/saas-terms-general/)',
               '', '## Contact', f'- Book a call: {CAL_DEFAULT}', f'- Try SOMIN: {BASE}/try-somin/', '- Platform login: https://cloud.somin.ai/auth/signin', '']
@@ -765,12 +870,13 @@ def main():
     build_blog_index(post_metas)
     build_rss(post_metas)
 
-    build_lead_pages()
+    manifest = build_lead_pages()
+    build_cases_hub(manifest)
     build_404()
     build_redirects()
     n = build_sitemap()
     build_robots()
-    build_llms(pages, post_metas)
+    build_llms(pages, post_metas, manifest)
     (OUT / '.nojekyll').write_text('', encoding='utf-8')
     print(f'Built {len(pages)} pages + {len(posts)} posts → {OUT} (sitemap: {n} URLs)')
 

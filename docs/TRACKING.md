@@ -48,6 +48,8 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 | `lead_form_fallback` | Typeform SDK blocked → visitor sent to form.typeform.com with the same hidden fields | `form_type` |
 | `thank_you_view` | Thank-you page viewed | `lead_type` |
 | `case_study_download` | Download / preview button on /thank-you-case-study/ | `case_study`, `cta_text`, `link_url` |
+| `case_study_auto_download` | The PDF download started automatically right after the form | `case_study`, `link_url` |
+| `cases_filter` / `cases_search` | Section filter / search on /cases-ai-marketing-strategy/ | `cta_text` = section / query |
 | `book_call_click` | Any calendly.com link (opens popup) | `link_url` |
 | `login_click` / `platform_click` | Links to cloud.somin.ai | `link_url` |
 | `email_click` / `phone_click` | mailto: / tel: | — |

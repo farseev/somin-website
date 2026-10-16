@@ -47,7 +47,7 @@ def local_file(url):
     return 404, SITE_DIR / '404.html'
 
 
-BLOCK_NAV = re.compile(r'^https://(cloud\.somin\.ai|drive\.google\.com|drive\.usercontent\.google\.com)/')
+BLOCK_NAV = re.compile(r'^https://(cloud\.somin\.ai|drive\.google\.com)/')
 
 results = []
 
@@ -60,6 +60,12 @@ def record(name, ok, detail=''):
 class Hits:
     def __init__(self):
         self.items = []
+        self.pushed = []   # somin_event names seen in the page (survives redirects)
+
+    def fired(self, name, since=0):
+        """Event reached GA4, or was pushed as somin_event right before a redirect (GA4 batches hits and flushes them with
+        a beacon on page unload; Playwright's request interception sometimes drops those unload beacons, real browsers don't)."""
+        return name in [e.get('en') for e in self.ga4_events(since)] or any(n == name and ts >= since for n, ts in self.pushed)
 
     def add(self, kind, req):
         body = ''
@@ -106,6 +112,9 @@ class Hits:
     def linkedin(self, since=0):
         return [h for h in self.items if h['kind'] == 'linkedin' and h['t'] >= since]
 
+    def downloads(self, since=0):
+        return [h['url'] for h in self.items if h['kind'] == 'download' and h['t'] >= since]
+
 
 async def new_context(browser, hits):
     # Meta's pixel silently drops events from 'HeadlessChrome' user agents, so present a normal desktop Chrome UA.
@@ -121,12 +130,31 @@ async def new_context(browser, hits):
         if not args.live and re.match(r'^https://(www\.)?somin\.ai/', u):
             status, f = local_file(u)
             return await r.fulfill(status=status, body=f.read_bytes(), headers={'content-type': MIME.get(f.suffix, 'application/octet-stream')})
+        if re.match(r'^https://drive\.usercontent\.google\.com/download', u):
+            hits.add('download', r.request)   # the real Drive file is never fetched
+            return await r.fulfill(status=200, body=b'%PDF-1.4 test', headers={'content-type': 'application/pdf', 'content-disposition': 'attachment; filename="test.pdf"'})
         if BLOCK_NAV.search(u) and r.request.resource_type == 'document':
             hits.add('nav', r.request)
             return await r.fulfill(status=200, content_type='text/html', body='<html><body>blocked in test</body></html>')
         await r.continue_()
     await ctx.route('**/*', route)
+    await ctx.expose_binding('__sominRec', lambda source, name: hits.pushed.append((name, time.time())))
+    await ctx.add_init_script("""(() => { let seen = 0; setInterval(() => {
+      const l = (window.sominTracking && window.sominTracking.log) || [];
+      for (; seen < l.length; seen++) { const e = l[seen]; if (e && e.event === 'somin_event' && window.__sominRec) window.__sominRec(e.event_name); }
+    }, 40); })()""")
     return ctx
+
+
+async def ga4_wait(hits, names, since=0, timeout=12.0):
+    """Poll until all GA4 event names have arrived (GA4 batches hits for a few seconds)."""
+    end = time.time() + timeout
+    while time.time() < end:
+        got = [e.get('en') for e in hits.ga4_events(since)]
+        if all(n in got for n in names):
+            return True
+        await asyncio.sleep(0.5)
+    return False
 
 
 async def dl(page):
@@ -242,8 +270,10 @@ async def main():
         await page.wait_for_timeout(5000)
         g = hits.ga4_events(t0)
         names = [e.get('en') for e in g]
-        record('GA4 lead_form_open', 'lead_form_open' in names)
-        record('GA4 trial_form_submit (response id passed)', any(e.get('en') == 'trial_form_submit' and 'TEST-RID-TRIAL' in json.dumps(e) for e in g))
+        record('lead_form_open tracked', hits.fired('lead_form_open', t0))
+        record('trial_form_submit tracked', hits.fired('trial_form_submit', t0))
+        await ga4_wait(hits, ['thank_you_view'], t0)
+        g = hits.ga4_events(t0); names = [e.get('en') for e in g]
         record('GA4 thank_you_view', 'thank_you_view' in names, ','.join(n for n in names if n))
         # conversions come from GTM (thank-you trigger, Page Path contains /thank-you-trial-somin) — exactly once each
         n_gl = names.count('generate_lead')
@@ -274,14 +304,17 @@ async def main():
         except Exception:
             moved = False
         record('Redirect to /thank-you-case-study/?cs=…', moved, page.url)
-        await page.wait_for_timeout(1500)
+        await page.wait_for_timeout(2500)
+        auto = hits.downloads(t0)
+        record('PDF download starts automatically after the form (once, page stays put)',
+               len(auto) == 1 and '1Y2aQnNb-5-XCsUwHd2lKb22feZ3ZThxx' in auto[0] and '/thank-you-case-study/' in page.url, (auto[:1] or ['none'])[0][:120])
         href = await page.evaluate("(document.querySelector('[data-cs-download]')||{}).href||''")
         visible = await page.evaluate("!document.querySelector('[data-cs-state=\"ready\"]').hidden")
         record('Download released immediately with the right Drive file', visible and '1Y2aQnNb-5-XCsUwHd2lKb22feZ3ZThxx' in href, href)
         await page.click('[data-cs-download]')
         await page.wait_for_timeout(5000)
         g = hits.ga4_events(t0); names = [e.get('en') for e in g]
-        record('GA4 case_study_form_submit', 'case_study_form_submit' in names)
+        record('case_study_form_submit tracked', hits.fired('case_study_form_submit', t0))
         record('GA4 case_study_download', 'case_study_download' in names, ','.join(n for n in names if n))
         n_gl = names.count('generate_lead')
         record('GA4 generate_lead fired exactly once (GTM thank-you trigger)', n_gl == 1, f'{n_gl}x')
@@ -293,6 +326,46 @@ async def main():
         p2 = await ctx.new_page()
         await p2.goto(BASE + '/thank-you-case-study/?cs=brands-defender-case-study', wait_until='load'); await p2.wait_for_timeout(800)
         record('Direct visit without submit stays locked', await p2.evaluate("!document.querySelector('[data-cs-state=\"locked\"]').hidden && document.querySelector('[data-cs-state=\"ready\"]').hidden"))
+        p3 = await ctx.new_page()
+        await p3.goto(BASE + '/thank-you-case-study/?cs=brands-pepsi-india-case-study&rid=abcdefghijklmnopqrstuvwxyz123456', wait_until='load'); await p3.wait_for_timeout(800)
+        record('Direct visit with a made-up response id stays locked', await p3.evaluate("!document.querySelector('[data-cs-state=\"locked\"]').hidden"))
+        src = (SITE_DIR / 'thank-you-case-study/index.html').read_text(encoding='utf-8') if not args.live else ''
+        record('No Drive file IDs or links in the page source', not args.live and '1Y2aQnNb-5-XCsUwHd2lKb22feZ3ZThxx' not in src and 'drive.google.com/file' not in src)
+        record('No JavaScript errors', not errors, '; '.join(errors[:3]))
+        await ctx.close()
+
+        # ---------------------------------------------------------------- 5b. case-studies hub
+        print('\n[5b] Case-studies hub → PDF-only case → form → auto-download')
+        hits = Hits(); ctx = await new_context(browser, hits); page = await ctx.new_page()
+        errors = []; page.on('pageerror', lambda e: errors.append(str(e)[:200]))
+        await page.goto(BASE + '/cases-ai-marketing-strategy/', wait_until='load')
+        await page.wait_for_timeout(2500)
+        n_cards = await page.locator('[data-cs-card]').count()
+        record('Hub lists all 45 case studies', n_cards == 45, f'{n_cards} cards')
+        await page.click('[data-cs-filter="creators"]'); vis = await page.locator('[data-cs-card]:visible').count()
+        await page.click('[data-cs-filter="all"]')
+        record('Section filter works (creators = 6)', vis == 6, f'{vis}')
+        t0 = time.time()
+        await page.locator('[data-case-study="maybank"].btn').click()
+        ok = await wait_for(lambda: page.evaluate("!![...document.querySelectorAll('iframe')].find(i=>/form\\.typeform\\.com\\/to\\/lHmWeOX7/.test(i.src))"), 12)
+        src = urllib.parse.unquote(await page.evaluate("([...document.querySelectorAll('iframe')].find(i=>/typeform/.test(i.src))||{}).src||''"))
+        record('Get the PDF opens the case-study Typeform with case_study=maybank', ok and 'case_study=maybank' in src)
+        await wait_for(lambda: page.evaluate("(window.sominTracking.log||[]).some(x=>x.event_name==='lead_form_ready')"), 15)
+        await simulate_typeform_submit(page, 'TEST-RID-HUB')
+        try:
+            await page.wait_for_url(re.compile(r'/thank-you-case-study/\?.*cs=maybank'), timeout=8000); moved = True
+        except Exception:
+            moved = False
+        record('Redirect to /thank-you-case-study/?cs=maybank', moved, page.url)
+        await page.wait_for_timeout(5000)
+        auto = hits.downloads(t0)
+        record('Maybank PDF downloads automatically', len(auto) == 1 and '1i7FJg49PflUdT6-Um5BQTfoyNgDPXmpq' in auto[0] and 'confirm=t' in auto[0], (auto[:1] or ['none'])[0][:120])
+        await ga4_wait(hits, ['generate_lead', 'case_study_auto_download'], t0)
+        g = hits.ga4_events(t0); names = [e.get('en') for e in g]
+        record('case_study_form_submit + case_study_auto_download tracked', hits.fired('case_study_form_submit', t0) and 'case_study_auto_download' in names, ','.join(n for n in names if n))
+        record('Lead conversions fire exactly once (GA4 / Meta / LinkedIn 20526508)',
+               names.count('generate_lead') == 1 and sum(1 for m in hits.meta_events(t0) if m.get('ev') == 'Lead') == 1
+               and sum(1 for h in hits.linkedin(t0) if '20526508' in (h['url'] + h['post'])) == 1)
         record('No JavaScript errors', not errors, '; '.join(errors[:3]))
         await ctx.close()
 
@@ -344,4 +417,5 @@ async def main():
     Path(args.report).write_text(json.dumps({'base': BASE, 'passed': passed, 'total': len(results), 'results': results}, indent=1))
     sys.exit(0 if passed == len(results) else 1)
 
-asyncio.run(main())
+if __name__ == '__main__':
+    asyncio.run(main())
