@@ -1,0 +1,65 @@
+name: Build and deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write   # only used once, to unpack an uploaded source archive into the repo
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # One-time bootstrap: the repo was seeded through the browser with the source as split zip parts
+      # (somin-source.zip.part-*). Unpack them into the repo, commit, and carry on with the build.
+      - name: Unpack uploaded source archive (first run only)
+        run: |
+          if ls somin-source.zip.part-* >/dev/null 2>&1; then
+            cat somin-source.zip.part-* > /tmp/somin-source.zip
+            unzip -o -q /tmp/somin-source.zip -d .
+            git rm -q --cached somin-source.zip.part-* && rm -f somin-source.zip.part-*
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -q -m "Unpack website source"
+            git push
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Static QA (fails the deploy on broken links, missing meta, stray tags)
+        run: python3 build.py && python3 tests/check_static.py
+
+      # base_path is "/<repo>" on the default https://<user>.github.io/<repo>/ address and "" with a custom
+      # domain (somin.ai), so the same workflow serves both without edits.
+      - name: Build for Pages
+        run: python3 build.py --base-path "${{ steps.pages.outputs.base_path }}"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
