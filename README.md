@@ -157,8 +157,9 @@ as an attachment without an interstitial, and replacing a PDF in Drive needs no 
   not fire them itself, so nothing is counted twice.
 * Debug: add `?debug_tracking=1` to any URL to log every event in the console; `?tracking=off` disables all tags.
 
-Test result at hand-over, against the live GTM container v50: **48 / 48 checks passed**, each lead conversion fires
-exactly once (`tests/tracking-report.json`).
+Test result at hand-over: **59 / 59 checks passed** locally and against the live preview at
+`https://farseev.github.io/somin-website/` (GTM container v50; each lead conversion fires exactly once; the case-study
+PDF downloads automatically after the form). Report: `tests/tracking-report.json`.
 
 ## 6. SEO / AEO / GEO built in
 

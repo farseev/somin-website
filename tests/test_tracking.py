@@ -257,7 +257,7 @@ async def main():
         record('Typeform popup opens with trial form jC5qqGJ0', ok)
         src = await page.evaluate("([...document.querySelectorAll('iframe')].find(i=>/typeform/.test(i.src))||{}).src||''")
         frag = urllib.parse.unquote(src)
-        record('Hidden fields passed (utm_source, li_fat_id, page_path, lead_type)', all(s in frag for s in ['utm_source=linkedin', 'li_fat_id=TEST_LI', 'page_path=/somin-for-brands/', 'lead_type=trial']), frag[frag.find('#'):][:220])
+        record('Hidden fields passed (utm_source, li_fat_id, page_path, lead_type)', all(s in frag for s in ['utm_source=linkedin', 'li_fat_id=TEST_LI', 'page_path=' + urllib.parse.urlsplit(BASE).path.rstrip('/') + '/somin-for-brands/', 'lead_type=trial']), frag[frag.find('#'):][:220])
         ready = await wait_for(lambda: page.evaluate("(window.sominTracking.log||[]).some(x=>x.event_name==='lead_form_ready')"), 15)
         record('Typeform onReady → lead_form_ready', ready)
         await simulate_typeform_submit(page, 'TEST-RID-TRIAL')
@@ -329,8 +329,9 @@ async def main():
         p3 = await ctx.new_page()
         await p3.goto(BASE + '/thank-you-case-study/?cs=brands-pepsi-india-case-study&rid=abcdefghijklmnopqrstuvwxyz123456', wait_until='load'); await p3.wait_for_timeout(800)
         record('Direct visit with a made-up response id stays locked', await p3.evaluate("!document.querySelector('[data-cs-state=\"locked\"]').hidden"))
-        src = (SITE_DIR / 'thank-you-case-study/index.html').read_text(encoding='utf-8') if not args.live else ''
-        record('No Drive file IDs or links in the page source', not args.live and '1Y2aQnNb-5-XCsUwHd2lKb22feZ3ZThxx' not in src and 'drive.google.com/file' not in src)
+        # page.request bypasses the routing that serves ./_site, so read the built file locally
+        src = await (await p3.request.get(BASE + '/thank-you-case-study/')).text() if args.live else (SITE_DIR / 'thank-you-case-study/index.html').read_text(encoding='utf-8')
+        record('No Drive file IDs or links in the page source', 'cs-manifest' in src and '1Y2aQnNb-5-XCsUwHd2lKb22feZ3ZThxx' not in src and 'drive.google.com/file' not in src)
         record('No JavaScript errors', not errors, '; '.join(errors[:3]))
         await ctx.close()
 

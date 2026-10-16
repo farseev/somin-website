@@ -61,7 +61,7 @@
   {
    "test": "Attribution captured (utm + gclid + fbclid)",
    "ok": true,
-   "detail": "{\"utm_source\": \"test_src\", \"utm_medium\": \"cpc\", \"utm_campaign\": \"migration_qa\", \"gclid\": \"TEST_GCLID\", \"fbclid\": \"TEST_FBCLID\", \"landing_page\": \"/\", \"referrer\": \"\", \"ga_client_id\": \"1837595580.1792167"
+   "detail": "{\"utm_source\": \"test_src\", \"utm_medium\": \"cpc\", \"utm_campaign\": \"migration_qa\", \"gclid\": \"TEST_GCLID\", \"fbclid\": \"TEST_FBCLID\", \"landing_page\": \"/\", \"referrer\": \"\", \"ga_client_id\": \"631471464.17921688"
   },
   {
    "test": "Calendly opens as popup (not new tab)",
@@ -121,7 +121,7 @@
   {
    "test": "Hidden fields passed (utm_source, li_fat_id, page_path, lead_type)",
    "ok": true,
-   "detail": "#utm_source=linkedin&utm_campaign=q4_test&li_fat_id=TEST_LI&landing_page=/somin-for-brands/&ga_client_id=201202876.1792167997&fbp=fb.1.1792167996796.633246014229168768&page_url=https://somin.ai/somin-for-brands/&page_pat"
+   "detail": "#utm_source=linkedin&utm_campaign=q4_test&li_fat_id=TEST_LI&landing_page=/somin-for-brands/&ga_client_id=297933838.1792168832&fbp=fb.1.1792168832020.342552047338631620&page_url=https://somin.ai/somin-for-brands/&page_pat"
   },
   {
    "test": "Typeform onReady \u2192 lead_form_ready",
@@ -146,7 +146,7 @@
   {
    "test": "GA4 thank_you_view",
    "ok": true,
-   "detail": "lead_form_open,cta_click,lead_form_ready,trial_form_submit,page_view,generate_lead,thank_you_view,scroll"
+   "detail": "page_view,generate_lead,thank_you_view,scroll"
   },
   {
    "test": "GA4 generate_lead fired exactly once (GTM thank-you trigger)",
@@ -266,7 +266,7 @@
   {
    "test": "case_study_form_submit + case_study_auto_download tracked",
    "ok": true,
-   "detail": "cases_filter,cases_filter,lead_form_open,cta_click,scroll,lead_form_ready,case_study_form_submit,page_view,generate_lead,thank_you_view,scroll,case_study_auto_download"
+   "detail": "page_view,generate_lead,thank_you_view,scroll,case_study_auto_download"
   },
   {
    "test": "Lead conversions fire exactly once (GA4 / Meta / LinkedIn 20526508)",
