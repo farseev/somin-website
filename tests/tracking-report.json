@@ -1,0 +1,247 @@
+{
+ "base": "https://somin.ai",
+ "passed": 48,
+ "total": 48,
+ "results": [
+  {
+   "test": "tracking.js loaded once",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "GTM container loaded once (GTM-PZG88FPZ)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "GTM booted",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "GA4 library loaded via GTM",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "GA4 page_view hit sent to G-XXM10JVHXY",
+   "ok": true,
+   "detail": "1 GA4 events"
+  },
+  {
+   "test": "Meta pixel loaded + PageView",
+   "ok": true,
+   "detail": "1 Meta hits"
+  },
+  {
+   "test": "LinkedIn Insight loaded",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "LinkedIn page hit",
+   "ok": true,
+   "detail": "2 hits"
+  },
+  {
+   "test": "Clarity loaded once (via GTM, pfshy7yc19)",
+   "ok": true,
+   "detail": "https://www.clarity.ms/tag/pfshy7yc19"
+  },
+  {
+   "test": "No JavaScript errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Page context in dataLayer",
+   "ok": true,
+   "detail": "{\"page_type\": \"home\", \"page_template\": \"fragment\", \"content_group\": \"home\", \"somin_tracking_version\": \"1.0.0\"}"
+  },
+  {
+   "test": "Attribution captured (utm + gclid + fbclid)",
+   "ok": true,
+   "detail": "{\"utm_source\": \"test_src\", \"utm_medium\": \"cpc\", \"utm_campaign\": \"migration_qa\", \"gclid\": \"TEST_GCLID\", \"fbclid\": \"TEST_FBCLID\", \"landing_page\": \"/\", \"referrer\": \"\", \"ga_client_id\": \"141048283.17921605"
+  },
+  {
+   "test": "Calendly opens as popup (not new tab)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Calendly URL carries UTMs",
+   "ok": true,
+   "detail": "https://calendly.com/filipp-lugovoi/30min?embed_domain=somin.ai&embed_type=PopupText&utm_source=test_src&utm_medium=cpc&utm_campaign=migration_qa&utm_content=%2"
+  },
+  {
+   "test": "GA4 cta_click (cta_id=nav_book_a_call)",
+   "ok": true,
+   "detail": "book_call_click,cta_click"
+  },
+  {
+   "test": "GA4 book_call_click (somin_event)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Meta custom cta_click",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "LinkedIn CTA conversion 20526804",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "dataLayer 'calendly' event from GTM listener",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "GA4 generate_lead (lead_type=calendly)",
+   "ok": true,
+   "detail": "calendar_event_scheduled,generate_lead"
+  },
+  {
+   "test": "Meta Lead",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "LinkedIn conversion 20526828",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Typeform popup opens with trial form jC5qqGJ0",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Hidden fields passed (utm_source, li_fat_id, page_path, lead_type)",
+   "ok": true,
+   "detail": "#utm_source=linkedin&utm_campaign=q4_test&li_fat_id=TEST_LI&landing_page=/somin-for-brands/&ga_client_id=1569248424.1792160603&fbp=fb.1.1792160602822.991821986727926228&page_url=https://somin.ai/somin-for-brands/&page_pa"
+  },
+  {
+   "test": "Typeform onReady \u2192 lead_form_ready",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Redirect to /thank-you-trial-somin/ after submit",
+   "ok": true,
+   "detail": "https://somin.ai/thank-you-trial-somin/?rid=TEST-RID-TRIAL&from=%2Fsomin-for-brands%2F"
+  },
+  {
+   "test": "GA4 lead_form_open",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "GA4 trial_form_submit (response id passed)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "GA4 thank_you_view",
+   "ok": true,
+   "detail": "lead_form_open,cta_click,lead_form_ready,trial_form_submit,page_view,generate_lead,thank_you_view,scroll"
+  },
+  {
+   "test": "GA4 generate_lead fired exactly once (GTM thank-you trigger)",
+   "ok": true,
+   "detail": "1x"
+  },
+  {
+   "test": "Meta Lead fired exactly once (GTM)",
+   "ok": true,
+   "detail": "1x"
+  },
+  {
+   "test": "LinkedIn trial conversion 21236668 fired exactly once (GTM)",
+   "ok": true,
+   "detail": "1x"
+  },
+  {
+   "test": "No JavaScript errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Typeform popup opens with case-study form lHmWeOX7",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Hidden field case_study=brands-fujifilm-case-study",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Redirect to /thank-you-case-study/?cs=\u2026",
+   "ok": true,
+   "detail": "https://somin.ai/thank-you-case-study/?rid=TEST-RID-CASE&cs=brands-fujifilm-case-study&from=%2Fbrands-fujifilm-case-study%2F"
+  },
+  {
+   "test": "Download released immediately with the right Drive file",
+   "ok": true,
+   "detail": "https://drive.google.com/uc?export=download&id=1Y2aQnNb-5-XCsUwHd2lKb22feZ3ZThxx"
+  },
+  {
+   "test": "GA4 case_study_form_submit",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "GA4 case_study_download",
+   "ok": true,
+   "detail": "lead_form_open,cta_click,lead_form_ready,case_study_form_submit,page_view,generate_lead,thank_you_view,scroll,cta_click,case_study_download"
+  },
+  {
+   "test": "GA4 generate_lead fired exactly once (GTM thank-you trigger)",
+   "ok": true,
+   "detail": "1x"
+  },
+  {
+   "test": "Meta Lead fired exactly once (GTM)",
+   "ok": true,
+   "detail": "1x"
+  },
+  {
+   "test": "LinkedIn case-study conversion 20526508 fired exactly once (GTM)",
+   "ok": true,
+   "detail": "1x"
+  },
+  {
+   "test": "Direct visit without submit stays locked",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "No JavaScript errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "GA4 scroll (GTM scroll-depth trigger)",
+   "ok": true,
+   "detail": "percent_scrolled=25,50,75,90"
+  },
+  {
+   "test": "GA4 article_read_50",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "GA4 login_click",
+   "ok": true,
+   "detail": "article_read_50,article_read_90,cta_click,login_click,scroll"
+  },
+  {
+   "test": "All 97 pages load with no JS errors and exactly one GTM container",
+   "ok": true,
+   "detail": "[]"
+  }
+ ]
+}

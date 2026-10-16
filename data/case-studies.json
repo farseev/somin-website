@@ -1,0 +1,328 @@
+{
+ "_doc": "Case study downloads. Key = the case study page slug (or a short id for PDFs without a page yet). After a visitor submits the case-study Typeform, /thank-you-case-study/?cs=<key> releases the Drive link. The Drive folder must stay shared as \"Anyone with the link: Viewer\".",
+ "drive_folder": "https://drive.google.com/drive/folders/18nBnSOmz897fJVLTdpj-cWYWQRQgTO0S",
+ "items": {
+  "brands-defender-case-study": {
+   "file": "DEFENDER.pdf",
+   "drive_id": "1IVD6xxDWWYuq_46wKG4OPSlxW0CU4Xvu",
+   "size_mb": 1.2,
+   "category": "brands",
+   "page": "/brands-defender-case-study/"
+  },
+  "brands-reassured-case-study": {
+   "file": "REASSURED.pdf",
+   "drive_id": "1z6E6VfszAmVm5Pk1m7Pui0bwc7MXpOMf",
+   "size_mb": 3.7,
+   "category": "brands",
+   "page": "/brands-reassured-case-study/"
+  },
+  "brands-miraflora-case-study": {
+   "file": "MIRAFLORA.pdf",
+   "drive_id": "1Ltyu6F1_9U7z5HbwdOG-28pI9WlLiti4",
+   "size_mb": 3.6,
+   "category": "brands",
+   "page": "/brands-miraflora-case-study/"
+  },
+  "case": {
+   "file": "MIRAFLORA GWI.pdf",
+   "drive_id": "1TZpoAbhEP6KD5XAsL4gYlnNX3xvaAk4Y",
+   "size_mb": 31.1,
+   "category": "brands",
+   "page": "/case/"
+  },
+  "brands-pepsi-india-case-study": {
+   "file": "PEPSI INDIA.pdf",
+   "drive_id": "1cAIvdhtge9XWqydMPiiNUP7mYO_g86cF",
+   "size_mb": 4.3,
+   "category": "brands",
+   "page": "/brands-pepsi-india-case-study/"
+  },
+  "brands-mothercare-sg-case-study": {
+   "file": "MOTHERCARE SG.pdf",
+   "drive_id": "1umkIB6PsqDltvLRuqIlSUnS0pwV5p5SS",
+   "size_mb": 28.5,
+   "category": "brands",
+   "page": "/brands-mothercare-sg-case-study/"
+  },
+  "brands-keeta-hk-case-study": {
+   "file": "KEETA HK.pdf",
+   "drive_id": "1cORxBr3uCMPmtrIG9f-rGDGc2IrmjmKC",
+   "size_mb": 8.4,
+   "category": "brands",
+   "page": "/brands-keeta-hk-case-study/"
+  },
+  "brands-viva-school-case-study": {
+   "file": "VIVA SCHOOL OF MUSIC AND BALLET.pdf",
+   "drive_id": "1mj3ZfOBfbyxC1eAJKdSWAzHSvip1vHRm",
+   "size_mb": 4.4,
+   "category": "brands",
+   "page": "/brands-viva-school-case-study/"
+  },
+  "brands-exostride-case-study": {
+   "file": "EXOSTRIDE SG.pdf",
+   "drive_id": "1LV_xAPNKVSRkZnLt6xlRSR8dOXUCIg12",
+   "size_mb": 0.6,
+   "category": "brands",
+   "page": "/brands-exostride-case-study/"
+  },
+  "brands-sm-universe-case-study": {
+   "file": "SM UNIVERSE.pdf",
+   "drive_id": "1Id-__mBPAXygVNTAFhZdLTySCDTBgRFI",
+   "size_mb": 5.4,
+   "category": "brands",
+   "page": "/brands-sm-universe-case-study/"
+  },
+  "brands-fujifilm-case-study": {
+   "file": "FUJIFILM UK.pdf",
+   "drive_id": "1Y2aQnNb-5-XCsUwHd2lKb22feZ3ZThxx",
+   "size_mb": 4.9,
+   "category": "brands",
+   "page": "/brands-fujifilm-case-study/"
+  },
+  "agencies-blak-labs-case-study": {
+   "file": "BLAK LABS.pdf",
+   "drive_id": "1F6oVd_x738wMhTmVaEjfmr99mr5FbvTF",
+   "size_mb": 0.9,
+   "category": "agencies",
+   "page": "/agencies-blak-labs-case-study/"
+  },
+  "agencies-analytic-partners-case-study": {
+   "file": "ANALYTIC PARTNERS COMMERCIAL.pdf",
+   "drive_id": "1_8A95P9XeUSE7_BoGaCfo_tOSfd3NiX_",
+   "size_mb": 3.7,
+   "category": "agencies",
+   "page": "/agencies-analytic-partners-case-study/"
+  },
+  "agencies-senoko-energy-case-study": {
+   "file": "SENOKO AGENCY.pdf",
+   "drive_id": "1Owr_uhAR6srsEqRTlk7dNTxcVsX8Z5JV",
+   "size_mb": 2.1,
+   "category": "agencies",
+   "page": "/agencies-senoko-energy-case-study/"
+  },
+  "agencies-click2view-asia-case-study": {
+   "file": "CLICK2VIEW ASIA.pdf",
+   "drive_id": "1lCZuPvJHL3DmMzo5xo_V0EQ75UB70n0f",
+   "size_mb": 0.9,
+   "category": "agencies",
+   "page": "/agencies-click2view-asia-case-study/"
+  },
+  "agencies-havas-media-case-study": {
+   "file": "HAVAS MEDIA.pdf",
+   "drive_id": "1805w1RSmQuOGDQNAvobjocCtF3YgyuuS",
+   "size_mb": 0.9,
+   "category": "agencies",
+   "page": "/agencies-havas-media-case-study/"
+  },
+  "agencies-neo360": {
+   "file": "NEO360.pdf",
+   "drive_id": "1Emm34r8aBaiMXSsfBzVp3IJCrhXuQGMi",
+   "size_mb": 0.8,
+   "category": "agencies",
+   "page": "/agencies-neo360/"
+  },
+  "agencies-samy-case-study": {
+   "file": "SAMY.pdf",
+   "drive_id": "1exyMpOMYi1E-pB1KDtQeABaokZ6wlP23",
+   "size_mb": 0.9,
+   "category": "agencies",
+   "page": "/agencies-samy-case-study/"
+  },
+  "agencies-kpi-media-case-study": {
+   "file": "KPI MEDIA.pdf",
+   "drive_id": "1ClObXqwY6hLIPym-JLgpKT6qIhRqXV_I",
+   "size_mb": 0.8,
+   "category": "agencies",
+   "page": "/agencies-kpi-media-case-study/"
+  },
+  "agencies-vamp-creator-portfolio-case-stud": {
+   "file": "VAMP CREATORS.pdf",
+   "drive_id": "1y12vouTl-WhTAjSxaxcF1Kywi-OsqcEQ",
+   "size_mb": 0.3,
+   "category": "influencers",
+   "page": "/agencies-vamp-creator-portfolio-case-stud/"
+  },
+  "influencers-daisy-iggy-case-study": {
+   "file": "DAISY IGGY.pdf",
+   "drive_id": "1YAZm53xYbhE2WlTc9MGtXRA0w9Dtyr-P",
+   "size_mb": 2.0,
+   "category": "influencers",
+   "page": "/influencers-daisy-iggy-case-study/"
+  },
+  "influencers-vamp-aaron-brooks-case-study": {
+   "file": "VAMP CEO AARON.pdf",
+   "drive_id": "1s59--jvjBU6SbX9DazEVX6BYKx2Bbq2t",
+   "size_mb": 0.9,
+   "category": "influencers",
+   "page": "/influencers-vamp-aaron-brooks-case-study/"
+  },
+  "influencers-nikki-taylor-case-study": {
+   "file": "NIKKI TAYLOR.pdf",
+   "drive_id": "1U8c1cmL2LMi3CF2BYfnYvtvIOxRav0_2",
+   "size_mb": 1.5,
+   "category": "influencers",
+   "page": "/influencers-nikki-taylor-case-study/"
+  },
+  "fjor": {
+   "file": "FJOR.pdf",
+   "drive_id": "1ev4B0A15SF6dNTc2DQArpvCqzItlYK15",
+   "size_mb": 4.2,
+   "category": "brands",
+   "page": null
+  },
+  "hea-energy": {
+   "file": "HEA ENERGY.pdf",
+   "drive_id": "1OPoN-wUn5m02ndDZSt04glu2LsYh8INs",
+   "size_mb": 140.2,
+   "category": "brands",
+   "page": null
+  },
+  "caltex-agency": {
+   "file": "CALTEX AGENCY.pdf",
+   "drive_id": "1_KBzEvkWWzEFZEsgEJeTN5DULr62Iftn",
+   "size_mb": 2.9,
+   "category": "brands",
+   "page": null
+  },
+  "beme-group": {
+   "file": "BEME GROUP.pdf",
+   "drive_id": "1LVLpErccC3oCX4GylvqSTRAmF2XLHOpD",
+   "size_mb": 2.4,
+   "category": "brands",
+   "page": null
+  },
+  "tmc-wego-me": {
+   "file": "TMC WEGO ME.pdf",
+   "drive_id": "12Uz1CN_htigi1yMlOWIzUGguP0iPMW2V",
+   "size_mb": 14.2,
+   "category": "brands",
+   "page": null
+  },
+  "mothercare": {
+   "file": "MOTHERCARE.pdf",
+   "drive_id": "1DIH1dGIqPglbiBz-avMyMTdG3sicF3YJ",
+   "size_mb": 49.2,
+   "category": "brands",
+   "page": null
+  },
+  "png-philippines": {
+   "file": "PNG PHILIPPINES.pdf",
+   "drive_id": "1sNC6SSeCzy_FzjAkz-fJN-R8BR2cIcte",
+   "size_mb": 19.7,
+   "category": "brands",
+   "page": null
+  },
+  "coca-cola": {
+   "file": "COCA COLA.pdf",
+   "drive_id": "1YVy35gLQaHDHUEs4FTrSrPiiu_ljsL3s",
+   "size_mb": 0.4,
+   "category": "brands",
+   "page": null
+  },
+  "aplus-construction": {
+   "file": "APLUS CONSTRUCTION.pdf",
+   "drive_id": "16cOLUc9emMLg6vGVHcZOyqe3kGuY5PPd",
+   "size_mb": 1.9,
+   "category": "brands",
+   "page": null
+  },
+  "anti-scam": {
+   "file": "ANTI SCAM.pdf",
+   "drive_id": "1di1vppwb3Nsyp2yWHAp11ej2rZNGKk1s",
+   "size_mb": 4.6,
+   "category": "brands",
+   "page": null
+  },
+  "maybank": {
+   "file": "MAYBANK.pdf",
+   "drive_id": "1i7FJg49PflUdT6-Um5BQTfoyNgDPXmpq",
+   "size_mb": 31.4,
+   "category": "brands",
+   "page": null
+  },
+  "gojek": {
+   "file": "GOJEK.pdf",
+   "drive_id": "1uc24cogBf9YUfRm-IDj5I9xWlMYucHZQ",
+   "size_mb": 8.5,
+   "category": "brands",
+   "page": null
+  },
+  "constructor-group": {
+   "file": "CONSTRUCTOR GROUP.pdf",
+   "drive_id": "1ZrcmDFqt-IMXpZTQnUHFzjZPs2ytWEZP",
+   "size_mb": 1.0,
+   "category": "brands",
+   "page": null
+  },
+  "ballroom-dance-academy": {
+   "file": "BALLROOM DANCE ACADEMY.pdf",
+   "drive_id": "1yikV4DN82iy3Ip5vY8BlZqtwCwggXuUU",
+   "size_mb": 4.9,
+   "category": "brands",
+   "page": null
+  },
+  "thomson-medical-singapore-crossmarket-briefing": {
+   "file": "Thomson Medical  Singapore CrossMarket Briefing.pdf",
+   "drive_id": "1Q4mBSVr4UcoFoecVc_2NmZskgFEOPaTT",
+   "size_mb": 8.6,
+   "category": "brands",
+   "page": null
+  },
+  "indrive-ph-google-paid-media-brief-final": {
+   "file": "indrive_ph_google_paid_media_brief_FINAL.pdf",
+   "drive_id": "1TBZetE9dv6CR494UPLXCzazBAWV_eOVz",
+   "size_mb": 3.5,
+   "category": "brands",
+   "page": null
+  },
+  "tonik-gdn-briefing": {
+   "file": "Tonik_GDN_Briefing.pdf",
+   "drive_id": "1RsjGrcCGrXhfCm7LDKCpKLZ-9xYDQi3O",
+   "size_mb": 1.1,
+   "category": "brands",
+   "page": null
+  },
+  "caltex-creators": {
+   "file": "CALTEX CREATORS.pdf",
+   "drive_id": "1q1COdvIi7D_3BOOEWb2soqZmuc64OIgU",
+   "size_mb": 1.6,
+   "category": "influencers",
+   "page": null
+  },
+  "timhortons-singapore-briefing-full": {
+   "file": "TimHortons_Singapore_Briefing_full.pdf",
+   "drive_id": "1sWOKQG6jkbHdAxsu-fAFHZMujGL1FGaF",
+   "size_mb": 4.4,
+   "category": "influencers",
+   "page": null
+  },
+  "loreal-ugc-analysis-sample1-v2": {
+   "file": "loreal_ugc_analysis_sample1_v2.pptx.pdf",
+   "drive_id": "1tQ8GiXAxfw2FSrxjqFXYReL4VK0z4w35",
+   "size_mb": 4.2,
+   "category": "influencers",
+   "page": null
+  },
+  "fyreflyz-sicci-pitch-full": {
+   "file": "Fyreflyz_SICCI_Pitch_full.pdf",
+   "drive_id": "1rY6yAtX1RyVO4T0Tt2u_Axaf31JYnxgC",
+   "size_mb": 3.0,
+   "category": "agencies",
+   "page": null
+  },
+  "fyreflyz-x-heartware-pitch": {
+   "file": "Fyreflyz_x_Heartware_Pitch.pdf",
+   "drive_id": "1gAmc3FxTk0GrAEsWmtQedpLJuuiufGSr",
+   "size_mb": 6.2,
+   "category": "agencies",
+   "page": null
+  },
+  "fyreflyz-ymca-singapore-pitch-full": {
+   "file": "Fyreflyz_YMCA_Singapore_Pitch_full.pdf",
+   "drive_id": "1bmrHwoqX4HG4QJozlZeSy6uUhkUSDDMa",
+   "size_mb": 3.9,
+   "category": "agencies",
+   "page": null
+  }
+ }
+}
