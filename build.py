@@ -109,10 +109,10 @@ def rating_badges(extra=''):
     out = []
     for key, pl in REVIEWS['platforms'].items():
         if pl.get('rating'):
-            n = pl.get('count') or 0
-            out.append(f'<a class="rv-badge" href="{E(pl["url"])}" target="_blank" rel="noopener" data-gtm-id="rating_badge_{key}" data-track="rating_badge_click">'
+            out.append(f'<a class="rv-badge" href="{E(pl["url"])}" target="_blank" rel="noopener" data-gtm-id="rating_badge_{key}" data-track="rating_badge_click" '
+                       f'aria-label="Rated {pl["rating"]:.1f} out of 5 on {E(pl["name"])}">'
                        f'<span class="rv-src rv-src--{key}">{E(pl["name"])}</span>{stars(pl["rating"])}'
-                       f'<span class="rv-score"><b>{pl["rating"]:.1f}</b>/5</span><span class="rv-count">{n} review{"s" if n != 1 else ""}</span></a>')
+                       f'<span class="rv-score"><b>{pl["rating"]:.1f}</b></span></a>')
         else:
             out.append(f'<a class="rv-badge" href="{E(pl["url"])}" target="_blank" rel="noopener" data-gtm-id="rating_badge_{key}" data-track="rating_badge_click">'
                        f'<span class="rv-src rv-src--{key}">{E(pl["name"])}</span><span class="rv-count">Read our reviews</span></a>')
@@ -1141,7 +1141,7 @@ def build_llms(pages, posts, manifest=None):
     parts = [f'# SOMIN', '', f'> {SITE["description"]}', '',
              'SOMIN (somin.ai, legal name Somin Pte. Ltd., Singapore) is an agentic AI marketing-intelligence platform. Its SOMONITOR engine reads competitor ads, posts and creators plus live audience conversation, finds category whitespace, and produces pre-scored propositions, briefs and on-brand creative concepts for brands, agencies and creator programmes across 11+ markets in APAC, MENA and Europe. Recognised as a Gartner Cool Vendor in Marketing AI and a Zapier agentic-AI partner.', '',
              'How SOMIN works: one loop in five steps, run by AI agents on verified category data. Listen (what happened?), Decode (who is winning, and how?), Decide (what do we say?), Make (what does it look like?) and Ship (when does it go out?). Every idea answers four questions: who are we talking to (persona), what is bugging them (tension), why does that happen (angle) and what is the one line that says it (story). Every number traces back to a SOMIN post, study or ID.', '',
-             'Third-party ratings: ' + '; '.join(f'{p["rating"]:.1f}/5 on {p["name"]} ({p["count"]} review{"s" if p["count"] != 1 else ""}, {p["url"]})' for p in REVIEWS['platforms'].values() if p.get('rating')) + '.', '',
+             'Third-party ratings: ' + '; '.join(f'{p["rating"]:.1f}/5 on {p["name"]} ({p["url"]})' for p in REVIEWS['platforms'].values() if p.get('rating')) + '.', '',
              f'Free tool: the Marketing Mondays plugin for Claude ({BASE}/marketing-mondays-plugin/) packs 8 main skills (26 in all) and the SOMIN connector (MCP server {PLUGIN["mcp"]}) so Claude can run that loop on a team\'s own SOMIN data.', '',
              '## Key pages']
     if home:

@@ -732,3 +732,8 @@ html body .rv-stars { color: #77857F; }
 html body .rv-stars-on { color: var(--teal-600); }
 .u-dark .rv-stars, .u-hero .rv-stars, html body .hero .rv-stars, html body .site-footer .rv-stars { color: #6B7A78; }
 .u-dark .rv-stars-on, .u-hero .rv-stars-on, html body .hero .rv-stars-on, html body .site-footer .rv-stars-on { color: var(--teal); }
+/* compact rating plates: platform · stars · score (no review counts) */
+html body .rv-badge { gap: 8px; padding: 6px 12px 6px 6px; }
+html body .rv-badge .rv-stars { font-size: 13px; }
+html body .rv-score b { font-size: 14px; }
+html body .rv-badges--footer .rv-badge { padding: 4px 10px 4px 4px; }

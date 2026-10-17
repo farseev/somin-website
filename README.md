@@ -136,7 +136,7 @@ from the Marketing Mondays session of 12 Oct 2026) are in `static/assets/video/`
 Listen → Decode → Decide → Make → Ship player); they appear on the home page, AI agents, the plugin page, the three solution
 pages and five product pages. Videos load only when scrolled into view and play muted; reduced-motion users get the poster.
 
-**Ratings and reviews.** G2 (4.5/5, 9 reviews) and Capterra (5.0/5, 1 review) badges sit in the home hero, the cases hub,
+**Ratings and reviews.** G2 (4.5/5) and Capterra (5.0/5) rating plates (rating only, no review counts) sit in the home hero, the cases hub,
 /try-somin/ and the footer; short verbatim excerpts from validated reviews appear as proof on the home page, AI agents, the
 plugin page, the solution and product pages and the Click2View case (`data/reviews.json`, `<!--mm:reviews-->`). G2's own
 star-rating widget needs a paid G2 plan, so the badges are SOMIN-styled and link to the profiles.
