@@ -1,0 +1,99 @@
+<!--meta
+{
+ "slug": "blog/connect-claude-to-marketing-data-with-mcp",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "How to connect Claude to marketing data with MCP: a guide for agencies",
+ "seo_title": "Connect Claude to marketing data with MCP | SOMIN Blog",
+ "description": "To connect Claude to marketing data, add an MCP server as a connector, sign in with scoped access and expose only what each job needs. A guide for agencies.",
+ "published": "2026-10-17T01:40:00Z",
+ "author": "Kirill Lepikhin",
+ "tags": [
+  "AI Agents",
+  "Large Language Models",
+  "Agencies"
+ ],
+ "words": 1685,
+ "reading_minutes": 7,
+ "image": "/assets/img/blog/connect-claude-to-marketing-data-with-mcp.webp",
+ "image_card": "/assets/img/blog/connect-claude-to-marketing-data-with-mcp-card.webp",
+ "og_image": "/assets/img/og/blog-connect-claude-to-marketing-data-with-mcp.jpg",
+ "image_generated": true,
+ "robots": "index,follow"
+}
+-->
+<p>To connect Claude to marketing data, add a Model Context Protocol (MCP) server as a connector, sign in with an account that sees only the right client workspaces, and decide which tools Claude may run without asking. For an agency the work is mostly judgement, not code: choose the data, scope the access, then test with one read-only question before anything else.</p>
+<h2>Key takeaways</h2>
+<ul>
+<li>MCP is an open standard that lets Claude read data and call tools in other systems through a server, so nobody has to paste exports into a chat.</li>
+<li>Expose the data you would put in a strategy deck, such as competitor posts, studies and performance summaries, and keep personal data and spend controls out at the start.</li>
+<li>Access is controlled in three places: the account you sign in with, the OAuth permissions you grant and Claude's per-tool approval settings.</li>
+<li>Before connecting, ask who hosts the server, which tools can change data and how you revoke access.</li>
+<li>Prove the connection with a read-only question, such as which workspaces Claude can see, before you chain skills together.</li>
+</ul>
+<h2>What is an MCP server, in plain terms?</h2>
+<p>An MCP server is a program that sits in front of a data source or an app and describes, in a standard format, what an AI application can do there. Claude connects to it, reads what is on offer and calls it when a question needs that data.</p>
+<p>The <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">official MCP documentation</a> describes the protocol as an open-source standard for connecting AI applications to external systems, and compares it to a USB-C port for AI. Its <a href="https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture" target="_blank" rel="noopener">architecture overview</a> names three roles: the host (an AI application such as Claude), a client that the host creates for each connection, and the server that provides context.</p>
+<p>Servers offer three kinds of capability, and it helps to know them before you approve anything:</p>
+<ul>
+<li><strong>Tools</strong>: functions Claude can call, such as searching posts or creating a report.</li>
+<li><strong>Resources</strong>: data Claude can read, such as a study or a file.</li>
+<li><strong>Prompts</strong>: reusable templates that structure a task.</li>
+</ul>
+<p>Servers run on your own machine or remotely over HTTP. Agencies mostly use remote servers hosted by the data vendor; Claude calls these custom connectors, and <a href="https://support.claude.com/en/articles/11175166-getting-started-with-custom-connectors-using-remote-mcp" target="_blank" rel="noopener">Anthropic's help centre</a> lists them on the Pro, Max, Team and Enterprise plans.</p>
+<h2>Why connect Claude to marketing data at all?</h2>
+<p>Because a model that answers from the open web gives every agency the same answer. The advantage is the client's category data, read fresh, with every claim traceable to a source.</p>
+<p>The demand shows up in SOMIN's own data. In our social-listening workspace, a perspective study of 129 posts (October 2026) groups one pain-point theme around AI-driven marketing: audience data stays fragmented, so strategies miss even as teams adopt faster AI tools. In the audience-research workspace, SOMIN's moments-of-truth model surfaces the thought "I need to find tools that integrate well with my existing systems and can provide actionable insights." The moment is model-generated from published posts, not a quote from a person.</p>
+<p>The same workspace holds an insight built on 254 posts and framed through Systems Theory: "Tools alone can't compose a masterpiece; harmony is born from their unison." A strategist with six logins and a chatbot still joins the data up by hand. MCP moves that work into the conversation.</p>
+<h2>How do you connect Claude to marketing data, step by step?</h2>
+<p>Pick the job, pick a server you trust, add it as a connector, sign in with a narrow account, set tool permissions, then test.</p>
+<ol>
+<li><strong>Start from the job.</strong> Write down the recurring question first, for example "what did this client's three competitors publish last week, and what landed?" It tells you which data you need.</li>
+<li><strong>Choose the server.</strong> Use a server built and documented by the vendor that holds the data. The help centre is blunt: "Only connect Claude to servers built and hosted by organizations and applications you trust."</li>
+<li><strong>Add the connector.</strong> On Team and Enterprise plans only Owners can add a custom connector, and each member then connects with their own account. On an individual plan you add it yourself under Customize › Connectors with the server URL.</li>
+<li><strong>Sign in with the narrowest account.</strong> The account you authenticate with decides what Claude can see. Review the permissions requested at sign-in and deny anything the job does not need.</li>
+<li><strong>Set tool permissions.</strong> Claude asks before it runs a tool. Choose "Allow always" only for read tools you would let run unsupervised, and switch off tools a conversation does not need.</li>
+<li><strong>Test with a read-only question.</strong> Ask something whose answer you can check in the source system, and compare the two.</li>
+</ol>
+<h3>A worked example: the SOMIN connector</h3>
+<p>SOMIN's free <a href="/marketing-mondays-plugin/">Marketing Mondays plugin</a> packs eight main skills (26 in all) and the SOMIN connector in one file. You sign in to SOMIN first, because Claude links to whichever SOMIN account is signed in when you click Connect. If the plugin's Connectors tab is missing, you add a custom connector with the server URL <code>https://cloud.somin.ai/_mcp</code>, keeping the underscore.</p>
+<p>The test question is "Which SOMIN workspaces do you have access to?" A list of workspace names means the connection works, and it shows exactly which client data Claude can reach. From there, skills such as the weekly Pulse report or the brand deck run on that data, and every number in their output traces back to a SOMIN post, study or ID.</p>
+<h2>What marketing data should you expose, and what should you keep out?</h2>
+<p>Expose the data you would put in a strategy deck. Keep out anything you would not email to a freelancer on their first day.</p>
+<table>
+<thead><tr><th>Data</th><th>Expose to Claude?</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Competitor ads and organic posts</td><td>Yes</td><td>Public, and the core of any category read</td></tr>
+<tr><td>Social-listening themes and perspective studies</td><td>Yes</td><td>Aggregated, and each theme links back to its posts</td></tr>
+<tr><td>The client's own performance summaries</td><td>Yes, read-only</td><td>Needed for reporting, aggregated by campaign or week</td></tr>
+<tr><td>Brand guidelines and approved creative</td><td>Yes</td><td>Keeps drafts on brand</td></tr>
+<tr><td>CRM records and customer lists</td><td>Not at first</td><td>Personal data brings legal duties; route it through a governed tool later</td></tr>
+<tr><td>Ad-account write access</td><td>Not at first</td><td>It spends money, so a person stays at the approval step</td></tr>
+<tr><td>Contracts, fees and credentials</td><td>No</td><td>No marketing job needs them</td></tr>
+</tbody>
+</table>
+<p>The rule of thumb: start read-only, and add a write tool only when a person has a clear reason to approve its output every time.</p>
+<h2>Which security questions should you ask before connecting?</h2>
+<p>Ask who runs the server, what each tool can change, how access is scoped and revoked, and how it treats instructions hidden in data. A vendor that cannot answer these in writing is not ready for client data.</p>
+<ul>
+<li><strong>Who builds and hosts it?</strong> Where is the data processed, and under which contract?</li>
+<li><strong>What does each tool do?</strong> Ask for the list, split into tools that read and tools that create, change or delete. The help centre also warns that server developers can change tool behaviour, so check again after updates.</li>
+<li><strong>How is access scoped?</strong> The MCP <a href="https://modelcontextprotocol.io/specification/draft/basic/authorization" target="_blank" rel="noopener">authorisation specification</a> builds on OAuth 2.1 and tells clients to request only the scopes they need. The MCP <a href="https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices" target="_blank" rel="noopener">security best practices</a> warn that broad scopes widen the damage a stolen token can do. The specification also forbids passing tokens through to other services.</li>
+<li><strong>How do we revoke access?</strong> You can cut a connection from Claude's connector settings or from the service's own security settings. Know both routes before a staff member leaves.</li>
+<li><strong>How does it handle prompt injection?</strong> Anthropic warns that malicious servers may hide instructions meant to make Claude act in unintended ways. Public posts can carry the same trick, so treat anything a tool returns as data, never as instructions.</li>
+</ul>
+<h2>How should an agency roll this out across clients?</h2>
+<p>Run one client, one recurring job and one owner for two weeks, then turn what worked into a template. Rolling out to every account at once multiplies permissions nobody has tested.</p>
+<ul>
+<li><strong>Separate access by client.</strong> A strategist who works on two accounts should sign in with access to two workspaces, not twenty.</li>
+<li><strong>Write prompts down as skills.</strong> A skill makes a junior run the same steps as a senior, for example <code>/marketing-mondays:somin-pulse</code>.</li>
+<li><strong>Keep a person at the gate.</strong> Anything client-facing or that spends money gets human sign-off, the same rule SOMIN's <a href="/ai-agents/">AI agents</a> follow.</li>
+<li><strong>Measure two numbers.</strong> Track time to first draft and reviewer corrections. If corrections do not fall, the data or the prompt is wrong.</li>
+</ul>
+<p>Once the pattern holds, decide which steps to automate fully and which to keep human; we set out that prioritisation in <a href="/blog/agentic-workflows-for-agencies-what-to-automate/">agentic workflows for agencies</a>. For how SOMIN fits an agency's pitch and reporting work, see <a href="/somin-for-agencies/">SOMIN for agencies</a>.</p>
+<h2>FAQ</h2>
+<details><summary>What is MCP in Claude?</summary><p>MCP, the Model Context Protocol, is an open standard that lets Claude connect to external data and tools through a server. In Claude, remote MCP servers appear as connectors that you add once and switch on per conversation.</p></details>
+<details><summary>Do I need a developer to connect Claude to marketing data?</summary><p>Not to use an existing remote server: you add its URL as a connector, or install a plugin that includes it, then sign in. You need a developer only to build your own MCP server for an internal system.</p></details>
+<details><summary>Is it safe to connect Claude to client data?</summary><p>It can be, if the server comes from a vendor you trust, the account and OAuth scopes are narrow, write tools need approval and you know how to revoke access. Treat everything a tool returns as data, never as instructions.</p></details>
+<details><summary>Does the SOMIN connector work in Claude Code?</summary><p>Yes. A plugin added in the Claude app syncs to Claude Code on the same account; run /mcp, pick SOMIN and sign in, and the skills appear as /marketing-mondays: commands.</p></details>
+<p>Start this week with one client and one recurring question. Connect a single trusted server, sign in with the narrowest account, keep every write tool on ask, and check the first answer against the source. If it holds, write the steps down as a skill and repeat them for the next client.</p>

@@ -1,0 +1,87 @@
+<!--meta
+{
+ "slug": "blog/market-personas-from-audience-data-and-competitor-ads",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "How to build market personas from audience data and competitor ads",
+ "seo_title": "Building market personas from audience data | SOMIN Blog",
+ "description": "Build market personas from audience data by pairing panel data with competitor ads in each market, then validating the clusters. Lessons from two SOMIN cases.",
+ "published": "2026-10-17T05:00:00Z",
+ "author": "Dr. Yang Qi",
+ "tags": [
+  "Insights",
+  "Localisation",
+  "Digital Advertising"
+ ],
+ "words": 1558,
+ "reading_minutes": 7,
+ "image": "/assets/img/blog/market-personas-from-audience-data-and-competitor-ads.webp",
+ "image_card": "/assets/img/blog/market-personas-from-audience-data-and-competitor-ads-card.webp",
+ "og_image": "/assets/img/og/blog-market-personas-from-audience-data-and-competitor-ads.jpg",
+ "image_generated": true,
+ "robots": "index,follow"
+}
+-->
+<p>Market personas from audience data are built one market at a time from three inputs: panel or survey data on who buys, competitor ads showing who rivals already target and with what promise, and public conversation revealing the tensions people voice. Cluster each market separately, check the clusters against the ads that perform there, and keep only the personas that change a message, an offer or a channel.</p>
+
+<h2>Key takeaways</h2>
+<ul>
+<li>A market persona earns its place only if it changes what you say, offer or spend in that market.</li>
+<li>Competitor ads show which personas a category already fights over; audience data shows whether your buyer is in that fight.</li>
+<li>For Miraflora Wagyu, GWI data turned a suspected price problem into a deal-sensitivity finding: 61.4% of affluent Colorado cooks use discount codes.</li>
+<li>For Keeta HK, the same method removed price language from every direct-to-action line, because the target audience under-indexed on budget behaviour.</li>
+<li>Personas drift month to month, so rebuild them on a schedule and keep each one's sample size visible.</li>
+</ul>
+
+<h2>What is a market persona, and why not use one global persona?</h2>
+<p>A market persona describes a buyer in one specific market: what they want, what frustrates them and which message moves them there. A global persona averages markets together and loses the differences that decide whether an ad works.</p>
+<p>The most common shortcut is a demographic label. In SOMIN's audience-research workspace, a whitespace study of 229 posts published between April and July 2026 by four audience-research brands grouped 33 of them under one tension: brands mistargeting because they lean too heavily on generational labels such as Gen Z. A label is a starting filter, not a persona.</p>
+<p>The fix is to make the market the unit of analysis. Build personas inside each market first, then compare them across markets. Going the other way, from a global persona down to local tweaks, tends to keep the assumptions and lose the evidence.</p>
+
+<h2>Which data should a market persona be built on?</h2>
+<p>Use at least two independent sources per market: one that describes people and one that describes what competitors already say to them. Each has a blind spot the other covers.</p>
+<table>
+<thead><tr><th>Source</th><th>What it tells you</th><th>Blind spot</th></tr></thead>
+<tbody>
+<tr><td>Audience panels and surveys</td><td>Attitudes, purchase behaviour and media habits, indexed against the market average</td><td>Self-reported, and silent on which message works</td></tr>
+<tr><td>Competitor ads and posts</td><td>Which personas, tensions and offers rivals pay to reach, by market and date</td><td>Shows what brands supply, not what buyers demand</td></tr>
+<tr><td>Public social conversation</td><td>The tensions and words people use unprompted</td><td>Skews towards vocal users and certain platforms</td></tr>
+<tr><td>First-party data</td><td>What your own customers did</td><td>Only covers people who already found you</td></tr>
+</tbody>
+</table>
+<p>Panels make the people side market-specific. GWI's flagship survey covers more than 50 markets and represents over 3 billion internet users, according to its <a href="https://www.gwi.com/connecting-the-dots/methodology" target="_blank" rel="noopener">GWI methodology page</a>. On the competitor side, Google's <a href="https://blog.google/innovation-and-ai/technology/ads/announcing-the-launch-of-the-new-ads-transparency-center/" target="_blank" rel="noopener">Ads Transparency Center</a> lets anyone search ads from verified advertisers and see which ran in a given region, so the competitive read can be filtered by market from the start.</p>
+<p>The source also shapes the model. SOMIN's research team showed at AAAI 2020 that the choice of social network as a data source <a href="https://doi.org/10.1609/aaai.v34i10.7258" target="_blank" rel="noopener">changes how accurately an AI model profiles users</a>, and a 2022 paper in Frontiers in Big Data found that people <a href="https://doi.org/10.3389/fdata.2022.931206" target="_blank" rel="noopener">reveal different facets of their personality on Twitter and Facebook</a>, and that traits inferred across networks improved a content recommender. The practical lesson: do not build a persona on one platform and apply it everywhere. The full list of papers is on our <a href="/research/">research page</a>.</p>
+
+<h2>How do you build market personas step by step?</h2>
+<p>Fix the market and filter, read the competitive field, cluster, validate against audience data, then write each persona as a set of decisions.</p>
+<ol>
+<li><strong>Fix the market and the filter.</strong> Name the geography, the category and the qualifying behaviour. For Miraflora Wagyu, SOMIN started from 2,838,296 people in Colorado interested in cooking in the SOMIN × GWI Q2 2024 survey, then narrowed to the 1,318,330 with household income of 85k and above.</li>
+<li><strong>Pull competitor ads for that market.</strong> Collect paid and organic content per brand with country filters, then keep the ads that perform. For Keeta HK, SOMIN worked from 145 ads filtered to those with above-average predicted click-through rate.</li>
+<li><strong>Cluster the content into personas and tensions.</strong> In the <a href="/brands-wego-case-study/">Wego study</a>, personas came from X-means clustering on text embeddings and were then compared by market and by brand.</li>
+<li><strong>Validate against audience data.</strong> Check each persona's assumed traits against the panel: over-indexed, under-indexed or flat.</li>
+<li><strong>Write the persona as decisions.</strong> Give it a message, an offer, a channel and a list of things not to say.</li>
+</ol>
+<p>This is close to what Nielsen Norman Group calls <a href="https://www.nngroup.com/articles/persona-types/" target="_blank" rel="noopener">statistical personas</a>: qualitative work first, then a survey of at least 100 people, ideally 500 or more, and a clustering method. NN/g notes the approach is expensive and needs statistical skill. That is the part an AI pipeline can compress; deciding which clusters matter stays with the strategist.</p>
+
+<h2>What does this look like with real audience data?</h2>
+<p>In both cases below, competitor ads showed where the crowd was and audience data showed whether the client's buyer was in it.</p>
+<h3>Miraflora Wagyu: price sensitive or deal sensitive?</h3>
+<p>Miraflora Wagyu, a premium wagyu eCommerce brand in the US, had a high cost per acquisition and suspected its price point. SOMIN combined GWI data with SOMONITOR tracking of 9 beef brands and price research across 6 online sellers. Among affluent Colorado cooks, 61.0% look for the best deals, 61.4% use discount codes and 67.0% use loyalty or reward programmes.</p>
+<p>The persona was deal sensitive, not price sensitive, and that changed the plan. The <a href="/brands-miraflora-wagyu-gwi-case-study/">Miraflora Wagyu case study</a> recommends competing on promotions and an easier checkout rather than on price, with six personas from The Festive Celebrator to The Grill Master. One more figure reframed the problem: 78.7% had bought meat in the last month, but only 10.1% had bought it online.</p>
+<h3>Keeta HK: when the whole category fights on price</h3>
+<p>In Hong Kong food delivery, SOMIN benchmarked 145 ads from Keeta HK, FoodPanda and Deliveroo between January and March 2025. The category's dominant tension was affordable, convenient food, and Keeta trailed both rivals on it.</p>
+<p>A GWI check of Hong Kong food orderers in the above-average income bracket showed they under-index on budget-driven behaviour and over-index on curated, quality-first choices. So SOMIN rewrote the direct-to-action line in all four AI-generated stories to drop price language. The <a href="/brands-keeta-hk-case-study/">Keeta HK case study</a> is a pre-launch creative ideation sample, not a measured campaign result, but it shows the persona doing its job: changing the copy.</p>
+
+<h2>How do you keep AI-generated personas honest?</h2>
+<p>Make every persona traceable to the posts and data behind it, show its sample size, and rebuild it on a schedule.</p>
+<p>Model-generated personas are fluent, which is the risk. SOMIN's insight engine produced the line "Data reveals patterns, but it cannot define humanity" for a persona it calls The Insightful Strategist, on an angle it labels the Data Illusion Effect: heavy reliance on AI and big data leading to misread consumer behaviour. It rests on 51 posts. The safeguard is evidence you can open, with every concept tag tracing back to the posts that support it.</p>
+<p>Personas also move. In the same workspace, the largest persona in the August 2026 30-day study of 215 posts was The Tech-Driven Innovator, with a sample of 115. In the September study of 220 posts it was The Success-Oriented Innovator, with 131. Same category, one month apart, a different lead persona.</p>
+<p>Thin data is the other trap. SOMIN's moments-of-truth model surfaces a searcher who wants to personalise ads for new users but has too little data to work with. It is a generated moment, not a quote from a real person, yet the answer holds: when your own data is thin, borrow signal from the category through competitor ads and panel data until first-party data catches up.</p>
+
+<h2>FAQ</h2>
+<details><summary>What is the difference between a persona and an audience segment?</summary><p>A segment is a filter, such as age, income or location, that you can target in an ad platform. A persona explains why people in that segment buy, what tension they feel and which message moves them. You target segments and write for personas.</p></details>
+<details><summary>How many personas should each market have?</summary><p>Enough to change decisions and no more. SOMIN's Miraflora Wagyu and Wego studies each produced six, but testing two or three per market at a time keeps the results readable.</p></details>
+<details><summary>Can I build market personas without survey data?</summary><p>Yes, from competitor ads and public content, but treat the result as a view of what brands target rather than measured demand. Validate it with panel or first-party data before committing budget.</p></details>
+<details><summary>How often should market personas be refreshed?</summary><p>At least quarterly, and monthly in fast-moving categories. SOMIN's 30-day studies showed the lead persona in one category changing between August and September 2026.</p></details>
+
+<p>Start with the market where performance disappoints most. Pull the last quarter of competitor ads, read them for persona and tension, check the two or three biggest clusters against panel data, and rewrite one message per persona. SOMIN's <a href="/somin-strategy/">strategy agent</a> runs that loop from live category data, and our article on <a href="/blog/middle-east-travel-marketing-personalising-by-market/">Middle East travel marketing</a> shows the method applied across six markets.</p>

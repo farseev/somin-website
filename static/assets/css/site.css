@@ -894,3 +894,12 @@ html body .rs-talks { display: grid; grid-template-columns: repeat(auto-fit, min
 html body .rs-tlabel { grid-column: 1 / -1; }
 html body .rs-talk { max-width: none; }
 html body .cs-crumbs li + li::before { color: rgba(201,209,208,.45); }
+
+/* FAQ blocks inside blog posts (FAQPage schema comes from these) */
+html body .prose details { background: var(--paper-2); border: 1px solid var(--paper-line); border-radius: 14px; padding: 0 20px; margin: 10px 0; }
+html body .prose details + :not(details) { margin-top: 28px; }
+html body .prose summary { cursor: pointer; list-style: none; padding: 16px 30px 16px 0; position: relative; font-family: var(--display); font-weight: 700; font-size: 16px; line-height: 1.4; color: var(--ink); }
+html body .prose summary::-webkit-details-marker { display: none; }
+html body .prose summary::after { content: '+'; position: absolute; right: 0; top: 12px; font-size: 22px; font-weight: 600; color: var(--teal-600); }
+html body .prose details[open] summary::after { content: '–'; }
+html body .prose details p { margin: 0 0 16px; color: var(--text-2); }

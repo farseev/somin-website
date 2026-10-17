@@ -1,0 +1,95 @@
+<!--meta
+{
+ "slug": "blog/ai-content-homogenisation-why-every-brand-sounds-the-same",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "AI content homogenisation: why every brand sounds the same",
+ "seo_title": "AI content homogenisation and how to fix it | SOMIN Blog",
+ "description": "AI content homogenisation happens when brands give similar models similar briefs. Why every brand starts to sound the same, and how context data fixes it.",
+ "published": "2026-10-17T00:40:00Z",
+ "author": "Dr. Yang Qi",
+ "tags": [
+  "GenAI",
+  "Artificial Intelligence",
+  "Insights"
+ ],
+ "words": 1454,
+ "reading_minutes": 6,
+ "image": "/assets/img/blog/ai-content-homogenisation-why-every-brand-sounds-the-same.webp",
+ "image_card": "/assets/img/blog/ai-content-homogenisation-why-every-brand-sounds-the-same-card.webp",
+ "og_image": "/assets/img/og/blog-ai-content-homogenisation-why-every-brand-sounds-the-same.jpg",
+ "image_generated": true,
+ "robots": "index,follow"
+}
+-->
+<p>AI makes every brand sound the same because teams ask similar models similar questions, and the models answer with the most probable language for the category. That is AI content homogenisation. The fix is not a cleverer prompt. It is different inputs: category data that shows what competitors already say, which audience tensions nobody owns, and what has worked for this audience before.</p>
+
+<h2>Key takeaways</h2>
+<ul>
+<li>Homogenisation is a property of the whole set of content, not of any single piece: each post can look good while the category converges.</li>
+<li>It comes from shared models, shared briefs and rising volume, all pulling output towards the most probable answer.</li>
+<li>Retrieving real category data before generation gives the model something specific to differ from and something specific to say.</li>
+<li>You can measure convergence with simple tests, from a brand-swap check to similarity scores over time.</li>
+</ul>
+
+<h2>What is AI content homogenisation?</h2>
+<p>AI content homogenisation is the drift of AI-assisted content towards the same ideas, structures and phrases across many brands. It is measurable as rising similarity between outputs, even when each output on its own is rated well.</p>
+<p>The clearest evidence comes from a study by Anil Doshi and Oliver Hauser published in Science Advances. Writers who could draw on AI ideas produced stories rated 8.1% higher for novelty and 9% higher for usefulness, yet stories that used one AI idea were 10.7% more similar to each other than stories written without AI. As Doshi put it, "there is risk of losing collective novelty" (<a href="https://news.exeter.ac.uk/?p=13749" target="_blank" rel="noopener">University of Exeter</a>).</p>
+<p>That is the trap for marketing teams. Every reviewer signs off a better-than-average draft, and nobody is looking at the category as a whole, where all the better-than-average drafts now sound alike.</p>
+
+<h2>Why does AI make every brand sound the same?</h2>
+<p>Because the same models, fed the same kind of brief, return the centre of the same distribution. Three forces push in that direction at once.</p>
+<h3>Shared models favour the probable</h3>
+<p>A language model is trained to produce likely text. Asked for a skincare ad or a fintech post with little else to go on, it returns the phrasing it has seen most often for that category. In statistical terms, it gravitates towards the mode, and every brand using the same model gravitates towards the same mode.</p>
+<h3>Shared briefs remove the differences</h3>
+<p>Most briefs are written from category norms: the same personas, the same benefits, the same calls to action. A model cannot add a distinction that is missing from its input, so a generic brief produces generic output however good the model is.</p>
+<h3>Volume multiplies the effect</h3>
+<p>Generative tools have made variants cheap. Meta's engineering team reported that more than a million advertisers used its generative AI tools to create over 15 million ads in a single month, and built its Andromeda retrieval engine to handle a fast-growing volume of ad creatives (<a href="https://engineering.fb.com/2024/12/02/production-engineering/meta-andromeda-advantage-automation-next-gen-personalized-ads-retrieval-engine/" target="_blank" rel="noopener">Engineering at Meta</a>). More variants built from the same inputs add volume without adding variety.</p>
+
+<h2>What does SOMIN's data show about sameness?</h2>
+<p>The marketing conversation we monitor has started to name the problem directly. Four signals stand out in SOMIN's workspaces.</p>
+<ul>
+<li>In our ads-optimisation workspace, the insight engine produced the insight "Authenticity is the antidote to homogenization" for a brand-differentiation tension, with an angle based on cultural homogenisation theory: brands relying on similar AI templates and formats lose a voice of their own. The evidence base is small, 11 posts, but the tension summary behind it is explicit about AI-generated content producing homogenised messaging.</li>
+<li>In our creative-content workspace, which follows AI content-tool brands, a perspective study of 108 posts (27 September to 27 October 2025) found the tools' own content discussing a saturation of low-quality AI content that makes authentic connection harder, alongside pressure on teams to publish at unprecedented pace.</li>
+<li>In our audience-research workspace, a 30-day whitespace study of 151 posts (October 2026) grouped 22 posts under an authenticity and connection tension, including a crisis of trust among Gen Z users linked to AI-generated content and curated fakeness.</li>
+<li>SOMIN's model-generated moments of truth include the thought "If we don't find a unique angle, we risk becoming invisible to our audience." It is a model's reading of the persona, not a quote, but it describes the commercial cost well.</li>
+</ul>
+
+<h2>How does context data counter homogenisation?</h2>
+<p>It changes what the model conditions on. When a model reads real category data before it writes, the most probable answer is no longer the category average; it is the most probable answer given this brand, these competitors and this audience.</p>
+<p>This is the subject of SOMIN's SIGIR 2026 paper, "SOMIN: Agentic AI for Automating Professional Visibility and Countering Content Homogenization" (<a href="https://doi.org/10.1145/3805712.3808371" target="_blank" rel="noopener">ACM SIGIR 2026</a>). It describes retrieval-augmented agentic AI that helps professionals write distinctive LinkedIn content, including automated publishing. The principle, summarised on our <a href="/research/">research page</a>, is that agents retrieve real context data before they write, so content stays distinctive instead of converging on the same generic output.</p>
+<p>In practice, four kinds of retrieved context do most of the work.</p>
+<ol>
+<li><strong>What competitors already say.</strong> Once the crowded propositions are in the context, the model can be told to avoid them.</li>
+<li><strong>Tensions with evidence.</strong> A specific, evidenced audience tension gives the model a reason to say something particular.</li>
+<li><strong>The brand's own proof.</strong> Product truths and claims only this brand can make are, by definition, absent from the category average.</li>
+<li><strong>Performance history.</strong> Past winners and losers anchor new work in what this audience has responded to.</li>
+</ol>
+<p>The same idea runs through our <a href="/somin-social-media-manager/">Social Media Manager agent</a>, which watches what is landing in a category and writes in the brand's own voice; it already runs SOMIN's own LinkedIn.</p>
+
+<h2>How can you tell if your content is converging?</h2>
+<p>Measure it rather than debating it. The checks below range from a ten-minute test to an ongoing metric.</p>
+<table>
+<thead><tr><th>Check</th><th>How to run it</th><th>What it tells you</th></tr></thead>
+<tbody>
+<tr><td>Brand-swap test</td><td>Replace your brand name with a competitor's in your last ten ads or posts</td><td>If most still read naturally, the copy is generic to the category</td></tr>
+<tr><td>Self-similarity over time</td><td>Embed your recent posts and track their average pairwise similarity month by month</td><td>A rising line means your own output is converging</td></tr>
+<tr><td>Similarity to competitors</td><td>Compare embeddings of your posts with competitors' posts from the same period</td><td>Whether you are drifting towards the category centre</td></tr>
+<tr><td>Angle coverage</td><td>Tag each piece by tension and angle, then compare with competitors' coverage</td><td>Whether you are crowding into the same few angles</td></tr>
+<tr><td>Evidence trace</td><td>Count the concepts that link to a post, review, test result or product truth</td><td>Untraceable concepts are usually the generic ones</td></tr>
+</tbody>
+</table>
+<p>If you use Claude, the content diversity scorer in our free <a href="/marketing-mondays-plugin/">Marketing Mondays plugin</a> scores how varied a brand's creative is, from 0 to 100, against its competitors.</p>
+
+<h2>Does homogenised content hurt results?</h2>
+<p>It weakens the two things content is for: being found and being chosen. Search and ad platforms reward content that adds something, and audiences ignore what they have already seen.</p>
+<p>Google's guidance is clear that AI-generated content is not banned in itself, but that using AI to generate many pages without adding value for users may breach its spam policy on scaled content abuse (<a href="https://developers.google.com/search/docs/fundamentals/using-gen-ai-content" target="_blank" rel="noopener">Google Search Central</a>). On paid social, an ad that looks like everyone else's gives the delivery system and the viewer little reason to pick it out. Our guide to <a href="/blog/context-engineering-for-marketing/">context engineering for marketing</a> covers how to build the inputs that prevent this.</p>
+
+<h2>FAQ</h2>
+<details><summary>What is AI content homogenisation?</summary><p>It is the tendency of AI-assisted content from different brands to converge on the same ideas and phrasing, because similar models receive similar briefs and return the most probable answer for the category.</p></details>
+<details><summary>Why does ChatGPT write the same thing for every brand?</summary><p>Without specific context, a model fills the gaps with what is typical for the category. Every brand that gives it a similar brief receives a similar answer.</p></details>
+<details><summary>Can better prompts fix AI sameness?</summary><p>Only partly. Wording changes the tone, but distinct output needs distinct inputs: competitor data, evidenced audience tensions, brand proof and performance history.</p></details>
+<details><summary>How do you measure content diversity?</summary><p>Track the similarity of your own posts over time and against competitors using text embeddings, tag content by angle to see coverage, and run a brand-swap test on recent ads.</p></details>
+<details><summary>Is AI-generated content bad for SEO?</summary><p>Not by itself. Google's concern is scaled content that adds no value for users, so AI-assisted pages need original information, accuracy and a clear purpose.</p></details>
+
+<p>Run the brand-swap test on your last ten ads this week. If more than a few survive the swap, start feeding your tools category data before they write, and track similarity month by month so you can see the change.</p>

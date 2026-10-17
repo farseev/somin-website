@@ -1,0 +1,98 @@
+<!--meta
+{
+ "slug": "blog/context-engineering-for-marketing",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "Context engineering for marketing: why the same prompt writes the same ad",
+ "seo_title": "Context engineering for marketing, explained | SOMIN Blog",
+ "description": "Context engineering for marketing explains why the same prompt writes the same ad, and what to give AI: competitor ads, tensions, brand assets and results.",
+ "published": "2026-10-17T00:20:00Z",
+ "author": "Kirill Lepikhin",
+ "tags": [
+  "GenAI",
+  "Large Language Models",
+  "Digital Advertising"
+ ],
+ "words": 1633,
+ "reading_minutes": 7,
+ "image": "/assets/img/blog/context-engineering-for-marketing.webp",
+ "image_card": "/assets/img/blog/context-engineering-for-marketing-card.webp",
+ "og_image": "/assets/img/og/blog-context-engineering-for-marketing.jpg",
+ "image_generated": true,
+ "robots": "index,follow"
+}
+-->
+<p>The same prompt writes the same ad because a language model fills every gap in its input with the most probable answer for the category, and your competitors are asking it the same question. Context engineering for marketing is the fix: deciding what the model reads before it writes, from competitor ads and audience tensions to brand assets and performance history. Change the context and the output changes.</p>
+
+<h2>Key takeaways</h2>
+<ul>
+<li>A short prompt leaves the model to fill the gaps with category averages, which is why different teams get near-identical ads.</li>
+<li>Context engineering is about the inputs the model reads, not the wording of the request.</li>
+<li>Four context layers matter most for advertising: competitor ads, audience tensions, brand assets and performance history.</li>
+<li>More context is not always better; a small, curated, evidence-backed pack beats a dump of everything you have.</li>
+</ul>
+
+<h2>Why does the same prompt write the same ad?</h2>
+<p>Because the model has nothing to work from except its own sense of what is typical. Ask for "a Facebook ad for a premium skincare brand aimed at busy professionals" and you get self-care, deserving a break and a glow, because that is the centre of everything the model has read about the category. Every competitor typing a similar request gets a similar centre.</p>
+<p>Research on creative writing shows the same pattern at scale. In a study published in Science Advances, stories written with one AI-generated idea were 10.7% more similar to each other than stories written without AI, even though AI help made individual stories score higher (<a href="https://news.exeter.ac.uk/?p=13749" target="_blank" rel="noopener">University of Exeter</a>). Each output looks better on its own; the set looks more alike.</p>
+<p>Marketers notice the result before they can name the cause. In SOMIN's ads-optimisation workspace, a 30-day whitespace study of 156 posts (September 2026) grouped 23 of them under one tension: AI agencies that put speed ahead of quality and ship generic outputs, and AI tools adopted without enough human oversight. Generic output is rarely a model problem. It is usually an input problem.</p>
+
+<h2>What is context engineering, and how is it different from prompt engineering?</h2>
+<p>Prompt engineering is about how you phrase the request; context engineering is about everything the model sees when it answers. Anthropic describes context engineering as curating the whole set of tokens a model reads at inference, with the goal of finding the "smallest possible set of high-signal tokens" that makes the desired result likely (<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Anthropic Engineering</a>).</p>
+<p>The same article notes that a model's attention is a limited budget, and that recall degrades as the context window fills. In marketing terms, that rules out both extremes: the one-line prompt that tells the model nothing, and the 200-page brand book pasted in whole.</p>
+<p>Anthropic's prompting guidance adds two points that matter for ad work (<a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener">Claude documentation</a>). Explaining the reason behind an instruction helps the model aim at your actual goal. And examples should vary enough that the model does not pick up unintended patterns, which is exactly what happens when a team pastes in one sample ad and receives ten copies of it.</p>
+
+<h2>What context should you give an AI before it writes an ad?</h2>
+<p>Give it four core layers, plus the moment and the format. These mirror the inputs SOMIN's agents read before they write, and the same structure works when you brief a general assistant by hand.</p>
+<table>
+<thead><tr><th>Context layer</th><th>What to give the model</th><th>Where it comes from</th><th>What happens without it</th></tr></thead>
+<tbody>
+<tr><td>Competitor ads</td><td>Around 20 recent ads from the brands you compete with, grouped by the proposition and tension each one uses</td><td>Ad libraries, category monitoring</td><td>The model writes the category average, often close to the market leader's ad</td></tr>
+<tr><td>Audience tensions</td><td>Two or three tensions, each with its evidence (sample size, example posts) and the persona it belongs to</td><td>Social listening, reviews, search queries</td><td>Generic benefits such as "save time" with no reason for anyone to care</td></tr>
+<tr><td>Brand assets</td><td>Voice rules, approved claims and proof points, product truths, words you never use</td><td>Brand guidelines, approved-claims list</td><td>Claims you cannot substantiate and a voice that could belong to anyone</td></tr>
+<tr><td>Performance history</td><td>Last quarter's winners and losers, each with a one-line reason</td><td>Ad platform exports, test logs</td><td>The model repeats what already failed or drops what worked</td></tr>
+<tr><td>Moment and market</td><td>Season, local events, language and cultural cues per market</td><td>Content calendar, local team</td><td>Copy that is correct but irrelevant, or translated rather than localised</td></tr>
+<tr><td>Format constraints</td><td>Channel, length, aspect ratio, compliance rules</td><td>Media plan, platform specs</td><td>Rework at the end of the process</td></tr>
+</tbody>
+</table>
+<h3>Competitor ads are there to avoid, not to copy</h3>
+<p>The point of showing the model what competitors say is to tell it where not to go. Label the crowded propositions explicitly and ask for an angle that none of them uses.</p>
+<h3>Tensions need their evidence</h3>
+<p>A tension without evidence is a guess the model will happily decorate. SOMIN's insight engine stores each insight as persona, tension and angle, together with the behavioural theory behind the angle and the engagement behind it. One example from our audience-research workspace pairs the insight "To truly connect, dare to diverge from the trending path" with a herd-behaviour angle, backed by 2,061 engagements across 65 posts. That is a unit of context a model can reason with.</p>
+<h3>Performance history needs reasons</h3>
+<p>"Ad B beat ad A" teaches the model little. "Ad B won because it named the cost of waiting, which our audience responds to" gives it a principle to reuse.</p>
+
+<h2>How much context is too much?</h2>
+<p>Too much is anything that does not change the output. Each extra ad, guideline or chart competes for the model's attention, so a curated pack of evidence usually beats an export of everything.</p>
+<p>The better pattern is retrieval at the moment of need. Anthropic's article recommends that agents keep lightweight references and load the underlying data through tools only when required. In practice, that means connecting the assistant to your category data, for example through an MCP connector, and letting it query the ten most relevant competitor ads for this brief instead of reading 500.</p>
+<p>Audience context needs the same discipline. In SOMIN's social-listening workspace, one insight holds that polished, perfect posts underperform raw, real stories, an angle grounded in self-determination theory and backed by 330 engagements across 24 posts. A note like that is worth more to the model than another page of brand adjectives.</p>
+
+<h2>How do you build a context pack your team can reuse?</h2>
+<p>Treat context as a maintained asset, not a one-off paste. A reusable pack has an owner, a structure and a refresh date.</p>
+<ol>
+<li><strong>Map the category.</strong> List competitors and decode their recent ads by persona, proposition, tension and tone.</li>
+<li><strong>Pick the tensions.</strong> Choose the two or three tensions your brand can credibly answer, with sample sizes and example posts.</li>
+<li><strong>Write the brand layer once.</strong> Voice rules, approved claims, proof points and banned words, in a short structured file.</li>
+<li><strong>Log results with reasons.</strong> After every test, record the winner, the loser and a sentence on why.</li>
+<li><strong>Set a refresh rhythm.</strong> Competitor and audience layers go stale fastest; refresh them monthly at least.</li>
+<li><strong>Connect rather than paste.</strong> Expose the pack to your assistant through a connector so every team member works from the same version.</li>
+</ol>
+<p>SOMIN's model-generated moments of truth capture why this matters. One of them, for a strategy persona, reads: "I should have tailored our approach instead of applying the same strategy everywhere." A shared context pack is how a team tailors by default.</p>
+
+<h2>How do you know the context is working?</h2>
+<p>Check variety, traceability and predicted performance. If all three improve, the context is doing its job.</p>
+<ul>
+<li><strong>Variety.</strong> Generate concepts for two competing brands with the same prompt. If you can swap the brand names without anyone noticing, the context is too thin.</li>
+<li><strong>Traceability.</strong> Every concept should point to the post, tension or result that justifies it. In our <a href="/somin-strategy/">Strategy agent</a>, each insight chain is backed by the real posts behind it, so a strategist can check a concept before it goes anywhere.</li>
+<li><strong>Predicted performance.</strong> Score concepts before spend. SOMIN's <a href="/somin-paid-media/">paid media agent</a> predicts click-through for each concept, with 78% prediction accuracy across customer benchmarks.</li>
+</ul>
+<p>Sameness is the visible symptom, and we cover its causes in detail in <a href="/blog/ai-content-homogenisation-why-every-brand-sounds-the-same/">why AI makes every brand sound the same</a>.</p>
+
+<h2>FAQ</h2>
+<details><summary>What is context engineering in marketing?</summary><p>It is the practice of choosing and structuring what an AI model reads before it writes, such as competitor ads, audience tensions, brand assets and performance history, so the output fits your brand and market instead of the category average.</p></details>
+<details><summary>What is the difference between a prompt and context?</summary><p>The prompt is the request; the context is everything else the model can see when it answers. Two teams can use the same prompt and get different ads if their context differs.</p></details>
+<details><summary>How do I stop ChatGPT or Claude from writing generic ads?</summary><p>Give the model the competitor ads it should avoid, a specific audience tension with evidence, your approved claims and your recent winners and losers. Then ask for an angle none of the competitors uses.</p></details>
+<details><summary>Does more context always give better results?</summary><p>No. Models have a limited attention budget, so irrelevant material can lower quality. Curate a small pack of high-signal evidence and retrieve the rest through tools when it is needed.</p></details>
+<details><summary>How often should marketing context be updated?</summary><p>Competitor and audience layers change fastest and should be refreshed at least monthly. Brand rules and approved claims can be reviewed quarterly or when the brand changes.</p></details>
+
+<p>Start with one campaign: build the four core layers for it, run your usual prompt with and without them, and compare the outputs side by side. If you would rather connect than paste, the free <a href="/marketing-mondays-plugin/">Marketing Mondays plugin</a> gives Claude live access to your SOMIN category data.</p>

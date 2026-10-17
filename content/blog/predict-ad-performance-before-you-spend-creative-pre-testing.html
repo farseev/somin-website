@@ -1,0 +1,92 @@
+<!--meta
+{
+ "slug": "blog/predict-ad-performance-before-you-spend-creative-pre-testing",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "Pre-testing creative: how to predict ad performance before you spend",
+ "seo_title": "How to Predict Ad Performance Before You Spend | SOMIN Blog",
+ "description": "To predict ad performance before you spend, score each creative with a model trained on labelled ads, cut the weak tier and live-test only the close calls.",
+ "published": "2026-10-17T09:00:00Z",
+ "author": "Dr. Yang Qi",
+ "tags": [
+  "Performance Advertising",
+  "Meta Advertising",
+  "Artificial Intelligence"
+ ],
+ "words": 1286,
+ "reading_minutes": 6,
+ "image": "/assets/img/blog/predict-ad-performance-before-you-spend-creative-pre-testing.webp",
+ "image_card": "/assets/img/blog/predict-ad-performance-before-you-spend-creative-pre-testing-card.webp",
+ "og_image": "/assets/img/og/blog-predict-ad-performance-before-you-spend-creative-pre-testing.jpg",
+ "image_generated": true,
+ "robots": "index,follow"
+}
+-->
+<p>You can predict ad performance before you spend by scoring each creative with a model trained on large sets of labelled ads. The model reads the copy, image, targeting and settings and estimates likely click-through. Use the score to cut the weakest concepts and focus live tests on the close calls. Prediction narrows the field; it does not replace a test, and it should explain itself.</p>
+
+<h2>Key takeaways</h2>
+<ul>
+<li>Creative is still the biggest single driver of advertising results, and generative AI has multiplied the number of creatives competing for the same budget.</li>
+<li>Predictive scoring estimates performance from the ad itself, so it works before launch and before an account has any history.</li>
+<li>A score is only useful when it comes with reasons; explainable models turn a number into an edit.</li>
+<li>The workflow that holds up is predict, cut, test, then feed real results back so the model stays calibrated.</li>
+</ul>
+
+<h2>Why pre-test creative in 2026?</h2>
+<p>Because there are more ads to choose from than any budget can test. Creative decides much of the outcome, and the supply of creative has exploded.</p>
+<p><a href="https://www.nielsen.com/insights/2017/when-it-comes-to-advertising-effectiveness-what-is-key/" target="_blank" rel="noopener">Nielsen's analysis of nearly 500 campaigns</a> found creative remains the biggest single contributor to sales lift, even as media's share grew from 15% to 36% over eleven years. Meanwhile, <a href="https://engineering.fb.com/2024/12/02/production-engineering/meta-andromeda-advantage-automation-next-gen-personalized-ads-retrieval-engine/" target="_blank" rel="noopener">Meta's engineering team</a> reported that more than a million advertisers used its generative AI tools to create more than 15 million ads in a month, and expects the number of creatives in its systems to keep growing significantly.</p>
+<p>Live A/B testing remains the gold standard, but every variant needs spend before its result is readable. If a team produces forty concepts and can afford to test six, the real question is which six. Pre-testing answers it.</p>
+
+<h2>What can a model predict about an ad, and what can't it?</h2>
+<p>A model can estimate how likely people are to engage with an ad, especially to click, from features it can see in the creative and its set-up. It cannot see next week's auction, a competitor's launch or a shift in the news.</p>
+<ul>
+<li><strong>Predictable:</strong> relative click-through between concepts, the effect of visual and copy choices, and the fit between a creative and its audience targeting.</li>
+<li><strong>Harder:</strong> conversion and revenue, which also depend on landing pages, price and stock; long-term brand effects; and formats the model has not seen before.</li>
+<li><strong>Out of reach:</strong> outside events, sudden platform changes and auction pressure on a given day.</li>
+</ul>
+<p>So a score is a ranking aid with a confidence level, not a forecast of results. In SOMIN's agents, predictions are always shown as predictions, and nothing moves to spend without a person approving it.</p>
+
+<h2>How does predictive creative scoring work?</h2>
+<p>It learns the relationship between what an ad contains and how similar ads performed, then applies that to new creative. Our peer-reviewed research at SOMIN has addressed three parts of that problem.</p>
+<ul>
+<li><strong>Scoring before launch.</strong> <a href="https://doi.org/10.1145/3539597.3573032" target="_blank" rel="noopener">SoCraft</a>, presented at WSDM 2023, is a multimodal model that scores an advertiser's Meta ad creatives from their text, image, targeting and settings before launch.</li>
+<li><strong>Explaining the score.</strong> "Against Opacity" (<a href="https://doi.org/10.1145/3581783.3612817" target="_blank" rel="noopener">ACM Multimedia 2023</a>) predicts click-through rate for new ad creatives and explains the drivers with an LLM assistant, SODA.</li>
+<li><strong>Turning scores into actions.</strong> "Fusing Predictive and Large Language Models for Actionable Recommendations in Creative Marketing" (<a href="https://doi.org/10.1145/3725885" target="_blank" rel="noopener">ACM TOIS 2025</a>) pairs ad-performance prediction models with LLMs, so creative scores become recommendations a marketer can act on.</li>
+</ul>
+<p>In production, the scoring model behind SOMIN's <a href="/somin-paid-media/">Paid Media agent</a> is trained on tens of thousands of labelled ads and reaches 78% click-through prediction accuracy across customer benchmarks, roughly three times the human baseline. In the <a href="/agencies-samy-case-study/">SAMY case study</a>, that read on creative before media spend was part of the evidence behind a pitch that won a multi-million-pound retainer. The full list of papers is on our <a href="/research/">research page</a>.</p>
+
+<h2>Which pre-testing method should you use?</h2>
+<p>The cheapest one that answers the question you actually have. Most teams need a mix.</p>
+<table>
+<thead><tr><th>Method</th><th>What it tells you</th><th>Time and cost</th><th>Best used for</th></tr></thead>
+<tbody>
+<tr><td>Live A/B or split test</td><td>Real performance in real auctions</td><td>Days to weeks, plus test budget per variant</td><td>The final choice between a few strong concepts</td></tr>
+<tr><td>Panel or survey pre-test</td><td>How people say they react: recall, comprehension, liking</td><td>Days, with a fee per test</td><td>High-budget brand films and TV</td></tr>
+<tr><td>Predictive scoring model</td><td>Likely engagement relative to other concepts, with reasons</td><td>Minutes, with no media spend</td><td>Triage of many concepts before launch</td></tr>
+<tr><td>A general-purpose LLM's opinion</td><td>A plausible critique, not trained on ad outcomes</td><td>Seconds</td><td>Brainstorming and copy edits, not prediction</td></tr>
+</tbody>
+</table>
+
+<h2>Why do teams struggle to prove their creative works?</h2>
+<p>Because they judge creative after the money is spent, often on metrics that do not match the business goal. SOMIN's ads-optimisation workspace shows this clearly.</p>
+<p>Its moments-of-truth model surfaces the thoughts "I wish I could show the real impact of our creative work" and "How can I make sense of all this data?" for a persona working through digital advertising metrics. The workspace's October 2026 whitespace study of 128 posts includes a theme (sample 23) on businesses that focus on superficial metrics such as ROAS and CPA instead of revenue and lead generation.</p>
+<p>A related insight, "Chasing illusions blinds us to genuine opportunities", applies opportunity-cost reasoning: when teams chase vanity metrics, budget flows to strategies that do not grow profit (15 engagements across 10 posts). In the audience-research workspace, the matching proposition is "Know a creative will work before you pay for it", with the consumer takeaway "I can confidently invest in strategies that actually work."</p>
+
+<h2>How do you build a pre-testing workflow?</h2>
+<ol>
+<li><strong>Pick the metric per objective.</strong> Click-through for traffic, a lead or purchase signal for conversion. Do not judge awareness ads on clicks alone.</li>
+<li><strong>Generate wide, not deep.</strong> Write concepts across distinct angles and tensions, not ten versions of one headline; variety gives the model something to separate.</li>
+<li><strong>Score everything and read the reasons.</strong> The explanation is where the edits come from: a weak image, a buried benefit, a mismatch with the audience.</li>
+<li><strong>Cut the bottom tier.</strong> Concepts that score clearly below the rest should not reach a test budget.</li>
+<li><strong>Live-test the top band.</strong> Include one lower-scoring wildcard each round, so the model is checked against something it doubted.</li>
+<li><strong>Feed results back.</strong> Compare every prediction with the real outcome. SOMIN's Paid Media agent does this after each round so the next one is sharper.</li>
+<li><strong>Watch for fatigue.</strong> A high-scoring ad still wears out; re-score and refresh as frequency climbs.</li>
+</ol>
+
+<h2>FAQ</h2>
+<details><summary>Can AI predict which ad will perform best?</summary><p>It can rank concepts by likely engagement with useful accuracy: SOMIN's model reads click-through at 78% accuracy across customer benchmarks, about three times the human baseline. It cannot guarantee a winner, so the top band should still be tested live.</p></details>
+<details><summary>What is creative pre-testing?</summary><p>Evaluating ads before they run, using audience panels, predictive models or small live tests, to decide which concepts deserve media budget.</p></details>
+<details><summary>Do I need my own ad history to predict performance?</summary><p>No. A model trained on large sets of labelled ads can score creative cold, before an account has data, and then re-score once live results arrive.</p></details>
+<details><summary>Does pre-testing replace A/B testing?</summary><p>No. Pre-testing decides what is worth testing; A/B testing confirms what works in the real auction. Used together, they cut the spend wasted on obvious losers.</p></details>
+
+<p>Take the concept list for your next campaign and score it before anything is produced in full. Cut the bottom third, test the top band with one wildcard, and record predicted against actual for every ad. After two or three rounds you will know how far to trust the score in your category, and your test budget will go on the calls that are hard to make.</p>

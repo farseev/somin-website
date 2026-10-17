@@ -460,7 +460,7 @@ def page(meta, body, path, extra_head=''):
         tags.append('<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": meta['_schema']}, ensure_ascii=False) + '</script>')
     vids = video_nodes(body, path) if robots.startswith('index') else []
     has_faq = any('FAQPage' in js for js in meta.get('jsonld', [])) or 'FAQPage' in json.dumps(meta.get('_schema', []))
-    if robots.startswith('index') and not has_faq and meta.get('layout') != 'post':
+    if robots.startswith('index') and not has_faq:
         fq = faq_node(body, path)
         if fq:
             vids = vids + [fq]
@@ -1042,7 +1042,20 @@ AUTHORS = {
                             "jobTitle": "Co-Founder and CEO, SOMIN", "url": "https://farseev.com/",
                             "sameAs": ["https://www.linkedin.com/in/aiprof/", "https://scholar.google.com/citations?user=ZJW7F18AAAAJ", "https://farseev.com/"]},
 }
-AUTHOR_ROLE = {'Prof. Aleks Farseev': 'Co-Founder & CEO, SOMIN', 'Murtaza Hyder Magsi': 'SOMIN', 'Dr. Yang Qi': 'SOMIN', 'Da-Min You': 'SOMIN', 'SOMIN Team': 'SOMIN'}
+# SOMIN team bylines (roles and profiles as listed on the SOMIN LinkedIn company page, Oct 2026)
+TEAM = {
+    'Kirill Lepikhin': ('Co-Founder and CTO, SOMIN', 'https://www.linkedin.com/in/k-lepikhin/'),
+    'Dr. Yang Qi': ('Senior Data Scientist, SOMIN', 'https://www.linkedin.com/in/diuibyang/'),
+    'Hsiao Yuh Tyng': ('AI Marketing Strategist and Account Manager, SOMIN', 'https://www.linkedin.com/in/hsiao-yuh-tyng/'),
+    'Phil Lugovoi': ('Business Development, SOMIN', 'https://www.linkedin.com/in/filipp-lugovoi/'),
+    'Joy Yu-Yi Chu': ('Data Analyst, SOMIN', 'https://www.linkedin.com/in/chuyuyi/'),
+    'Egor Shevelev': ('Head of Development, SOMIN', 'https://www.linkedin.com/in/egor-shevelev-01266842/'),
+    'Murtaza Hyder Magsi': ('Quality Assurance Engineer, SOMIN', 'https://www.linkedin.com/in/imurtazahyder/'),
+}
+for _n, (_role, _li) in TEAM.items():
+    AUTHORS[_n] = {"@type": "Person", "@id": f"{BASE}/#{re.sub(r'[^a-z]+', '-', _n.lower()).strip('-')}", "name": _n, "jobTitle": _role,
+                   "worksFor": {"@id": f"{BASE}/#organization"}, "sameAs": [_li]}
+AUTHOR_ROLE = {'Prof. Aleks Farseev': 'Co-Founder & CEO, SOMIN', 'Da-Min You': 'SOMIN', 'SOMIN Team': 'SOMIN', **{n: r for n, (r, _) in TEAM.items()}}
 
 
 def author_node(name):
