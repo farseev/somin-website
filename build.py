@@ -354,6 +354,8 @@ def content_date(path, body, meta):
         else:
             d = TODAY
             DATES[path] = {'hash': h, 'modified': d, 'published': rec.get('published') or meta.get('published') or d}
+        if meta.get('published'):                                        # an explicit publish date in the source wins
+            DATES[path]['published'] = str(meta['published'])[:10]
     PAGE_DATES[path] = d
     return d
 
@@ -1133,7 +1135,7 @@ def case_fragment(meta, body, path):
 def case_page_meta(key, c):
     return {'slug': c['slug'], 'layout': 'native', 'type': 'case_study', 'title': c['seo_title'], 'description': c['description'],
             'og_image': f'/assets/img/og/card-case-{key}.jpg' if (ROOT / f'static/assets/img/og/card-case-{key}.jpg').exists() else SITE['default_og_image'],
-            'robots': 'index,follow', 'case_study_label': c['client'], 'group': 'case_study', 'h1': c['h1']}
+            'robots': 'index,follow', 'case_study_label': c['client'], 'group': 'case_study', 'h1': c['h1'], 'published': c.get('published')}
 
 
 def build_case_pages(manifest):
