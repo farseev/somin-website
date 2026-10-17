@@ -27,6 +27,8 @@
   /* ===================== CONFIG — edit here (single source of truth) ===================== */
   var CONFIG = /*CONFIG_START*/{
     "gtm_id": "GTM-PZG88FPZ",
+    "gtm_delay_ms": 2500,
+    "_gtm_delay_doc": "GTM (and every tag inside it) starts on the visitor's first interaction (pointer, key, touch, scroll) or this many ms after the load event, whichever comes first, so ~500 KB of third-party JS does not block the first render. Thank-you pages and ?debug_tracking=1 sessions load it immediately. Events pushed earlier wait in the dataLayer and are processed when GTM starts. Set 0 to load GTM at once again.",
     "clarity_id": "",
     "_clarity_doc": "GTM already loads Microsoft Clarity project pfshy7yc19 on every page. Leadpages ALSO loaded project ikcdjzmpym directly, and two Clarity projects on one page collide (JS error 'reading unshift' on the live site). Put 'ikcdjzmpym' here only after pausing the Clarity tag in GTM.",
     "ga4_measurement_id": "G-XXM10JVHXY",
@@ -174,11 +176,32 @@
   /* ---------------- boot tags ---------------- */
   dl({ page_type: page.page_type, page_template: page.page_template, content_group: page.content_group, somin_tracking_version: VERSION });
 
+  function bootGtm() {
+    if (api.gtmStarted || !CONFIG.gtm_id) return;
+    api.gtmStarted = Date.now();
+    dl({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    var g = d.createElement('script'); g.async = true; g.src = 'https://www.googletagmanager.com/gtm.js?id=' + CONFIG.gtm_id;
+    (d.head || d.documentElement).appendChild(g);
+  }
+  api.startTags = bootGtm;
+
   if (!DISABLED) {
     if (CONFIG.gtm_id) {
-      dl({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-      var g = d.createElement('script'); g.async = true; g.src = 'https://www.googletagmanager.com/gtm.js?id=' + CONFIG.gtm_id;
-      (d.head || d.documentElement).appendChild(g);
+      var delay = +CONFIG.gtm_delay_ms || 0;
+      if (!delay || page.page_type === 'thank_you' || DEBUG || qs.get('gtm') === 'now') {
+        bootGtm();
+      } else {
+        // first interaction or shortly after load, whichever comes first (keeps GTM's tags off the critical path)
+        var START_ON = ['pointerdown', 'keydown', 'touchstart', 'scroll', 'wheel'];
+        var start = function () {
+          START_ON.forEach(function (e) { w.removeEventListener(e, start, true); });
+          bootGtm();
+        };
+        START_ON.forEach(function (e) { w.addEventListener(e, start, { capture: true, passive: true }); });
+        var later = function () { setTimeout(start, delay); };
+        if (d.readyState === 'complete') later(); else w.addEventListener('load', later);
+        d.addEventListener('visibilitychange', function () { if (d.visibilityState === 'hidden') start(); });
+      }
     }
     if (CONFIG.clarity_id) {
       w.clarity = w.clarity || function () { (w.clarity.q = w.clarity.q || []).push(arguments); };

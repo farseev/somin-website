@@ -269,6 +269,11 @@
    "href": "/blog/"
   },
   {
+   "label": "PRICING",
+   "href": "/pricing/",
+   "gtm_id": "nav_pricing"
+  },
+  {
    "label": "LOGIN",
    "href": "https://cloud.somin.ai/auth/signin",
    "gtm_id": "nav_login"
@@ -378,8 +383,21 @@
       "href": "/research/"
      },
      {
+      "label": "About SOMIN",
+      "href": "/about/"
+     },
+     {
+      "label": "Pricing",
+      "href": "/pricing/",
+      "gtm_id": "footer_pricing"
+     },
+     {
       "label": "Our Vision",
       "href": "/vision/"
+     },
+     {
+      "label": "Authors",
+      "href": "/authors/"
      },
      {
       "label": "Try SOMIN",

@@ -1,7 +1,14 @@
 # Tracking on somin.ai
 
-One file — `static/assets/js/tracking.js` — is loaded synchronously in `<head>` of every page by `build.py`.
+One file — `static/assets/js/tracking.js` — is loaded in `<head>` of every page by `build.py`.
 Nothing else on the site loads a tag, pixel or gtag. All IDs live in its `CONFIG` block.
+
+**GTM starts late on purpose (Oct 2026, page speed).** tracking.js itself runs at once (dataLayer, attribution, link
+handlers), but GTM and every tag in it start on the visitor's first interaction (pointer, key, touch, scroll) or
+`gtm_delay_ms` (2.5 s) after the load event, whichever is first; also when the tab is hidden. Thank-you pages (lead
+conversions) and `?debug_tracking=1` sessions start GTM immediately, and `?gtm=now` forces it on any page. Events
+pushed before GTM starts wait in the dataLayer and are processed in order once it loads. Set `gtm_delay_ms` to 0 to go
+back to loading GTM at once.
 
 ## What loads
 
@@ -63,6 +70,9 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 | `email_click` / `phone_click` | mailto: / tel: | — |
 | `article_read_50` / `article_read_90` | Blog article depth (page path identifies the post) | — |
 | `blog_filter` / `blog_search` / `share` | Blog index and article tools | `cta_text` = topic / query / share channel |
+| `pricing_plan_select` | "Select" under a plan in the /pricing/ table (jumps to the calculator) | `cta_id` = `pricing_select_<plan>` |
+| `pricing_term_change` | Billing period switched on /pricing/ (monthly, annual, 2 or 3 years) | `term` |
+| `pricing_checkout_click` | "Pay with Stripe" in the /pricing/ calculator (or the sales link for multi-year terms) | `link_url` |
 | any `data-track="x"` | Custom link tracking | `cta_text`, `cta_id`, `link_url` |
 
 From code: `window.sominTrack('event_name', { … })`. Calendly bookings arrive as GTM's own `calendly` events

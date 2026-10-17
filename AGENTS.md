@@ -61,3 +61,19 @@ Run all three before every commit that changes content, templates, CSS or JS.
 17. **Research credibility** lives in `data/research.json` (Prof. Aleks Farseev's peer-reviewed papers and talks, each checked on a
     source page). `/research/` is built from it; use `<!--mm:research themes="scoring,xai"-->` (full strip) or
     `<!--mm:research compact="1"-->` (one line) on other pages. Never add a paper, venue, citation count or talk without a source.
+18. **Who SOMIN is** lives in `data/organization.json` (Organization, SoftwareApplication, founder). The builder merges every page's
+    JSON-LD (meta `jsonld`, any block in the body, its own nodes) into ONE `@graph` and swaps page copies of `#organization`,
+    `#software`, `#website` and `#aleks-farseev` for the canonical nodes; `tests/check_static.py` fails duplicate `@id`s, a second
+    FAQPage or a second Organization. Change company facts there, not in page headers.
+19. **Pricing** lives in `data/pricing.json`, copied from the plans sheet at `https://cloud.somin.ai/manuals/subscriptions.html`. It drives
+    `/pricing/` (server-rendered table, billing/currency switch, calculator, Stripe links), the SoftwareApplication `offers` and the
+    pricing lines in `llms.txt`. When the sheet changes, update the JSON (prices, features, Stripe links) and rebuild.
+20. **Languages**: the home page's 17-language dictionary (`DICT_GZ_B64` in `content/pages/index.html`, keyed by `data-i18n`) is
+    pre-rendered into static pages `/zh-hans/`, `/ja/`, `/id/` … with hreflang + x-default (titles in `LOCALES` in `build.py`).
+    A new `data-i18n` key needs a value in every language. The hero menu links to those URLs.
+21. **Dates**: `data/content-dates.json` stores a fingerprint and last-changed date per indexable URL (sitemap `lastmod`, schema
+    `dateModified`). The build updates it; commit it together with the content change. Blog posts use their own `published`/`modified`.
+22. **Authors**: every blog byline gets `/authors/<name>/` (Person + ProfilePage schema). New authors go into `TEAM` in `build.py`
+    with their role and LinkedIn URL.
+23. **Copy**: use a real dash (—), never ` -- `.
+

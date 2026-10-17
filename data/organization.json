@@ -1,0 +1,89 @@
+{
+ "_doc": "Single source of truth for who SOMIN is: the builder turns this into the one Organization, SoftwareApplication and founder Person node every page carries (page-level copies with the same @id are replaced by these), the /about/ page and the llms.txt summary. Only facts already published on somin.ai or on the linked profiles. Prices for offers come from data/pricing.json.",
+ "organization": {
+  "name": "SOMIN",
+  "legal_name": "Somin Pte. Ltd.",
+  "alternate_names": ["SoMin", "SoMin.ai", "Somin.AI"],
+  "description": "SOMIN is an AI marketing-intelligence company. Its SOMONITOR platform turns verified listening data on competitor ads, posts and creators into insights, briefs, pre-scored campaign concepts and on-brand content ideas for agencies, brands and creator programs across 11+ markets in APAC, MENA and Europe.",
+  "slogan": "Stop guessing what works. Start knowing.",
+  "email": "ask@somin.ai",
+  "founding_location": "Singapore",
+  "country": "SG",
+  "founders": [
+   {"ref": "aleks-farseev"},
+   {"name": "Kirill Lepikhin", "job_title": "Co-Founder and CTO", "author_slug": "kirill-lepikhin", "same_as": ["https://www.linkedin.com/in/k-lepikhin/"]}
+  ],
+  "awards": [
+   "Gartner Cool Vendor in Marketing AI",
+   "Google AI First Programme",
+   "IMDA SMEs Go Digital Pre-Approved Solution (Singapore)",
+   "Zapier Silver Agentic AI Partner"
+  ],
+  "markets": ["Singapore", "Malaysia", "Indonesia", "Philippines", "Vietnam", "India", "United Arab Emirates", "Saudi Arabia", "United Kingdom", "Germany", "Spain"],
+  "same_as": [
+   "https://sg.linkedin.com/company/somin",
+   "https://www.crunchbase.com/organization/somin-ai",
+   "https://www.cbinsights.com/company/somin",
+   "https://www.g2.com/products/somin-ai/reviews",
+   "https://www.capterra.com/p/237614/SoMin/",
+   "https://sourceforge.net/software/product/SoMin/",
+   "https://zapier.com/partnerdirectory/somin",
+   "https://smesgodigital.gov.sg/web/solution/20240259/somonitor"
+  ],
+  "subject_of": [
+   {"name": "SOMIN customer story, Google Cloud", "url": "https://cloud.google.com/customers/somin-ai"},
+   {"name": "Investible investment notes on SOMIN", "url": "https://www.investible.com/blog/investment-notes-somin-ai"}
+  ]
+ },
+ "software": {
+  "name": "SOMIN",
+  "alternate_names": ["SOMONITOR"],
+  "category": "BusinessApplication",
+  "sub_category": "AI marketing intelligence, competitor monitoring and campaign planning",
+  "operating_system": "Web",
+  "description": "SOMIN listens to a category (every competitor ad, post and creator on Meta, Google, TikTok, LinkedIn and YouTube) and its AI agents follow a fixed research process to turn that verified data into insights, briefs, pre-scored campaign concepts and on-brand content ideas, each traced to its source. A typical brief becomes scored ideas in about 13 minutes.",
+  "features": [
+   "Brand Tracker: daily competitor ad and content intelligence across Meta, Google, TikTok, LinkedIn and YouTube",
+   "Perspective Studies: persona, tension, proposition and white-space analysis",
+   "Expressions: AI-generated campaign concepts, briefs and on-brand visuals",
+   "Ad and content scoring: predictive clickability before launch",
+   "Pitch, reporting and strategy support for agencies",
+   "Creator selection and sales-focused creator briefs for creator programs",
+   "Agentic research process with traceable sources",
+   "Connects to Claude, Manus and Codex (MCP) and Zapier",
+   "White-label deployment for agencies"
+  ],
+  "audience": [
+   {"type": "Advertising and media agencies", "url": "/somin-for-agencies/"},
+   {"type": "Brand marketing teams", "url": "/somin-for-brands/"},
+   {"type": "Creator and affiliate programs", "url": "/somin-for-creators/"}
+  ],
+  "citations": [
+   {"name": "SOMIN: An Explainable AI and LLM Platform for Real-Time, Data-Driven Digital Marketing Strategy (ACM Multimedia 2025)", "url": "https://dl.acm.org/doi/10.1145/3746027.3761835"},
+   {"name": "MindFuse: Towards GenAI Explainability in Marketing Strategy Co-Creation (ACM Multimedia 2025)", "url": "https://dl.acm.org/doi/10.1145/3746027.3758167"},
+   {"name": "Against Opacity: Explainable AI and Large Language Models for Effective Digital Advertising (ACM Multimedia 2023)", "url": "https://dl.acm.org/doi/10.1145/3581783.3612817"},
+   {"name": "SoCraft: Advertiser-level Predictive Scoring for Creative Performance on Meta (ACM WSDM 2023)", "url": "https://dl.acm.org/doi/10.1145/3539597.3573032"}
+  ]
+ },
+ "founder": {
+  "id": "aleks-farseev",
+  "name": "Aleks Farseev",
+  "honorific_prefix": "Prof.",
+  "alternate_names": ["Aleksandr Farseev", "Alexander Farseev", "Sasha Farseev", "法信夫"],
+  "job_title": "Co-Founder and CEO, SOMIN",
+  "description": "Prof. Aleks Farseev is the co-founder and CEO of SOMIN, a research professor in digital-marketing AI, a Forbes Technology Council columnist, and co-author of 30+ peer-reviewed papers at ACM venues including Multimedia, WSDM and The Web Conference.",
+  "affiliation": "ITMO University",
+  "alumni_of": "National University of Singapore",
+  "knows_about": ["AI marketing", "Competitor ad intelligence", "Social media user profiling", "Multi-source learning", "Personality-driven recommendation", "Explainable AI", "Large language models", "Creative performance prediction", "Agentic AI", "Generative engine optimization"],
+  "same_as": [
+   "https://farseev.com/",
+   "https://www.linkedin.com/in/aiprof/",
+   "https://scholar.google.com/citations?user=ZJW7F18AAAAJ",
+   "https://www.semanticscholar.org/author/2229491",
+   "https://dl.acm.org/profile/99658727991",
+   "https://www.forbes.com/councils/forbestechcouncil/people/aleksfarseev/",
+   "https://councils.forbes.com/profile/Aleks-Farseev-CEO-Professor-SOMIN/58b9a829-1aba-41dc-b62d-07b5ea5e4b76",
+   "https://www.crunchbase.com/person/aleks-farseev"
+  ]
+ }
+}

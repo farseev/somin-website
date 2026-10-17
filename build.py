@@ -15,12 +15,16 @@ Sources
   static/assets/js/tracking.js  the ONE tracking/lead-capture script (its CONFIG block is read here too)
 """
 import datetime as dt
+import base64
 import email.utils
+import gzip
+import hashlib
 import html
 import json
 import os
 import re
 import shutil
+import struct
 import sys
 import urllib.parse
 from pathlib import Path
@@ -33,6 +37,8 @@ BASE = SITE['url'].rstrip('/')
 TRACKING_JS = (ROOT / 'static/assets/js/tracking.js').read_text(encoding='utf-8')
 TRACK = json.loads(re.search(r'/\*CONFIG_START\*/(.*?)/\*CONFIG_END\*/', TRACKING_JS, re.S).group(1))
 CASES = json.loads((ROOT / 'data/case-studies.json').read_text(encoding='utf-8'))
+ORG = json.loads((ROOT / 'data/organization.json').read_text(encoding='utf-8'))
+PRICING = json.loads((ROOT / 'data/pricing.json').read_text(encoding='utf-8'))
 TODAY = dt.date.today().isoformat()
 BUILD_ID = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d%H%M')
 
@@ -282,6 +288,88 @@ def video_nodes(body, path):
     return out
 
 
+_IMG_SIZES = {}
+
+
+def image_size(src):
+    """(width, height) of a local JPEG/PNG/WebP under static/ (stdlib header parsing), else None."""
+    if not src or src.startswith('http'):
+        return None
+    if src in _IMG_SIZES:
+        return _IMG_SIZES[src]
+    f = ROOT / 'static' / src.lstrip('/')
+    size = None
+    try:
+        d = f.read_bytes()
+        if d[:8] == b'\x89PNG\r\n\x1a\n':
+            size = struct.unpack('>II', d[16:24])
+        elif d[:2] == b'\xff\xd8':
+            i = 2
+            while i < len(d) - 9:
+                if d[i] != 0xFF:
+                    i += 1
+                    continue
+                m = d[i + 1]
+                if 0xC0 <= m <= 0xCF and m not in (0xC4, 0xC8, 0xCC):
+                    h, w = struct.unpack('>HH', d[i + 5:i + 9])
+                    size = (w, h)
+                    break
+                i += 2 + struct.unpack('>H', d[i + 2:i + 4])[0]
+        elif d[:4] == b'RIFF' and d[8:12] == b'WEBP':
+            if d[12:16] == b'VP8X':
+                size = (1 + int.from_bytes(d[24:27], 'little'), 1 + int.from_bytes(d[27:30], 'little'))
+            elif d[12:16] == b'VP8 ':
+                w, h = struct.unpack('<HH', d[26:30])
+                size = (w & 0x3FFF, h & 0x3FFF)
+            elif d[12:16] == b'VP8L':
+                b = int.from_bytes(d[21:25], 'little')
+                size = ((b & 0x3FFF) + 1, ((b >> 14) & 0x3FFF) + 1)
+    except OSError:
+        size = None
+    _IMG_SIZES[src] = tuple(size) if size else None
+    return _IMG_SIZES[src]
+
+
+# ------------------------------------------------------------------ content dates (sitemap lastmod, schema dateModified)
+# data/content-dates.json keeps a fingerprint of every indexable page body with the date it last changed, so lastmod only
+# moves when the page itself changes (not on every build). The builder updates it; commit it with your content change.
+DATES_FILE = ROOT / 'data/content-dates.json'
+DATES = json.loads(DATES_FILE.read_text(encoding='utf-8')) if DATES_FILE.exists() else {}
+DATES.pop('_doc', None)
+PAGE_DATES = {}
+
+
+def content_date(path, body, meta):
+    if meta.get('lastmod'):
+        d = str(meta['lastmod'])[:10]
+    elif meta.get('layout') == 'post':
+        d = (meta.get('modified') or meta['published'])[:10]           # blog: the article header is the source of truth
+    elif not meta.get('robots', 'index,follow').startswith('index'):
+        return TODAY
+    else:
+        h = hashlib.sha1(re.sub(r'\?v=\d{12}', '', body).encode('utf-8')).hexdigest()[:16]
+        rec = DATES.get(path) or {}
+        if rec.get('hash') == h:
+            d = rec['modified']
+        else:
+            d = TODAY
+            DATES[path] = {'hash': h, 'modified': d, 'published': rec.get('published') or meta.get('published') or d}
+    PAGE_DATES[path] = d
+    return d
+
+
+def content_published(path, meta):
+    return str(meta.get('published') or (DATES.get(path) or {}).get('published') or TODAY)[:10]
+
+
+def save_dates():
+    rows = [('_doc', 'Written by build.py: body fingerprint + last-changed date per indexable URL (sitemap lastmod, schema dateModified). Commit it.')]
+    rows += [(k, DATES[k]) for k in sorted(DATES)]
+    text = '{\n' + ',\n'.join(f'{json.dumps(k)}: {json.dumps(v, ensure_ascii=False)}' for k, v in rows) + '\n}\n'
+    if not DATES_FILE.exists() or DATES_FILE.read_text(encoding='utf-8') != text:
+        DATES_FILE.write_text(text, encoding='utf-8')
+
+
 def url_for(slug):
     return '/' if not slug else '/' + slug.strip('/') + '/'
 
@@ -385,14 +473,126 @@ HEADER_CACHE = {}
 FOOTER_HTML = None
 
 
+ORG_ID, SOFTWARE_ID, WEBSITE_ID = f"{BASE}/#organization", f"{BASE}/#software", f"{BASE}/#website"
+FOUNDER_ID = f"{BASE}/#{ORG['founder']['id']}"
+
+
+def _uniq(seq):
+    out = []
+    for x in seq:
+        if x not in out:
+            out.append(x)
+    return out
+
+
 def org_node():
-    return {"@type": "Organization", "@id": f"{BASE}/#organization", "name": "SOMIN", "legalName": "Somin Pte. Ltd.", "url": f"{BASE}/",
-            "logo": {"@type": "ImageObject", "url": absu('/assets/img/brand/somin-logo-512.png'), "width": 512, "height": 512},
-            "sameAs": SITE['same_as']}
+    """The one Organization node (data/organization.json). Every page carries this exact node; page-level copies are replaced."""
+    o = ORG['organization']
+    founders = []
+    for f in o['founders']:
+        if f.get('ref') == ORG['founder']['id']:
+            founders.append({"@id": FOUNDER_ID})
+        else:
+            p = {"@type": "Person", "@id": f"{BASE}/#{f['author_slug']}", "name": f['name'], "jobTitle": f['job_title'], "sameAs": f.get('same_as', [])}
+            if f.get('author_slug'):
+                p['url'] = absu(f'/authors/{f["author_slug"]}/')
+            founders.append(p)
+    return {"@type": "Organization", "@id": ORG_ID, "name": o['name'], "legalName": o['legal_name'], "alternateName": o['alternate_names'],
+            "url": f"{BASE}/", "logo": {"@type": "ImageObject", "url": absu('/assets/img/brand/somin-logo-512.png'), "width": 512, "height": 512},
+            "image": absu(SITE['default_og_image']), "description": o['description'], "slogan": o['slogan'], "email": o['email'],
+            "foundingLocation": {"@type": "Place", "name": o['founding_location']},
+            "address": {"@type": "PostalAddress", "addressLocality": o['founding_location'], "addressCountry": o['country']},
+            "founder": founders, "award": o['awards'], "areaServed": [{"@type": "Country", "name": m} for m in o['markets']],
+            "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "email": o['email'], "url": CAL_DEFAULT, "availableLanguage": ["English"]},
+            "knowsAbout": ["AI marketing intelligence", "Competitor ad monitoring", "Audience research", "Campaign planning", "Creative scoring", "Creator marketing", "Agentic AI"],
+            "sameAs": _uniq(o['same_as'] + SITE['same_as']),
+            "subjectOf": [{"@type": "Article", "name": s['name'], "url": s['url']} for s in o['subject_of']]}
+
+
+def offers_node():
+    """AggregateOffer for SOMIN's four self-serve plans (monthly list prices from data/pricing.json)."""
+    pr = PRICING
+    plans = pr['plans']
+    return {"@type": "AggregateOffer", "priceCurrency": pr['currency'], "lowPrice": f"{min(p['price'] for p in plans):.2f}",
+            "highPrice": f"{max(p['price'] for p in plans):.2f}", "offerCount": len(plans), "url": absu('/pricing/'),
+            "offers": [{"@type": "Offer", "name": p['name'], "description": f"{p['tagline']}: {p['seats']}, {p['brands']} brands monitored",
+                        "url": absu(f"/pricing/#plan-{p['key']}"), "price": f"{p['price']:.2f}", "priceCurrency": pr['currency'],
+                        "availability": "https://schema.org/InStock", "seller": {"@id": ORG_ID},
+                        "priceSpecification": {"@type": "UnitPriceSpecification", "price": f"{p['price']:.2f}", "priceCurrency": pr['currency'],
+                                               "billingDuration": "P1M", "unitText": "MONTH", "valueAddedTaxIncluded": False}} for p in plans]}
+
+
+def software_node():
+    s = ORG['software']
+    return {"@type": "SoftwareApplication", "@id": SOFTWARE_ID, "name": s['name'], "alternateName": s['alternate_names'], "url": f"{BASE}/",
+            "applicationCategory": s['category'], "applicationSubCategory": s['sub_category'], "operatingSystem": s['operating_system'],
+            "description": s['description'], "featureList": s['features'], "publisher": {"@id": ORG_ID}, "offers": offers_node(),
+            "audience": [{"@type": "Audience", "audienceType": a['type'], "url": absu(a['url'])} for a in s['audience']],
+            "citation": [{"@type": "ScholarlyArticle", "name": c['name'], "url": c['url']} for c in s['citations']]}
+
+
+def founder_node():
+    f = ORG['founder']
+    return {"@type": "Person", "@id": FOUNDER_ID, "name": f['name'], "honorificPrefix": f['honorific_prefix'], "alternateName": f['alternate_names'],
+            "jobTitle": f['job_title'], "url": absu(f'/authors/{f["id"]}/'), "description": f['description'], "worksFor": {"@id": ORG_ID},
+            "affiliation": {"@type": "CollegeOrUniversity", "name": f['affiliation']}, "alumniOf": {"@type": "CollegeOrUniversity", "name": f['alumni_of']},
+            "knowsAbout": f['knows_about'], "sameAs": f['same_as']}
 
 
 def website_node():
-    return {"@type": "WebSite", "@id": f"{BASE}/#website", "url": f"{BASE}/", "name": "SOMIN", "inLanguage": "en", "publisher": {"@id": f"{BASE}/#organization"}}
+    return {"@type": "WebSite", "@id": WEBSITE_ID, "url": f"{BASE}/", "name": "SOMIN", "alternateName": ORG['organization']['alternate_names'],
+            "inLanguage": "en", "publisher": {"@id": ORG_ID}}
+
+
+CANONICAL_NODES = {ORG_ID: org_node, SOFTWARE_ID: software_node, WEBSITE_ID: website_node, FOUNDER_ID: founder_node}
+
+
+def _flatten_ld(obj):
+    if isinstance(obj, list):
+        return [n for o in obj for n in _flatten_ld(o)]
+    if isinstance(obj, dict) and '@graph' in obj:
+        return _flatten_ld(obj['@graph'])
+    if isinstance(obj, dict):
+        return [{k: v for k, v in obj.items() if k != '@context'}]
+    return []
+
+
+def schema_graph(nodes, path, lang='en'):
+    """One clean @graph per page: page copies of the shared nodes (Organization, SoftwareApplication, WebSite, founder) are
+    replaced by the canonical ones, duplicate @ids and second FAQPages are dropped, and a WebPage whose @id points at
+    another URL is re-anchored to this page."""
+    url = absu(path) if path != '/404.html' else None
+    out, seen, faq = [], set(), False
+    remap = {}
+    for n in nodes:
+        nid = n.get('@id')
+        t = n.get('@type')
+        if nid in CANONICAL_NODES:
+            if nid in seen:
+                continue
+            seen.add(nid)
+            out.append(CANONICAL_NODES[nid]())
+            continue
+        if t == 'FAQPage':
+            if faq:
+                continue
+            faq = True
+        if url and t in ('WebPage', 'CollectionPage', 'AboutPage', 'ProfilePage') and nid and nid.split('#')[0] != url:
+            new = url + '#webpage'
+            remap[nid] = new
+            n = dict(n, **{'@id': new, 'url': url})
+        if nid:
+            nid = remap.get(nid, nid)
+            if nid in seen:
+                continue
+            seen.add(nid)
+        if lang != 'en' and t in ('WebPage', 'CollectionPage', 'FAQPage', 'AboutPage'):
+            n = dict(n, inLanguage=lang)
+        out.append(n)
+    txt = json.dumps({"@context": "https://schema.org", "@graph": out}, ensure_ascii=False)
+    for a, b in remap.items():
+        txt = txt.replace(f'"{a}"', f'"{b}"')
+    return txt
 
 
 def breadcrumbs(trail):
@@ -408,6 +608,7 @@ def page(meta, body, path, extra_head=''):
     canonical = absu(meta.get('canonical') or path)
     og_img = absu(meta.get('og_image') or SITE['default_og_image'])
     og_type = 'article' if meta.get('layout') == 'post' else 'website'
+    lang = meta.get('_lang', 'en')
     tags = [
         f'<meta charset="utf-8">',
         f'<meta name="viewport" content="width=device-width, initial-scale=1">',
@@ -421,7 +622,7 @@ def page(meta, body, path, extra_head=''):
         f'<link rel="canonical" href="{E(canonical)}">',
         f'<meta property="og:type" content="{og_type}">',
         f'<meta property="og:site_name" content="SOMIN">',
-        f'<meta property="og:locale" content="{SITE["locale"]}">',
+        f'<meta property="og:locale" content="{E(meta.get("_og_locale") or SITE["locale"])}">',
         f'<meta property="og:url" content="{E(canonical)}">',
         f'<meta property="og:title" content="{E(meta.get("og_title") or title)}">',
         f'<meta property="og:description" content="{E(meta.get("og_description") or desc)}">',
@@ -433,8 +634,11 @@ def page(meta, body, path, extra_head=''):
         f'<meta name="twitter:description" content="{E(meta.get("twitter_description") or meta.get("og_description") or desc)}">',
         f'<meta name="twitter:image" content="{E(og_img)}">',
     ]
-    if og_img and '/assets/img/og/' in og_img:
-        tags += ['<meta property="og:image:width" content="1200">']
+    dims = image_size(meta.get('og_image') or SITE['default_og_image'])
+    if dims:
+        tags += [f'<meta property="og:image:width" content="{dims[0]}">', f'<meta property="og:image:height" content="{dims[1]}">']
+    for hl, href in meta.get('_alternates', []):
+        tags.append(f'<link rel="alternate" hreflang="{E(hl)}" href="{E(absu(href))}">')
     if meta.get('layout') == 'post':
         tags += [f'<meta property="article:published_time" content="{E(meta["published"])}">',
                  f'<meta property="article:modified_time" content="{E(meta.get("modified") or meta["published"])}">',
@@ -454,26 +658,40 @@ def page(meta, body, path, extra_head=''):
         f'<script src="/assets/js/tracking.js?v={BUILD_ID}"></script>',
         f'<script src="/assets/js/site.js?v={BUILD_ID}" defer></script>',
     ]
+    # ---- structured data: page JSON-LD (meta + any blocks in the body) and the builder's nodes become ONE graph
+    nodes = []
     for js in meta.get('jsonld', []):
-        tags.append(f'<script type="application/ld+json">{js.strip()}</script>')
-    if meta.get('_schema'):
-        tags.append('<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": meta['_schema']}, ensure_ascii=False) + '</script>')
-    vids = video_nodes(body, path) if robots.startswith('index') else []
-    has_faq = any('FAQPage' in js for js in meta.get('jsonld', [])) or 'FAQPage' in json.dumps(meta.get('_schema', []))
-    if robots.startswith('index') and not has_faq:
-        fq = faq_node(body, path)
-        if fq:
-            vids = vids + [fq]
-    if vids:
-        tags.append('<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": vids}, ensure_ascii=False) + '</script>')
+        nodes += _flatten_ld(json.loads(js))
+    in_body = re.findall(r'<script type="application/ld\+json">(.*?)</script>\s*', body, re.S)
+    if in_body:
+        body = re.sub(r'<script type="application/ld\+json">.*?</script>\s*', '', body, flags=re.S)
+        for js in in_body:
+            nodes += _flatten_ld(json.loads(js))
+    nodes += _flatten_ld(meta.get('_schema', []))
+    if robots.startswith('index'):
+        nodes += video_nodes(body, path)
+        if not any(n.get('@type') == 'FAQPage' for n in nodes):
+            fq = faq_node(body, path)
+            if fq:
+                nodes.append(fq)
+    date_mod = content_date(path, body, meta)
+    for n in nodes:
+        if n.get('@type') in ('WebPage', 'CollectionPage', 'AboutPage', 'ProfilePage', 'Article') and not n.get('dateModified'):
+            n['dateModified'] = date_mod
+            if n.get('@type') == 'Article' and not n.get('datePublished'):
+                n['datePublished'] = content_published(path, meta)
+    if nodes:
+        tags.append(f'<script type="application/ld+json">{schema_graph(nodes, path, lang)}</script>')
     layout = meta.get('layout', 'page')
     attrs = f' data-page-type="{E(meta.get("type", "page"))}" data-page-layout="{E(layout)}" data-content-group="{E(meta.get("group", meta.get("type", "page")))}"'
+    if lang != 'en':
+        attrs += f' data-locale="{E(meta["_locale"])}"'
     if meta.get('lead_type'):
         attrs += f' data-lead-type="{E(meta["lead_type"])}"'
     noscript = ''
     head = '\n'.join(tags) + extra_head
     return f'''<!doctype html>
-<html lang="en"{attrs}>
+<html lang="{E(lang)}"{attrs}>
 <head>
 {head}
 </head>
@@ -499,6 +717,7 @@ def write(path, html_text):
 
 
 SITEMAP = []  # (path, lastmod, priority)
+LOCALE_ALTERNATES = {}  # path -> [(hreflang, path)] for the sitemap
 
 
 def add_sitemap(path, lastmod=None, priority='0.6', robots='index'):
@@ -634,6 +853,120 @@ def theme_fragment(body):
 
 
 # ------------------------------------------------------------------ layouts
+# ------------------------------------------------------------------ localized home pages (/<lang>/) from the hero translations
+# The home page carries its own 17-language dictionary (DICT_GZ_B64 in content/pages/index.html, keys = data-i18n attributes).
+# The builder pre-renders one static, indexable page per language so search and answer engines see the translations
+# (hreflang + x-default on every version); the in-page language menu links to those URLs.
+LOCALES = {  # code: (path segment, hreflang, og:locale, <title>)
+    'zh-Hans': ('zh-hans', 'zh-Hans', 'zh_CN', 'SOMIN：AI 营销情报与营销活动策划平台'),
+    'zh-Hant': ('zh-hant', 'zh-Hant', 'zh_TW', 'SOMIN：AI 行銷情報與行銷活動企劃平台'),
+    'ja': ('ja', 'ja', 'ja_JP', 'SOMIN：AIマーケティング・インテリジェンスとキャンペーン企画'),
+    'ko': ('ko', 'ko', 'ko_KR', 'SOMIN: AI 마케팅 인텔리전스 및 캠페인 기획 플랫폼'),
+    'th': ('th', 'th', 'th_TH', 'SOMIN: AI ข้อมูลเชิงลึกการตลาดและการวางแผนแคมเปญ'),
+    'vi': ('vi', 'vi', 'vi_VN', 'SOMIN: Phân tích marketing bằng AI và lập kế hoạch chiến dịch'),
+    'id': ('id', 'id', 'id_ID', 'SOMIN: Intelijen Pemasaran AI & Perencanaan Kampanye'),
+    'ms': ('ms', 'ms', 'ms_MY', 'SOMIN: Risikan Pemasaran AI & Perancangan Kempen'),
+    'hi': ('hi', 'hi', 'hi_IN', 'SOMIN: AI मार्केटिंग इंटेलिजेंस और कैंपेन प्लानिंग'),
+    'fil': ('fil', 'tl', 'tl_PH', 'SOMIN: AI Marketing Intelligence at Pagpaplano ng Kampanya'),
+    'es': ('es', 'es', 'es_ES', 'SOMIN: Inteligencia de marketing con IA y campañas'),
+    'fr': ('fr', 'fr', 'fr_FR', 'SOMIN : intelligence marketing IA et planification de campagne'),
+    'de': ('de', 'de', 'de_DE', 'SOMIN: KI-Marketing-Intelligence und Kampagnenplanung'),
+    'pt': ('pt', 'pt', 'pt_BR', 'SOMIN: Inteligência de marketing com IA e campanhas'),
+    'ar': ('ar', 'ar', 'ar_AR', 'SOMIN: ذكاء تسويقي بالذكاء الاصطناعي وتخطيط الحملات'),
+    'ru': ('ru', 'ru', 'ru_RU', 'SOMIN: ИИ-аналитика маркетинга и планирование кампаний'),
+}
+
+
+def _home_dict(body):
+    m = re.search(r'DICT_GZ_B64\s*=\s*"([A-Za-z0-9+/=]+)"', body)
+    if not m:
+        return None, []
+    d = json.loads(gzip.decompress(base64.b64decode(m.group(1))))
+    langs = json.loads(re.search(r'var LANGS = (\[.*?\]);', body, re.S).group(1))
+    return d, langs
+
+
+def apply_i18n(body, dct, fallback):
+    """Server-side twin of the page's applyLang(): every [data-i18n] element's content becomes the translated text."""
+    tag_re = re.compile(r'<(/?)([a-zA-Z][a-zA-Z0-9]*)\b((?:[^>"\']|"[^"]*"|\'[^\']*\')*)>')
+    out, i = [], 0
+    while True:
+        m = re.search(r'<([a-zA-Z][a-zA-Z0-9]*)\b[^>]*\bdata-i18n="([^"]+)"[^>]*>', body[i:])
+        if not m:
+            out.append(body[i:])
+            break
+        start, open_end, tag, key = i + m.start(), i + m.end(), m.group(1).lower(), m.group(2)
+        if tag in VOID:
+            out.append(body[i:open_end]); i = open_end; continue
+        depth, j, close_start, close_end = 1, open_end, None, None
+        while True:
+            t = tag_re.search(body, j)
+            if not t:
+                break
+            if t.group(2).lower() == tag and not t.group(3).rstrip().endswith('/'):
+                depth += -1 if t.group(1) else 1
+                if depth == 0:
+                    close_start, close_end = t.start(), t.end()
+                    break
+            j = t.end()
+        if close_start is None:
+            out.append(body[i:open_end]); i = open_end; continue
+        txt = dct.get(key, fallback.get(key))
+        out.append(body[i:open_end])
+        out.append(E(txt) if txt is not None else body[open_end:close_start])
+        out.append(body[close_start:close_end])
+        i = close_end
+    return ''.join(out)
+
+
+def locale_nav(current, langs):
+    links = []
+    for l in langs:
+        code = l['code']
+        href = '/' if code == 'en' else f'/{LOCALES[code][0]}/'
+        hl = 'en' if code == 'en' else LOCALES[code][1]
+        cur = ' aria-current="page"' if code == current else ''
+        links.append(f'<a href="{href}" hreflang="{hl}" lang="{E(code)}" data-locale-link="{E(code)}"{cur}>{E(l["native"])}</a>')
+    return (f'<nav class="locale-nav" aria-label="SOMIN in other languages" data-nosnippet><div class="container">'
+            f'<span>SOMIN in your language</span>{"".join(links)}</div></nav>')
+
+
+def build_home_locales(meta, body):
+    """Write /<lang>/ for every language in the home dictionary; returns the hreflang alternates for the English page."""
+    d, langs = _home_dict(body)
+    if not d:
+        return []
+    langs = [l for l in langs if l['code'] == 'en' or (l['code'] in d and l['code'] in LOCALES)]
+    alts = [('en', '/')] + [(LOCALES[l['code']][1], f'/{LOCALES[l["code"]][0]}/') for l in langs if l['code'] != 'en'] + [('x-default', '/')]
+    en = d.get('en', {})
+    base = re.sub(r'<script type="application/ld\+json">.*?</script>\s*', '', body, flags=re.S)   # English FAQ/WebPage schema stays on /
+    for l in langs:
+        code = l['code']
+        if code == 'en':
+            continue
+        seg, hl, ogl, title = LOCALES[code]
+        path = f'/{seg}/'
+        lb = apply_i18n(base, d[code], en)
+        lb = lb.replace('class="se-hero" id="se-hero-root"', f'class="se-hero" id="se-hero-root" lang="{code}"' + (' dir="rtl"' if code == 'ar' else ''), 1)
+        lb = lb.replace('id="se-lang-current">English<', f'id="se-lang-current">{E(l["native"])}<', 1)
+        lb += locale_nav(code, langs)
+        sub = strip_tags(d[code].get('sub') or '')
+        desc = sub if len(sub) <= 160 else sub[:157].rsplit(' ', 1)[0].rstrip(',;:—') + '…'
+        lm = {k: v for k, v in meta.items() if k not in ('jsonld', 'keywords', 'seo_title', 'og_title', 'og_description', 'twitter_title', 'twitter_description', 'lastmod')}
+        h1 = strip_tags(' '.join(d[code].get(k, '') for k in ('h1a',)) + ' ' + ''.join(d[code].get(k, '') for k in ('h1b_pre', 'h1_it', 'h1b_post')))
+        lm.update({'slug': seg, 'title': title, 'seo_title': title, 'description': desc, 'og_title': f'SOMIN: {h1}', 'og_description': desc,
+                   '_lang': code, '_locale': code, '_og_locale': ogl, '_alternates': alts, 'jsonld': [], 'secret_button': False})
+        lm['_schema'] = [org_node(), founder_node(), software_node(), website_node(),
+                         {"@type": "WebPage", "@id": absu(path) + "#webpage", "url": absu(path), "name": title, "description": desc, "inLanguage": code,
+                          "isPartOf": {"@id": WEBSITE_ID}, "about": {"@id": SOFTWARE_ID}, "publisher": {"@id": ORG_ID},
+                          "translationOfWork": {"@id": f"{BASE}/#webpage"}}]
+        write(path, page(lm, lb, path))
+        add_sitemap(path, None, '0.8', 'index')
+        LOCALE_ALTERNATES[path] = alts
+    LOCALE_ALTERNATES['/'] = alts
+    return alts
+
+
 def build_fragment_page(meta, body):
     path = url_for(meta['slug'])
     if meta.get('secret_button'):
@@ -647,6 +980,12 @@ def build_fragment_page(meta, body):
         meta['_schema'] = [breadcrumbs([('Home', '/'), ((meta.get('seo_title') or meta['title']).split(' | ')[0], path)])]
     body = theme_fragment(body)
     body = hero_image(body, meta, 'u-band u-hero')
+    if path == '/':
+        alts = build_home_locales(meta, body)
+        if alts:
+            meta['_alternates'] = alts
+            d, langs = _home_dict(body)
+            body += locale_nav('en', [l for l in langs if l['code'] == 'en' or l['code'] in LOCALES])
     write(path, page(meta, body, path))
     pr = '1.0' if path == '/' else ('0.9' if meta['type'] in ('solution', 'product') else '0.8')
     add_sitemap(path, meta.get('lastmod'), pr, meta.get('robots', 'index'))
@@ -1011,11 +1350,7 @@ def build_research_page():
 <section class="cta-band"><div class="container"><h2>See the research <em>run on your category</em></h2>
 <p>SOMIN reads your competitors, creators and audience, then hands you pre-scored ideas you can brief today.</p>
 <div class="cta-row"><a class="btn btn--solid" href="/try-somin/" data-lead-form="trial" data-gtm-id="research_footer_trial">Try SOMIN</a><a class="btn btn--ghost" href="{CAL_DEFAULT}" data-gtm-id="research_footer_call">Book a call</a></div></div></section>'''
-    person = {"@type": "Person", "@id": f"{BASE}/#aleks-farseev", "name": "Aleks Farseev", "honorificPrefix": "Prof.",
-              "alternateName": ["Aleksandr Farseev", "Alexander Farseev"], "jobTitle": "Co-Founder and CEO", "worksFor": {"@id": f"{BASE}/#organization"},
-              "alumniOf": {"@type": "CollegeOrUniversity", "name": "National University of Singapore"}, "url": "https://farseev.com/",
-              "knowsAbout": ["Social media user profiling", "Multi-source learning", "Personality-driven recommendation", "Explainable AI", "Large language models", "Creative performance prediction", "Agentic AI"],
-              "sameAs": [p['url'] for p in R['profiles'] if 'dblp.org/search' not in p['url']]}
+    person = founder_node()
     arts = [{"@type": "ListItem", "position": i + 1, "item": {"@type": "ScholarlyArticle", "name": p['title'], "headline": p['title'][:110],
              "author": [{"@type": "Person", "name": a.strip()} for a in p['authors'].replace(', et al.', '').split(',') if a.strip()],
              "datePublished": str(p['year']), "isPartOf": {"@type": "Periodical" if re.search(r'Transactions|Frontiers|Newsletter', p['venue']) else "Book", "name": p['venue']},
@@ -1037,11 +1372,7 @@ def build_native_page(meta, body, schema=None):
     add_sitemap(path, None, '0.6', meta.get('robots', 'index'))
 
 
-AUTHORS = {
-    'Prof. Aleks Farseev': {"@type": "Person", "@id": f"{BASE}/#aleks-farseev", "name": "Aleks Farseev", "honorificPrefix": "Prof.",
-                            "jobTitle": "Co-Founder and CEO, SOMIN", "url": "https://farseev.com/",
-                            "sameAs": ["https://www.linkedin.com/in/aiprof/", "https://scholar.google.com/citations?user=ZJW7F18AAAAJ", "https://farseev.com/"]},
-}
+AUTHORS = {'Prof. Aleks Farseev': founder_node()}
 # SOMIN team bylines (roles and profiles as listed on the SOMIN LinkedIn company page, Oct 2026)
 TEAM = {
     'Kirill Lepikhin': ('Co-Founder and CTO, SOMIN', 'https://www.linkedin.com/in/k-lepikhin/'),
@@ -1052,14 +1383,28 @@ TEAM = {
     'Egor Shevelev': ('Head of Development, SOMIN', 'https://www.linkedin.com/in/egor-shevelev-01266842/'),
     'Murtaza Hyder Magsi': ('Quality Assurance Engineer, SOMIN', 'https://www.linkedin.com/in/imurtazahyder/'),
 }
+def author_slug(name):
+    return re.sub(r'[^a-z]+', '-', re.sub(r'^(prof|dr)\.\s*', '', name.lower())).strip('-')
+
+
 for _n, (_role, _li) in TEAM.items():
     AUTHORS[_n] = {"@type": "Person", "@id": f"{BASE}/#{re.sub(r'[^a-z]+', '-', _n.lower()).strip('-')}", "name": _n, "jobTitle": _role,
-                   "worksFor": {"@id": f"{BASE}/#organization"}, "sameAs": [_li]}
+                   "url": absu(f'/authors/{author_slug(_n)}/'), "worksFor": {"@id": f"{BASE}/#organization"}, "sameAs": [_li]}
 AUTHOR_ROLE = {'Prof. Aleks Farseev': 'Co-Founder & CEO, SOMIN', 'Da-Min You': 'SOMIN', 'SOMIN Team': 'SOMIN', **{n: r for n, (r, _) in TEAM.items()}}
 
 
 def author_node(name):
-    return AUTHORS.get(name) or {"@type": "Person", "name": name, "worksFor": {"@id": f"{BASE}/#organization"}} if name != 'SOMIN Team' else {"@id": f"{BASE}/#organization"}
+    if name == 'SOMIN Team':
+        return {"@id": f"{BASE}/#organization"}
+    return AUTHORS.get(name) or {"@type": "Person", "@id": f"{BASE}/#{author_slug(name)}", "name": name, "url": absu(f'/authors/{author_slug(name)}/'),
+                                 "worksFor": {"@id": f"{BASE}/#organization"}}
+
+
+def author_link(name, cls=''):
+    """Byline name linked to the author's profile page (not for the 'SOMIN Team' byline)."""
+    if name == 'SOMIN Team':
+        return E(name)
+    return f'<a{(" class=" + chr(34) + cls + chr(34)) if cls else ""} href="/authors/{author_slug(name)}/" rel="author">{E(name)}</a>'
 
 
 def post_card(p, cls='card', feature=False):
@@ -1111,13 +1456,13 @@ def build_post(meta, body, posts):
   <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/blog/">Blog</a></li><li aria-current="page">{E(meta['title'] if len(meta['title']) <= 48 else meta['title'][:46].rsplit(' ', 1)[0] + '…')}</li></ol></nav>
   <h1>{E(meta['title'])}</h1>
   <p class="lede">{E(meta['description'])}</p>
-  <div class="meta"><span class="avatar" aria-hidden="true">{initials(a)}</span><span>{E(a)}</span><span class="dot"></span><time datetime="{meta['published'][:10]}">{fmt_date(meta['published'])}</time><span class="dot"></span><span>{meta['reading_minutes']} min read</span></div>
+  <div class="meta"><span class="avatar" aria-hidden="true">{initials(a)}</span><span>{author_link(a)}</span><span class="dot"></span><time datetime="{meta['published'][:10]}">{fmt_date(meta['published'])}</time><span class="dot"></span><span>{meta['reading_minutes']} min read</span></div>
 </div></section>
 <div class="container post-cover"><img src="{meta['image']}" alt="{E('Illustration: ' + meta['title'])}" width="1600" height="1067" fetchpriority="high"></div>'''
     main = f'''<div class="post-wrap"><div class="container"><div class="post-grid-layout">
   <div><article class="prose" data-article>{body}</article>
     <div class="post-tags">{tags_html}</div>
-    <div class="author-box"><span class="avatar" aria-hidden="true">{initials(a)}</span><div><strong>{E(a)}</strong><span>{E(AUTHOR_ROLE.get(a, 'SOMIN'))}</span></div></div>
+    <div class="author-box"><span class="avatar" aria-hidden="true">{initials(a)}</span><div><strong>{author_link(a)}</strong><span>{E(AUTHOR_ROLE.get(a, 'SOMIN'))}</span>{'' if a == 'SOMIN Team' else f'<a class="author-more" href="/authors/{author_slug(a)}/">More from {E(re.sub(r"^(Prof|Dr)[.] *", "", a).split()[0])} →</a>'}</div></div>
     {research_strip({'compact': '1', 'cls': 'rs-line--light'})}
   </div>
   {aside}
@@ -1481,6 +1826,373 @@ def build_cases_hub(manifest):
     add_sitemap(path, TODAY, '0.8')
 
 
+# ------------------------------------------------------------------ pricing, about and author pages
+PRICING_JS = r'''<script>
+(function () {
+  var root = document.querySelector('[data-pricing]'), calc = document.querySelector('[data-pricing-calc]');
+  var D = JSON.parse(document.getElementById('pricing-data').textContent);
+  var term = 'y1', ccy = 'USD', fxDate = null, fxLoaded = false;
+  Object.keys(D.terms).forEach(function (k) { if (D.terms[k].default) term = k; });
+  function fmt(v) { return v.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  function money(usd) { return ccy + ' ' + fmt(usd * D.fx[ccy]); }
+  function q(sel, el) { return (el || document).querySelector(sel); }
+  function opts(sel, max) {
+    var v = Math.min(parseInt(sel.value || '0', 10) || 0, max), h = '';
+    for (var i = 0; i <= max; i++) h += '<option' + (i === v ? ' selected' : '') + '>' + i + '</option>';
+    sel.innerHTML = h;
+  }
+  function render() {
+    var t = D.terms[term];
+    root.querySelectorAll('[data-plan-price]').forEach(function (el) { el.textContent = money(D.plans[el.getAttribute('data-plan-price')].price * (1 - t.d)); });
+    root.querySelectorAll('[data-term-cap]').forEach(function (el) { el.textContent = t.cap; });
+    var n = q('[data-fx-note]');
+    if (n) n.textContent = 'Prices are set and billed in USD; other currencies are indicative' + (ccy === 'USD' ? '' : (fxDate ? ' (ECB rates of ' + fxDate + ')' : ' (reference rates)') + ': 1 USD = ' + D.fx[ccy] + ' ' + ccy) + '. Prices exclude applicable taxes.';
+    calcRender();
+  }
+  function calcRender() {
+    if (!calc) return;
+    var plan = q('[data-calc="plan"]', calc).value, P = D.plans[plan], t = D.terms[term];
+    var an = +q('[data-calc="an"]', calc).value, sp = +q('[data-calc="sp"]', calc).value, hb = +q('[data-calc="hb"]', calc).value;
+    var base = P.price * (1 - t.d), seats = an * D.addons.analyst_seat + sp * D.addons.specialist_seat, blocks = hb * P.block, m = base + seats + blocks;
+    q('[data-calc-breakdown]', calc).innerHTML = 'Plan after term saving: <b>' + money(base) + '</b> / mo' + (seats ? ' · Extra seats: <b>' + money(seats) + '</b> / mo' : '') + (blocks ? ' · +' + (hb * 10) + ' brands: <b>' + money(blocks) + '</b> / mo' : '');
+    q('[data-calc-month]', calc).textContent = money(m);
+    q('[data-calc-billed-label]', calc).textContent = 'Billed in advance · ' + (t.m === 1 ? '1 month' : (t.m / 12) + (t.m === 12 ? ' year' : ' years'));
+    q('[data-calc-billed]', calc).textContent = money(m * t.m);
+    var pay = q('[data-calc-pay]', calc), note = q('[data-calc-note]', calc), al = q('[data-calc-alert]', calc);
+    var links = D.pay[plan] && D.pay[plan][term];
+    al.hidden = true;
+    if (!links) {
+      pay.textContent = 'Multi-year terms: talk to sales'; pay.href = pay.getAttribute('data-sales') || pay.href;
+      note.textContent = 'Two- and three-year prepays are issued as private offers or order forms, not card checkout.';
+      return;
+    }
+    pay.textContent = 'Pay with Stripe →';
+    pay.href = links[((an ? 'a' : '') + (sp ? 's' : '') + (hb ? 'h' : '')) || '0'];
+    note.textContent = 'Secure Stripe checkout, billed in USD.';
+    if (an > 1 || sp > 1 || hb > 1) { al.hidden = false; al.textContent = 'The payment link opens with one of each selected add-on: raise the quantities on the Stripe page after you click Pay.'; }
+  }
+  function caps() {
+    var P = D.plans[q('[data-calc="plan"]', calc).value];
+    opts(q('[data-calc="an"]', calc), P.seats); opts(q('[data-calc="sp"]', calc), P.seats); opts(q('[data-calc="hb"]', calc), P.blocks);
+  }
+  function press(group, btn) { group.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); }); }
+  root.querySelectorAll('[data-term]').forEach(function (b) { b.addEventListener('click', function () { term = b.getAttribute('data-term'); press(b.parentNode, b); render(); if (window.sominTrack) window.sominTrack('pricing_term_change', { term: term }); }); });
+  root.querySelectorAll('[data-ccy]').forEach(function (b) { b.addEventListener('click', function () {
+    ccy = b.getAttribute('data-ccy'); press(b.parentNode, b); render();
+    if (!fxLoaded && ccy !== 'USD' && window.fetch) { fxLoaded = true;
+      fetch('https://api.frankfurter.app/latest?from=USD&to=GBP,EUR,SGD').then(function (r) { return r.json(); })
+        .then(function (d) { if (d && d.rates) { ['GBP', 'EUR', 'SGD'].forEach(function (c) { if (d.rates[c]) D.fx[c] = d.rates[c]; }); fxDate = d.date; render(); } }).catch(function () {});
+    }
+  }); });
+  root.querySelectorAll('[data-plan-select]').forEach(function (a) { a.addEventListener('click', function () { q('[data-calc="plan"]', calc).value = a.getAttribute('data-plan-select'); caps(); calcRender(); }); });
+  if (calc) {
+    q('[data-calc-pay]', calc).setAttribute('data-sales', q('[data-calc-pay]', calc).href);
+    q('[data-calc="plan"]', calc).addEventListener('change', function () { caps(); calcRender(); });
+    ['an', 'sp', 'hb'].forEach(function (k) { q('[data-calc="' + k + '"]', calc).addEventListener('change', calcRender); });
+    caps();
+  }
+  render();
+})();
+</script>'''
+
+
+def _money(v):
+    return f'{v:,.2f}'
+
+
+def pricing_rows_html(pr):
+    rows = ''
+    n = len(pr['plans']) + 2
+    for g in pr['groups']:
+        rows += f'<tr class="pr-grp"><th colspan="{n}" scope="colgroup">{E(g["title"])}</th></tr>'
+        for r in g['rows']:
+            cells = ''
+            for i, v in enumerate(r['values']):
+                ent = ' pr-ent' if i == len(r['values']) - 1 else ''
+                if isinstance(v, dict):
+                    cells += (f'<td class="pr-c{ent}"><details class="pr-fx pr-val"><summary>{E(v["v"])}</summary>'
+                              f'<p class="pr-exp">{E(v["note"])}</p></details></td>')
+                else:
+                    cls = ' pr-yes' if v in ('Yes', '✓', 'Included') else ' pr-no' if v == 'No' else ''
+                    label = {'Yes': 'Included', 'No': 'Not included', '✓': 'Included'}.get(v)
+                    shown = '✓' if v == 'Yes' else ('—' if v == 'No' else v)
+                    cells += f'<td class="pr-c{cls}{ent}"' + (f' aria-label="{label}"' if label else '') + f'>{E(shown)}</td>'
+            rows += (f'<tr><th scope="row" class="pr-feat"><details class="pr-fx"><summary>{E(r["name"])}</summary>'
+                     f'<p class="pr-exp">{E(r["detail"])}</p></details></th>{cells}</tr>')
+    return rows
+
+
+def build_pricing_page():
+    """/pricing/: SOMIN plans and prices from data/pricing.json (the cloud.somin.ai pricing sheet), rendered server-side so
+    search and answer engines read the real numbers; the inline script only switches term, currency and the calculator."""
+    path = '/pricing/'
+    pr = PRICING
+    plans = pr['plans']
+    term = next(t for t in pr['terms'] if t.get('default'))
+    low = min(p['price'] for p in plans)
+    low_y = low * (1 - term['discount'])
+    terms_html = ''.join(
+        f'<button type="button" data-term="{t["key"]}" aria-pressed="{"true" if t.get("default") else "false"}">{E(t["label"])}'
+        + (f' <span class="pr-badge">{E(t["badge"])}</span>' if t.get('badge') else '') + (f' <small>· {E(t["note"])}</small>' if t.get('note') else '') + '</button>'
+        for t in pr['terms'])
+    ccy_html = ''.join(f'<button type="button" data-ccy="{c}" aria-pressed="{"true" if c == "USD" else "false"}">{c}</button>' for c in pr['fx_fallback'])
+    head = '<th scope="col" class="pr-feat"><span class="visually-hidden">Feature</span></th>' + ''.join(
+        f'<th scope="col" class="pr-tier" id="plan-{p["key"]}">{E(p["name"])}<span>{E(p["tagline"])}</span></th>' for p in plans) + \
+        f'<th scope="col" class="pr-tier pr-tier--ent">{E(pr["enterprise"]["name"])}<span>{E(pr["enterprise"]["tagline"])}</span></th>'
+    price_cells = '<td class="pr-feat"></td>' + ''.join(
+        f'<td class="pr-head"><div class="pr-price" data-plan-price="{p["key"]}">USD {_money(p["price"] * (1 - term["discount"]))}</div>'
+        f'<div class="pr-per" data-term-cap>{E(term["cap"])}</div>'
+        f'<a class="pr-sel" href="#pr-calc" data-plan-select="{p["key"]}" data-track="pricing_plan_select" data-gtm-id="pricing_select_{p["key"]}">Select</a></td>'
+        for p in plans) + (f'<td class="pr-head pr-ent"><div class="pr-price">{E(pr["enterprise"]["price_label"])}</div><div class="pr-per">{E(pr["enterprise"]["note"])}</div>'
+                           f'<a class="pr-sel" href="{CAL_DEFAULT}" data-gtm-id="pricing_enterprise_call">Talk to sales</a></td>')
+    glance = ''.join(
+        f'<li><strong>{E(p["name"].title().replace("Somin", "SOMIN"))}</strong>: US${p["price"]:,} a month, or US${_money(p["price"] * 0.9)} a month billed annually. '
+        f'{E(p["seats"])}, {p["brands"]} brands monitored, {p["swaps"]} handle swaps a month.</li>' for p in plans) + \
+        f'<li><strong>SOMIN Enterprise</strong>: custom multi-market private offers with handle pools (100+ brands) and a customer success manager.</li>'
+    plan_opts = ''.join(f'<option value="{p["key"]}">{E(p["name"])}</option>' for p in plans)
+    js_data = {'plans': {p['key']: {'price': p['price'], 'seats': p['seat_cap'], 'blocks': p['handle_blocks_cap'], 'block': p['handle_block_price']} for p in plans},
+               'terms': {t['key']: {'d': t['discount'], 'm': t['months'], 'cap': t['cap'], 'checkout': t['checkout'], 'default': bool(t.get('default'))} for t in pr['terms']},
+               'addons': pr['addons'], 'fx': pr['fx_fallback'], 'pay': pr['paylinks']}
+    a = pr['addons']
+    faq = [
+        ('How much does SOMIN cost?', f'SOMIN has four self-serve plans: SOMIN Light at US${plans[0]["price"]:,} a month, SOMIN Pro at US${plans[1]["price"]:,}, SOMIN Agency Light at US${plans[2]["price"]:,} and SOMIN Agency Pro at US${plans[3]["price"]:,}. Annual billing saves 10%, two-year terms 16% and three-year terms 22% (multi-year through sales). Enterprise plans are custom. Prices are in US dollars and exclude taxes.'),
+        ('What is a seat?', f'Every seat is one named user with full dashboard access and the agentic MCP connector for Claude, Manus or Codex. An Analyst seat carries {pr["seat_types"]["Analyst"]}; a Specialist seat carries {pr["seat_types"]["Specialist"]}. Extra seats cost US${a["analyst_seat"]} (Analyst) or US${a["specialist_seat"]} (Specialist) a month, up to each plan\'s cap.'),
+        ('Are there overage fees?', 'No. Quotas pause and resume automatically, so nothing ever bills past your plan. If a seat reaches its 5-hour window cap mid-build it waits for the next window; weekly ceilings reset on Monday at 00:00 UTC.'),
+        ('Can I monitor more brands?', f'Yes. Each plan includes a set number of monitored brand handles and can grow in blocks of 10 (US${plans[0]["handle_block_price"]} a month on Light plans, US${plans[1]["handle_block_price"]} on Pro plans), up to 2 blocks on brand plans and 3 on agency plans. Larger portfolios move up a tier or to Enterprise.'),
+        ('Can I try SOMIN before I buy?', 'Yes. Request trial access and the team sets up a workspace with your brand and competitors, or book a 30-minute walkthrough on your own category.'),
+        ('Is grant support available in Singapore?', 'SMEs are eligible for up to 50% business grant support for the adoption of SOMIN, a Pre-Approved Solution under the IMDA SMEs Go Digital programme. Check eligibility at share.somin.ai/psg.'),
+    ]
+    faq_html = ''.join(f'<details><summary>{E(q)}</summary><p>{E(ans)}</p></details>' for q, ans in faq)
+    body = f'''<section class="hero pr-hero"><div class="container">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Pricing</li></ol></nav>
+  <p class="eyebrow">Plans &amp; pricing</p>
+  <h1>SOMIN pricing: plans for <em>brands and agencies</em></h1>
+  <p class="lede">Four self-serve plans from US${low:,} a month (US${_money(low_y)} billed annually). Every seat ships with the SOMIN dashboard and agentic MCP access, so complete pitch builds run inside the AI assistant your team already uses. No overage fees.</p>
+  <div class="cta-row cta-row--left">
+    <a class="btn btn--solid" href="#pr-plans" data-gtm-id="pricing_hero_plans">Compare plans</a>
+    <a class="btn btn--ghost" href="{CAL_DEFAULT}" data-gtm-id="pricing_hero_call">Talk to sales</a>
+  </div>
+</div></section>
+
+<section class="sec sec--light"><div class="container">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">At a glance</p><h2>SOMIN plans and prices</h2>
+  <p>Monthly list prices in US dollars, excluding taxes. Annual billing saves 10%; two- and three-year terms (16% and 22% off) are arranged through sales.</p></div>
+  <ul class="check-list pr-glance">{glance}</ul>
+</div></section>
+
+<section class="sec sec--mist" id="pr-plans"><div class="container pr-sheet" data-pricing>
+  <div class="pr-bar">
+    <div class="pr-toggle" role="group" aria-label="Billing period">{terms_html}</div>
+    <div class="pr-toggle pr-toggle--ccy" role="group" aria-label="Currency">{ccy_html}</div>
+  </div>
+  <div class="table-scroll pr-scroll"><table class="pr-table">
+    <caption class="visually-hidden">SOMIN plans compared: price, seats, monitored brands and features</caption>
+    <thead><tr>{head}</tr></thead>
+    <tbody><tr class="pr-prices">{price_cells}</tr>{pricing_rows_html(pr)}</tbody>
+  </table></div>
+  <p class="pr-note" data-fx-note>Prices are set and billed in USD; other currencies are indicative. {E(pr["taxes"])}</p>
+  <p class="pr-note"><strong>Custom reports.</strong> {E(pr["custom_reports"])}</p>
+</div></section>
+
+<section class="sec sec--light" id="pr-calc"><div class="container">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">Price calculator</p><h2>Build your plan and check out</h2>
+  <p>Pick a plan and add seats or brand blocks. The billing period and currency follow the switches above the table; term savings apply to the plan base and add-ons bill at list.</p></div>
+  <div class="pr-calc" data-pricing-calc>
+    <div class="pr-calc-grid">
+      <label>Plan<select data-calc="plan">{plan_opts}</select></label>
+      <label>+ Analyst seats<select data-calc="an"><option>0</option></select></label>
+      <label>+ Specialist seats<select data-calc="sp"><option>0</option></select></label>
+      <label>+10-brand blocks<select data-calc="hb"><option>0</option></select></label>
+    </div>
+    <p class="pr-brk" data-calc-breakdown></p>
+    <div class="pr-tot"><div><small>Monthly total</small><strong data-calc-month>—</strong></div><div><small data-calc-billed-label>Billed in advance</small><strong data-calc-billed>—</strong></div>
+      <div><a class="btn btn--solid pr-pay" data-calc-pay href="{CAL_DEFAULT}" target="_blank" rel="noopener" data-track="pricing_checkout_click" data-gtm-id="pricing_pay_stripe">Pay with Stripe →</a>
+      <p class="pr-small" data-calc-note></p></div></div>
+    <p class="pr-alert" data-calc-alert hidden></p>
+    <p class="pr-small">Add-ons: Analyst seat US${a["analyst_seat"]} · Specialist seat US${a["specialist_seat"]} · +10 brands US${plans[0]["handle_block_price"]} on Light plans, US${plans[1]["handle_block_price"]} on Pro plans a month, capped per plan (seats {"/".join(str(p["seat_cap"]) for p in plans)}, blocks {"/".join(str(p["handle_blocks_cap"]) for p in plans)}). The payment link carries one of each selected add-on; raise quantities on the Stripe page. Billed in USD.</p>
+  </div>
+</div></section>
+
+<section class="sec sec--mist"><div class="container split">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">Billing</p><h2>Cancellation and change policy</h2>
+    <ul class="check-list">{"".join(f"<li>{E(x)}</li>" for x in pr["policy"])}</ul></div>
+  <div class="sec-head" id="quote"><p class="eyebrow eyebrow--ink">Enterprise</p><h2>Get a custom quote</h2><p>{E(pr["custom_quote"])}</p>
+    <div class="cta-row cta-row--left"><a class="btn btn--solid" href="{CAL_DEFAULT}" data-gtm-id="pricing_quote_call">Book a call with sales</a>
+    <a class="btn btn--ghost btn--ink" href="/try-somin/" data-lead-form="trial" data-gtm-id="pricing_quote_trial">Try SOMIN</a></div></div>
+</div></section>
+
+<section class="sec sec--light"><div class="container split">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">FAQ</p><h2>SOMIN pricing FAQ</h2></div>
+  <div class="faq-list">{faq_html}</div>
+</div></section>
+
+<section class="cta-band"><div class="container"><h2>See SOMIN on <em>your</em> category first</h2>
+<p>A 30-minute walkthrough on your brand, your competitors and the brief on your desk this week.</p>
+<div class="cta-row"><a class="btn btn--solid" href="{CAL_DEFAULT}" data-gtm-id="pricing_footer_call">Book a call</a><a class="btn btn--ghost" href="/try-somin/" data-lead-form="trial" data-gtm-id="pricing_footer_trial">Try SOMIN</a></div></div></section>
+<script type="application/json" id="pricing-data">{json.dumps(js_data, ensure_ascii=False)}</script>''' + PRICING_JS
+    meta = {'slug': 'pricing', 'layout': 'native', 'type': 'pricing', 'group': 'pricing', 'robots': 'index,follow',
+            'title': 'SOMIN Pricing: Plans for Brands & Agencies | SOMIN',
+            'seo_title': 'SOMIN Pricing: Plans for Brands and Agencies',
+            'description': f'SOMIN pricing: four plans from US${low:,} a month for brands and agencies, with agentic seats, monitored brands and no overage fees. Annual billing saves 10%.',
+            'og_image': '/assets/img/og/card-default.jpg'}
+    web = {"@type": "WebPage", "@id": absu(path) + "#webpage", "url": absu(path), "name": meta['seo_title'], "description": meta['description'],
+           "isPartOf": {"@id": WEBSITE_ID}, "about": {"@id": SOFTWARE_ID}, "mainEntity": {"@id": SOFTWARE_ID}, "inLanguage": "en"}
+    build_native_page(meta, body, schema=[org_node(), website_node(), software_node(), web, breadcrumbs([('Home', '/'), ('Pricing', path)])])
+    return meta
+
+
+def build_about_page(post_metas):
+    """/about/: who SOMIN is, in one place (entity page for search and answer engines), from data/organization.json."""
+    path = '/about/'
+    o, s, f = ORG['organization'], ORG['software'], ORG['founder']
+    low = min(p['price'] for p in PRICING['plans'])
+    team = [('Prof. Aleks Farseev', 'Co-Founder and CEO, SOMIN')] + [(n, r) for n, (r, _) in TEAM.items()]
+    team_html = ''.join(f'<a class="mini mini--light" href="/authors/{author_slug(n)}/"><span>{E(r.replace(", SOMIN", ""))}</span><strong>{E(n)}</strong></a>' for n, r in team)
+    facts = [('Company', f'{o["name"]} ({o["legal_name"]})'), ('Headquarters', o['founding_location']),
+             ('Founders', 'Prof. Aleks Farseev (CEO) and Kirill Lepikhin (CTO)'), ('Platform', 'SOMIN, with the SOMONITOR intelligence engine'),
+             ('Markets', ', '.join(o['markets'][:-1]) + ' and ' + o['markets'][-1]), ('Pricing', f'From US${low:,} a month; see the plans'),
+             ('Contact', o['email'])]
+    facts_html = ''.join(f'<div><dt>{E(k)}</dt><dd>' + (f'<a href="/pricing/">{E(v)}</a>' if k == 'Pricing' else f'<a href="mailto:{E(v)}">{E(v)}</a>' if k == 'Contact' else E(v)) + '</dd></div>' for k, v in facts)
+    awards = [('Gartner Cool Vendor in Marketing AI', 'https://ddistenfield.medium.com/gsd-labs-company-somin-is-a-gartner-cool-ai-vendor-78da8fcd41ff'),
+              ('Google for Startups AI First Programme', 'https://startup.google.com/programs/accelerator/singapore/'),
+              ('IMDA SMEs Go Digital Pre-Approved Solution', 'https://smesgodigital.gov.sg/web/solution/20240259/somonitor'),
+              ('Zapier Silver Agentic AI Partner', 'https://zapier.com/partnerdirectory/somin'),
+              ('Google Cloud customer story', 'https://cloud.google.com/customers/somin-ai')]
+    awards_html = ''.join(f'<li><a href="{E(u)}" target="_blank" rel="noopener">{E(n)}</a></li>' for n, u in awards)
+    labels = {'linkedin': 'LinkedIn', 'crunchbase': 'Crunchbase', 'cbinsights': 'CB Insights', 'g2.com': 'G2 reviews', 'capterra': 'Capterra reviews',
+              'sourceforge': 'SourceForge', 'zapier': 'Zapier partner directory', 'smesgodigital': 'IMDA SMEs Go Digital listing'}
+    prof = ''.join(f'<li><a href="{E(u)}" target="_blank" rel="noopener">{E(next((v for k, v in labels.items() if k in u), u))}</a></li>' for u in o['same_as'])
+    faq = [
+        ('What is SOMIN?', o['description']),
+        ('Who founded SOMIN?', 'SOMIN was co-founded by Prof. Aleks Farseev, its CEO and a research professor in digital-marketing AI, and Kirill Lepikhin, its CTO.'),
+        ('Where is SOMIN based?', f'SOMIN ({o["legal_name"]}) is based in Singapore and works with brand, agency and creator teams across 11+ markets in APAC, MENA and Europe.'),
+        ('Is SOMIN the same as SOMONITOR?', 'SOMONITOR is the name of the intelligence engine inside the SOMIN platform (it is also how SOMIN is listed under the IMDA SMEs Go Digital programme). SOMIN is the company and the product.'),
+        ('How much does SOMIN cost?', f'Self-serve plans start at US${low:,} a month, with 10% off for annual billing; enterprise plans are custom. See the pricing page for every plan.'),
+        ('How do I contact SOMIN?', f'Book a call with the team through the website, request trial access, or email {o["email"]}.'),
+    ]
+    faq_html = ''.join(f'<details><summary>{E(q)}</summary><p>{E(ans)}</p></details>' for q, ans in faq)
+    body = f'''<section class="hero ab-hero"><div class="container">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">About</li></ol></nav>
+  <p class="eyebrow">About SOMIN</p>
+  <h1>About SOMIN: AI marketing intelligence <em>built in Singapore</em></h1>
+  <p class="lede">{E(o["description"])}</p>
+  <div class="cta-row cta-row--left"><a class="btn btn--solid" href="{CAL_DEFAULT}" data-gtm-id="about_hero_call">Book a call</a><a class="btn btn--ghost" href="/pricing/" data-gtm-id="about_hero_pricing">See pricing</a></div>
+</div></section>
+
+<section class="sec sec--light"><div class="container split">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">What SOMIN does</p><h2>Verified category data in, defensible ideas out</h2>
+    <p>{E(s["description"])}</p>
+    <p>Agencies use SOMIN to <a href="/somin-for-agencies/">pitch, report and plan strategy</a>, brands use it to <a href="/somin-for-brands/">watch competitors and brief their teams</a>, and creator programs use it to <a href="/somin-for-creators/">choose creators and brief them to sell</a>. Six <a href="/ai-agents/">AI agents</a> run the work, and the free <a href="/marketing-mondays-plugin/">Marketing Mondays plugin</a> brings them into Claude.</p></div>
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">Key facts</p><dl class="ab-facts">{facts_html}</dl></div>
+</div></section>
+
+<section class="sec sec--mist"><div class="container">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">Who builds SOMIN</p><h2>Seasoned marketers and an AI professor</h2>
+  <p>{E(f["description"])} Next to the research team, SOMIN's marketers turn those models into the playbooks brand and agency teams run every week. <a href="/research/">Read the research</a> or <a href="/vision/">our vision</a>.</p></div>
+  <div class="mini-grid ab-team">{team_html}</div>
+</div></section>
+
+<section class="sec sec--light"><div class="container split">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">Recognition</p><h2>Awards, programmes and partners</h2><ul class="check-list ab-links">{awards_html}</ul></div>
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">Find SOMIN elsewhere</p><h2>Profiles and reviews</h2><ul class="check-list ab-links">{prof}</ul></div>
+</div></section>
+
+<section class="sec sec--mist"><div class="container split">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">FAQ</p><h2>About SOMIN FAQ</h2></div>
+  <div class="faq-list">{faq_html}</div>
+</div></section>
+
+<section class="cta-band"><div class="container"><h2>See what SOMIN finds in <em>your</em> category</h2>
+<p>A 30-minute walkthrough on your brand, your competitors and the work on your desk this week.</p>
+<div class="cta-row"><a class="btn btn--solid" href="{CAL_DEFAULT}" data-gtm-id="about_footer_call">Book a call</a><a class="btn btn--ghost" href="/try-somin/" data-lead-form="trial" data-gtm-id="about_footer_trial">Try SOMIN</a></div></div></section>'''
+    meta = {'slug': 'about', 'layout': 'native', 'type': 'company', 'group': 'company', 'robots': 'index,follow',
+            'title': 'About SOMIN: AI Marketing Intelligence from Singapore | SOMIN', 'seo_title': 'About SOMIN: AI Marketing Intelligence from Singapore',
+            'description': 'About SOMIN (Somin Pte. Ltd.): the Singapore AI marketing-intelligence company behind SOMONITOR, its founders, team, research, awards and markets.',
+            'og_image': '/assets/img/og/card-default.jpg'}
+    web = {"@type": "AboutPage", "@id": absu(path) + "#webpage", "url": absu(path), "name": meta['seo_title'], "description": meta['description'],
+           "isPartOf": {"@id": WEBSITE_ID}, "about": {"@id": ORG_ID}, "mainEntity": {"@id": ORG_ID}, "inLanguage": "en"}
+    build_native_page(meta, body, schema=[org_node(), founder_node(), website_node(), software_node(), web, breadcrumbs([('Home', '/'), ('About', path)])])
+    return meta
+
+
+def build_author_pages(post_metas):
+    """/authors/ and /authors/<slug>/: a profile page per blog author (E-E-A-T), listing their articles."""
+    by = {}
+    for p in post_metas:
+        if p['author'] != 'SOMIN Team':
+            by.setdefault(p['author'], []).append(p)
+    for n in TEAM:
+        by.setdefault(n, [])
+    order = sorted(by, key=lambda n: (n != 'Prof. Aleks Farseev', -len(by[n]), n))
+    cards = ''
+    metas = []
+    for name in order:
+        posts = by[name]
+        slug = author_slug(name)
+        path = f'/authors/{slug}/'
+        node = dict(author_node(name))
+        role = (ORG['founder']['job_title'] if name == 'Prof. Aleks Farseev' else AUTHOR_ROLE.get(name) or 'SOMIN')
+        role_short = role.replace(', SOMIN', '') if role != 'SOMIN' else 'SOMIN team'
+        topics = []
+        for p in posts:
+            for t in p['tags']:
+                if t not in topics and t != 'Community':
+                    topics.append(t)
+        first = re.sub(r'^(Prof|Dr)[.] *', '', name).split()[0]
+        if name == 'Prof. Aleks Farseev':
+            bio = (f'<p>{E(ORG["founder"]["description"])}</p><p>He leads SOMIN\'s research on audience profiling, personality-driven content and '
+                   f'explainable AI for advertising; the papers and talks are on the <a href="/research/">research page</a>.</p>')
+        else:
+            bio = f'<p>{E(name)} is {E(role_short)} at SOMIN, the Singapore AI marketing-intelligence company.' + (
+                f' {E(first)} writes on the SOMIN blog about {E(", ".join(topics[:3]).lower())}.</p>' if topics else '</p>')
+        links = ''.join(f'<li><a href="{E(u)}" target="_blank" rel="noopener me">{E("LinkedIn" if "linkedin" in u else "Google Scholar" if "scholar.google" in u else "Semantic Scholar" if "semanticscholar" in u else "ACM Digital Library" if "acm.org" in u else "Forbes Technology Council" if "forbes" in u else "Crunchbase" if "crunchbase" in u else re.sub(r"^https?://(www[.])?", "", u).strip("/"))}</a></li>'
+                        for u in node.get('sameAs', [])[:8])
+        grid = ''.join(post_card(p) for p in posts)
+        body = f'''<section class="hero au-hero"><div class="container">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/authors/">Authors</a></li><li aria-current="page">{E(name)}</li></ol></nav>
+  <p class="eyebrow">Author · {E(role_short)}</p>
+  <h1>{E(name)}</h1>
+  <p class="lede">{E(role)}{f" · {len(posts)} article{'s' if len(posts) != 1 else ''} on the SOMIN blog" if posts else ""}</p>
+</div></section>
+<section class="sec sec--light"><div class="container split">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">About {E(first)}</p>{bio}</div>
+  <div class="sec-head">{"<p class='eyebrow eyebrow--ink'>Profiles</p><ul class='check-list ab-links'>" + links + "</ul>" if links else ""}</div>
+</div></section>
+''' + (f'''<section class="blog-list au-posts"><div class="container"><div class="blog-list-head"><h2>Articles by {E(name)}</h2><p>{len(posts)} articles</p></div>
+<div class="post-grid">{grid}</div></div></section>''' if posts else '')
+        desc = (f'{name}, {role_short} at SOMIN. ' + (f'Read {len(posts)} article{"s" if len(posts) != 1 else ""} by {first} on '
+                + (', '.join(topics[:2]).lower() if topics else 'AI marketing') + ' and more on the SOMIN blog.' if posts else 'Profile and links.'))
+        if len(desc) < 120:
+            desc += ' SOMIN turns live competitor and audience data into pre-scored campaign ideas.'
+        desc = desc if len(desc) <= 160 else desc[:157].rsplit(' ', 1)[0] + '…'
+        title = f'{name}, {role_short} | SOMIN'
+        meta = {'slug': f'authors/{slug}', 'layout': 'native', 'type': 'author', 'group': 'blog', 'robots': 'index,follow',
+                'title': title if len(title) <= 60 else f'{name} | SOMIN', 'description': desc, 'og_image': '/assets/img/og/card-default.jpg'}
+        node['mainEntityOfPage'] = absu(path)
+        prof = {"@type": "ProfilePage", "@id": absu(path) + "#webpage", "url": absu(path), "name": f'{name}, {role_short}', "isPartOf": {"@id": WEBSITE_ID},
+                "mainEntity": {"@id": node.get('@id')}, "inLanguage": "en"}
+        if posts:
+            prof['hasPart'] = [{"@type": "BlogPosting", "headline": p['title'][:110], "url": absu(url_for(p['slug'])), "datePublished": p['published']} for p in posts[:20]]
+        build_native_page(meta, body, schema=[org_node(), website_node(), node, prof, breadcrumbs([('Home', '/'), ('Authors', '/authors/'), (name, path)])])
+        metas.append(meta)
+        cards += f'<a class="mini mini--light" href="{path}"><span>{E(role_short)}</span><strong>{E(name)}</strong><em>{len(posts)} article{"s" if len(posts) != 1 else ""}</em></a>'
+    path = '/authors/'
+    body = f'''<section class="hero au-hero"><div class="container">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Authors</li></ol></nav>
+  <p class="eyebrow">SOMIN Blog</p><h1>The people behind the <em>SOMIN blog</em></h1>
+  <p class="lede">Researchers, strategists, data scientists and engineers from the SOMIN team, writing on AI marketing agents, competitor and audience intelligence, paid media and creative strategy.</p>
+</div></section>
+<section class="sec sec--light"><div class="container"><div class="mini-grid ab-team">{cards}</div>
+<p style="margin-top:28px"><a class="btn btn--ghost btn--ink" href="/blog/" data-gtm-id="authors_blog">Read the blog</a></p></div></section>'''
+    meta = {'slug': 'authors', 'layout': 'native', 'type': 'author_index', 'group': 'blog', 'robots': 'index,follow',
+            'title': 'SOMIN Blog Authors: Researchers and Strategists | SOMIN',
+            'description': 'Meet the SOMIN blog authors: researchers, strategists, data scientists and engineers writing on AI marketing agents, competitor intelligence and strategy.',
+            'og_image': '/assets/img/og/card-default.jpg'}
+    coll = {"@type": "CollectionPage", "@id": absu(path) + "#webpage", "url": absu(path), "name": "SOMIN Blog Authors", "isPartOf": {"@id": WEBSITE_ID}, "inLanguage": "en"}
+    build_native_page(meta, body, schema=[org_node(), website_node(), coll, breadcrumbs([('Home', '/'), ('Authors', path)])])
+    return metas + [meta]
+
+
 def build_404():
     links = [('Solutions', 'SOMIN for Brands', '/somin-for-brands/'), ('Solutions', 'SOMIN for Agencies', '/somin-for-agencies/'),
              ('Solutions', 'SOMIN for Creators', '/somin-for-creators/'), ('Platform', 'AI Agents', '/ai-agents/'),
@@ -1516,40 +2228,26 @@ def build_sitemap():
         if path in seen:
             continue
         seen.add(path)
-        rows.append(f'<url><loc>{absu(path)}</loc><lastmod>{(lastmod or TODAY)[:10]}</lastmod><priority>{pr}</priority></url>')
-    xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(rows) + '\n</urlset>\n'
+        alt = ''.join(f'<xhtml:link rel="alternate" hreflang="{E(hl)}" href="{E(absu(h))}"/>' for hl, h in LOCALE_ALTERNATES.get(path, []))
+        rows.append(f'<url><loc>{absu(path)}</loc><lastmod>{(PAGE_DATES.get(path) or lastmod or TODAY)[:10]}</lastmod>{alt}</url>')
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+           + '\n'.join(rows) + '\n</urlset>\n')
     (OUT / 'sitemap.xml').write_text(xml, encoding='utf-8')
     return len(rows)
 
 
+AI_CRAWLERS = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User',
+               'Google-Extended', 'Applebot-Extended', 'Meta-ExternalAgent', 'Amazonbot', 'DuckAssistBot', 'MistralAI-User', 'CCBot']
+ROBOTS_DISALLOW = ['/thank-you-trial-somin/', '/thank-you-case-study/', '/thank-you-plugin/']
+
+
 def build_robots():
-    txt = f'''# SOMIN — {BASE}
-User-agent: *
-Allow: /
-Disallow: /thank-you-trial-somin/
-Disallow: /thank-you-case-study/
-Disallow: /thank-you-plugin/
-
-# AI assistants and answer engines are welcome to read and cite this site.
-User-agent: GPTBot
-Allow: /
-User-agent: OAI-SearchBot
-Allow: /
-User-agent: ChatGPT-User
-Allow: /
-User-agent: ClaudeBot
-Allow: /
-User-agent: Claude-SearchBot
-Allow: /
-User-agent: PerplexityBot
-Allow: /
-User-agent: Google-Extended
-Allow: /
-User-agent: Applebot-Extended
-Allow: /
-
-Sitemap: {BASE}/sitemap.xml
-'''
+    # A crawler obeys only the most specific group that names it, so every named AI group repeats the Disallow lines.
+    rules = 'Allow: /\n' + ''.join(f'Disallow: {p}\n' for p in ROBOTS_DISALLOW)
+    ai = ''.join(f'User-agent: {ua}\n' for ua in AI_CRAWLERS)
+    txt = (f'# SOMIN — {BASE}\nUser-agent: *\n{rules}\n'
+           f'# AI assistants and answer engines are welcome to read and cite this site.\n{ai}{rules}\n'
+           f'Sitemap: {BASE}/sitemap.xml\n')
     (OUT / 'robots.txt').write_text(txt, encoding='utf-8')
 
 
@@ -1563,9 +2261,14 @@ def build_llms(pages, posts, manifest=None):
              'How SOMIN works: one loop in five steps, run by AI agents on verified category data. Listen (what happened?), Decode (who is winning, and how?), Decide (what do we say?), Make (what does it look like?) and Ship (when does it go out?). Every idea answers four questions: who are we talking to (persona), what is bugging them (tension), why does that happen (angle) and what is the one line that says it (story). Every number traces back to a SOMIN post, study or ID.', '',
              'Third-party ratings: ' + '; '.join(f'{p["rating"]:.1f}/5 on {p["name"]} ({p["url"]})' for p in REVIEWS['platforms'].values() if p.get('rating')) + '.', '',
              f'Free tool: the Marketing Mondays plugin for Claude ({BASE}/marketing-mondays-plugin/) packs 8 main skills (26 in all) and the SOMIN connector (MCP server {PLUGIN["mcp"]}) so Claude can run that loop on a team\'s own SOMIN data.', '',
+             'Pricing (US$, monthly list, excl. taxes; annual billing saves 10%): ' + '; '.join(f'{pl["name"]} US${pl["price"]:,}/month ({pl["seats"]}, {pl["brands"]} brands)' for pl in PRICING['plans'])
+             + f'; {PRICING["enterprise"]["name"]} custom. Details: {BASE}/pricing/', '',
              '## Key pages']
     if home:
         parts.append(f'- [Home]({BASE}/): {home.get("description")}')
+    for m in pages:
+        if m.get('slug') in ('pricing', 'about'):
+            parts.append(line(m))
     parts += [line(m) for m in by('solution')]
     parts += ['', '## AI agents and products'] + [line(m) for m in by('product')]
     parts += ['', '## Comparisons'] + [line(m) for m in by('comparison')]
@@ -1579,7 +2282,13 @@ def build_llms(pages, posts, manifest=None):
     parts += [f'- {p["venue_short"]} {p["year"]}: [{p["title"]}]({p["url"]}) ({p["authors"]})' for p in sorted(peer, key=lambda p: (p['tier'] != 'top', -p['year']))[:14]]
     parts += ['', '### Talks'] + [f'- {t["kind"]}, {t["event"]} ({t["date"][:4]}): [{t["title"]}]({t["url"]})' for t in sorted(RESEARCH['talks'], key=lambda t: t['date'], reverse=True) if t['language'] == 'English'][:10]
     parts += ['', '## Blog (latest first)'] + [f'- [{p["title"]}]({absu(url_for(p["slug"]))}): {p["description"]}' for p in posts]
-    parts += ['', '## Company & legal', f'- [Our Vision]({BASE}/vision/)', f'- [Privacy Policy]({BASE}/privacy-policy/)', f'- [SaaS Agreement]({BASE}/saas-terms-general/)',
+    parts += ['', '## Pricing'] + [f'- {pl["name"]} ({pl["tagline"]}): US${pl["price"]:,} a month, US${pl["price"] * 0.9:,.2f} a month billed annually; {pl["seats"]}, {pl["brands"]} brands monitored, {pl["swaps"]} handle swaps a month.' for pl in PRICING['plans']]
+    parts += [f'- {PRICING["enterprise"]["name"]}: custom multi-market private offers, handle pools (100+ brands), customer success manager.',
+              f'- Add-ons: Analyst seat US${PRICING["addons"]["analyst_seat"]}/month, Specialist seat US${PRICING["addons"]["specialist_seat"]}/month, +10 brands US$190 (Light plans) or US$390 (Pro plans) a month. No overage fees. Full table: {BASE}/pricing/']
+    authors = [m for m in pages if m.get('type') == 'author']
+    if authors:
+        parts += ['', '## Authors'] + [f'- [{m["title"].split(" | ")[0]}]({absu(url_for(m["slug"]))})' for m in authors]
+    parts += ['', '## Company & legal', f'- [About SOMIN]({BASE}/about/)', f'- [Our Vision]({BASE}/vision/)', f'- [Privacy Policy]({BASE}/privacy-policy/)', f'- [SaaS Agreement]({BASE}/saas-terms-general/)',
               '', '## Contact', f'- Book a call: {CAL_DEFAULT}', f'- Try SOMIN: {BASE}/try-somin/', f'- Free Claude plugin: {BASE}/marketing-mondays-plugin/', '- Platform login: https://cloud.somin.ai/auth/signin', '']
     (OUT / 'llms.txt').write_text('\n'.join(parts), encoding='utf-8')
     # llms-full.txt: plain-text bodies of the blog for answer engines
@@ -1618,7 +2327,7 @@ def main():
             raise SystemExit(f'{f}: unknown layout {layout}')
 
     posts = []
-    for f in (ROOT / 'content/blog').glob('*.html'):
+    for f in sorted((ROOT / 'content/blog').glob('*.html')):
         meta, body = read_content(f)
         posts.append((meta, body))
     posts.sort(key=lambda x: x[0]['published'], reverse=True)
@@ -1631,12 +2340,16 @@ def main():
     manifest = build_lead_pages()
     pages += build_case_pages(manifest)
     pages.append(build_research_page())
+    pages.append(build_pricing_page())
+    pages.append(build_about_page(post_metas))
+    pages += build_author_pages(post_metas)
     build_cases_hub(manifest)
     build_404()
     build_redirects()
     n = build_sitemap()
     build_robots()
     build_llms(pages, post_metas, manifest)
+    save_dates()
     (OUT / '.nojekyll').write_text('', encoding='utf-8')
     print(f'Built {len(pages)} pages + {len(posts)} posts → {OUT} (sitemap: {n} URLs)')
 

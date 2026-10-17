@@ -61,7 +61,7 @@
   {
    "test": "Attribution captured (utm + gclid + fbclid)",
    "ok": true,
-   "detail": "{\"utm_source\": \"test_src\", \"utm_medium\": \"cpc\", \"utm_campaign\": \"migration_qa\", \"gclid\": \"TEST_GCLID\", \"fbclid\": \"TEST_FBCLID\", \"landing_page\": \"/\", \"referrer\": \"\", \"ga_client_id\": \"532550694.17922250"
+   "detail": "{\"utm_source\": \"test_src\", \"utm_medium\": \"cpc\", \"utm_campaign\": \"migration_qa\", \"gclid\": \"TEST_GCLID\", \"fbclid\": \"TEST_FBCLID\", \"landing_page\": \"/\", \"referrer\": \"\", \"ga_client_id\": \"540459835.17922448"
   },
   {
    "test": "Calendly opens as popup (not new tab)",
@@ -121,7 +121,7 @@
   {
    "test": "Hidden fields passed (utm_source, li_fat_id, page_path, lead_type)",
    "ok": true,
-   "detail": "#utm_source=linkedin&utm_campaign=q4_test&li_fat_id=TEST_LI&landing_page=/somin-for-brands/&ga_client_id=1215530762.1792225062&fbp=fb.1.1792225061812.504620131745303046&page_url=https://somin.ai/somin-for-brands/&page_pa"
+   "detail": "#utm_source=linkedin&utm_campaign=q4_test&li_fat_id=TEST_LI&landing_page=/somin-for-brands/&page_url=https://somin.ai/somin-for-brands/&page_path=/somin-for-brands/&cta_id=brands_hero_talk_to_sales&lead_type=trial"
   },
   {
    "test": "Typeform onReady \u2192 lead_form_ready",
@@ -146,7 +146,7 @@
   {
    "test": "GA4 thank_you_view",
    "ok": true,
-   "detail": "lead_form_open,cta_click,lead_form_ready,trial_form_submit,page_view,generate_lead,thank_you_view,scroll"
+   "detail": "page_view,lead_form_open,lead_form_ready,trial_form_submit,page_view,generate_lead,thank_you_view,scroll"
   },
   {
    "test": "GA4 generate_lead fired exactly once (GTM thank-you trigger)",
@@ -201,7 +201,7 @@
   {
    "test": "GA4 case_study_download",
    "ok": true,
-   "detail": "page_view,generate_lead,thank_you_view,scroll,case_study_auto_download,cta_click,case_study_download,click"
+   "detail": "page_view,lead_form_open,lead_form_ready,case_study_form_submit,page_view,generate_lead,thank_you_view,scroll,case_study_auto_download,cta_click,case_study_download,click"
   },
   {
    "test": "GA4 generate_lead fired exactly once (GTM thank-you trigger)",
@@ -266,7 +266,7 @@
   {
    "test": "case_study_form_submit + case_study_auto_download tracked",
    "ok": true,
-   "detail": "page_view,generate_lead,thank_you_view,scroll,case_study_auto_download"
+   "detail": "page_view,cases_filter,cases_filter,scroll,lead_form_open,cta_click,lead_form_ready,case_study_form_submit,page_view,generate_lead,thank_you_view,scroll,case_study_auto_download"
   },
   {
    "test": "Lead conversions fire exactly once (GA4 / Meta / LinkedIn 20526508)",
@@ -291,7 +291,7 @@
   {
    "test": "Hidden fields lead_type=plugin, utm_source, cta_id",
    "ok": true,
-   "detail": "#utm_source=plugin_test&utm_campaign=mm_plugin&landing_page=/&ga_client_id=679925123.1792225102&fbp=fb.1.1792225102442.223208818364215579&page_url=https://somin.ai/&page_path=/&cta_id=home_hero_plugin"
+   "detail": "#utm_source=plugin_test&utm_campaign=mm_plugin&landing_page=/&ga_client_id=1757961457.1792244908&fbp=fb.1.1792244908370.397950697574785324&page_url=https://somin.ai/&page_path=/&cta_id=home_hero_plugi"
   },
   {
    "test": "Redirect to /thank-you-plugin/?rid=\u2026",
@@ -311,7 +311,7 @@
   {
    "test": "plugin_form_submit + plugin_auto_download tracked",
    "ok": true,
-   "detail": "lead_form_open,cta_click,lead_form_ready,plugin_form_submit,page_view,generate_lead,thank_you_view,scroll,plugin_auto_download"
+   "detail": "page_view,lead_form_open,cta_click,lead_form_ready,plugin_form_submit,page_view,generate_lead,thank_you_view,scroll,plugin_auto_download"
   },
   {
    "test": "GA4 generate_lead fired exactly once (GTM thank-you-plugin trigger)",
@@ -341,7 +341,7 @@
   {
    "test": "Loop replay loads and plays when scrolled into view",
    "ok": true,
-   "detail": "{\"src\": \"https://somin.ai/assets/video/listen-landscape-report.webm\", \"rs\": 4, \"t\": 2.333697}"
+   "detail": "{\"src\": \"https://somin.ai/assets/video/listen-landscape-report.webm\", \"rs\": 4, \"t\": 2.351966}"
   },
   {
    "test": "Step tab switches the replay (Make \u2192 Figma)",
@@ -376,10 +376,10 @@
   {
    "test": "GA4 login_click",
    "ok": true,
-   "detail": "article_read_50,article_read_90,cta_click,login_click,scroll"
+   "detail": "article_read_50,article_read_90,cta_click,login_click,page_view,scroll"
   },
   {
-   "test": "All 153 pages load with no JS errors and exactly one GTM container",
+   "test": "All 181 pages load with no JS errors and exactly one GTM container",
    "ok": true,
    "detail": "[]"
   }

@@ -1,0 +1,525 @@
+{
+ "_doc": "SOMIN plans and prices, copied from the pricing sheet at source_url (Marketplace listing v2). The builder renders /pricing/ (table, billing toggle, currency switch, calculator, Stripe links), the SoftwareApplication offers and the pricing section of llms.txt from this file. Prices are monthly list prices in USD; term discounts apply to the plan base only.",
+ "source_url": "https://cloud.somin.ai/manuals/subscriptions.html",
+ "as_of": "2026-07",
+ "currency": "USD",
+ "taxes": "Prices exclude applicable taxes.",
+ "fx_fallback": {
+  "USD": 1,
+  "GBP": 0.76,
+  "EUR": 0.92,
+  "SGD": 1.34
+ },
+ "terms": [
+  {
+   "key": "m1",
+   "label": "Monthly",
+   "discount": 0,
+   "months": 1,
+   "cap": "/ mo",
+   "checkout": true
+  },
+  {
+   "key": "y1",
+   "label": "Annual",
+   "badge": "SAVE 10%",
+   "discount": 0.1,
+   "months": 12,
+   "cap": "/ mo · billed annually",
+   "checkout": true,
+   "default": true
+  },
+  {
+   "key": "y2",
+   "label": "2 years −16%",
+   "note": "via sales",
+   "discount": 0.16,
+   "months": 24,
+   "cap": "/ mo · 2-year term via sales",
+   "checkout": false
+  },
+  {
+   "key": "y3",
+   "label": "3 years −22%",
+   "note": "via sales",
+   "discount": 0.22,
+   "months": 36,
+   "cap": "/ mo · 3-year term via sales",
+   "checkout": false
+  }
+ ],
+ "plans": [
+  {
+   "key": "light",
+   "name": "SOMIN LIGHT",
+   "tagline": "Core channels, one desk",
+   "price": 529,
+   "for": "brands",
+   "seats": "1 Analyst seat",
+   "brands": 8,
+   "swaps": 8,
+   "seat_cap": 2,
+   "handle_blocks_cap": 2,
+   "handle_block_price": 190
+  },
+  {
+   "key": "pro",
+   "name": "SOMIN PRO",
+   "tagline": "All ten channels, in depth",
+   "price": 1740,
+   "for": "brands",
+   "seats": "1 Specialist seat",
+   "brands": 12,
+   "swaps": 15,
+   "seat_cap": 4,
+   "handle_blocks_cap": 2,
+   "handle_block_price": 390
+  },
+  {
+   "key": "aglight",
+   "name": "SOMIN AGENCY LIGHT",
+   "tagline": "Your whole client roster",
+   "price": 1790,
+   "for": "agencies",
+   "seats": "3 Analyst seats",
+   "brands": 30,
+   "swaps": 15,
+   "seat_cap": 5,
+   "handle_blocks_cap": 3,
+   "handle_block_price": 190
+  },
+  {
+   "key": "agpro",
+   "name": "SOMIN AGENCY PRO",
+   "tagline": "Depth at scale, plus API",
+   "price": 5290,
+   "for": "agencies",
+   "seats": "3 Specialist seats",
+   "brands": 70,
+   "swaps": 25,
+   "seat_cap": 7,
+   "handle_blocks_cap": 3,
+   "handle_block_price": 390
+  }
+ ],
+ "enterprise": {
+  "name": "SOMIN ENTERPRISE",
+  "tagline": "Multi-market · pools · CSM",
+  "price_label": "Custom",
+  "note": "multi-market private offers"
+ },
+ "addons": {
+  "analyst_seat": 300,
+  "specialist_seat": 600
+ },
+ "seat_types": {
+  "Analyst": "50 calls per rolling 5-hour window · 150 a week",
+  "Specialist": "120 calls per rolling 5-hour window · 400 a week"
+ },
+ "groups": [
+  {
+   "title": "Capacity & access",
+   "rows": [
+    {
+     "name": "Agentic seats",
+     "detail": "Every seat is one named user with full dashboard access and the agentic MCP connector — no dashboard-only seats. A seat is a pure call quota on a rolling 5-hour window plus a weekly ceiling (resets Monday 00:00 UTC, no rollover); hit a window cap mid-build and the seat pauses, then auto-resumes. Analyst: 50 calls / 5-hour window · 150 / week. Specialist: 120 / 5-hour window · 400 / week. From production logs the median complete pitch build is ≈30 calls. Seats are reassignable monthly, never shared. Additional seats can be added up to each plan's cap — 2 on Light, 4 on Pro, 5 on Agency Light, 7 on Agency Pro — at Analyst US$300 / month and Specialist US$600 / month; beyond the cap, upgrade or talk to sales.",
+     "values": [
+      {
+       "v": "1 Analyst",
+       "note": "One Analyst seat — dashboard + MCP. The seat carries its own quota: 50 calls per rolling 5-hour window · 150 a week — ≈22 complete pitch builds a month at the ≈30-call median."
+      },
+      {
+       "v": "1 Specialist",
+       "note": "One Specialist seat — dashboard + MCP. The seat carries its own quota: 120 calls per rolling 5-hour window · 400 a week — ≈58 complete pitch builds a month at the ≈30-call median."
+      },
+      {
+       "v": "3 Analyst",
+       "note": "Three Analyst seats — dashboard + MCP. Each seat carries its own quota: 50 calls per rolling 5-hour window · 150 a week — ≈22 complete pitch builds a month per seat (≈65 across the plan). Quotas are per seat, non-transferable."
+      },
+      {
+       "v": "3 Specialist",
+       "note": "Three Specialist seats — dashboard + MCP. Each seat carries its own quota: 120 calls per rolling 5-hour window · 400 a week — ≈58 complete pitch builds a month per seat (≈173 across the plan). Quotas are per seat, non-transferable."
+      },
+      "Custom mix"
+     ]
+    },
+    {
+     "name": "Brands monitored",
+     "detail": "Active brand handles under continuous crawl across the plan’s channel set — expandable in +10-handle blocks (US$190 / month on Light plans, US$390 / month on Pro plans) — up to 2 blocks on brand plans and 3 on agency plans; larger portfolios move up a tier or to Enterprise.",
+     "values": [
+      "8",
+      "12",
+      "30",
+      "70",
+      "Handle pools · 100+"
+     ]
+    },
+    {
+     "name": "Handle swaps / month",
+     "detail": "Re-points a handle to a new brand with its fresh 12-month deep crawl — re-pointing to an already-crawled brand is instant and unmetered; fair use applies.",
+     "values": [
+      "8",
+      "15",
+      "15",
+      "25",
+      "Unlimited (fair use)"
+     ]
+    },
+    {
+     "name": "No overage fees",
+     "detail": "Quotas pause and auto-resume — nothing ever bills past your plan. Hit a window cap mid-build and the seat waits for the next window; weekly ceilings reset Monday. No metered surprises, no volume fees.",
+     "values": [
+      "✓",
+      "✓",
+      "✓",
+      "✓",
+      "✓"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Organic channel monitoring",
+   "rows": [
+    {
+     "name": "Facebook Organic Monitoring",
+     "detail": "Continuous crawl of Facebook organic content for every monitored brand — posts, engagement and narrative signals.",
+     "values": [
+      "Yes",
+      "Yes",
+      "Yes",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "Instagram Organic Monitoring",
+     "detail": "Continuous crawl of Instagram organic content for every monitored brand — posts, engagement and narrative signals.",
+     "values": [
+      "Yes",
+      "Yes",
+      "Yes",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "TikTok Organic Monitoring",
+     "detail": "Continuous crawl of TikTok organic content for every monitored brand — posts, engagement and narrative signals.",
+     "values": [
+      "No",
+      "Yes",
+      "No",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "LinkedIn Organic Monitoring",
+     "detail": "Continuous crawl of LinkedIn organic content for every monitored brand — posts, engagement and narrative signals.",
+     "values": [
+      "No",
+      "Yes",
+      "No",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "Telegram Organic Monitoring",
+     "detail": "Continuous crawl of Telegram organic content for every monitored brand — posts, engagement and narrative signals.",
+     "values": [
+      "No",
+      "Yes",
+      "No",
+      "Yes",
+      "✓"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Ad library monitoring",
+   "rows": [
+    {
+     "name": "Meta Ads Library",
+     "detail": "Paid-side monitoring via Meta’s Ad Library — Facebook, Instagram and Audience Network creatives with run-length signals.",
+     "values": [
+      "Yes",
+      "Yes",
+      "Yes",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "Google Ads Transparency Center",
+     "detail": "Paid-side monitoring via Google’s Ads Transparency Center — Display, Search and YouTube creatives with run-length signals.",
+     "values": [
+      "Yes",
+      "Yes",
+      "Yes",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "LinkedIn Ads Library",
+     "detail": "Paid-side monitoring via LinkedIn’s Ad Library — sponsored-content and lead-gen creatives with run-length signals.",
+     "values": [
+      "No",
+      "Yes",
+      "No",
+      "Yes",
+      "✓"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Research & intelligence",
+   "rows": [
+    {
+     "name": "Perspective Studies",
+     "detail": "SOMIN’s core research engine — persona, topic, relevance, tension, proposition, brand-personality and product-incentive studies on any monitored cohort.",
+     "values": [
+      "Yes",
+      "Yes",
+      "Yes",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "SODA Demand Analysis",
+     "detail": "Customer-needs decoding from live category conversation — product focus, audience comparison and demand signals per brand.",
+     "values": [
+      "Yes",
+      "Yes",
+      "Yes",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "Brand Tracker",
+     "detail": "Longitudinal tracking per monitored brand — share of voice, engagement and content mix over time.",
+     "values": [
+      "Yes",
+      "Yes",
+      "Yes",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "Content Notifications",
+     "detail": "Alerts on monitored brands — new content shipped or a narrative shift in your category.",
+     "values": [
+      "Yes",
+      "Yes",
+      "Yes",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "Content Library",
+     "detail": "Searchable archive of every crawled asset — filterable across brands, channels and time.",
+     "values": [
+      "Yes",
+      "Yes",
+      "Yes",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "Custom Categories",
+     "detail": "Your own content taxonomies — every crawled asset auto-classified against them.",
+     "values": [
+      "No",
+      "Yes",
+      "No",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "Video Content Analysis",
+     "detail": "Frame-and-transcript understanding of video assets — hooks, claims and formats decoded per creative.",
+     "values": [
+      "No",
+      "Yes",
+      "No",
+      "Yes",
+      "✓"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Creative & scoring",
+   "rows": [
+    {
+     "name": "SOINSPIRE Ideation",
+     "detail": "Advanced communication ideation — angles, hooks and creative territories generated from your studies.",
+     "values": [
+      "No",
+      "Yes",
+      "No",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "Visual Content Expressions",
+     "detail": "AI renders of creative concepts in your brand style — ready for decks and tests.",
+     "values": [
+      "No",
+      "Yes",
+      "No",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "Owned Content Scoring",
+     "detail": "Predictive clickability scoring of your own drafts — before they ship.",
+     "values": [
+      "No",
+      "Yes",
+      "No",
+      "Yes",
+      "✓"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Data access",
+   "rows": [
+    {
+     "name": "Data Export",
+     "detail": "Raw and scored data out — CSV and XLSX for downstream analysis.",
+     "values": [
+      "No",
+      "Yes",
+      "No",
+      "Yes",
+      "✓"
+     ]
+    },
+    {
+     "name": "Data API",
+     "detail": "Programmatic access to studies and monitoring data — 100 requests a minute, keys scoped to your account, metered separately from seats.",
+     "values": [
+      "No",
+      "No",
+      "No",
+      "Included",
+      "Included at scale"
+     ]
+    }
+   ]
+  }
+ ],
+ "custom_reports": "SOMONITOR advanced communication-intelligence studies are delivered as custom engagements: contact SOMIN sales for a tailored quote.",
+ "policy": [
+  "Your subscription fee is billed in advance for the selected subscription period.",
+  "Your subscription renews automatically at the end of the subscription cycle.",
+  "You can cancel your subscription by disabling auto-renewal.",
+  "You can upgrade or downgrade your SOMIN plan; additional seats and brand-handle blocks can be added to any plan mid-cycle."
+ ],
+ "custom_quote": "Can't find a plan for your project, such as a multi-market deployment, brand-handle pools or an API-led integration? Talk to SOMIN sales for a custom private offer, including through your existing Google Cloud billing.",
+ "paylinks": {
+  "light": {
+   "m1": {
+    "0": "https://buy.stripe.com/fZu4gA0m094W2hSc049bO1g",
+    "a": "https://buy.stripe.com/14A7sMecQ1Cug8Id489bO1h",
+    "s": "https://buy.stripe.com/5kQbJ26Ko3KCe0Ac049bO1i",
+    "h": "https://buy.stripe.com/9B6eVe6Ko80S5u4c049bO1j",
+    "as": "https://buy.stripe.com/5kQaEY5Gk6WO9Kk5BG9bO1k",
+    "ah": "https://buy.stripe.com/9B6eVed8M2Gyf4Eggk9bO1l",
+    "sh": "https://buy.stripe.com/3cIfZic4IgxocWw2pu9bO1m",
+    "ash": "https://buy.stripe.com/28E3cw4Cgch82hSaW09bO1n"
+   },
+   "y1": {
+    "0": "https://buy.stripe.com/14A14ogkY4OG2hS1lq9bO1o",
+    "a": "https://buy.stripe.com/cNi3cwc4I3KC7Cc0hm9bO1p",
+    "s": "https://buy.stripe.com/00weVe9WA94W9Kk5BG9bO1q",
+    "h": "https://buy.stripe.com/28EfZi8Sw94W4q04xC9bO1r",
+    "as": "https://buy.stripe.com/fZu4gAecQ2Gyg8Id489bO1s",
+    "ah": "https://buy.stripe.com/3cI5kEfgU6WO4q03ty9bO1t",
+    "sh": "https://buy.stripe.com/4gM14o6Ko2Gy1dO1lq9bO1u",
+    "ash": "https://buy.stripe.com/8x228s0m01Cu3lW7JO9bO1v"
+   }
+  },
+  "pro": {
+   "m1": {
+    "0": "https://buy.stripe.com/8x2dRa1q43KCaOo2pu9bO1w",
+    "a": "https://buy.stripe.com/7sY3cw7Os0yq09Kfcg9bO1x",
+    "s": "https://buy.stripe.com/14AfZi6Ko0yq9KkaW09bO1y",
+    "h": "https://buy.stripe.com/cNieVec4I1CuaOoc049bO1z",
+    "as": "https://buy.stripe.com/bJe14o5Gk94W09K3ty9bO1A",
+    "ah": "https://buy.stripe.com/3cI5kE5Gk3KCaOo0hm9bO1B",
+    "sh": "https://buy.stripe.com/bJefZic4I5SKf4Ec049bO1C",
+    "ash": "https://buy.stripe.com/8x200kgkY3KC2hS7JO9bO1D"
+   },
+   "y1": {
+    "0": "https://buy.stripe.com/7sYcN67Osch83lW2pu9bO1E",
+    "a": "https://buy.stripe.com/eVqfZi5Gkbd45u4e8c9bO1F",
+    "s": "https://buy.stripe.com/7sYdRa4Cg1Cue0A2pu9bO1G",
+    "h": "https://buy.stripe.com/dRmfZigkYepgbSsggk9bO1H",
+    "as": "https://buy.stripe.com/8x2dRa7Os80S5u43ty9bO1I",
+    "ah": "https://buy.stripe.com/5kQ4gAecQftk09KaW09bO1J",
+    "sh": "https://buy.stripe.com/dRmaEY9WA0yq5u44xC9bO1K",
+    "ash": "https://buy.stripe.com/5kQcN62u8dlc9Kk1lq9bO1L"
+   }
+  },
+  "aglight": {
+   "m1": {
+    "0": "https://buy.stripe.com/5kQ14o5Gkbd43lW0hm9bO1M",
+    "a": "https://buy.stripe.com/bJedRac4Ibd49Kk7JO9bO1N",
+    "s": "https://buy.stripe.com/eVqdRad8M1CubSs2pu9bO1O",
+    "h": "https://buy.stripe.com/3cI4gA4CgftkcWwd489bO1P",
+    "as": "https://buy.stripe.com/cNi5kEb0E94W3lW6FK9bO1Q",
+    "ah": "https://buy.stripe.com/dRmaEY6Ko3KCbSs2pu9bO1R",
+    "sh": "https://buy.stripe.com/4gM3cw7Os3KC3lWfcg9bO1S",
+    "ash": "https://buy.stripe.com/14AbJ2c4I80S2hSd489bO1T"
+   },
+   "y1": {
+    "0": "https://buy.stripe.com/00w3cwd8M94WbSsfcg9bO1U",
+    "a": "https://buy.stripe.com/7sYdRaecQ2Gy7Cc1lq9bO1V",
+    "s": "https://buy.stripe.com/fZu4gA1q4epgbSsfcg9bO1W",
+    "h": "https://buy.stripe.com/4gM4gA7Os80SaOo2pu9bO1X",
+    "as": "https://buy.stripe.com/dRm28s6Ko1Cu3lWd489bO1Y",
+    "ah": "https://buy.stripe.com/7sY7sM9WA4OG2hSggk9bO1Z",
+    "sh": "https://buy.stripe.com/aFa7sM1q4bd41dOaW09bO20",
+    "ash": "https://buy.stripe.com/cNi6oI2u8epg9Kk2pu9bO21"
+   }
+  },
+  "agpro": {
+   "m1": {
+    "0": "https://buy.stripe.com/aFacN6d8M4OGg8I7JO9bO22",
+    "a": "https://buy.stripe.com/dRm14o5Gk0yq8Gg9RW9bO23",
+    "s": "https://buy.stripe.com/6oU5kEfgU1Cu2hSe8c9bO24",
+    "h": "https://buy.stripe.com/aFa7sMfgUdlc1dO8NS9bO25",
+    "as": "https://buy.stripe.com/5kQaEYd8M1Cu6y8aW09bO26",
+    "ah": "https://buy.stripe.com/3cI8wQecQ6WOcWw0hm9bO27",
+    "sh": "https://buy.stripe.com/cNi4gA5GkgxobSs3ty9bO28",
+    "ash": "https://buy.stripe.com/00weVe3yc3KCcWw9RW9bO29"
+   },
+   "y1": {
+    "0": "https://buy.stripe.com/dRmaEY5Gk94Wg8I6FK9bO2a",
+    "a": "https://buy.stripe.com/cNi7sM1q45SK4q0aW09bO2b",
+    "s": "https://buy.stripe.com/4gM4gA5Gkftk9Kkc049bO2c",
+    "h": "https://buy.stripe.com/28E7sM5Gkch8g8I9RW9bO2d",
+    "as": "https://buy.stripe.com/8x23cw3yc80S3lW4xC9bO2e",
+    "ah": "https://buy.stripe.com/fZufZi3yc6WO1dOfcg9bO2f",
+    "sh": "https://buy.stripe.com/bJebJ27Os94W09K6FK9bO2g",
+    "ash": "https://buy.stripe.com/28E3cw2u8gxo09K4xC9bO2h"
+   }
+  }
+ }
+}

@@ -19,6 +19,9 @@ python3 build.py --serve        # build into ./_site and serve on http://localho
 | `content/pages/<slug>.html` | One file per page → `/<slug>/`. `index.html` is the home page. |
 | `content/blog/<slug>.html` | Blog articles → `/blog/<slug>/`. |
 | `data/case-studies.json` | Case-study PDFs (Google Drive IDs) released after the case-study form. |
+| `data/organization.json` | Company, product and founder facts → the one Organization/SoftwareApplication node, `/about/`, `llms.txt`. |
+| `data/pricing.json` | Plans, prices, features and Stripe links (from cloud.somin.ai/manuals/subscriptions.html) → `/pricing/`, Offer schema. |
+| `data/content-dates.json` | Written by the build: last-changed date per URL for sitemap `lastmod` and `dateModified`. Commit it. |
 | `static/` | Copied as-is: `assets/css/site.css`, `assets/js/tracking.js`, `assets/js/site.js`, images, `CNAME`, favicon. |
 | `tests/check_static.py` | SEO / link / asset / markup QA over `_site/`. |
 | `tests/test_tracking.py` | Playwright end-to-end tracking test (GTM, GA4, Meta, LinkedIn, Clarity, Typeform, Calendly). |
@@ -206,6 +209,19 @@ case-study PDFs and the Claude plugin download automatically after their forms; 
   The Web Conference, ACM TOIS…) and talks from `data/research.json`, with ScholarlyArticle and Person schema; research strips
   sit on the home, agents, product, solution, comparison and plugin pages, and a one-line credit on case studies, blog posts,
   the cases hub, /try-somin/, /vision/ and in the footer.
+
+* SEO/AEO/GEO pass 2 (17 Oct 2026):
+  * One JSON-LD graph per page; Organization, SoftwareApplication, WebSite and founder come from `data/organization.json`
+    (15 pages had two FAQPage blocks and 14 had two conflicting Organization nodes). The home Organization now has a logo,
+    `alternateName`, contact point, markets and the merged `sameAs` list.
+  * `/pricing/` from `data/pricing.json` (the cloud.somin.ai plans sheet) with Offer schema, `/about/` (AboutPage entity page)
+    and `/authors/` + one profile page per blog author; bylines link to them. All three are in the nav/footer and `llms.txt`.
+  * 16 static translations of the home page (`/zh-hans/` … `/ru/`) with hreflang + x-default, translated title, description and
+    FAQ schema; the hero language menu links to them and `<html lang>` follows the chosen language.
+  * GTM starts on the first interaction or 2.5 s after load (see `docs/TRACKING.md`), cutting main-thread work on first paint.
+  * `og:image:width/height` read from the actual image; sitemap `lastmod` from `data/content-dates.json` (+ hreflang links,
+    no ignored `priority`); robots.txt repeats the Disallow lines for every named AI crawler (and lists more of them);
+    case-study Articles carry `datePublished`/`dateModified`; three home H2s name SOMIN / the topic; ` -- ` became `—` in copy.
 
 ## 7. Things fixed during the migration (were broken on the Leadpages site)
 

@@ -59,13 +59,29 @@ for f in pages:
     for bad in ('leadpages', 'lpcontent', 'htmlpub', 'data-leadbox', 'center.io', 'lp-button-react'):
         if bad in t.lower():
             problems.append(f'{rel}: Leadpages leftover "{bad}"')
-    # --- JSON-LD
+    # --- JSON-LD (one graph per page: no duplicate @id, one Organization, at most one FAQPage)
+    ld_nodes = []
     for js in re.findall(r'<script type="application/ld\+json">(.*?)</script>', t, re.S):
         stats['jsonld_blocks'] += 1
         try:
-            json.loads(js)
+            d = json.loads(js)
+            ld_nodes += d.get('@graph', [d]) if isinstance(d, dict) else d
         except Exception as e:
             problems.append(f'{rel}: invalid JSON-LD ({e})')
+    ids = [n.get('@id') for n in ld_nodes if isinstance(n, dict) and n.get('@id')]
+    for i in sorted({i for i in ids if ids.count(i) > 1}):
+        problems.append(f'{rel}: JSON-LD @id {i} defined {ids.count(i)} times')
+    kinds = [n.get('@type') for n in ld_nodes if isinstance(n, dict)]
+    if kinds.count('FAQPage') > 1 or kinds.count('Organization') > 1:
+        problems.append(f'{rel}: JSON-LD has {kinds.count("FAQPage")} FAQPage / {kinds.count("Organization")} Organization nodes (max 1)')
+    # --- hreflang: every alternate exists and lists this page back
+    for hl, href in re.findall(r'<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">', head):
+        if not href.startswith(BASE + '/') or not exists(href[len(BASE):]):
+            problems.append(f'{rel}: hreflang {hl} points at missing {href}')
+            continue
+        other = (SITE / href[len(BASE) + 1:] / 'index.html') if href.endswith('/') else SITE / href[len(BASE) + 1:]
+        if other.exists() and f'href="{BASE}{rel}"' not in other.read_text(encoding='utf-8')[:20000]:
+            problems.append(f'{rel}: hreflang {hl} target {href} does not link back')
     # --- case-study standard (docs/CASE_STUDY_SEO.md)
     if 'data-page-type="case_study"' in t and robots and robots.group(1).startswith('index'):
         tt = html.unescape(title.group(1)) if title else ''

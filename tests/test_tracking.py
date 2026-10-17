@@ -469,6 +469,7 @@ async def main():
                 pg.on('pageerror', lambda e: errs.append(str(e)[:160]))
                 try:
                     r = await pg.goto(BASE + path, wait_until='load', timeout=45000)
+                    await pg.mouse.wheel(0, 300)          # GTM starts on the first interaction (tracking.js gtm_delay_ms)
                     await pg.wait_for_timeout(1800)
                     n = await pg.evaluate("Object.keys(window.google_tag_manager||{}).filter(k=>k.startsWith('GTM-')).length")
                     if not r or r.status != 200 or errs or n != 1:
