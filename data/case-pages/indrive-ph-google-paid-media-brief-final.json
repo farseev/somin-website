@@ -1,0 +1,110 @@
+{
+  "key": "indrive-ph-google-paid-media-brief-final",
+  "slug": "brands-indrive-philippines-case-study",
+  "section": "brands",
+  "client": "inDrive",
+  "client_short": "inDrive",
+  "seo_title": "inDrive Case Study: Philippine Google Display Ads | SOMIN",
+  "description": "SOMIN read 24 months of Philippine ride-hailing Google Ads, found no brand runs bespoke display creative, and built 108 inDrive banners on 3 pillars.",
+  "eyebrow": "Brand case study · Ride-hailing · Philippines",
+  "h1": "inDrive's rivals buy app installs on Google, leaving brand display empty",
+  "h1_em": "leaving brand display empty",
+  "lede": "For inDrive, SOMIN analysed 24 months of Google Search, Display Network and YouTube ads from 7 ride-hailing and delivery brands in the Philippines, filtered to commuters. inDrive had 169 brand detections, behind Maxim and Angkas, and the category ran almost only automated app-install campaigns. SOMIN mapped the whitespace into 3 pillars and generated 108 display banners.",
+  "meta_line": "A SOMIN brand briefing · Aug 2024 to Aug 2026 · Philippines · Commuters",
+  "stats": [
+    {
+      "num": "24",
+      "unit": "months",
+      "label": "Of Google Ads data"
+    },
+    {
+      "num": "7",
+      "unit": "",
+      "label": "Brands tracked"
+    },
+    {
+      "num": "108",
+      "unit": "banners",
+      "label": "Display creative across 3 pillars"
+    }
+  ],
+  "challenge": {
+    "title": "Why the brief moved from Grab to inDrive and commuters",
+    "body": "The brief started with Grab, but Grab had zero posts of its own on Google Ads in this workspace over 24 months; its measured paid media was 100% Facebook. The client redirected the brief to inDrive, which has a real Google Ads footprint, and shifted the audience focus to commuters. The question was where inDrive should play in Google paid media."
+  },
+  "approach": {
+    "title": "8 quarterly studies of commuter-filtered Google paid media",
+    "points": [
+      "Used only Google Search, Search Partners, Display Network and YouTube ads, filtered to commuters, with no organic data.",
+      "Ran 8 quarterly studies to track tensions, personas and formats over 24 months.",
+      "Mapped inDrive's brand traits and product mix, then sorted narratives into owned, whitespace, contested and fading lanes.",
+      "Built 3 insight chains, each running from persona to tension, angle, story and proposition.",
+      "Drew brand colours and tone from inDrive's own organic posts for the art direction."
+    ]
+  },
+  "findings_title": "App-install sameness, ownable fairness and Angkas-held safety",
+  "findings": [
+    {
+      "title": "One format for everyone",
+      "body": "In sampled category creatives, 194 of 194 in Year 1 and 179 of 185 in Year 2 were app campaigns with install calls to action. Nobody runs bespoke, brand-led display."
+    },
+    {
+      "title": "Fairness is ownable",
+      "body": "Fairness is inDrive's most-tagged brand trait, with 91 detections ahead of Affordability at 75. Competitors talk generically about lower cost; none contest the agree-on-the-fare framing."
+    },
+    {
+      "title": "Safety belongs to Angkas, for now",
+      "body": "A safety and trust theme recurs in at least 4 of 8 quarters, owned by Angkas at 85-100% share each time. inDrive's share of these themes is 0-3 posts in every quarter."
+    }
+  ],
+  "delivered": {
+    "title": "A whitespace map, 3 insight chains and 108 inDrive banners",
+    "points": [
+      "A share-of-voice view of 7 brands on Google Ads over 24 months",
+      "A trend read across 8 quarters, with each shift labelled stable, falling or directional",
+      "A whitespace map: Fair Fare Control, Safety & Trust, Time & Traffic and a fading eco-conscious lane",
+      "3 insight chains, each from persona to tension, angle, story and propositions",
+      "108 display banners, 36 concepts per pillar across awareness, consideration and conversion, every headline and CTA at 9 words or fewer"
+    ]
+  },
+  "quote": {
+    "text": "This is itself a whitespace: nobody in-category is running bespoke, brand-led Display creative",
+    "source": "From the SOMIN brief"
+  },
+  "outcome": {
+    "title": "inDrive should own fare-setting and claim Safety & Trust",
+    "body": "The brief recommends leaning inDrive's display creative into the “you set the fare together” claim, which is its alone in this channel, and claiming the Safety & Trust whitespace Angkas holds. On time and traffic, it suggests loss-aversion framing, a distinct angle rather than a louder version of the same congestion complaint."
+  },
+  "faq": [
+    {
+      "q": "Why does the inDrive case mention Grab?",
+      "a": "Grab was the original subject, but it had no Google Ads posts of its own in the workspace over 24 months. The client redirected the brief to inDrive and to a commuter audience."
+    },
+    {
+      "q": "What does the creative library include?",
+      "a": "108 display banners generated with SOMIN image-generate and rendered in inDrive's brand identity: 36 per pillar, split into 12 awareness, 12 consideration and 12 conversion concepts."
+    },
+    {
+      "q": "Can the figures be checked?",
+      "a": "Yes. Every figure traces to a workspace, profile, study, persona, tension, angle, story or proposition ID in the SOMIN platform, listed in the brief's audit trail."
+    }
+  ],
+  "slides": [
+    {
+      "file": "/assets/img/cases/slides/indrive-ph-google-paid-media-brief-final-1.webp",
+      "caption": "Fair Fare Control awareness banners",
+      "alt": "Grid of 12 inDrive display banners for the Fair Fare Control pillar, with lime green accents and lines such as 'Who really should set your ride's price?'"
+    },
+    {
+      "file": "/assets/img/cases/slides/indrive-ph-google-paid-media-brief-final-2.webp",
+      "caption": "Google Ads share of voice, 24 months",
+      "alt": "Bar chart of Google Ads brand detections over 24 months: Maxim 406, Angkas 204, inDrive 169, GSM 15, Foodpanda 7, Grab 1, JoyRide 0"
+    },
+    {
+      "file": "/assets/img/cases/slides/indrive-ph-google-paid-media-brief-final-3.webp",
+      "caption": "Where the commuter conversation is open",
+      "alt": "Whitespace map with four columns: Fair Fare Control as claimable, Safety & Trust as whitespace, Time & Traffic as contested and eco-conscious commuting as fading"
+    }
+  ],
+  "image_prompt": "Cinematic rush-hour street in Metro Manila, commuters waiting at the kerb as cars inch through traffic in a warm sunset haze, lime and deep navy tones. No text, no logos, no brand marks, no recognisable people."
+}

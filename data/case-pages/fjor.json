@@ -1,0 +1,110 @@
+{
+  "key": "fjor",
+  "slug": "brands-fjor-case-study",
+  "section": "brands",
+  "client": "Fjor",
+  "client_short": "Fjor",
+  "seo_title": "Fjor Case Study: Keto App Messaging on Meta | SOMIN",
+  "description": "SOMIN read 3,676 Meta ads from 10 diet and fitness apps for Fjor and found its US audience over-indexes on social media shopping, at a GWI index of about 302.",
+  "eyebrow": "Brand case study · Health and fitness apps · USA",
+  "h1": "Fjor's keto audience buys visible results, not health lectures",
+  "h1_em": "not health lectures",
+  "lede": "Fjor makes a keto diet app that competes on Meta with BetterMe, Noom, Mad Muscles and others. SOMIN read 3,676 Meta ads from 10 diet and fitness apps with above-average predicted click-through rates, from April 2024 to April 2025, then refined Fjor's messages with GWI data. Its US audience is social first, over-indexing on social media shopping at an index of about 302.",
+  "meta_line": "A SOMIN brand briefing · April 2024 – April 2025 · USA · Social network product researchers interested in fitness and health food",
+  "stats": [
+    {
+      "num": "3,676",
+      "unit": "",
+      "label": "Pieces of ad media analysed"
+    },
+    {
+      "num": "10",
+      "unit": "",
+      "label": "Diet and fitness apps compared"
+    },
+    {
+      "num": "302",
+      "unit": "",
+      "label": "GWI index for social media shoppers"
+    }
+  ],
+  "challenge": {
+    "title": "What Fjor's rivals say in their best-performing Meta ads",
+    "body": "Fjor's keto diet app (Keto Diet App in the analysis) competes on Meta with apps such as BetterMe, Noom, Mad Muscles, OrganicFit and Atkins. The question was which personas and pain points those rivals address in their best-performing ads, and how Fjor should speak to the audience it wants to win."
+  },
+  "approach": {
+    "title": "3,676 Meta ads, two stories and a GWI audience check",
+    "points": [
+      "Read Meta ads from 10 apps across Instagram, Facebook, Messenger and the ads network, filtered to above-average predicted CTR and read as app-install ads.",
+      "Identified the personas and pain points behind those ads, then chose a focus persona and a focus pain point.",
+      "Combined persona, character, industry tensions, angles and product data to generate two stories for Fjor.",
+      "Wrote key messages from each story in emotional, playful and direct-to-action tones.",
+      "Refined every message against a GWI snapshot of US social network product researchers interested in fitness, personal healthcare and health food."
+    ]
+  },
+  "findings_title": "Rivals hold the focus persona, and the audience is social first",
+  "findings": [
+    {
+      "title": "Three rivals address the focus pain point while Fjor lags",
+      "body": "Challenges in Building Healthy Habits and Achieving Fitness Goals was addressed by OrganicFit, BetterMe and Mad Muscles App, while Keto App was lagging behind."
+    },
+    {
+      "title": "Five rivals win the Wellness Enthusiast persona",
+      "body": "This persona was successfully targeted by BetterMe, Noom, Mad Muscles, OrganicFit and Atkins, with above-average predicted click-through rates on ads optimised for conversions."
+    },
+    {
+      "title": "The audience over-indexes on social shopping, at about 302",
+      "body": "GWI showed the audience over-indexes on social media shopping (index ~302), influencer recommendations (~204) and a social 'buy' button (~192), and under-indexes on learning new skills (~56)."
+    }
+  ],
+  "delivered": {
+    "title": "Fjor's key messages, rewritten with GWI audience data",
+    "points": [
+      "Persona and pain-point maps of what competing apps say in their highest predicted-CTR Meta ads.",
+      "A focus persona, Wellness Enthusiast, and a focus pain point, Challenges in Building Healthy Habits and Achieving Fitness Goals.",
+      "Two AI-generated stories with key messages in emotional, playful and direct-to-action tones.",
+      "A GWI audience read: the top five over- and under-indexed behaviours and a strategic audience profile.",
+      "GWI-refined key messages with the reason for every change, paired with ad mock-ups."
+    ]
+  },
+  "quote": {
+    "text": "Avoid heavy messaging on education, deep health rationale, or saving money incentives - this audience is emotionally and socially motivated, not rationally or practically.",
+    "source": "From the SOMIN briefing"
+  },
+  "outcome": {
+    "title": "Fjor should sell visible results, status and lifestyle",
+    "body": "SOMIN recommends a socially shareable brand narrative built on visible results, status-driven benefits and lifestyle enhancement, carried by influencer collaborations, user-generated content and aesthetic-driven campaigns. In the refined copy, 'a quiet decision to believe in yourself' becomes 'a moment in the spotlight'."
+  },
+  "faq": [
+    {
+      "q": "Which apps were in the competitive set?",
+      "a": "Keto Diet (YourKetoPlan), OrganicFit, Unimeal, BetterMe: Health Coaching, Carb Manager, Keto Cycle, Atkins, Keto Diet App, Noom and Mad Muscles App."
+    },
+    {
+      "q": "What did the GWI data add?",
+      "a": "It validated and refined the narratives for US social network product researchers interested in fitness, personal healthcare and health food. Each message was rewritten towards appearance, confidence and social validation, with the index behind each change."
+    },
+    {
+      "q": "What should Fjor avoid?",
+      "a": "Educational, achievement-oriented or deeply rational messaging. The audience under-indexes on learning new skills and being successful, so health fear tactics and medical-centric narratives won't resonate."
+    }
+  ],
+  "slides": [
+    {
+      "file": "/assets/img/cases/slides/fjor-1.webp",
+      "caption": "GWI-refined direct-to-action key messages",
+      "alt": "Slide of direct-to-action key messages for Fjor refined with GWI data, beside a 'Capture your glow' keto ad mock-up with an avocado and its heatmap."
+    },
+    {
+      "file": "/assets/img/cases/slides/fjor-2.webp",
+      "caption": "Focus pain point in competitor ads",
+      "alt": "Slide on the focus pain point Challenges in Building Healthy Habits and Achieving Fitness Goals, with an illustration of a man training in a gym."
+    },
+    {
+      "file": "/assets/img/cases/slides/fjor-3.webp",
+      "caption": "Top over-indexed GWI audience categories",
+      "alt": "Bar charts of the top over-indexed GWI categories for the target audience, led by social media shoppers at an index of 302."
+    }
+  ],
+  "image_prompt": "A bright, sunlit kitchen counter with a colourful keto plate of avocado, eggs and greens, a phone on a stand and a rolled yoga mat in the background, fresh and aspirational. No text, no logos, no brand marks, no recognisable people."
+}

@@ -66,6 +66,45 @@ for f in pages:
             json.loads(js)
         except Exception as e:
             problems.append(f'{rel}: invalid JSON-LD ({e})')
+    # --- case-study standard (docs/CASE_STUDY_SEO.md)
+    if 'data-page-type="case_study"' in t and robots and robots.group(1).startswith('index'):
+        tt = html.unescape(title.group(1)) if title else ''
+        dsc = html.unescape((re.search(r'<meta name="description" content="([^"]*)"', head) or [None, ''])[1])
+        if not (40 <= len(tt) <= 60) or not tt.endswith('| SOMIN') or 'Case Study' not in tt:
+            problems.append(f'{rel}: case title must be 40-60 chars, "<Client> Case Study: <Topic> | SOMIN" ({len(tt)}: {tt})')
+        if not (140 <= len(dsc) <= 160):
+            problems.append(f'{rel}: case description {len(dsc)} chars (140-160)')
+        mp = body[body.find('<main'):body.find('</main>')] if '<main' in body else body
+        clean = re.sub(r'<script\b.*?</script>|<style\b.*?</style>', '', mp, flags=re.S)
+        hs = [(lv, re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', '', x))).strip()) for lv, x in re.findall(r'<h([1-6])\b[^>]*>(.*?)</h\1>', clean, re.S)]
+        hs = [(lv, x) for lv, x in hs if x]
+        main_h = hs
+        h1s = [x for lv, x in main_h if lv == '1']
+        if h1s and not (45 <= len(h1s[0]) <= 75 and not h1s[0].endswith('.')):
+            problems.append(f'{rel}: case H1 must be 45-75 chars without a full stop ({len(h1s[0])}: {h1s[0]})')
+        h2s = [x for lv, x in main_h if lv == '2']
+        for x in h2s:
+            if x.endswith('.') or '—' in x or len(x) > 70:
+                problems.append(f'{rel}: case H2 "{x}" (no full stop, no em dash, <= 70 chars)')
+        if not any(x.endswith(' case study FAQ') for x in h2s):
+            problems.append(f'{rel}: case page has no "<Client> case study FAQ" H2')
+        lv = [int(a) for a, _ in main_h]
+        for a, b in zip(lv, lv[1:]):
+            if b > a + 1:
+                problems.append(f'{rel}: heading level skips h{a}->h{b}')
+                break
+        graph = []
+        for js in re.findall(r'<script type="application/ld\+json">(.*?)</script>', t, re.S):
+            try:
+                d = json.loads(js)
+                graph += d.get('@graph', [d])
+            except Exception:
+                pass
+        kinds = [n.get('@type') for n in graph]
+        if kinds.count('Article') != 1 or kinds.count('FAQPage') != 1:
+            problems.append(f'{rel}: case schema needs exactly one Article and one FAQPage (has {kinds.count("Article")}/{kinds.count("FAQPage")})')
+        if 'somin.ai/case-studies/' in t:
+            problems.append(f'{rel}: schema points at a non-existent /case-studies/ URL')
     # --- links + assets
     for m in re.finditer(r'\b(href|src)="([^"]+)"', body + head):
         attr, url = m.group(1), html.unescape(m.group(2))

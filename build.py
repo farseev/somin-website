@@ -170,7 +170,81 @@ def reviews_section(attrs):
             f'</div></section>')
 
 
+# ------------------------------------------------------------------ research (peer-reviewed papers and talks)
+RESEARCH = json.loads((ROOT / 'data/research.json').read_text(encoding='utf-8'))
+RS_VENUES = [('AAAI', 'AAAI Conference on Artificial Intelligence'), ('ACM MM', 'ACM International Conference on Multimedia'),
+             ('SIGIR', 'ACM SIGIR Conference on Research and Development in Information Retrieval'),
+             ('WSDM', 'ACM International Conference on Web Search and Data Mining'), ('WWW', 'The ACM Web Conference'),
+             ('ACM TOIS', 'ACM Transactions on Information Systems')]
+RS_LEDE = ("SOMIN's co-founder, Prof. Aleks Farseev, publishes research on audience profiling, personality-driven content and explainable AI "
+           "for advertising at AAAI, ACM Multimedia, SIGIR, WSDM and The Web Conference. Those models run inside SOMIN, next to playbooks from "
+           "marketers who work with brand and agency teams every day.")
+
+
+def _rs_papers(themes=None, limit=3):
+    by_id = {p['id']: p for p in RESEARCH['papers']}
+    order = [by_id[i] for i in RESEARCH['featured']] + [p for p in RESEARCH['papers'] if p['id'] not in RESEARCH['featured']]
+    if themes:
+        order = [p for p in order if p['theme'] in themes] + [p for p in order if p['theme'] not in themes]
+    return [p for p in order if p['peer_reviewed']][:limit]
+
+
+def _rs_venue_link(short):
+    p = next((p for p in RESEARCH['papers'] if p['venue_short'] == short and p['tier'] == 'top'), None) or \
+        next((p for p in RESEARCH['papers'] if p['venue_short'] == short), None)
+    return p['url'] if p else '/research/'
+
+
+def rs_venue_chips(cls='rs-venues'):
+    return f'<div class="{cls}">' + ''.join(
+        f'<a class="rs-chip" href="{E(_rs_venue_link(s))}" target="_blank" rel="noopener" title="{E(full)}" data-track="research_venue_click" data-gtm-id="research_venue">{E(s)}</a>'
+        for s, full in RS_VENUES) + '</div>'
+
+
+def rs_paper_card(p):
+    return (f'<a class="rs-paper" href="{E(p["url"])}" target="_blank" rel="noopener" data-track="research_paper_click" data-gtm-id="research_paper">'
+            f'<span class="rs-venue">{E(p["venue_short"])} · {p["year"]}</span><strong>{E(p["title"])}</strong>'
+            f'<span class="rs-topic">{E(p["topic"][:1].upper() + p["topic"][1:])}</span><span class="rs-kind">{E(p["kind"])} · read the paper</span></a>')
+
+
+def rs_talk_link(t):
+    yr = t['date'][:4]
+    return (f'<a class="rs-talk" href="{E(t["url"])}" target="_blank" rel="noopener" data-track="research_talk_click" data-gtm-id="research_talk">'
+            f'<span>{E(t["kind"])} · {yr}</span>{E(t["title"])}</a>')
+
+
+def research_strip(attrs):
+    """'Built by seasoned marketers and an AI professor': venues, papers and talks from data/research.json (<!--mm:research-->)."""
+    if attrs.get('compact') == '1':
+        return (f'<div class="rs-line{(" " + E(attrs["cls"])) if attrs.get("cls") else ""}"><span class="rs-line-k">Built by seasoned marketers and an AI professor</span>'
+                f'<span class="rs-line-t">Research published at</span>{rs_venue_chips("rs-venues rs-venues--line")}'
+                f'<a class="rs-line-more" href="/research/" data-gtm-id="research_line_more">See the research →</a></div>')
+    themes = [t.strip() for t in (attrs.get('themes') or '').split(',') if t.strip()]
+    papers = ''.join(rs_paper_card(p) for p in _rs_papers(themes, int(attrs.get('limit') or 3)))
+    by_id = {t['id']: t for t in RESEARCH['talks']}
+    talks = ''.join(rs_talk_link(by_id[i]) for i in RESEARCH['featured_talks'][:int(attrs.get('talks') or 3)])
+    title = attrs.get('title') or 'Built by seasoned marketers and an AI professor.'
+    cls = 'rs-section' + (' sec sec--mist' if attrs.get('native') == 'mist' else ' sec sec--light' if attrs.get('native') == '1' else '')
+    return (f'<section class="{cls}" aria-label="Research behind SOMIN"><div class="rs-wrap">'
+            f'<div class="rs-head"><div><p class="rs-kicker">Peer-reviewed research</p><h2>{E(title)}</h2><p class="rs-lede">{E(attrs.get("lede") or RS_LEDE)}</p></div>'
+            f'{rs_venue_chips()}</div><div class="rs-grid">{papers}</div>'
+            f'<div class="rs-talks"><span class="rs-tlabel">Watch the talks</span>{talks}</div>'
+            f'<p class="rs-more"><a class="rs-btn" href="/research/" data-gtm-id="research_strip_all">All papers and talks</a>'
+            f'<a class="rs-ext" href="{E(RESEARCH["profiles"][0]["url"])}" target="_blank" rel="noopener" data-track="research_profile_click" data-gtm-id="research_scholar">Google Scholar profile</a></p>'
+            f'</div></section>')
+
+
+def research_note():
+    """One-line research credit for the 'About SOMIN' block of case studies."""
+    links = ', '.join(f'<a href="{E(_rs_venue_link(s))}" target="_blank" rel="noopener" data-track="research_venue_click">{E(n)}</a>'
+                      for s, n in (('AAAI', 'AAAI'), ('ACM MM', 'ACM Multimedia'), ('SIGIR', 'SIGIR'), ('WSDM', 'WSDM')))
+    return (f'<p class="rs-note">Built by seasoned marketers and an AI professor: the methods behind this study are peer-reviewed at {links} '
+            f'and in <a href="{E(_rs_venue_link("ACM TOIS"))}" target="_blank" rel="noopener" data-track="research_venue_click">ACM TOIS</a>. '
+            f'<a href="/research/" data-gtm-id="case_research_note">See the research and talks</a>.</p>')
+
+
 def expand_shortcodes(body):
+    body = re.sub(r'<!--\s*mm:research((?:\s+\w+="[^"]*")*)\s*-->', lambda m: research_strip(dict(re.findall(r'(\w+)="([^"]*)"', m.group(1)))), body)
     body = re.sub(r'<!--\s*mm:reviews((?:\s+\w+="[^"]*")*)\s*-->', lambda m: reviews_section(dict(re.findall(r'(\w+)="([^"]*)"', m.group(1)))), body)
     body = re.sub(r'<!--\s*mm:ratings((?:\s+\w+="[^"]*")*)\s*-->', lambda m: rating_badges(dict(re.findall(r'(\w+)="([^"]*)"', m.group(1))).get('cls', '')), body)
     body = re.sub(r'<!--\s*mm:replay\s+([a-z0-9-]+)\s*-->', lambda m: replay_figure(m.group(1)), body)
@@ -270,7 +344,7 @@ def render_header(path):
             items.append(
                 f'<li class="nav-item has-sub{current}"><a class="nav-link" {link_attrs(n)}>{E(n["label"])}</a>'
                 f'<button class="nav-sub-toggle" type="button" aria-expanded="false" aria-controls="{sid}" aria-label="Show {E(n["label"])} menu">{ICON["chev"]}</button>'
-                f'<ul class="nav-sub" id="{sid}">{sub}</ul></li>')
+                f'<ul class="nav-sub{" nav-sub--cols" if len(n["children"]) > 12 else ""}" id="{sid}">{sub}</ul></li>')
         else:
             items.append(f'<li class="nav-item{current}"><a class="nav-link" {link_attrs(n)}>{E(n["label"])}</a></li>')
     cta = CFG['nav_cta']
@@ -298,7 +372,7 @@ def render_footer():
   <nav class="f-compare" aria-label="Comparisons"><ul>{compare}</ul></nav>
   <div class="f-main">
     <div class="f-brand"><a href="/" aria-label="SOMIN home" style="text-decoration:none"><span class="wm-logo" aria-hidden="true"><span class="so">SO</span><span class="min">MIN</span></span></a>
-      <p>{E(SITE['tagline'][:1].upper() + SITE['tagline'][1:])}. Built in Singapore, used across 11+ markets.</p>
+      <p>{E(SITE['tagline'][:1].upper() + SITE['tagline'][1:])}. Built in Singapore by seasoned marketers and an AI professor, used across 11+ markets. <a href="/research/" data-gtm-id="footer_research">Read the research</a>.</p>
       <a class="btn btn--line btn--sm" href="{CAL_DEFAULT}" data-gtm-id="footer_book_a_call_btn">Book a call</a></div>
     {cols}
   </div>
@@ -567,7 +641,9 @@ def build_fragment_page(meta, body):
                  'You found the secret button! As a reward for your curiosity, enjoy 14 days of SOMIN on us. '
                  'Just click and drop your details in the form below.</a>')
     meta.setdefault('group', meta.get('type'))
-    if path != '/' and not any('BreadcrumbList' in js for js in meta.get('jsonld', [])):
+    if meta.get('type') == 'case_study':
+        body = case_fragment(meta, body, path)
+    elif path != '/' and not any('BreadcrumbList' in js for js in meta.get('jsonld', [])):
         meta['_schema'] = [breadcrumbs([('Home', '/'), ((meta.get('seo_title') or meta['title']).split(' | ')[0], path)])]
     body = theme_fragment(body)
     body = hero_image(body, meta, 'u-band u-hero')
@@ -614,20 +690,347 @@ def build_doc_page(meta, body):
 def hero_image(body, meta, marker):
     """Topic background (SOMIN image-generate, static/assets/img/cases/bg/<slug>.webp) behind a case study's hero."""
     slug = meta.get('slug') or ''
-    if meta.get('type') != 'case_study' or not (ROOT / f'static/assets/img/cases/bg/{slug}.webp').exists():
+    img = meta.get('hero_bg')
+    if not img and meta.get('type') == 'case_study' and (ROOT / f'static/assets/img/cases/bg/{slug}.webp').exists():
+        img = f'/assets/img/cases/bg/{slug}.webp'
+    if not img:
         return body
     i = body.find(f'class="{marker}')
     if i < 0:
         return body
-    j = i + len(f'class="{marker}')
-    return body[:j] + f' u-hero--img" style="--hero-img:url(/assets/img/cases/bg/{slug}.webp)' + body[j:]
+    k = body.find('"', i + len('class="'))          # end of the class attribute value
+    return body[:k] + f' u-hero--img" style="--hero-img:url({img})' + body[k:]
 
 
-def build_native_page(meta, body):
+CASE_PAGES = {f.stem: json.loads(f.read_text(encoding='utf-8')) for f in sorted((ROOT / 'data/case-pages').glob('*.json'))}
+SECTION_LABEL = {'brands': ('Brand', 'brands'), 'agencies': ('Agency', 'agencies'), 'creators': ('Creator', 'creators')}
+_MANIFEST = {}
+
+
+def manifest_cached():
+    if not _MANIFEST:
+        _MANIFEST.update(case_manifest())
+    return _MANIFEST
+
+
+def case_section(key):
+    it = CASES['items'].get(key) or {}
+    return (it.get('hub') or {}).get('section') or {'influencers': 'creators'}.get(it.get('category'), it.get('category')) or 'brands'
+
+
+def related_cases(key, section, n=3):
+    """Next n case pages in the same hub section (cyclic, so internal links spread evenly across all cases)."""
+    man = manifest_cached()
+    rows = [(k, v) for k, v in sorted(man.items(), key=lambda kv: kv[1]['order']) if v['on_hub'] and v['section'] == section and v['page']]
+    keys = [k for k, _ in rows]
+    if key in keys:
+        i = keys.index(key)
+        rows = rows[i + 1:] + rows[:i]
+    return rows[:n]
+
+
+def related_cards(key, section, gid):
+    cards = ''
+    for k, v in related_cases(key, section):
+        summ = v['summary'] if len(v['summary']) <= 140 else v['summary'][:137].rsplit(' ', 1)[0] + '…'
+        cards += (f'<a class="cs-rel" href="{E(v["page"])}" data-gtm-id="case_{gid}_related"><span>{E(v["category"] or "Case study")}'
+                  f'{(" · " + E(v["market"])) if v.get("market") else ""}</span><strong>{E(v["title"])}</strong><em>{E(summ)}</em></a>')
+    return cards
+
+
+def case_schema(meta, path, h1, client, section, images):
+    """One clean graph per case page: Organization, WebSite, WebPage, BreadcrumbList, Article (FAQPage is added from the visible FAQ)."""
+    url = absu(path)
+    bc = breadcrumbs([('Home', '/'), ('Case studies', '/cases-ai-marketing-strategy/'), (client, path)])
+    bc['@id'] = url + '#breadcrumb'
+    imgs = [absu(i) for i in images if i][:3] or [absu(meta.get('og_image') or SITE['default_og_image'])]
+    web = {"@type": "WebPage", "@id": url + "#webpage", "url": url, "name": meta.get('seo_title') or meta['title'], "description": meta.get('description'),
+           "isPartOf": {"@id": f"{BASE}/#website"}, "breadcrumb": {"@id": url + "#breadcrumb"}, "mainEntity": {"@id": url + "#article"},
+           "primaryImageOfPage": {"@type": "ImageObject", "url": imgs[0]}, "inLanguage": "en"}
+    art = {"@type": "Article", "@id": url + "#article", "headline": h1[:110], "description": meta.get('description'),
+           "articleSection": f'{SECTION_LABEL.get(section, ("Brand",))[0]} case studies', "about": {"@type": "Organization", "name": client},
+           "image": imgs, "author": {"@id": f"{BASE}/#organization"}, "publisher": {"@id": f"{BASE}/#organization"},
+           "mainEntityOfPage": {"@id": url + "#webpage"}, "inLanguage": "en"}
+    if meta.get('keywords'):
+        art['keywords'] = meta['keywords']
+    return [org_node(), website_node(), web, bc, art]
+
+
+def case_fragment(meta, body, path):
+    """Legacy (imported) case pages: one schema graph, visible breadcrumbs, research credit and related cases."""
+    key = meta['slug']
+    section = case_section(key)
+    client = ((CASES['items'].get(key) or {}).get('hub') or {}).get('title') or meta.get('case_study_label') or key
+    body = re.sub(r'<script type="application/ld\+json">.*?</script>\s*', '', body, flags=re.S)
+    m = re.search(r'<h1\b[^>]*>(.*?)</h1>', body, re.S)
+    h1 = strip_tags(m.group(1)) if m else meta['title']
+    meta['h1'] = h1
+    meta['og_title'] = meta['twitter_title'] = h1
+    meta['og_description'] = meta['twitter_description'] = meta.get('description')
+    meta['case_study_label'] = client
+    imgs = re.findall(r'<figure class="cs-panel[^"]*"><img src="([^"]+)"', body) + [meta.get('og_image')]
+    meta['jsonld'] = []
+    meta['_schema'] = case_schema(meta, path, h1, client, section, imgs)
+    crumbs = (f'<nav class="breadcrumbs cs-crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li>'
+              f'<li><a href="/cases-ai-marketing-strategy/#{section}">Case studies</a></li><li aria-current="page">{E(client)}</li></ol></nav>')
+    body = re.sub(r'(<span class="sc-eyebrow)', crumbs + r'\1', body, count=1)
+    i = body.find('aria-label="About SOMIN"')
+    if i > 0:
+        k = body.find('</p>', i)
+        if k > 0:
+            body = body[:k + 4] + research_note() + body[k + 4:]
+    gid = re.sub(r'[^a-z0-9]+', '_', key.replace('-case-study', '').replace('-case-stud', '')).strip('_')
+    cards = related_cards(key, section, gid)
+    if cards:
+        rel = (f'<section class="sc-section cs-related" aria-label="Related case studies"><div class="sc-section-tag" data-nosnippet="">Related case studies</div>'
+               f'<h2>More {SECTION_LABEL[section][0].lower()} case studies</h2><div class="cs-rel-grid">{cards}</div>'
+               f'<p class="cs-rel-all"><a href="/cases-ai-marketing-strategy/#{section}" data-gtm-id="case_{gid}_all_cases">All case studies</a></p></section>\n')
+        j = body.rfind('<div class="sc-final-wrap">')
+        if j > 0:
+            body = body[:j] + rel + body[j:]
+    return body
+
+
+def case_page_meta(key, c):
+    return {'slug': c['slug'], 'layout': 'native', 'type': 'case_study', 'title': c['seo_title'], 'description': c['description'],
+            'og_image': f'/assets/img/og/card-case-{key}.jpg' if (ROOT / f'static/assets/img/og/card-case-{key}.jpg').exists() else SITE['default_og_image'],
+            'robots': 'index,follow', 'case_study_label': c['client'], 'group': 'case_study', 'h1': c['h1']}
+
+
+def build_case_pages(manifest):
+    """Case-study pages composed from data/case-pages/<key>.json (content taken from each case-study PDF)."""
+    metas = []
+    for key, c in CASE_PAGES.items():
+        meta = case_page_meta(key, c)
+        path = url_for(c['slug'])
+        label = c['client']
+        cs = c.get('client_short') or label
+        h1 = E(c['h1'])
+        em = c.get('h1_em') or ''
+        if em and c['h1'].endswith(em) and em != c['h1']:
+            h1 = E(c['h1'][:-len(em)]) + f'<em>{E(em)}</em>'
+        dl = (f'href="/get-case-study/?cs={E(key)}" data-lead-form="case_study" data-case-study="{E(key)}" '
+              f'data-case-study-label="{E(label)}"')
+        gid = re.sub(r'[^a-z0-9]+', '_', c['slug'].replace('-case-study', '')).strip('_')
+        stats = ''.join(f'<div><strong>{E(st["num"])}{f"<span>{E(st.get(chr(117)+chr(110)+chr(105)+chr(116)))}</span>" if st.get("unit") else ""}</strong>'
+                        f'<small>{E(st["label"])}</small></div>' for st in c.get('stats', [])[:3])
+        slides = c.get('slides') or []
+        def fig(sl, cls, eager=False):
+            return (f'<figure class="{cls}"><img src="{E(sl["file"])}" alt="{E(sl["alt"])}" loading="{"eager" if eager else "lazy"}" decoding="async">'
+                    f'{f"<figcaption>{E(sl[chr(99)+chr(97)+chr(112)+chr(116)+chr(105)+chr(111)+chr(110)])}</figcaption>" if sl.get("caption") else ""}</figure>')
+        hero_fig = fig(slides[0], 'cs-panel', True) if slides else ''
+        body = f'''<section class="hero cs-hero"><div class="container hero-split">
+  <div>
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/cases-ai-marketing-strategy/#{SECTION_LABEL[c['section']][1]}">Case studies</a></li><li aria-current="page">{E(cs)}</li></ol></nav>
+    <p class="eyebrow">{E(c['eyebrow'])}</p>
+    <h1>{h1}</h1>
+    <p class="lede">{E(c['lede'])}</p>
+    <p class="cs-meta">{E(c.get('meta_line', ''))}</p>
+    <div class="cta-row cta-row--left">
+      <a class="btn btn--solid" {dl} data-gtm-id="case_{gid}_hero_download">Get the full case study</a>
+      <a class="btn btn--ghost" href="{CAL_CASES}" data-gtm-id="case_{gid}_hero_call">Book a call</a>
+    </div>
+    <div class="cs-hero-stats">{stats}</div>
+  </div>
+  {hero_fig}
+</div></section>
+
+<section class="sec sec--light"><div class="container split">
+  <div class="sec-head">
+    <p class="eyebrow eyebrow--ink">The challenge</p>
+    <h2>{E(c['challenge']['title'])}</h2>
+    <p>{E(c['challenge']['body'])}</p>
+  </div>
+  <div class="sec-head">
+    <p class="eyebrow eyebrow--ink">The approach</p>
+    <h2>{E(c['approach']['title'])}</h2>
+    <ul class="check-list">{''.join(f'<li>{E(x)}</li>' for x in c['approach']['points'])}</ul>
+  </div>
+</div></section>
+
+<section class="sec sec--mist"><div class="container">
+  <div class="sec-head sec-head--center">
+    <p class="eyebrow eyebrow--ink">Key findings</p>
+    <h2>{E(c.get('findings_title') or f'Three findings from the {cs} data')}</h2>
+  </div>
+  <div class="card-grid">{''.join(f'<div class="tile"><span class="tile-num">{i:02d}</span><h3>{E(fd["title"])}</h3><p>{E(fd["body"])}</p></div>' for i, fd in enumerate(c['findings'][:3], 1))}</div>
+</div></section>
+
+<section class="sec sec--light"><div class="container split cs-deliver">
+  <div class="sec-head">
+    <p class="eyebrow eyebrow--ink">What SOMIN delivered</p>
+    <h2>{E(c['delivered']['title'])}</h2>
+    <ul class="check-list">{''.join(f'<li>{E(x)}</li>' for x in c['delivered']['points'])}</ul>
+    <div class="cta-row cta-row--left"><a class="btn btn--solid" {dl} data-gtm-id="case_{gid}_deliver_download">Get the full case study</a></div>
+  </div>
+  <div class="cs-gallery">{''.join(fig(sl, 'cs-shot') for sl in slides[1:3])}</div>
+</div></section>
+'''
+        if c.get('quote') and c['quote'].get('text'):
+            body += (f'<section class="sec sec--dark cs-quote"><div class="container"><blockquote>“{E(c["quote"]["text"])}”</blockquote>'
+                     f'<p>{E(c["quote"].get("source") or "From the SOMIN case study")}</p></div></section>\n')
+        faq = ''.join(f'<details><summary>{E(q["q"])}</summary><p>{E(q["a"])}</p></details>' for q in c.get('faq', []))
+        body += f'''<section class="sec sec--mist"><div class="container">
+  <div class="sec-head sec-head--center cs-outcome">
+    <p class="eyebrow eyebrow--ink">The outcome</p>
+    <h2>{E(c['outcome']['title'])}</h2>
+    <p>{E(c['outcome']['body'])}</p>
+  </div>
+</div></section>
+'''
+        if c.get('reviews'):
+            rv = c['reviews']
+            body += reviews_section({'tags': rv.get('tags', ''), 'limit': str(rv.get('limit', 1)), 'title': rv.get('title') or f'What the {cs} team says on G2', 'native': '1'}) + '\n'
+        body += f'''<section class="sec sec--light"><div class="container split cs-faq">
+  <div class="sec-head">
+    <p class="eyebrow eyebrow--ink">FAQ</p>
+    <h2>{E(cs)} case study FAQ</h2>
+    <div class="cs-about"><p class="eyebrow eyebrow--ink">About SOMIN</p><p>SOMIN is a Singapore-based AI marketing-intelligence platform. It turns real-time competitor and audience data into pre-scored propositions, briefs and creative concepts for brands, agencies and creator programmes across 11+ markets.</p>{research_note()}</div>
+  </div>
+  <div class="faq-list">{faq}</div>
+</div></section>
+'''
+        # related case studies from the same section (pages first)
+        cards = related_cards(key, c['section'], gid)
+        if cards:
+            body += (f'<section class="sec sec--mist cs-related"><div class="container"><div class="sec-head"><p class="eyebrow eyebrow--ink">Related case studies</p>'
+                     f'<h2>More {SECTION_LABEL[c["section"]][0].lower()} case studies</h2></div><div class="cs-rel-grid">{cards}</div>'
+                     f'<p class="cs-rel-all"><a href="/cases-ai-marketing-strategy/#{SECTION_LABEL[c["section"]][1]}" data-gtm-id="case_{gid}_all_cases">All case studies</a></p></div></section>\n')
+        body += (f'<section class="cta-band"><div class="container"><h2>Get the full <em>{E(cs)}</em> case study</h2>'
+                 f'<p>Every page of the {E(SECTION_LABEL[c["section"]][0].lower())} {"pitch" if c["section"] == "agencies" else "briefing"}: the data, the whitespace, the personas and the creative. Free, straight after a short form.</p>'
+                 f'<div class="cta-row"><a class="btn btn--solid" {dl} data-gtm-id="case_{gid}_footer_download">Get the full case study</a>'
+                 f'<a class="btn btn--ghost" href="{CAL_CASES}" data-gtm-id="case_{gid}_footer_call">Book a walkthrough</a></div></div></section>')
+        meta['og_title'] = meta['twitter_title'] = c['h1']
+        meta['jsonld'] = []
+        build_native_page(meta, body, schema=case_schema(meta, path, c['h1'], label, c['section'], [sl['file'] for sl in slides]))
+        metas.append(meta)
+    return metas
+
+
+def build_research_page():
+    """/research/: Prof. Aleks Farseev's peer-reviewed papers and talks, mapped to the SOMIN features they power."""
+    path = '/research/'
+    R = RESEARCH
+    peer = [p for p in R['papers'] if p['peer_reviewed']]
+    venues = sorted({p['venue_short'] for p in peer if p['tier'] in ('top', 'strong') and not p['venue_short'].startswith(('CLEF', 'WebSci'))})
+    first = min(p['year'] for p in peer)
+    mt = R['metrics']
+    meta = {'slug': 'research', 'layout': 'native', 'type': 'company', 'group': 'research',
+            'title': 'SOMIN Research: Peer-Reviewed AI for Marketing | SOMIN',
+            'description': f'The peer-reviewed research behind SOMIN: {len(peer)} papers by Prof. Aleks Farseev and the SOMIN team at AAAI, ACM Multimedia, SIGIR, WSDM and WWW, plus talks.',
+            'og_image': '/assets/img/og/card-research.jpg' if (ROOT / 'static/assets/img/og/card-research.jpg').exists() else SITE['default_og_image'],
+            'hero_bg': '/assets/img/brand/hero-research.webp' if (ROOT / 'static/assets/img/brand/hero-research.webp').exists() else None,
+            'robots': 'index,follow', 'h1': 'The peer-reviewed AI research behind SOMIN'}
+    by_theme = {}
+    for p in sorted(R['papers'], key=lambda p: (-p['year'], p['id'])):
+        by_theme.setdefault(p['theme'], []).append(p)
+    themes = ''
+    for i, t in enumerate(R['themes'], 1):
+        items = ''.join(f'<li><a href="{E(p["url"])}" target="_blank" rel="noopener" data-track="research_paper_click"><b>{E(p["venue_short"])} {p["year"]}</b> {E(p["title"])}</a></li>'
+                        for p in by_theme.get(t['key'], [])[:4])
+        themes += (f'<div class="rs-theme"><span class="tile-num">{i:02d}</span><h3>{E(t["title"])}</h3><p>{E(t["body"])}</p><ul>{items}</ul>'
+                   f'<a class="rs-uses" href="{E(t["href"])}" data-gtm-id="research_theme_product">In SOMIN today: {E(t["product"])} →</a></div>')
+    def plist(rows):
+        return '<ol class="rs-list">' + ''.join(
+            f'<li><span class="rs-venue">{E(p["venue_short"])} · {p["year"]} · {E(p["kind"])}</span>'
+            f'<a href="{E(p["url"])}" target="_blank" rel="noopener" data-track="research_paper_click" data-gtm-id="research_list_paper"><strong>{E(p["title"])}</strong></a>'
+            f'<span class="rs-auth">{E(p["authors"])}. {E(p["venue"])}.</span>'
+            + (f'<a class="rs-pdf" href="{E(p["pdf"])}" target="_blank" rel="noopener" data-track="research_pdf_click">Open-access PDF</a>' if p.get('pdf') else '') + '</li>'
+            for p in rows) + '</ol>'
+    srt = lambda rows: sorted(rows, key=lambda p: (-p['year'], p['id']))
+    top = srt([p for p in R['papers'] if p['tier'] == 'top'])
+    strong = srt([p for p in R['papers'] if p['tier'] == 'strong'])
+    other = srt([p for p in R['papers'] if p['tier'] == 'other'])
+    talks = ''.join(
+        f'<a class="rs-tcard" href="{E(t["url"])}" target="_blank" rel="noopener" data-track="research_talk_click" data-gtm-id="research_talk_card">'
+        f'<span class="rs-venue">{E(t["kind"])} · {E(t["date"][:4])}{" · in " + E(t["language"]) if t["language"] != "English" else ""}</span>'
+        f'<strong>{E(t["title"])}</strong><em>{E(t["event"])}</em><p>{E(t["summary"])}</p></a>'
+        for t in sorted(R['talks'], key=lambda t: t['date'], reverse=True))
+    profiles = ''.join(f'<li><a href="{E(p["url"])}" target="_blank" rel="noopener" data-track="research_profile_click" data-gtm-id="research_profile">{E(p["label"])}</a></li>' for p in R['profiles'])
+    faq = [
+        ('Is SOMIN built on real AI research?', f'Yes. SOMIN was co-founded by Prof. Aleks Farseev, and the models behind its audience personas, creative scoring and competitor analytics come from research he and the SOMIN team have published since {first}, including papers at AAAI, ACM Multimedia, SIGIR, WSDM and The Web Conference and in ACM Transactions on Information Systems.'),
+        ('Where has SOMIN research been published?', f'This page lists {len(peer)} peer-reviewed papers, demos and abstracts in venues including ' + ', '.join(venues) + '. Each entry links to the publisher page or DOI, and to an open-access PDF where one exists.'),
+        ('Who builds SOMIN?', 'SOMIN is built by seasoned marketers and an AI professor. Prof. Aleks Farseev leads the research and the company; the SOMIN team combines machine-learning researchers, several of whom co-author the papers above, with marketers who work with brand and agency teams every day.'),
+        ('How does the research show up in the product?', 'Multi-source audience profiling powers SOMIN personas, personality-driven recommendation shapes persona-matched creative, creative-performance prediction scores concepts before launch, and explainable AI with large language models explains why competitor content works. Agentic AI research keeps generated content distinctive by grounding it in real category data.'),
+        ('Where can I watch talks about SOMIN?', 'Talks are listed above with links: an industry expert talk at ACM Multimedia 2025, a keynote at the Digital Marketing Conference Kuala Lumpur 2025, lectures at INSEAD and NUS, the ATxSG 2026 pitch and Marketing Mondays sessions on YouTube.'),
+    ]
+    faq_html = ''.join(f'<details><summary>{E(q)}</summary><p>{E(a)}</p></details>' for q, a in faq)
+    cite = f'{mt["citations"]:,}'
+    body = f'''<section class="hero rs-hero"><div class="container">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Research</li></ol></nav>
+  <p class="eyebrow">Research · Built by seasoned marketers and an AI professor</p>
+  <h1>The peer-reviewed AI research <em>behind SOMIN</em></h1>
+  <p class="lede">SOMIN's audience personas, creative scoring and competitor analytics come from research by co-founder Prof. Aleks Farseev and the SOMIN team, published at AAAI, ACM Multimedia, SIGIR, WSDM and The Web Conference, and in ACM TOIS.</p>
+  <div class="cta-row cta-row--left">
+    <a class="btn btn--solid" href="#papers" data-gtm-id="research_hero_papers">See the papers</a>
+    <a class="btn btn--ghost" href="#talks" data-gtm-id="research_hero_talks">Watch the talks</a>
+  </div>
+  <div class="cs-hero-stats"><div><strong>{len(peer)}</strong><small>Peer-reviewed papers, demos and abstracts</small></div><div><strong>{len(venues)}</strong><small>Top venues incl. AAAI, ACM MM, SIGIR</small></div><div><strong>{first}</strong><small>Publishing since</small></div></div>
+</div></section>
+
+<section class="sec sec--light"><div class="container split">
+  <div class="sec-head">
+    <p class="eyebrow eyebrow--ink">Who builds SOMIN</p>
+    <h2>Seasoned marketers and an AI professor, on one product</h2>
+    <p>Prof. Aleks Farseev co-founded SOMIN after a PhD at the National University of Singapore on learning user profiles from many social networks at once. He is a research professor in digital-marketing AI, and his work on audience profiling, personality-driven recommendation and explainable AI for advertising is cited {cite} times on Semantic Scholar (as of {E(mt["as_of"])}).</p>
+    <p>Next to the research team, SOMIN's marketers turn those models into the playbooks brand and agency teams run every week: whitespace maps, personas and tensions, pre-scored concepts and content calendars.</p>
+  </div>
+  <div class="sec-head rs-profiles"><p class="eyebrow eyebrow--ink">Research profiles</p><ul>{profiles}</ul>
+    <p class="rs-small">Citation figures from <a href="{E(mt["source_url"])}" target="_blank" rel="noopener">{E(mt["source"])}</a>, {E(mt["as_of"])}.</p></div>
+</div></section>
+
+<section class="sec sec--mist"><div class="container">
+  <div class="sec-head sec-head--center"><p class="eyebrow eyebrow--ink">From paper to product</p><h2>Seven research lines that run inside SOMIN today</h2>
+  <p>Each line of research below is a capability in the platform. Click a paper to read it on the publisher's site.</p></div>
+  <div class="rs-themes">{themes}</div>
+</div></section>
+
+<section class="sec sec--light" id="papers"><div class="container">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">Publications</p><h2>Top-tier conference and journal papers</h2>
+  <p>Full papers and journal articles at AAAI, ACM Multimedia, SIGIR and in ACM TOIS and ACM TIST.</p></div>
+  {plist(top)}
+  <div class="sec-head" style="margin-top:48px"><h2>Papers, demos and abstracts at top venues</h2>
+  <p>Papers, industry and demo papers, and student abstracts at ACM Multimedia, AAAI, SIGIR, WSDM, The Web Conference, ICMR, CLEF and WebSci.</p></div>
+  {plist(strong)}
+  <div class="sec-head" style="margin-top:48px"><h2>Journals, workshops and preprints</h2></div>
+  {plist(other)}
+</div></section>
+
+<section class="sec sec--mist" id="talks"><div class="container">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">Talks and lectures</p><h2>Keynotes, lectures and Marketing Mondays sessions</h2>
+  <p>Prof. Aleks Farseev on AI in advertising, from ACM Multimedia and INSEAD to Marketing Mondays. Videos open on YouTube.</p></div>
+  <div class="rs-tgrid">{talks}</div>
+  <p style="margin-top:22px"><a class="btn btn--ghost btn--ink" href="/marketing-mondays-plugin/" data-gtm-id="research_mm_plugin">Marketing Mondays: get the free Claude plugin</a></p>
+</div></section>
+
+<section class="sec sec--light"><div class="container split">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">FAQ</p><h2>SOMIN research FAQ</h2></div>
+  <div class="faq-list">{faq_html}</div>
+</div></section>
+
+<section class="cta-band"><div class="container"><h2>See the research <em>run on your category</em></h2>
+<p>SOMIN reads your competitors, creators and audience, then hands you pre-scored ideas you can brief today.</p>
+<div class="cta-row"><a class="btn btn--solid" href="/try-somin/" data-lead-form="trial" data-gtm-id="research_footer_trial">Try SOMIN</a><a class="btn btn--ghost" href="{CAL_DEFAULT}" data-gtm-id="research_footer_call">Book a call</a></div></div></section>'''
+    person = {"@type": "Person", "@id": f"{BASE}/#aleks-farseev", "name": "Aleks Farseev", "honorificPrefix": "Prof.",
+              "alternateName": ["Aleksandr Farseev", "Alexander Farseev"], "jobTitle": "Co-Founder and CEO", "worksFor": {"@id": f"{BASE}/#organization"},
+              "alumniOf": {"@type": "CollegeOrUniversity", "name": "National University of Singapore"}, "url": "https://farseev.com/",
+              "knowsAbout": ["Social media user profiling", "Multi-source learning", "Personality-driven recommendation", "Explainable AI", "Large language models", "Creative performance prediction", "Agentic AI"],
+              "sameAs": [p['url'] for p in R['profiles'] if 'dblp.org/search' not in p['url']]}
+    arts = [{"@type": "ListItem", "position": i + 1, "item": {"@type": "ScholarlyArticle", "name": p['title'], "headline": p['title'][:110],
+             "author": [{"@type": "Person", "name": a.strip()} for a in p['authors'].replace(', et al.', '').split(',') if a.strip()],
+             "datePublished": str(p['year']), "isPartOf": {"@type": "Periodical" if re.search(r'Transactions|Frontiers|Newsletter', p['venue']) else "Book", "name": p['venue']},
+             "url": p['url'], **({"sameAs": p['pdf']} if p.get('pdf') else {})}} for i, p in enumerate(srt(peer))]
+    graph = {"@context": "https://schema.org", "@graph": [person, {"@type": "ItemList", "@id": absu(path) + "#papers", "name": "Peer-reviewed papers by Prof. Aleks Farseev and the SOMIN team", "itemListElement": arts}]}
+    meta['jsonld'] = [json.dumps(graph, ensure_ascii=False)]
+    build_native_page(meta, body)
+    return meta
+
+
+def build_native_page(meta, body, schema=None):
     path = url_for(meta['slug'])
     body = hero_image(body, meta, 'hero')
     trail = [('Home', '/'), (meta['title'].split(' | ')[0], path)]
-    meta['_schema'] = [org_node(), website_node(),
+    meta['_schema'] = schema or [org_node(), website_node(),
                        {"@type": "WebPage", "@id": absu(path) + "#webpage", "url": absu(path), "name": meta['title'], "description": meta.get('description'),
                         "isPartOf": {"@id": f"{BASE}/#website"}, "inLanguage": "en"}, breadcrumbs(trail)]
     write(path, page(meta, body, path))
@@ -702,6 +1105,7 @@ def build_post(meta, body, posts):
   <div><article class="prose" data-article>{body}</article>
     <div class="post-tags">{tags_html}</div>
     <div class="author-box"><span class="avatar" aria-hidden="true">{initials(a)}</span><div><strong>{E(a)}</strong><span>{E(AUTHOR_ROLE.get(a, 'SOMIN'))}</span></div></div>
+    {research_strip({'compact': '1', 'cls': 'rs-line--light'})}
   </div>
   {aside}
 </div></div></div>
@@ -734,6 +1138,7 @@ def build_blog_index(posts):
   <p class="eyebrow">SOMIN Blog</p>
   <h1>Marketing intelligence for the <em>agentic</em> era.</h1>
   <p class="lede">Field notes from the SOMIN team on AI agents, competitor and audience intelligence, paid media and creative strategy — written for marketers and agencies across APAC and beyond.</p>
+  {research_strip({'compact': '1'})}
   <div class="blog-tools"><div class="chips" role="group" aria-label="Filter by topic">{chips}</div>
     <label class="search"><span class="visually-hidden">Search articles</span>{ICON['search']}<input type="search" placeholder="Search articles" data-post-search></label></div>
   {feat}
@@ -751,7 +1156,7 @@ def build_blog_index(posts):
     meta = {'title': 'SOMIN Blog — AI Marketing Intelligence, Agents & Strategy', 'description': 'Insights from the SOMIN team on AI marketing agents, competitor and audience intelligence, paid media, creator marketing and campaign strategy.',
             'type': 'blog_index', 'layout': 'blog', 'og_image': posts[0]['og_image'], 'group': 'blog',
             '_schema': [org_node(), website_node(), blog_node, breadcrumbs([('Home', '/'), ('Blog', '/blog/')])]}
-    write(path, page(meta, body, path))
+    write(path, page(meta, hero_image(body, dict(meta, hero_bg='/assets/img/brand/hero-blog.webp'), 'hero'), path))
     add_sitemap(path, posts[0]['published'][:10], '0.8')
 
 
@@ -796,7 +1201,7 @@ def case_manifest():
         title = hub.get('title') or label or re.sub(r'\.pdf$', '', it['file'], flags=re.I).replace('_', ' ').title()
         out[key] = {'title': title, 'download': drive_download(it['drive_id']), 'drive_id': it['drive_id'],
                     'view': f'https://drive.google.com/file/d/{it["drive_id"]}/view', 'size_mb': it['size_mb'],
-                    'page': it.get('page'), 'cover': hub.get('cover') or pm.get('og_image'),
+                    'page': it.get('page') or (url_for(CASE_PAGES[key]['slug']) if key in CASE_PAGES else None), 'cover': hub.get('cover') or pm.get('og_image'),
                     'category': hub.get('sector') or sector or it.get('category'), 'market': hub.get('market', ''),
                     'section': hub.get('section') or {'influencers': 'creators'}.get(it.get('category'), it.get('category')),
                     'summary': hub.get('summary', ''), 'order': hub.get('order', 999), 'on_hub': bool(hub)}
@@ -829,6 +1234,7 @@ def build_lead_pages():
     </ul>
     <div class="trust"><span>Trusted by teams at <b>P&amp;G</b>, <b>Audi</b>, <b>Dentsu</b> and <b>Havas</b></span><span>Gartner Cool Vendor in Marketing AI</span></div>
     {rating_badges("rv-badges--hero")}
+    {research_strip({'compact': '1'})}
     <p style="margin-top:28px"><a class="btn btn--ghost" href="{CAL_DEFAULT}" data-gtm-id="try_page_book_call">Prefer to talk? Book a call</a></p>
   </div>
   <div class="form-card"><div data-lead-form-inline="trial" data-height="640" data-gtm-id="try_page_inline_form">
@@ -1030,6 +1436,7 @@ def build_cases_hub(manifest):
   <h1>What SOMIN finds in <em>real</em> categories.</h1>
   <p class="lede">{total} case studies from brands, agencies and creators across Asia-Pacific, the Middle East, Europe and the Americas: competitor reads, whitespace maps, content calendars and the time and cost savings agencies measured. Every full PDF is free: fill in a short form and the download starts straight away.</p>
   {rating_badges("rv-badges--hero")}
+  {research_strip({'compact': '1'})}
   <div class="cases-stats"><div><strong>{count['brands']}</strong><span>brand studies</span></div><div><strong>{count['agencies']}</strong><span>agency stories</span></div><div><strong>{count['creators']}</strong><span>creator strategies</span></div></div>
   <div class="cs-proof" aria-label="Measured results">{proof_html}</div>
   <div class="blog-tools"><div class="chips" role="group" aria-label="Filter case studies">{chips}</div>
@@ -1052,12 +1459,12 @@ def build_cases_hub(manifest):
             "mainEntity": {"@type": "ItemList", "numberOfItems": total, "itemListElement": [
                 {"@type": "ListItem", "position": i + 1, "url": item_url(k, v), "name": v['title'], "description": v['summary']}
                 for i, (k, v) in enumerate(items)]}}
-    meta = {'title': 'AI Marketing Case Studies for Brands & Agencies | SOMIN', 'description': desc,
+    meta = {'title': 'AI Marketing Case Studies for Brands & Agencies | SOMIN', 'description': desc, 'hero_bg': '/assets/img/brand/hero-cases.webp',
             'og_title': 'SOMIN Case Studies: what AI marketing intelligence finds in real categories',
             'type': 'cases_hub', 'layout': 'hub', 'og_image': '/assets/img/og/cases-hub.jpg', 'group': 'case_study',
             'keywords': 'AI marketing case studies, competitor intelligence case study, agency pitch case study, creator strategy, SOMIN, SOMONITOR',
             '_schema': [org_node(), website_node(), coll, breadcrumbs([('Home', '/'), ('Case studies', path)])]}
-    write(path, page(meta, body, path))
+    write(path, page(meta, hero_image(body, meta, 'hero'), path))
     add_sitemap(path, TODAY, '0.8')
 
 
@@ -1154,6 +1561,10 @@ def build_llms(pages, posts, manifest=None):
     if manifest:
         more = sorted([v for v in manifest.values() if v['on_hub'] and not v['page']], key=lambda v: v['order'])
         parts += ['', '### More case studies (PDF on the case-studies page)'] + [f'- {v["title"]} ({", ".join(x for x in (v["category"], v["market"]) if x)}): {v["summary"]}' for v in more]
+    peer = [p for p in RESEARCH['papers'] if p['peer_reviewed']]
+    parts += ['', '## Research behind SOMIN', f'- [SOMIN research: papers and talks]({BASE}/research/): SOMIN is built by seasoned marketers and an AI professor. Co-founder Prof. Aleks Farseev and the SOMIN team have published {len(peer)} peer-reviewed papers, demos and abstracts since {min(p["year"] for p in peer)}, at venues including AAAI, ACM Multimedia, SIGIR, WSDM and The Web Conference, and in ACM TOIS and ACM TIST.']
+    parts += [f'- {p["venue_short"]} {p["year"]}: [{p["title"]}]({p["url"]}) ({p["authors"]})' for p in sorted(peer, key=lambda p: (p['tier'] != 'top', -p['year']))[:14]]
+    parts += ['', '### Talks'] + [f'- {t["kind"]}, {t["event"]} ({t["date"][:4]}): [{t["title"]}]({t["url"]})' for t in sorted(RESEARCH['talks'], key=lambda t: t['date'], reverse=True) if t['language'] == 'English'][:10]
     parts += ['', '## Blog (latest first)'] + [f'- [{p["title"]}]({absu(url_for(p["slug"]))}): {p["description"]}' for p in posts]
     parts += ['', '## Company & legal', f'- [Our Vision]({BASE}/vision/)', f'- [Privacy Policy]({BASE}/privacy-policy/)', f'- [SaaS Agreement]({BASE}/saas-terms-general/)',
               '', '## Contact', f'- Book a call: {CAL_DEFAULT}', f'- Try SOMIN: {BASE}/try-somin/', f'- Free Claude plugin: {BASE}/marketing-mondays-plugin/', '- Platform login: https://cloud.somin.ai/auth/signin', '']
@@ -1175,8 +1586,12 @@ def main():
     FOOTER_HTML = render_footer()
 
     pages = []
+    superseded = {url_for(c['slug']) for c in CASE_PAGES.values()} | set(CFG.get('redirects', {}))
     for f in sorted((ROOT / 'content/pages').glob('*.html')):
         meta, body = read_content(f)
+        if url_for(meta['slug']) in superseded:
+            print(f'  skip {f.name}: {url_for(meta["slug"])} is now a composed case page or a redirect')
+            continue
         body = expand_shortcodes(body)
         pages.append(meta)
         layout = meta.get('layout')
@@ -1201,6 +1616,8 @@ def main():
     build_rss(post_metas)
 
     manifest = build_lead_pages()
+    pages += build_case_pages(manifest)
+    pages.append(build_research_page())
     build_cases_hub(manifest)
     build_404()
     build_redirects()

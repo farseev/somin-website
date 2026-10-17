@@ -1,0 +1,109 @@
+{
+  "key": "png-philippines",
+  "slug": "brands-pg-philippines-case-study",
+  "section": "brands",
+  "client": "P&G Philippines",
+  "client_short": "P&G Philippines",
+  "seo_title": "P&G Philippines Case Study: Search and Meta Ads | SOMIN",
+  "description": "SOMIN compared P&G, Unilever and Celeteque on Google Search and Meta in the Philippines and found Unilever ran 80.43% of the search text ads.",
+  "eyebrow": "Brand case study · Personal care · Philippines",
+  "h1": "For P&G, search still matters, but Meta tensions don't always carry over",
+  "h1_em": "but Meta tensions don't always carry over",
+  "lede": "SOMIN compared how P&G, Unilever and Celeteque used Google Search text ads and Meta in the Philippines, from May to July 2024. Unilever accounted for 80.43% of the search text ads and pointed traffic to publisher-style content sites. SOMIN mapped 6 search personas and the tensions behind each channel, then turned them into ZMOT search experiences and keywords.",
+  "meta_line": "A SOMIN brand briefing · May to July 2024 · Philippines",
+  "stats": [
+    {
+      "num": "80.43",
+      "unit": "%",
+      "label": "Unilever share of search text ads"
+    },
+    {
+      "num": "6",
+      "unit": "",
+      "label": "Search audience personas"
+    },
+    {
+      "num": "1,955,781",
+      "unit": "",
+      "label": "Engagements on radiant skin posts"
+    }
+  ],
+  "challenge": {
+    "title": "Does Google Search still matter for P&G in the Philippines?",
+    "body": "The analysis looked at how P&G, Unilever and Celeteque communicate across Google Search and Meta in the Philippines. Its first question was whether search still matters, as many brands have shifted away from content repositories towards short-form platforms."
+  },
+  "approach": {
+    "title": "Search text ads and Meta content, read through the same tensions",
+    "points": [
+      "Catalogued Google Search text ads active on 15 July 2024, by brand and destination website.",
+      "Clustered the search ads into 6 audience personas and a set of tensions, from cooking Filipino dishes to hair confidence.",
+      "Mapped Meta posts and ads from Celeteque, Olay and Ponds from May to July 2024, reading ads and posts separately.",
+      "Turned each tension into ZMOT search experiences, with searchability ratings, example queries and keywords."
+    ]
+  },
+  "findings_title": "Unilever's search lead and three different Meta playbooks",
+  "findings": [
+    {
+      "title": "Unilever owns search",
+      "body": "Unilever ran 80.43% of the search text ads, led by its cleanipedia (208) and Allthingshair (155) sites. P&G's biggest search presence came from Head & Shoulders (45) and Pantene (41)."
+    },
+    {
+      "title": "Three Meta playbooks",
+      "body": "Celeteque relies heavily on Meta ads with more diverse messaging. Olay uses Meta only as an ad platform with less variation, while Ponds boosts posts for high engagement."
+    },
+    {
+      "title": "Radiance drives engagement",
+      "body": "On Meta posts, the radiant skin glow tension drew 1,955,781 engagements from 22 pieces of media, against 399,517 from 39 pieces on skin concerns and confidence."
+    }
+  ],
+  "delivered": {
+    "title": "Search personas, tension maps and ZMOT keyword lists",
+    "points": [
+      "A Google Search text-ad map by brand and website",
+      "6 search personas, from Healthy Hygiene Enthusiast to Natural Wellness Advocate",
+      "Search and Meta tension maps with media and engagement totals",
+      "ZMOT experience lists for each tension, rated for searchability with example queries and keywords",
+      "Analyst notes on search behaviour, Meta spending tactics and cross-platform alignment"
+    ]
+  },
+  "quote": {
+    "text": "This means that there is room for them to improve their CX by aligning their communications across platforms.",
+    "source": "From the SOMIN analysis"
+  },
+  "outcome": {
+    "title": "P&G should align the tensions it addresses in search and Meta",
+    "body": "Many customer journeys still rely heavily on a brand's presence in search, yet the tensions brands address on Meta are not always the ones they address in search. Aligning the two would improve customer experience, and the ZMOT lists give P&G concrete queries to start from."
+  },
+  "faq": [
+    {
+      "q": "Which brands and channels were compared?",
+      "a": "P&G, Unilever and Celeteque on Google Search text ads, and Celeteque, Olay and Ponds on Meta. Search ads were active as of 15 July 2024, and Meta content ran from May to July 2024."
+    },
+    {
+      "q": "What are the ZMOT experiences in the report?",
+      "a": "Search moments linked to each consumer tension. For each one, SOMIN rated whether it is searchable and listed example queries and keywords, as starting points for search experiences."
+    },
+    {
+      "q": "Why does Unilever lead search?",
+      "a": "The analyst notes that Unilever directs search traffic to publisher-style pages that act as content repositories, an approach many brands have since moved away from."
+    }
+  ],
+  "slides": [
+    {
+      "file": "/assets/img/cases/slides/png-philippines-1.webp",
+      "caption": "Three of six search personas",
+      "alt": "Persona cards for Healthy Hygiene Enthusiast, Creative Culinary Wellness Seeker and Healthy Home Enthusiast, with illustrations and media totals"
+    },
+    {
+      "file": "/assets/img/cases/slides/png-philippines-2.webp",
+      "caption": "Google Search text ads by brand",
+      "alt": "Table of search text ads by brand and website beside a donut chart: Unilever 80.43%, P&G 14.04%, Celeteque 5.53%"
+    },
+    {
+      "file": "/assets/img/cases/slides/png-philippines-3.webp",
+      "caption": "Skincare tensions on Meta",
+      "alt": "Tension cards for skin concerns and confidence, skincare challenges and protection from environmental stressors, with media and engagement totals"
+    }
+  ],
+  "image_prompt": "Cinematic morning scene in a bright Manila apartment bathroom, unbranded skincare and haircare bottles on a shelf, a laundry basket and soft window light, fresh teal and white tones. No text, no logos, no brand marks, no recognisable people."
+}

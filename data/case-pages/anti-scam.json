@@ -1,0 +1,108 @@
+{
+  "key": "anti-scam",
+  "slug": "brands-anti-scam-case-study",
+  "section": "brands",
+  "client": "Scam Custom Study",
+  "client_short": "Anti-scam study",
+  "seo_title": "Anti-Scam Case Study: Scam Content by Industry | SOMIN",
+  "description": "SOMIN read 13,324 posts and ads from 34 brands in 9 industries: government bodies gave 51% of their content to scams, banks 10%, most others near 0%.",
+  "eyebrow": "Brand case study · Scam awareness · Singapore",
+  "h1": "Government gives 51% of its content to scams, most brands almost none",
+  "h1_em": "most brands almost none",
+  "lede": "SOMIN's custom anti-scam study read 13,324 posts and ads from 34 brands across 9 industries in Singapore, published between 5 December 2023 and 5 December 2024. Government and anti-scam bodies gave 51% of their content to scams and banks 10%, while most other industries sat at 0%. SOMIN then mapped scam types, scam targets and vulnerable moments for love scams.",
+  "meta_line": "A SOMIN custom study · 5 Dec 2023 to 5 Dec 2024 · Singapore",
+  "stats": [
+    {
+      "num": "34",
+      "unit": "",
+      "label": "Brands explored"
+    },
+    {
+      "num": "9",
+      "unit": "",
+      "label": "Industries"
+    },
+    {
+      "num": "13,324",
+      "unit": "",
+      "label": "Posts and ads analysed"
+    }
+  ],
+  "challenge": {
+    "title": "Which brands talk about scams, how often and to whom",
+    "body": "Scams can happen through a variety of ways, so the study looked well beyond one sector. The question was which brands are connected to scams or communicate about them, how much of their social and ad content does so, and which scam types and audiences that content covers."
+  },
+  "approach": {
+    "title": "13,324 posts and ads from 34 brands, read for scam content",
+    "points": [
+      "Selected 34 brands across 9 industries, from banking and insurance to logistics, NGOs and travel, and checked their websites for scam-related communications.",
+      "Collected their Instagram and Facebook posts and Ads Library activity from 5 December 2023 to 5 December 2024: 13,324 items in total.",
+      "Measured the share of each industry's content that addressed scams, then classified the scam types and scam targets covered by banks and government bodies.",
+      "Mapped vulnerable moments for lonely individuals exposed to love scams, and generated a sample character and story from an audience segment."
+    ]
+  },
+  "findings_title": "Government at 51%, banks at 10%, most industries at 0%",
+  "findings": [
+    {
+      "title": "Government bodies give 51% of their content to scams",
+      "body": "Government and anti-scam institutions gave 51% of their content to scams, 574 of 1,118 items. Banks came second at 10%, 602 of 6,230 items."
+    },
+    {
+      "title": "Six industries sit at 0% scam content",
+      "body": "E-commerce, education, employment, insurance, NGO and travel brands sat at 0%, and logistics at 3%. The analyst's read: scams may be seen as a communication crisis rather than a public service message."
+    },
+    {
+      "title": "Banks lead on financial scams, with 247 items",
+      "body": "Financial scams were the top type addressed by banks, with 247 items, ahead of phishing at 82. Government bodies focused most on general scam behaviour, at 195."
+    }
+  ],
+  "delivered": {
+    "title": "A scam content map, top 20 scam types and 6 vulnerable moments",
+    "points": [
+      "An industry-by-industry count of scam content across 13,324 posts and ads",
+      "The top 20 scam types addressed by banks and by government and anti-scam agencies, plus the scam targets each one speaks to",
+      "6 vulnerable moments for lonely individuals and love scams, each with a trigger and an inner voice",
+      "A sample character, story foundation and short story showing how a love scam unfolds during late-night isolation"
+    ]
+  },
+  "quote": {
+    "text": "In lonely silence, our longing for love can blind us to hidden lies.",
+    "source": "From the SOMIN custom study"
+  },
+  "outcome": {
+    "title": "Scam warnings sit with two sectors, so target vulnerable moments",
+    "body": "Scam communication is concentrated in government bodies and banks, and both cover a wide range of scam types and targets. The analyst notes this might reinforce some types of scam awareness while drowning out understanding of others. Vulnerable moments give a sharper way in: one audience, one scam type, one moment of exposure."
+  },
+  "faq": [
+    {
+      "q": "Which industries did the study cover?",
+      "a": "Banking, e-commerce and retail, education, employment and recruitment, government and anti-scam institutions, insurance, logistics, NGOs and travel: 34 brands in total."
+    },
+    {
+      "q": "Why do so few brands talk about scams?",
+      "a": "The analyst's assumption is that brands see scams as a communication crisis rather than a public service message, so spreading scam information can work against their efforts to build trust with consumers."
+    },
+    {
+      "q": "What are vulnerable moments?",
+      "a": "Specific situations when an audience is most exposed. For lonely individuals and love scams the study maps 6, including late-night isolation, post-breakup sadness and romantic holiday longing on Valentine's Day."
+    }
+  ],
+  "slides": [
+    {
+      "file": "/assets/img/cases/slides/anti-scam-1.webp",
+      "caption": "Audience segment turned into a character",
+      "alt": "Slide showing audience segment 04, the Adventure-Seeking Community Enthusiast, with an illustration of a traveller with a backpack in a busy city square, beside the prompt to imagine a character that embodies the segment."
+    },
+    {
+      "file": "/assets/img/cases/slides/anti-scam-2.webp",
+      "caption": "Top 20 scam types addressed by banks",
+      "alt": "Ranked list of the top 20 scam types addressed by banks, led by financial scams at 247, phishing scams at 82 and impersonation scams at 72."
+    },
+    {
+      "file": "/assets/img/cases/slides/anti-scam-3.webp",
+      "caption": "Vulnerable moments for lonely individuals",
+      "alt": "Three vulnerable moments for lonely individuals and love scams: late-night isolation, post-breakup sadness and romantic holiday longing, each with a trigger and an inner quote."
+    }
+  ],
+  "image_prompt": "A cinematic late-night scene of a smartphone glowing on a desk in a quiet city apartment, neon streets blurred through the window, a mood of isolation and caution. No text, no logos, no brand marks, no recognisable people."
+}

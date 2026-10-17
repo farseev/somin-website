@@ -105,5 +105,162 @@
   "eyebrow": "Free plugin for Claude",
   "title": "Take the agentic marketing team home.",
   "image": "static/assets/img/plugin/a05.webp"
+ },
+ {
+  "name": "case-anti-scam",
+  "slug": "brands-anti-scam-case-study",
+  "eyebrow": "Brand case study · Anti-scam study",
+  "image": "static/assets/img/cases/bg/brands-anti-scam-case-study.webp"
+ },
+ {
+  "name": "case-aplus-construction",
+  "slug": "brands-aplus-construction-case-study",
+  "eyebrow": "Brand case study · A+ Construction",
+  "image": "static/assets/img/cases/bg/brands-aplus-construction-case-study.webp"
+ },
+ {
+  "name": "case-ballroom-dance-academy",
+  "slug": "brands-ballroom-dance-academy-case-study",
+  "eyebrow": "Brand case study · Ballroom Dance Academy",
+  "image": "static/assets/img/cases/bg/brands-ballroom-dance-academy-case-study.webp"
+ },
+ {
+  "name": "case-beme-group",
+  "slug": "brands-beme-case-study",
+  "eyebrow": "Brand case study · BeMe",
+  "image": "static/assets/img/cases/bg/brands-beme-case-study.webp"
+ },
+ {
+  "name": "case-caltex-agency",
+  "slug": "brands-caltex-malaysia-case-study",
+  "eyebrow": "Brand case study · Caltex Malaysia",
+  "image": "static/assets/img/cases/bg/brands-caltex-malaysia-case-study.webp"
+ },
+ {
+  "name": "case-caltex-creators",
+  "slug": "influencers-caltex-creators-case-study",
+  "eyebrow": "Creator case study · Caltex creators",
+  "image": "static/assets/img/cases/bg/influencers-caltex-creators-case-study.webp"
+ },
+ {
+  "name": "case-coca-cola",
+  "slug": "brands-coca-cola-case-study",
+  "eyebrow": "Brand case study · Coca-Cola",
+  "image": "static/assets/img/cases/bg/brands-coca-cola-case-study.webp"
+ },
+ {
+  "name": "case-constructor-group",
+  "slug": "brands-constructor-group-case-study",
+  "eyebrow": "Brand case study · Constructor Group",
+  "image": "static/assets/img/cases/bg/brands-constructor-group-case-study.webp"
+ },
+ {
+  "name": "case-fjor",
+  "slug": "brands-fjor-case-study",
+  "eyebrow": "Brand case study · Fjor",
+  "image": "static/assets/img/cases/bg/brands-fjor-case-study.webp"
+ },
+ {
+  "name": "case-fyreflyz-sicci-pitch-full",
+  "slug": "agencies-fyreflyz-sicci-case-study",
+  "eyebrow": "Agency case study · SICCI",
+  "image": "static/assets/img/cases/bg/agencies-fyreflyz-sicci-case-study.webp"
+ },
+ {
+  "name": "case-fyreflyz-x-heartware-pitch",
+  "slug": "agencies-fyreflyz-heartware-case-study",
+  "eyebrow": "Agency case study · Heartware Network",
+  "image": "static/assets/img/cases/bg/agencies-fyreflyz-heartware-case-study.webp"
+ },
+ {
+  "name": "case-fyreflyz-ymca-singapore-pitch-full",
+  "slug": "agencies-fyreflyz-ymca-case-study",
+  "eyebrow": "Agency case study · YMCA Singapore",
+  "image": "static/assets/img/cases/bg/agencies-fyreflyz-ymca-case-study.webp"
+ },
+ {
+  "name": "case-gojek",
+  "slug": "brands-gojek-case-study",
+  "eyebrow": "Brand case study · Gojek",
+  "image": "static/assets/img/cases/bg/brands-gojek-case-study.webp"
+ },
+ {
+  "name": "case-hea-energy",
+  "slug": "brands-hea-energy-case-study",
+  "eyebrow": "Brand case study · HEA",
+  "image": "static/assets/img/cases/bg/brands-hea-energy-case-study.webp"
+ },
+ {
+  "name": "case-indrive-ph-google-paid-media-brief-final",
+  "slug": "brands-indrive-philippines-case-study",
+  "eyebrow": "Brand case study · inDrive",
+  "image": "static/assets/img/cases/bg/brands-indrive-philippines-case-study.webp"
+ },
+ {
+  "name": "case-maybank",
+  "slug": "brands-maybank-case-study",
+  "eyebrow": "Brand case study · Maybank",
+  "image": "static/assets/img/cases/bg/brands-maybank-case-study.webp"
+ },
+ {
+  "name": "case-mothercare",
+  "slug": "brands-mothercare-new-mothers-case-study",
+  "eyebrow": "Brand case study · Mothercare SG",
+  "image": "static/assets/img/cases/bg/brands-mothercare-new-mothers-case-study.webp"
+ },
+ {
+  "name": "case-png-philippines",
+  "slug": "brands-pg-philippines-case-study",
+  "eyebrow": "Brand case study · P&G Philippines",
+  "image": "static/assets/img/cases/bg/brands-pg-philippines-case-study.webp"
+ },
+ {
+  "name": "case-thomson-medical-singapore-crossmarket-briefing",
+  "slug": "brands-thomson-medical-case-study",
+  "eyebrow": "Brand case study · Thomson Medical",
+  "image": "static/assets/img/cases/bg/brands-thomson-medical-case-study.webp"
+ },
+ {
+  "name": "case-timhortons-singapore-briefing-full",
+  "slug": "influencers-tim-hortons-singapore-case-study",
+  "eyebrow": "Creator case study · Tim Hortons",
+  "image": "static/assets/img/cases/bg/influencers-tim-hortons-singapore-case-study.webp"
+ },
+ {
+  "name": "case-tmc-wego-me",
+  "slug": "brands-wego-case-study",
+  "eyebrow": "Brand case study · Wego",
+  "image": "static/assets/img/cases/bg/brands-wego-case-study.webp"
+ },
+ {
+  "name": "case-tonik-gdn-briefing",
+  "slug": "brands-tonik-bank-case-study",
+  "eyebrow": "Brand case study · Tonik Bank",
+  "image": "static/assets/img/cases/bg/brands-tonik-bank-case-study.webp"
+ },
+ {
+  "name": "case-agencies-click2view-asia-case-study",
+  "slug": "agencies-click2view-asia-case-study",
+  "eyebrow": "Agency case study · Click2View Asia",
+  "image": "static/assets/img/cases/bg/agencies-click2view-asia-case-study.webp"
+ },
+ {
+  "name": "case-influencers-nikki-taylor-case-study",
+  "slug": "influencers-nikki-taylor-case-study",
+  "eyebrow": "Creator case study · Nikki Taylor",
+  "image": "static/assets/img/cases/bg/influencers-nikki-taylor-case-study.webp"
+ },
+ {
+  "name": "case-case",
+  "slug": "brands-miraflora-wagyu-gwi-case-study",
+  "eyebrow": "Brand case study · Miraflora Wagyu",
+  "image": "static/assets/img/cases/bg/brands-miraflora-wagyu-gwi-case-study.webp"
+ },
+ {
+  "name": "research",
+  "slug": "research",
+  "eyebrow": "Research · built by marketers and an AI professor",
+  "title": "The peer-reviewed AI research behind SOMIN",
+  "image": "static/assets/img/brand/hero-research.webp"
  }
 ]

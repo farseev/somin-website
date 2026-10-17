@@ -55,3 +55,9 @@ Run all three before every commit that changes content, templates, CSS or JS.
     `<!--mm:reviews tags="agency,strategy" limit="3" title="…"-->` for a review section.
 15. **Case-study hero backgrounds** are `static/assets/img/cases/bg/<slug>.webp` (SOMIN image-generate, dark teal, subject on the
     right, no text or logos); a case page picks its own up automatically.
+16. **Case-study pages** follow `docs/CASE_STUDY_SEO.md` (title `<Client> Case Study: <Topic> | SOMIN`, 45–75 character H1 naming the
+    client, descriptive H2s without full stops, a `<Client> case study FAQ` section, one Article + FAQPage graph). The builder adds
+    breadcrumbs, schema, the research credit and related cases; `tests/check_static.py` fails a case page that breaks the standard.
+17. **Research credibility** lives in `data/research.json` (Prof. Aleks Farseev's peer-reviewed papers and talks, each checked on a
+    source page). `/research/` is built from it; use `<!--mm:research themes="scoring,xai"-->` (full strip) or
+    `<!--mm:research compact="1"-->` (one line) on other pages. Never add a paper, venue, citation count or talk without a source.

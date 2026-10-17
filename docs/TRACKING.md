@@ -53,6 +53,9 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 | `plugin_download` | Download buttons on /thank-you-plugin/ (.plugin file or Claude Code .zip) | `cta_text`, `link_url` |
 | `plugin_auto_download` | The plugin download started automatically right after the plugin form | `link_url` |
 | `rating_badge_click` | G2 / Capterra rating badge clicked (hero, footer, review sections) | `cta_id` = `rating_badge_g2` / `rating_badge_capterra` |
+| `research_paper_click` / `research_pdf_click` | A peer-reviewed paper (publisher page or open-access PDF) opened from /research/, a research strip or a case study | `link_url` |
+| `research_talk_click` | A talk or lecture (YouTube or event page) opened from /research/ or a research strip | `link_url` |
+| `research_venue_click` / `research_profile_click` | Venue chip (AAAI, ACM MM, SIGIR…) or a research profile (Google Scholar, Semantic Scholar, ACM DL) clicked | `link_url` |
 | `replay_play` | Visitor presses play on a session replay (they autoplay muted when on screen) | `cta_text` = replay question |
 | `replay_step_click` | Step tab clicked in the five-step loop player (Listen … Ship) | `cta_text` = step |
 | `book_call_click` | Any calendly.com link (opens popup) | `link_url` |
@@ -72,16 +75,20 @@ Captured on landing and stored first-touch (90 days) + last-touch: `utm_*`, `gcl
 They are sent as Typeform hidden fields and appended to Calendly as UTMs, so every lead in Typeform/Calendly
 can be joined back to GA4 and ad platforms. `window.sominTracking.attributionFields()` returns the current set.
 
-## GTM wiring for lead conversions (container version 51, published 17 Oct 2026)
+## GTM wiring for lead conversions (container version 52, published 17 Oct 2026)
+
+The container (GTM-PZG88FPZ, renamed **somin.ai main website**) tracks the somin.ai main website only. The Google tags are
+named **somin.ai main website** (Google Ads AW-16476989673 / GT-NNZ3QKBW) and **somin.ai main website (GA4)** (G-XXM10JVHXY / GT-TQDCQ46);
+the GTM tag that loads GA4 is **Google tag - somin.ai main website (GA4)**.
 
 Lead conversions live in GTM and fire on the thank-you page view that follows every Typeform submit:
 
 | Trigger | Condition | Tags |
 |---|---|---|
-| [NEO] Somonitor - Thank You Page - Free Trial | Page Path contains `/thank-you-trial-somin` | GA4 generate_lead - trial, Facebook - Main - Somonitor Lead, LinkedIn - Main - Somonitor Lead (21236668) |
+| somin.ai - Thank You - Trial | Page Path contains `/thank-you-trial-somin` | GA4 generate_lead - trial, Facebook - Main - Somonitor Lead, LinkedIn - Main - Somonitor Lead (21236668) |
 | somin.ai - Thank - You - Case | Page Path contains `/thank-you-case-study` | GA4 generate_lead - case_study, Facebook - Main - Case Study Lead, LinkedIn - Main - Case Study Lead (20526508) |
 | somin.ai - Thank You - Plugin | Page Path contains `/thank-you-plugin` | GA4 generate_lead - plugin, Facebook - Main - Plugin Lead (no LinkedIn conversion ID exists for the plugin yet) |
-| [NEO] event_scheduled - calendly | dataLayer `calendly_event` = event_scheduled | GA4 generate_lead - calendly, Meta Lead, LinkedIn 20526828 |
+| Calendly - event_scheduled (somin.ai) | Custom Event `calendly`, `DLV - calendly_event` = event_scheduled (pushed by the tag **cHTML - Calendly listener (somin.ai)**) | GA4 generate_lead - calendly, Meta Lead, LinkedIn 20526828 |
 
 Key interactions also reach the Meta pixel (version 51): trigger **CE - somin_event - key events** (Custom Event `somin_event`,
 `DLV - event_name` matches `^(book_call_click|lead_form_open|trial_form_submit|case_study_form_submit|plugin_form_submit|case_study_download|case_study_auto_download|plugin_download|plugin_auto_download|login_click|replay_play)$`)
@@ -102,9 +109,20 @@ back on, remove the GTM thank-you triggers first.
 Known trade-off of page-view conversions: reloading a thank-you page, or opening `/thank-you-case-study/` directly
 (it shows the locked state), fires the conversion again. Both pages are noindexed and blocked in robots.txt.
 
-Still in the container but dead (left untouched): `[NEO] Thank You Page` (`www.somin.ai/thank-you/`, a URL that
-returns 404), `[NEO] SOADS - Thank You Page - Free Trial`, the GenAI Sandbox triggers and the
-`thank_you_page_view` (Mothercare) custom event, which no page pushes any more.
+Version 52 cleanup (nothing deleted; everything can be unpaused from its folder):
+
+- **Archive - cloud.somin.ai (paused, not tracked)**: the 13 Meta, Google Ads, GA4 and LinkedIn tags that fired on
+  cloud.somin.ai registration, verification and welcome pages. The app is no longer tracked from this container.
+  The GA4 stream "cloud.somin.ai Platform" (G-J0ZV27346P) was detached from the somin.ai Google tag and now sits on its
+  own Google tag, "cloud.somin.ai (not tracked, detached from somin.ai)", which is installed nowhere.
+- **Archive - [NEO] (paused, not used)**: the 15 agency-era `[NEO]` GA4 tags.
+- Kept because live lead tags depend on them, renamed without the `[NEO]` prefix: the Calendly listener, the scroll-depth
+  tag (`GA4 - scroll depth (somin.ai)` on trigger `Scroll depth 25/50/75/90 (somin.ai)`), the trial and Calendly triggers
+  and `DLV - calendly_event`.
+- Still present but harmless: the old `[NEO]` click-text triggers used by a few Meta/LinkedIn tags, the GenAI Sandbox
+  triggers and the cloud.somin.ai triggers (their tags are paused). They only match the old Leadpages markup.
+
+`login_click` / `platform_click` remain: they are clicks on somin.ai links that point to the app, measured on somin.ai.
 
 Optional:
 

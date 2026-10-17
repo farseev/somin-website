@@ -59,12 +59,84 @@
      "href": "/brands-miraflora-case-study/"
     },
     {
+     "label": "eCommerce / Premium Beef: Miraflora Wagyu",
+     "href": "/brands-miraflora-wagyu-gwi-case-study/"
+    },
+    {
      "label": "Retail / Baby Goods: Mothercare Singapore",
      "href": "/brands-mothercare-sg-case-study/"
     },
     {
      "label": "FMCG / Beverage: Pepsi India",
      "href": "/brands-pepsi-india-case-study/"
+    },
+    {
+     "label": "Travel: Wego",
+     "href": "/brands-wego-case-study/"
+    },
+    {
+     "label": "Mother & Baby: Mothercare Singapore — New Mothers",
+     "href": "/brands-mothercare-new-mothers-case-study/"
+    },
+    {
+     "label": "Haircare: P&G Philippines",
+     "href": "/brands-pg-philippines-case-study/"
+    },
+    {
+     "label": "Electricity Market: HEA Energy",
+     "href": "/brands-hea-energy-case-study/"
+    },
+    {
+     "label": "Transportation, B2B: Gojek",
+     "href": "/brands-gojek-case-study/"
+    },
+    {
+     "label": "Education: Constructor Group",
+     "href": "/brands-constructor-group-case-study/"
+    },
+    {
+     "label": "Food Supplements: BeMe",
+     "href": "/brands-beme-case-study/"
+    },
+    {
+     "label": "Anti Scam: Anti-Scam Communications",
+     "href": "/brands-anti-scam-case-study/"
+    },
+    {
+     "label": "Keto Diet App: Fjor",
+     "href": "/brands-fjor-case-study/"
+    },
+    {
+     "label": "Finance: Maybank",
+     "href": "/brands-maybank-case-study/"
+    },
+    {
+     "label": "General Contractor: A+ Construction",
+     "href": "/brands-aplus-construction-case-study/"
+    },
+    {
+     "label": "Beverage: Coca-Cola",
+     "href": "/brands-coca-cola-case-study/"
+    },
+    {
+     "label": "Dance Academy: Ballroom Dance Academy",
+     "href": "/brands-ballroom-dance-academy-case-study/"
+    },
+    {
+     "label": "Fuel & Automotive Retail: Caltex Malaysia",
+     "href": "/brands-caltex-malaysia-case-study/"
+    },
+    {
+     "label": "Private Healthcare: Thomson Medical",
+     "href": "/brands-thomson-medical-case-study/"
+    },
+    {
+     "label": "Digital Banking: Tonik Bank",
+     "href": "/brands-tonik-bank-case-study/"
+    },
+    {
+     "label": "Ride-Hailing: inDrive Philippines",
+     "href": "/brands-indrive-philippines-case-study/"
     }
    ]
   },
@@ -103,6 +175,18 @@
     {
      "label": "Creative Agency: Blak Labs",
      "href": "/agencies-blak-labs-case-study/"
+    },
+    {
+     "label": "Social Services Nonprofit: YMCA Singapore",
+     "href": "/agencies-fyreflyz-ymca-case-study/"
+    },
+    {
+     "label": "Business Chamber / Trade Association: SICCI",
+     "href": "/agencies-fyreflyz-sicci-case-study/"
+    },
+    {
+     "label": "Youth Volunteering / Social Enterprise: Heartware Network",
+     "href": "/agencies-fyreflyz-heartware-case-study/"
     }
    ]
   },
@@ -125,6 +209,14 @@
     {
      "label": "Pet Influencer: Daisy Iggy Levretka (The Dog)",
      "href": "/influencers-daisy-iggy-case-study/"
+    },
+    {
+     "label": "Fuel & Petroleum Retail: Caltex Creators",
+     "href": "/influencers-caltex-creators-case-study/"
+    },
+    {
+     "label": "Coffee & Cafe Chain: Tim Hortons Singapore",
+     "href": "/influencers-tim-hortons-singapore-case-study/"
     }
    ]
   },
@@ -136,6 +228,11 @@
      "label": "FREE CLAUDE PLUGIN",
      "href": "/marketing-mondays-plugin/",
      "gtm_id": "nav_plugin"
+    },
+    {
+     "label": "RESEARCH & PAPERS",
+     "href": "/research/",
+     "gtm_id": "nav_research"
     },
     {
      "label": "CREATOR MANAGEMENT",
@@ -277,6 +374,10 @@
       "href": "/blog/"
      },
      {
+      "label": "Research & papers",
+      "href": "/research/"
+     },
+     {
       "label": "Our Vision",
       "href": "/vision/"
      },
@@ -351,6 +452,7 @@
  },
  "redirects": {
   "/forms/": "/",
+  "/case/": "/brands-miraflora-wagyu-gwi-case-study/",
   "/pixel/": "/",
   "/somin-comparisons/": "/somin-strategy/",
   "/blog/expanding-horizons-leveraging-large-language-models-for-business-innovation-beyond-chatbots-copy/": "/blog/expanding-horizons-leveraging-large-language-models-for-business-innovation-beyond-chatbots/",

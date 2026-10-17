@@ -1,0 +1,110 @@
+{
+  "key": "caltex-creators",
+  "slug": "influencers-caltex-creators-case-study",
+  "section": "creators",
+  "client": "Caltex Malaysia",
+  "client_short": "Caltex creators",
+  "seo_title": "Caltex Creators Case Study: 4 Distinct Territories | SOMIN",
+  "description": "SOMIN mapped Caltex Malaysia's four creators, with 6.0M engagements in 90 days, into four distinct territories, each with an insight and a first move.",
+  "eyebrow": "Creator case study · Fuel retail · Malaysia",
+  "h1": "Caltex's four creators each own one territory, with none shared",
+  "h1_em": "with none shared",
+  "lede": "SOMIN mapped Caltex Malaysia's four activated creators and the wider creator panel in its Creators workspace, reading each voice over the last 90 days. The four earned 6.0M engagements combined, 5.8M of them from @aydensng. SOMIN gave each creator one distinct territory, an insight and a first move, with no territory shared.",
+  "meta_line": "A SOMIN creator strategy · Last 90 days · Malaysia",
+  "stats": [
+    {
+      "num": "6.0",
+      "unit": "M",
+      "label": "Combined engagements, last 90 days"
+    },
+    {
+      "num": "4",
+      "unit": "",
+      "label": "Distinct territories, none shared"
+    },
+    {
+      "num": "5.8",
+      "unit": "M",
+      "label": "Engagements for the top voice"
+    }
+  ],
+  "challenge": {
+    "title": "Turning Caltex's four-creator roster into a portfolio",
+    "body": "Caltex Malaysia had four activated creators with very different reach, from 5.8M engagements in 90 days down to 203. The question was how to turn the roster into a portfolio, with each creator owning a distinct conversation and none overlapping. No GMV or affiliate export was supplied, so the programme is read on engagement only."
+  },
+  "approach": {
+    "title": "Per-creator perspective studies and a panel whitespace study",
+    "points": [
+      "Mapped the four Caltex-linked creators and the wider creator panel in SOMIN's Creators workspace.",
+      "Ran perspective studies to break each creator's content into personas and tensions.",
+      "Ran a whitespace study across the creator panel (n=1,365) and a trend window from Apr to Jul 2026 (n=517) to find ground each creator could own.",
+      "Assigned one territory per creator with an insight and a first move, styled to Caltex.",
+      "Generated a hero creative for each creator through SOMIN's creative-expressions engine."
+    ]
+  },
+  "findings_title": "One creator carries 5.8M of Caltex's 6.0M engagements",
+  "findings": [
+    {
+      "title": "@aydensng earned 5.8M of the 6.0M engagements",
+      "body": "@aydensng earned 5.8M of the roster's 6.0M engagements in 90 days. @joeflizzow followed at 118K, @sonaone at 10K and @matthaios at 203."
+    },
+    {
+      "title": "Each creator has unclaimed ground to own",
+      "body": "Premium performance is unclaimed in @aydensng's lifestyle and journey content. No brand connects hip-hop credibility to engine performance, the opening for @joeflizzow."
+    },
+    {
+      "title": "Readiness runs from Ready to Own to Weak Signal",
+      "body": "Territory ownership runs from Ready to Own for @aydensng and Differentiate for @joeflizzow to Emerging for @sonaone and Weak Signal (build) for @matthaios."
+    }
+  ],
+  "delivered": {
+    "title": "Four creator territories, each with an insight and hero creative",
+    "points": [
+      "The Aspirational Drive for @aydensng: the face of 'Enjoy the Journey', where Techron performance is the quiet flex",
+      "Street Cred & Craft for @joeflizzow: Techron-truth through the lens of craft and no-compromise",
+      "The Everyday Groove for @sonaone: CaltexGO and Rewards value paired with music, the everyday drive scored and rewarded",
+      "The Next-Gen Connector for @matthaios: a trend-led, participatory, rewards-native Gen-Z community role",
+      "A one-line insight per creator and a per-creator hero creative"
+    ]
+  },
+  "quote": {
+    "text": "Aspiration is the on-ramp: people follow the life they want before the fuel they buy.",
+    "source": "From the SOMIN strategy"
+  },
+  "outcome": {
+    "title": "Caltex gets one creator per territory, led by @aydensng",
+    "body": "Caltex gets one creator per territory, none shared, each with a first move ready to brief. @aydensng leads as the top voice, while @matthaios is grown as a build. Every figure is content engagement, a proxy for reach, not sales."
+  },
+  "faq": [
+    {
+      "q": "How did SOMIN decide which creator owns which territory?",
+      "a": "SOMIN read each creator's content through perspective studies, then ran a whitespace study against the wider creator panel to find the territory each could own without overlap. Each creator got one territory, an insight and a first move."
+    },
+    {
+      "q": "Do the figures show sales?",
+      "a": "No. No GMV or affiliate export was supplied, so every figure is SOMIN content engagement over the last 90 days, a proxy for reach rather than sales."
+    },
+    {
+      "q": "Why keep a creator with 203 engagements on the roster?",
+      "a": "@matthaios is marked Weak Signal (build): an emerging Gen-Z voice with community and trend content and room to grow reach. The mission is to grow that account as the Gen-Z community connector."
+    }
+  ],
+  "slides": [
+    {
+      "file": "/assets/img/cases/slides/caltex-creators-1.webp",
+      "caption": "Four creators, four missions",
+      "alt": "Four creator cards for the Caltex Malaysia roster, each with a generated hero image, handle, territory name, whitespace and insight"
+    },
+    {
+      "file": "/assets/img/cases/slides/caltex-creators-2.webp",
+      "caption": "Every creator owns a different road",
+      "alt": "Matrix comparing four Caltex creators by 90-day engagement, lead territory, territory ownership, insight and first move"
+    },
+    {
+      "file": "/assets/img/cases/slides/caltex-creators-3.webp",
+      "caption": "Engagement by creator, last 90 days",
+      "alt": "Roster summary showing 4 creators, 6.0M total engagements and 4 territories, with a bar chart of engagement per creator from 5.8M down to 203"
+    }
+  ],
+  "image_prompt": "A modern fuel station forecourt in Kuala Lumpur at night with a sports car at the pump, the city skyline and light trails behind, cinematic neon reflections, no text, no logos, no brand marks."
+}

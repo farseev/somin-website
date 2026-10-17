@@ -1,0 +1,108 @@
+{
+  "key": "hea-energy",
+  "slug": "brands-hea-energy-case-study",
+  "section": "brands",
+  "client": "HEA",
+  "client_short": "HEA",
+  "seo_title": "HEA Case Study: Singapore Energy Engagement | SOMIN",
+  "description": "For HEA, SOMIN benchmarked Facebook and Instagram engagement for 4 Singapore energy brands and found sustainability led, with 47,849 engagements from 56 posts.",
+  "eyebrow": "Brand case study · Energy · Singapore",
+  "h1": "HEA benchmark: sustainability leads, but referral codes skew the numbers",
+  "h1_em": "but referral codes skew the numbers",
+  "lede": "For HEA, SOMIN read the Facebook and Instagram posts of 4 Singapore energy companies, City Energy, Geneco, SP Group and Senoko, published from July 2023 to June 2024. It defined normal engagement for each brand, flagged the outliers and detected the topics, personas, tensions and messages behind the content. Sustainability was the biggest topic, with 47,849 engagements from 56 posts.",
+  "meta_line": "A SOMIN engagement study · Jul 2023 to Jun 2024 · Singapore",
+  "stats": [
+    {
+      "num": "4",
+      "unit": "",
+      "label": "Singapore energy brands benchmarked"
+    },
+    {
+      "num": "47,849",
+      "unit": "",
+      "label": "Engagements on the top topic, sustainability"
+    },
+    {
+      "num": "35",
+      "unit": "",
+      "label": "Geneco outlier posts on Facebook"
+    }
+  ],
+  "challenge": {
+    "title": "What normal engagement looks like for 4 Singapore energy brands",
+    "body": "The study set out to show how Singapore's energy companies really perform on Facebook and Instagram. Totals alone can mislead, because posts with higher than normal engagement may be caused by virality or boosting. So the question was where each brand's normal engagement sits, which posts fall outside it, and what the content is about."
+  },
+  "approach": {
+    "title": "Box plots, IQR outliers, comment reads and topic detection",
+    "points": [
+      "Collected total engagement (likes, comments, shares) on Facebook and Instagram posts from City Energy, Geneco, SP Group and Senoko, July 2023 to June 2024.",
+      "Plotted each brand's median and interquartile range (IQR) to define normal engagement, and flagged posts beyond 1.5 times the IQR as outliers.",
+      "Read the comment sections to explain unusual numbers, such as referral-code commenters and customer-service enquiries.",
+      "Ran topic, persona, relevance, tension and key-message detection, sized by total media and total engagement for each brand."
+    ]
+  },
+  "findings_title": "Referral codes, Geneco's outliers and sustainability's lead",
+  "findings": [
+    {
+      "title": "Referral codes inflate Senoko",
+      "body": "Senoko had the highest Facebook median engagement, 229, driven by a community of referral-code commenters. On Instagram, where those commenters are absent, its median fell to 2."
+    },
+    {
+      "title": "Geneco puts resources behind its page",
+      "body": "Geneco had the most Facebook outliers, 35, and the widest range, 219 to 5,797 engagements. SOMIN reads this as more resources placed into the page, since paid reach usually drives these numbers."
+    },
+    {
+      "title": "Sustainability is the category's topic",
+      "body": "Sustainability initiatives in Singapore's energy sector led with 47,849 engagements across 56 posts. The top persona, the Sustainable Community Innovator, drew 33,457 engagements across 34 posts."
+    }
+  ],
+  "delivered": {
+    "title": "HEA's benchmark of 4 brands, 3 topics and 4 personas",
+    "points": [
+      "Facebook and Instagram engagement benchmarks for 4 brands: median, IQR, outlier count and range",
+      "3 content topics, led by Sustainability Initiatives in Singapore's Energy Sector",
+      "4 personas, from the Sustainable Community Innovator to the Community Impact Advocate",
+      "3 relevance themes, 4 tensions and the key propositions each brand put forward"
+    ]
+  },
+  "quote": {
+    "text": "It's important to remember that engagement is just a surface-level metric. High engagement doesn’t always mean better brand recognition or higher profits.",
+    "source": "From the SOMIN engagement study"
+  },
+  "outcome": {
+    "title": "Why HEA should read energy engagement in context",
+    "body": "The study separates real community response from engagement inflated by referral-code comments or paid reach. Contests might boost engagement without improving the bottom line, but building an engaged community can be very powerful. For HEA, sustainability, cost-saving and community content are where the category's engagement concentrates."
+  },
+  "faq": [
+    {
+      "q": "Which brands did SOMIN benchmark for HEA?",
+      "a": "City Energy, Geneco, SP Group and Senoko, using their Facebook and Instagram posts published between July 2023 and June 2024."
+    },
+    {
+      "q": "How does SOMIN define normal engagement?",
+      "a": "It uses each brand's median and interquartile range, where about 50% of posts sit. Posts beyond 1.5 times the IQR are treated as outliers, which may be caused by virality or boosting."
+    },
+    {
+      "q": "Why is Senoko's engagement so high on Facebook?",
+      "a": "Its comment sections are driven by a community of referral-code commenters. On Instagram, where they are absent, Senoko's median engagement was 2, the lowest of the 4 brands."
+    }
+  ],
+  "slides": [
+    {
+      "file": "/assets/img/cases/slides/hea-energy-1.webp",
+      "caption": "Top topic: sustainability in Singapore energy",
+      "alt": "SOMIN topic card for Sustainability Initiatives in Singapore's Energy Sector, with an illustrated green city skyline, EV chargers and solar panels, showing 47,849 total engagement across 56 posts."
+    },
+    {
+      "file": "/assets/img/cases/slides/hea-energy-2.webp",
+      "caption": "Normal Facebook engagement by brand",
+      "alt": "Box plot chart of Facebook engagement for City Energy, Geneco, SP Group and Senoko, with medians of 23, 47.5, 59.5 and 229."
+    },
+    {
+      "file": "/assets/img/cases/slides/hea-energy-3.webp",
+      "caption": "Persona 01: Sustainable Community Innovator",
+      "alt": "Persona card for the Sustainable Community Innovator, with an illustration of people gathering in a green community space, showing 33,457 total engagement across 34 posts."
+    }
+  ],
+  "image_prompt": "A cinematic dusk view of a dense tropical city skyline with rooftop solar panels, electric vehicle chargers along tree-lined streets and a softly glowing power grid. No text, no logos, no brand marks, no recognisable people."
+}

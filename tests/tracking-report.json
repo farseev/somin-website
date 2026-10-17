@@ -1,7 +1,7 @@
 {
  "base": "https://somin.ai",
- "passed": 59,
- "total": 59,
+ "passed": 76,
+ "total": 76,
  "results": [
   {
    "test": "tracking.js loaded once",
@@ -61,7 +61,7 @@
   {
    "test": "Attribution captured (utm + gclid + fbclid)",
    "ok": true,
-   "detail": "{\"utm_source\": \"test_src\", \"utm_medium\": \"cpc\", \"utm_campaign\": \"migration_qa\", \"gclid\": \"TEST_GCLID\", \"fbclid\": \"TEST_FBCLID\", \"landing_page\": \"/\", \"referrer\": \"\", \"ga_client_id\": \"631471464.17921688"
+   "detail": "{\"utm_source\": \"test_src\", \"utm_medium\": \"cpc\", \"utm_campaign\": \"migration_qa\", \"gclid\": \"TEST_GCLID\", \"fbclid\": \"TEST_FBCLID\", \"landing_page\": \"/\", \"referrer\": \"\", \"ga_client_id\": \"64066608.179222192"
   },
   {
    "test": "Calendly opens as popup (not new tab)",
@@ -101,7 +101,7 @@
   {
    "test": "GA4 generate_lead (lead_type=calendly)",
    "ok": true,
-   "detail": "calendar_event_type_viewed,calendar_event_type_viewed,calendar_event_scheduled,generate_lead"
+   "detail": "generate_lead"
   },
   {
    "test": "Meta Lead",
@@ -121,7 +121,7 @@
   {
    "test": "Hidden fields passed (utm_source, li_fat_id, page_path, lead_type)",
    "ok": true,
-   "detail": "#utm_source=linkedin&utm_campaign=q4_test&li_fat_id=TEST_LI&landing_page=/somin-for-brands/&ga_client_id=297933838.1792168832&fbp=fb.1.1792168832020.342552047338631620&page_url=https://somin.ai/somin-for-brands/&page_pat"
+   "detail": "#utm_source=linkedin&utm_campaign=q4_test&li_fat_id=TEST_LI&landing_page=/somin-for-brands/&ga_client_id=2115973149.1792221944&fbp=fb.1.1792221943817.644176194790764235&page_url=https://somin.ai/somin-for-brands/&page_pa"
   },
   {
    "test": "Typeform onReady \u2192 lead_form_ready",
@@ -146,7 +146,7 @@
   {
    "test": "GA4 thank_you_view",
    "ok": true,
-   "detail": "page_view,generate_lead,thank_you_view,scroll"
+   "detail": "lead_form_open,cta_click,lead_form_ready,trial_form_submit,page_view,generate_lead,thank_you_view,scroll"
   },
   {
    "test": "GA4 generate_lead fired exactly once (GTM thank-you trigger)",
@@ -279,6 +279,91 @@
    "detail": ""
   },
   {
+   "test": "Hero shows the plugin card",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Typeform popup opens with plugin form PI0VcVHp",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Hidden fields lead_type=plugin, utm_source, cta_id",
+   "ok": true,
+   "detail": "#utm_source=plugin_test&utm_campaign=mm_plugin&landing_page=/&ga_client_id=937036378.1792221985&fbp=fb.1.1792221985806.531090654425815230&page_url=https://somin.ai/&page_path=/&cta_id=home_hero_plugin"
+  },
+  {
+   "test": "Redirect to /thank-you-plugin/?rid=\u2026",
+   "ok": true,
+   "detail": "https://somin.ai/thank-you-plugin/?rid=TEST-RID-PLUGIN&from=%2F"
+  },
+  {
+   "test": "Plugin download starts automatically (once, page stays put)",
+   "ok": true,
+   "detail": "https://mondays.marketing/downloads/marketing-mondays.plugin"
+  },
+  {
+   "test": "Download buttons released (plugin + zip)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "plugin_form_submit + plugin_auto_download tracked",
+   "ok": true,
+   "detail": "lead_form_open,cta_click,lead_form_ready,plugin_form_submit,page_view,generate_lead,thank_you_view,scroll,plugin_auto_download"
+  },
+  {
+   "test": "GA4 generate_lead fired exactly once (GTM thank-you-plugin trigger)",
+   "ok": true,
+   "detail": "1x"
+  },
+  {
+   "test": "Meta Lead fired exactly once (GTM)",
+   "ok": true,
+   "detail": "1x"
+  },
+  {
+   "test": "Meta key events via GTM (lead_form_open, plugin_form_submit, plugin_auto_download)",
+   "ok": true,
+   "detail": "Lead,PageView,cta_click,lead_form_open,plugin_auto_download,plugin_form_submit"
+  },
+  {
+   "test": "Direct visit with a made-up response id stays locked",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "No JavaScript errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "Loop replay loads and plays when scrolled into view",
+   "ok": true,
+   "detail": "{\"src\": \"https://somin.ai/assets/video/listen-landscape-report.webm\", \"rs\": 4, \"t\": 2.360519}"
+  },
+  {
+   "test": "Step tab switches the replay (Make \u2192 Figma)",
+   "ok": true,
+   "detail": "{\"src\": \"https://somin.ai/assets/video/make-figma.webm\", \"q\": \"On-brand, in the brand's own Figma file\"}"
+  },
+  {
+   "test": "replay_step_click tracked (GA4)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "VideoObject schema on the home page",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "test": "No JavaScript errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
    "test": "GA4 scroll (GTM scroll-depth trigger)",
    "ok": true,
    "detail": "percent_scrolled=25,50,75,90"
@@ -294,7 +379,7 @@
    "detail": "article_read_50,article_read_90,cta_click,login_click,scroll"
   },
   {
-   "test": "All 98 pages load with no JS errors and exactly one GTM container",
+   "test": "All 123 pages load with no JS errors and exactly one GTM container",
    "ok": true,
    "detail": "[]"
   }

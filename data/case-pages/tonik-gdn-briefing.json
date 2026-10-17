@@ -1,0 +1,110 @@
+{
+  "key": "tonik-gdn-briefing",
+  "slug": "brands-tonik-bank-case-study",
+  "section": "brands",
+  "client": "Tonik Bank",
+  "client_short": "Tonik Bank",
+  "seo_title": "Tonik Bank Case Study: Philippine Google Ads | SOMIN",
+  "description": "SOMIN read 126 Tonik and 516 competitor Google ads in Philippine digital banking, found about 5 months of silence and built 8 display concepts in 88 banners.",
+  "eyebrow": "Brand case study · Digital banking · Philippines",
+  "h1": "Tonik went quiet on Google Ads just as MariBank got loud",
+  "h1_em": "just as MariBank got loud",
+  "lede": "SOMIN analysed Google Search, Display Network and YouTube ads from Tonik Bank and 7 competitors over about 20 months: 126 Tonik ads against 516 from rivals. It found no Tonik activity for about 5 months, 9 tensions with no open whitespace, and a 0.514-scoring micro-loan angle that was dropped. The result was 5 pillars and 8 display concepts.",
+  "meta_line": "A SOMIN brand briefing · Dec 2024 to Aug 2026 · Philippines · Budget-conscious individuals",
+  "stats": [
+    {
+      "num": "126",
+      "unit": "ads",
+      "label": "Tonik Google ads analysed"
+    },
+    {
+      "num": "7",
+      "unit": "",
+      "label": "Competitor banks benchmarked"
+    },
+    {
+      "num": "88",
+      "unit": "banners",
+      "label": "Across 8 display concepts"
+    }
+  ],
+  "challenge": {
+    "title": "Tonik's Google Ads peaked at a 54% share, then went silent",
+    "body": "Tonik Bank competes for budget-conscious Filipinos with Maya, MariBank, Salmon, GoTyme Bank, Union Digital Bank, OFBank and UNO Digital Bank. Its Google Ads ramped through 2025 and peaked at a 54% share of the sampled window in Dec 2025 to Feb 2026, then went silent. The briefing set out to map trends, whitespace and products on Google, then turn them into display creative."
+  },
+  "approach": {
+    "title": "Trends, whitespace and products across 10 Google Ads windows",
+    "points": [
+      "Read only Google Search, Display Network and YouTube ads from SOMIN's ads library, with no organic content or other platforms.",
+      "Tracked format, voice share, tensions and audiences across 10 trend windows, rating every directional claim for confidence.",
+      "Compared Tonik with 7 competitors on 9 tensions, calling each lane contested, blocked or partially defensible.",
+      "Mapped Tonik's products and angles by predicted clickability, a pre-launch score rather than a measured outcome.",
+      "Flagged data gaps instead of smoothing them, such as single-brand artefacts and overlapping samples."
+    ]
+  },
+  "findings_title": "No open whitespace, one loan product and a dropped top angle",
+  "findings": [
+    {
+      "title": "No open whitespace",
+      "body": "All 9 tensions already carry brand or competitor presence. Banking trust, accessibility and fee messaging is 25.6% of competitor ads and 0% of Tonik's, so it is blocked, not open."
+    },
+    {
+      "title": "One loan carries the business",
+      "body": "Credit Builder Loan accounts for 109 ads, 86.5% of Tonik's corpus. Savings and Time Deposit has 21 ads and leans on one generic angle."
+    },
+    {
+      "title": "The best angle was dropped",
+      "body": "A ₱20K medical needs micro-loan scored 0.514 predicted clickability, the highest in the corpus. It ran in 2 ads and was discontinued in Feb 2025."
+    }
+  ],
+  "delivered": {
+    "title": "88 banners across 8 display concepts and 5 strategic pillars",
+    "points": [
+      "A 10-window trend read on format, voice share, tensions and audiences, including an emerging travel signal",
+      "A whitespace verdict map across 9 tensions, Tonik against 7 competitors",
+      "A product map with predicted clickability for each angle",
+      "5 strategic pillars, each traced to a specific finding",
+      "8 display concepts with every banner at 9 words or fewer, 88 banners across 11 standard sizes"
+    ]
+  },
+  "quote": {
+    "text": "Differentiate within contested lanes — don't hunt for empty ones",
+    "source": "From the SOMIN briefing"
+  },
+  "outcome": {
+    "title": "Tonik should restart Google Ads and re-test its top-scoring angle",
+    "body": "First, confirm why Tonik's Google Ads stopped, since MariBank now runs 70% of the latest sampled window. Then scale the “any goal” Credit Builder Loan angle, re-test the medical needs micro-loan at meaningful volume, and fix the Home Renovation creative before abandoning a lane no competitor holds."
+  },
+  "faq": [
+    {
+      "q": "What data did the Tonik briefing use?",
+      "a": "Only Google Search, Display Network and YouTube ads from Google Ads Transparency data, via SOMIN's ads library. Data for this competitive set begins on 23 December 2024, so the trend window covers about 20 months to August 2026."
+    },
+    {
+      "q": "What is predicted clickability?",
+      "a": "It is SOMIN's above-average probability score from creative analysis. It is a pre-launch prediction, not a measured outcome, because the corpus holds no spend or click-through data."
+    },
+    {
+      "q": "Why is there no confirmed whitespace?",
+      "a": "Only two cohorts existed, Tonik and its 7 competitors, with no third audience cohort. Under SOMIN's method that caps verdicts at contested, blocked or partially defensible, and brand absence never counts as whitespace."
+    }
+  ],
+  "slides": [
+    {
+      "file": "/assets/img/cases/slides/tonik-gdn-briefing-1.webp",
+      "caption": "Concept C1: flagship Credit Builder Loan",
+      "alt": "Concept C1 display banners in five sizes reading 'Borrow up to ₱50K. Build credit too.' with an Apply Now button on dark purple key art"
+    },
+    {
+      "file": "/assets/img/cases/slides/tonik-gdn-briefing-2.webp",
+      "caption": "Format and voice share over time",
+      "alt": "Line chart of sampled ads on Google Search, YouTube and Display Partners, beside a stacked bar chart of the advertiser mix from W3 to W12"
+    },
+    {
+      "file": "/assets/img/cases/slides/tonik-gdn-briefing-3.webp",
+      "caption": "Whitespace verdict map, nine tensions",
+      "alt": "Table comparing Tonik and competitor shares across nine tensions, each marked contested, blocked or partially defensible"
+    }
+  ],
+  "image_prompt": "Cinematic night street in Metro Manila after rain, a young professional checking a banking app under neon reflections and passing jeepneys, violet and teal tones. No text, no logos, no brand marks, no recognisable people."
+}

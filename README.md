@@ -197,6 +197,15 @@ case-study PDFs and the Claude plugin download automatically after their forms; 
   every description 120–160 characters, one H1 per page, descriptive alt text on content and card images, FAQPage
   schema generated from visible FAQs where a page had none, BreadcrumbList on every page, VideoObject for each replay,
   and `llms.txt` now explains the five-step loop, the four questions and the free Claude plugin.
+* Case studies (Oct 2026): all 45 case pages follow one outline (`docs/CASE_STUDY_SEO.md`): `<Client> Case Study: <Topic> | SOMIN`
+  titles, 45–75 character H1s that name the client, descriptive H2s, a `<Client> case study FAQ`, visible breadcrumbs, related
+  cases and a single Organization/WebPage/BreadcrumbList/Article/FAQPage graph (the old inline blocks pointed at non-existent
+  `/case-studies/…` URLs). The Click2View and Nikki Taylor pages, which showed copies of other cases, and the thin Miraflora
+  Wagyu × GWI page (now `/brands-miraflora-wagyu-gwi-case-study/`, redirected from `/case/`) were rebuilt from their PDFs.
+* Research credibility: `/research/` lists Prof. Aleks Farseev's peer-reviewed papers (AAAI, ACM Multimedia, SIGIR, WSDM,
+  The Web Conference, ACM TOIS…) and talks from `data/research.json`, with ScholarlyArticle and Person schema; research strips
+  sit on the home, agents, product, solution, comparison and plugin pages, and a one-line credit on case studies, blog posts,
+  the cases hub, /try-somin/, /vision/ and in the footer.
 
 ## 7. Things fixed during the migration (were broken on the Leadpages site)
 
