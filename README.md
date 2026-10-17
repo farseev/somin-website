@@ -118,11 +118,23 @@ All CTAs use plain links with a data attribute, so they work without JavaScript 
 |---|---|---|
 | Try SOMIN (free trial) | `jC5qqGJ0` | `/thank-you-trial-somin/` |
 | Case-study request | `lHmWeOX7` | `/thank-you-case-study/?cs=<key>` — the PDF download unlocks immediately |
+| Marketing Mondays plugin for Claude (free) | `PI0VcVHp` | `/thank-you-plugin/` — the `.plugin` download starts automatically, plus install steps |
 
-Both forms live in the **sominanalytics** Typeform account, use the SOMIN theme (teal `#2DBF9C` on ink `#16201F`,
-Montserrat/Inter) and receive these hidden fields on every response:
+All three forms live in the **sominanalytics** Typeform account, use the SOMIN theme (teal `#2DBF9C` on ink `#16201F`,
+Montserrat) and receive these hidden fields on every response:
 `utm_source, utm_medium, utm_campaign, utm_term, utm_content, gclid, gbraid, wbraid, fbclid, li_fat_id, msclkid, ttclid,
 landing_page, referrer, ga_client_id, fbp, fbc, page_url, page_path, cta_id, lead_type, case_study`.
+
+**Claude plugin.** The home hero carries a plugin card and `/marketing-mondays-plugin/` is the landing page (skills,
+the five-step loop player, install guide, FAQ, SoftwareApplication + FAQPage schema). Both open the plugin Typeform; the
+thank-you page releases `https://mondays.marketing/downloads/marketing-mondays.plugin` (and the Claude Code `.zip`) only
+after a submit in that browser, like the case studies. The files stay on mondays.marketing, so updates there flow through.
+
+**Session replays.** Eleven condensed screen recordings of real SOMIN agent runs (Claude + SOMIN MCP on Grab Singapore data,
+from the Marketing Mondays session of 12 Oct 2026) are in `static/assets/video/` as H.264 MP4 + VP9 WebM + WebP poster
+(about 13 MB in total), listed in `data/replays.json`. Content uses `<!--mm:replay KEY-->` or `<!--mm:loop-->` (tabbed
+Listen → Decode → Decide → Make → Ship player); they appear on the home page, AI agents, the plugin page, the three solution
+pages and five product pages. Videos load only when scrolled into view and play muted; reduced-motion users get the poster.
 
 **Case-study hub.** `/cases-ai-marketing-strategy/` lists all 45 case studies (27 brands, 12 agencies, 6 creators) with
 section filters and search, built from `data/case-studies.json` (`hub` blocks carry the tile title, sector, market and
@@ -153,13 +165,15 @@ as an attachment without an interstitial, and replacing a PDF in Drive needs no 
   the existing GA4 event tag forwards them. Custom events from anywhere: `window.sominTrack('my_event', {…})`
   or `<a data-track="my_event">`.
 * Lead conversions (GA4 `generate_lead`, Meta `Lead`, LinkedIn `21236668` trial / `20526508` case study) fire in GTM
-  on the thank-you page that follows every Typeform submit (GTM version 50, Page Path triggers). `tracking.js` does
-  not fire them itself, so nothing is counted twice.
+  on the thank-you page that follows every Typeform submit (GTM version 51, Page Path triggers; the plugin thank-you page
+  fires GA4 + Meta). `tracking.js` does not fire them itself, so nothing is counted twice.
+* Key interactions (call clicks, form opens and submits, downloads, logins, replay plays) also reach the Meta pixel as
+  custom events with `event_id` (GTM v51 tag "Facebook - somin key events (custom)").
 * Debug: add `?debug_tracking=1` to any URL to log every event in the console; `?tracking=off` disables all tags.
 
-Test result at hand-over: **59 / 59 checks passed** locally and against the live preview at
-`https://farseev.github.io/somin-website/` (GTM container v50; each lead conversion fires exactly once; the case-study
-PDF downloads automatically after the form). Report: `tests/tracking-report.json`.
+Test result at hand-over: **76 / 76 checks passed** locally (GTM container v51; each lead conversion fires exactly once;
+case-study PDFs and the Claude plugin download automatically after their forms; replays load and switch). Report:
+`tests/tracking-report.json`.
 
 ## 6. SEO / AEO / GEO built in
 
@@ -171,6 +185,10 @@ PDF downloads automatically after the form). Report: `tests/tracking-report.json
 * Clean URLs (`/slug/`), real 404 page, redirect stubs for retired Leadpages URLs, noindex on thank-you, lead and
   client-specific legal pages.
 * Images converted to WebP and lazy-loaded; total site ~22 MB (was ~150 MB of Leadpages assets).
+* Hygiene pass (Oct 2026): every indexable title ≤ 60 characters (`seo_title` in the meta header when the H1 is longer),
+  every description 120–160 characters, one H1 per page, descriptive alt text on content and card images, FAQPage
+  schema generated from visible FAQs where a page had none, BreadcrumbList on every page, VideoObject for each replay,
+  and `llms.txt` now explains the five-step loop, the four questions and the free Claude plugin.
 
 ## 7. Things fixed during the migration (were broken on the Leadpages site)
 

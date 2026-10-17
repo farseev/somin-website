@@ -40,7 +40,8 @@
     },
     "lead_forms": {
       "trial":      { "typeform_id": "jC5qqGJ0", "label": "Try SOMIN", "thank_you": "/thank-you-trial-somin/" },
-      "case_study": { "typeform_id": "lHmWeOX7", "label": "Case study request", "thank_you": "/thank-you-case-study/" }
+      "case_study": { "typeform_id": "lHmWeOX7", "label": "Case study request", "thank_you": "/thank-you-case-study/" },
+      "plugin":     { "typeform_id": "PI0VcVHp", "label": "Marketing Mondays plugin", "thank_you": "/thank-you-plugin/" }
     },
     "typeform": {
       "embed_js": "https://embed.typeform.com/next/embed.js",
@@ -297,6 +298,7 @@
       store.set('somin_cs_unlocked_' + ctx.case_study, { rid: rid, ts: Date.now() }, true);
     }
     store.set('somin_lead_' + formType, { rid: rid, ts: Date.now() }, true);
+    if (formType === 'plugin') store.set('somin_plugin_unlocked', { rid: rid, ts: Date.now() }); // releases /thank-you-plugin/ downloads
     fireConversions(formType, rid, ctx);
     var redirected = false;
     function go() {
@@ -311,7 +313,7 @@
     }
     // The conversion itself (GA4 generate_lead, Meta Lead, LinkedIn) fires in GTM on the thank-you page view.
     // This event only records the submit; the redirect waits for GTM to flush it.
-    track(formType === 'trial' ? 'trial_form_submit' : 'case_study_form_submit', {
+    track(formType + '_form_submit', {
       event_id: rid, funnel_stage: 'conversion', form_type: formType, lead_type: formType, case_study: ctx.case_study,
       cta_text: ctx.cta_text, cta_id: ctx.cta_id, response_id: rid,
       eventCallback: function () { setTimeout(go, 150); }, eventTimeout: CONFIG.typeform.redirect_delay_ms

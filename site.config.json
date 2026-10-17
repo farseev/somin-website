@@ -9,7 +9,7 @@
   "fb_app_id": "4198265810445529",
   "logo": "/assets/img/brand/somin-logo.png",
   "favicon": "/assets/img/brand/favicon.png",
-  "default_og_image": "/assets/img/og/default.jpg",
+  "default_og_image": "/assets/img/og/card-default.jpg",
   "theme_color": "#16201F",
   "tagline": "AI marketing intelligence & campaign planning platform",
   "description": "SOMIN turns live competitor and audience data into pre-scored campaign concepts. Trusted by P&G, Audi, Dentsu & Havas across 11+ markets.",
@@ -133,6 +133,11 @@
    "href": "/ai-agents/",
    "children": [
     {
+     "label": "FREE CLAUDE PLUGIN",
+     "href": "/marketing-mondays-plugin/",
+     "gtm_id": "nav_plugin"
+    },
+    {
      "label": "CREATOR MANAGEMENT",
      "href": "/somin-influencer-gmv/"
     },
@@ -232,6 +237,11 @@
      {
       "label": "All AI agents",
       "href": "/ai-agents/"
+     },
+     {
+      "label": "Free Claude plugin",
+      "href": "/marketing-mondays-plugin/",
+      "gtm_id": "footer_plugin"
      },
      {
       "label": "Strategy",

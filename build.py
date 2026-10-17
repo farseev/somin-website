@@ -49,6 +49,82 @@ def read_content(path):
     return meta, text[end + 5:]
 
 
+PLUGIN = {'file': 'https://mondays.marketing/downloads/marketing-mondays.plugin', 'zip': 'https://mondays.marketing/downloads/marketing-mondays.zip',
+          'mcp': 'https://cloud.somin.ai/_mcp', 'source': 'https://mondays.marketing/plugin/'}
+REPLAYS = json.loads((ROOT / 'data/replays.json').read_text(encoding='utf-8'))
+ICON_PP = ('<svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>'
+           '<svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>')
+_DOTS = '<span class="mm-dots" aria-hidden="true"><i></i><i></i><i></i></span>'
+_TOGGLE = f'<button type="button" class="mm-toggle" aria-pressed="false" aria-label="Play replay">{ICON_PP}</button>'
+
+
+def _replay_cap():
+    return ('<figcaption class="mm-cap">Condensed replay of a real run: SOMIN agents in Claude on Grab Singapore data, shown live at '
+            f'<a href="{REPLAYS["session_url"]}" target="_blank" rel="noopener" data-gtm-id="replay_session_link">Marketing Mondays</a> on 12 Oct 2026. No sound.</figcaption>')
+
+
+def replay_figure(key):
+    """<!--mm:replay KEY--> : one recorded agent run, plays muted while on screen."""
+    it = REPLAYS['items'][key]
+    return (f'<figure class="mm-screen mm-replay"><div class="mm-chrome">{_DOTS}<span class="mm-q">{E(it["step"])} · {E(it["q"])}</span>'
+            f'<span class="mm-skill">{E(it["skill"])}</span>{_TOGGLE}</div>'
+            f'<video data-replay data-src="/assets/video/{key}.mp4" poster="/assets/video/{key}.webp" muted playsinline loop preload="none" '
+            f'width="1152" height="432" aria-label="{E(it["q"])}"></video>{_replay_cap()}</figure>')
+
+
+def replay_loop():
+    """<!--mm:loop--> : the five-step loop (Listen, Decode, Decide, Make, Ship) as a tabbed player that advances by itself."""
+    tabs = ''
+    for s in REPLAYS['loop']:
+        it = REPLAYS['items'][s['key']]
+        tabs += (f'<button type="button" class="mm-tab" role="tab" aria-controls="mm-panel" aria-selected="false" data-mm-tab data-step="{E(s["step"])}" '
+                 f'data-src="/assets/video/{s["key"]}.mp4" data-poster="/assets/video/{s["key"]}.webp" data-q="{E(it["q"])}" data-skill="{E(it["skill"])}">'
+                 f'<span class="mm-n">{s["n"]}</span><b>{E(s["step"])}</b><small>{E(s["label"])}</small></button>')
+    k0 = REPLAYS['loop'][0]['key']
+    it0 = REPLAYS['items'][k0]
+    return (f'<div class="mm-player mm-replay" data-mm-player><div class="mm-tabs" role="tablist" aria-label="The five steps of the loop">{tabs}</div>'
+            f'<figure class="mm-screen" id="mm-panel" role="tabpanel"><div class="mm-chrome">{_DOTS}<span class="mm-q" data-mm-q>{E(it0["q"])}</span>'
+            f'<span class="mm-skill" data-mm-skill>{E(it0["skill"])}</span>{_TOGGLE}</div>'
+            f'<video data-replay data-src="/assets/video/{k0}.mp4" poster="/assets/video/{k0}.webp" muted playsinline preload="none" width="1152" height="432" '
+            f'aria-label="{E(it0["q"])}"></video>{_replay_cap()}</figure></div>')
+
+
+def expand_shortcodes(body):
+    body = re.sub(r'<!--\s*mm:replay\s+([a-z0-9-]+)\s*-->', lambda m: replay_figure(m.group(1)), body)
+    return re.sub(r'<!--\s*mm:loop\s*-->', lambda m: replay_loop(), body)
+
+
+def faq_node(body, path):
+    """FAQPage schema built from the visible <details><summary>Q</summary>A</details> FAQ on a page (AEO/GEO)."""
+    qa = []
+    for m in re.finditer(r'<details\b[^>]*>\s*<summary\b[^>]*>(.*?)</summary>(.*?)</details>', body, re.S):
+        q = strip_tags(m.group(1)).strip()
+        a = strip_tags(m.group(2)).strip()
+        if q and a and len(a) > 20:
+            qa.append({"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}})
+    if len(qa) < 2:
+        return None
+    return {"@type": "FAQPage", "@id": absu(path) + "#faq", "mainEntity": qa}
+
+
+def video_nodes(body, path):
+    """VideoObject schema for every replay a page shows (answer engines and video search)."""
+    keys = []
+    for k in re.findall(r'/assets/video/([a-z0-9-]+)\.mp4', body):
+        if k not in keys and k in REPLAYS['items']:
+            keys.append(k)
+    out = []
+    for k in keys:
+        it = REPLAYS['items'][k]
+        out.append({"@type": "VideoObject", "@id": absu(path) + f"#video-{k}", "name": f'SOMIN agent replay — {it["step"]}: {it["q"]}',
+                    "description": f'Condensed screen recording of the {it["skill"]} step run by SOMIN agents in Claude on Grab Singapore data, '
+                                   f'shown at Marketing Mondays ({REPLAYS["session_title"]}, 12 October 2026).',
+                    "thumbnailUrl": absu(f'/assets/video/{k}.webp'), "contentUrl": absu(f'/assets/video/{k}.mp4'),
+                    "uploadDate": REPLAYS['session_date'] + 'T18:00:00+08:00', "duration": f'PT{it["dur"]}S',
+                    "publisher": {"@id": f"{BASE}/#organization"}, "inLanguage": "en"})
+    return out
+
+
 def url_for(slug):
     return '/' if not slug else '/' + slug.strip('/') + '/'
 
@@ -117,7 +193,7 @@ def render_header(path):
     cta = CFG['nav_cta']
     return f'''<header class="site-header">
   <div class="bar">
-    <a class="site-logo" href="/" aria-label="SOMIN home"><img src="{SITE['logo']}" alt="SOMIN" width="70" height="12"></a>
+    <a class="site-logo" href="/" aria-label="SOMIN home"><span class="wm-logo" aria-hidden="true"><span class="so">SO</span><span class="min">MIN</span></span></a>
     <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul class="nav-list">{''.join(items)}</ul>
@@ -138,8 +214,8 @@ def render_footer():
     return f'''<footer class="site-footer">
   <nav class="f-compare" aria-label="Comparisons"><ul>{compare}</ul></nav>
   <div class="f-main">
-    <div class="f-brand"><a href="/" aria-label="SOMIN home"><img src="{SITE['logo']}" alt="SOMIN" width="84" height="15" loading="lazy"></a>
-      <p>{E(SITE['tagline'].capitalize())}. Built in Singapore, used across 11+ markets.</p>
+    <div class="f-brand"><a href="/" aria-label="SOMIN home" style="text-decoration:none"><span class="wm-logo" aria-hidden="true"><span class="so">SO</span><span class="min">MIN</span></span></a>
+      <p>{E(SITE['tagline'][:1].upper() + SITE['tagline'][1:])}. Built in Singapore, used across 11+ markets.</p>
       <a class="btn btn--line btn--sm" href="{CAL_DEFAULT}" data-gtm-id="footer_book_a_call_btn">Book a call</a></div>
     {cols}
   </div>
@@ -216,7 +292,7 @@ def page(meta, body, path, extra_head=''):
         f'<link rel="preconnect" href="https://www.googletagmanager.com">',
         f'<link rel="preconnect" href="https://fonts.googleapis.com">',
         f'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-        f'<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800;900&display=swap">',
+        f'<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap">',
         f'<link rel="stylesheet" href="/assets/css/site.css?v={BUILD_ID}">',
         f'<script src="/assets/js/tracking.js?v={BUILD_ID}"></script>',
         f'<script src="/assets/js/site.js?v={BUILD_ID}" defer></script>',
@@ -225,6 +301,14 @@ def page(meta, body, path, extra_head=''):
         tags.append(f'<script type="application/ld+json">{js.strip()}</script>')
     if meta.get('_schema'):
         tags.append('<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": meta['_schema']}, ensure_ascii=False) + '</script>')
+    vids = video_nodes(body, path) if robots.startswith('index') else []
+    has_faq = any('FAQPage' in js for js in meta.get('jsonld', [])) or 'FAQPage' in json.dumps(meta.get('_schema', []))
+    if robots.startswith('index') and not has_faq and meta.get('layout') != 'post':
+        fq = faq_node(body, path)
+        if fq:
+            vids = vids + [fq]
+    if vids:
+        tags.append('<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": vids}, ensure_ascii=False) + '</script>')
     layout = meta.get('layout', 'page')
     attrs = f' data-page-type="{E(meta.get("type", "page"))}" data-page-layout="{E(layout)}" data-content-group="{E(meta.get("group", meta.get("type", "page")))}"'
     if meta.get('lead_type'):
@@ -293,6 +377,105 @@ def toc_items(body, levels=('h2', 'h3'), only_numbered=False):
     return out
 
 
+# ------------------------------------------------------------------ unified theme for imported page templates
+THEME_PREFIXES = ('sc', 'se', 'sa', 'sb', 'si')
+HEX_FIX = {'#2DBE9C': '#2DBF9C', '#1F8A4F': '#1F8A70', '#2A6B7E': '#1F8A70', '#A8D744': '#9CD632', '#4D8FE8': '#2DBF9C',
+           '#E8B23D': '#2DBF9C', '#F4D06F': '#7FDCC4', '#82A933': '#1F8A70', '#6FB9CC': '#7FDCC4', '#1F4F5C': '#17594A',
+           '#6B7891': '#2A3635', '#54607A': '#1F2A29', '#C4998F': '#D5F2EA', '#9E7A71': '#A9DCCD'}          # off-palette → SOMIN teal family
+DEEP_HEX = ('#101817', '#0D1514', '#0F1816', '#101B19', '#0B1211', '#062018')      # extra-dark panels follow the surface
+VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr'}
+
+
+def theme_css(css):
+    """Re-point a page template's stylesheet to the SOMIN palette and make it surface-aware."""
+    css = re.sub(r"(--(?:sc|se|sa|sb|si)-body\s*:\s*)'Inter'", r"\1'Montserrat'", css)
+    for a, b in HEX_FIX.items():
+        css = re.sub(re.escape(a) + r'(?![0-9a-fA-F])', b, css, flags=re.I)
+    for h in DEEP_HEX:
+        css = re.sub(re.escape(h) + r'(?![0-9a-fA-F])', f'var(--u-deep,{h})', css, flags=re.I)
+    css = re.sub(r'rgba\(\s*42\s*,\s*107\s*,\s*126\s*,', 'rgba(31,138,112,', css)   # old blue-teal tint
+    # shadows tuned per surface (soft on white, deep on dark)
+    css = re.sub(r'rgba\(\s*0\s*,\s*0\s*,\s*0\s*,\s*([0-9.]+)\s*\)', lambda m: f'rgba(9,18,16,calc({m.group(1)} * var(--u-sh,1)))', css)
+
+    def rule(m):
+        sel, body = m.group(1), m.group(2)
+        # image/screenshot panels painted with the "white" token are real white surfaces, not inverse text colour
+        if not re.search(r'hover|btn|button|active|is-|:focus', sel) and not re.search(r'(?<![-\w])color\s*:\s*var\(--(?:sc|se|sa|sb|si)-charcoal', body):
+            body = re.sub(r'(background(?:-color)?\s*:\s*)var\(--(sc|se|sa|sb|si)-white\)', r'\1#FFFFFF', body)
+        return sel + '{' + body + '}'
+    return re.sub(r'([^{}]+)\{([^{}]*)\}', rule, css)
+
+
+def _top_children(html):
+    """Start/end offsets of the direct children of the template wrapper (.somin-embed*, .somin-agency …)."""
+    depth, wrap, out, i = 0, None, [], 0
+    tag_re = re.compile(r'<(/?)([a-zA-Z][a-zA-Z0-9-]*)((?:[^>"\']|"[^"]*"|\'[^\']*\')*)>')
+    while True:
+        m = tag_re.search(html, i)
+        if not m:
+            break
+        close, tag, attrs = m.group(1), m.group(2).lower(), m.group(3)
+        i = m.end()
+        if not close and tag in ('script', 'style'):
+            e = html.lower().find(f'</{tag}', i)
+            i = html.find('>', e) + 1 if e >= 0 else len(html)
+            continue
+        if tag in VOID or attrs.rstrip().endswith('/'):
+            continue
+        if close:
+            if wrap is not None and depth == wrap + 1 and out and out[-1]['end'] is None:
+                out[-1]['end'] = m.end()
+            depth -= 1
+            continue
+        depth += 1
+        if wrap is None and re.search(r'class="[^"]*\bsomin-(?:embed|embed-case|agency|brands|influencer)\b', attrs):
+            wrap = depth
+        elif wrap is not None and depth == wrap + 1:
+            cls = re.search(r'class="([^"]*)"', attrs)
+            out.append({'start': m.start(), 'tag_end': m.end(), 'tag': tag, 'cls': cls.group(1) if cls else '', 'end': None})
+    return out
+
+
+def theme_sections(body):
+    """Assign every top-level section a surface so all pages share one rhythm:
+    dark hero → white / mist content (alternating) → dark proof bands → dark CTA."""
+    kids = _top_children(body)
+    if not kids:
+        return body
+    plan, alt = [], 0
+    for k in kids:
+        c = k['cls']
+        inner = body[k['tag_end']:k['end'] or k['tag_end']]
+        if re.search(r'modal|lightbox', c):
+            plan.append(None); continue
+        if re.search(r'(^|[\s-])hero\b|-hero-', c):
+            plan.append('u-hero'); alt = 0; continue
+        if re.search(r'partners|trust', c) or k['tag'] == 'aside':
+            plan.append('u-dark u-hero-tail'); alt = 0; continue
+        if re.search(r'final', c):
+            plan.append('u-dark u-cta'); continue
+        if re.search(r'proof|impact', c) or (re.search(r'class="[^"]*\b\w+-(?:quote|pullquote|testimonial)\b', inner) and re.search(r'-stat|-num\b', inner)):
+            plan.append('u-dark'); alt = 0; continue
+        plan.append('u-light' if alt % 2 == 0 else 'u-mist'); alt += 1
+    # wrap each section in a full-width band that carries the surface (sections themselves are max-width boxes)
+    out, last = [], 0
+    for k, cls in zip(kids, plan):
+        if not cls or k['end'] is None:
+            continue
+        out.append(body[last:k['start']])
+        out.append(f'<div class="u-band {cls}">')
+        out.append(body[k['start']:k['end']])
+        out.append('</div>')
+        last = k['end']
+    out.append(body[last:])
+    return ''.join(out)
+
+
+def theme_fragment(body):
+    body = re.sub(r'(<style[^>]*>)(.*?)(</style>)', lambda m: m.group(1) + theme_css(m.group(2)) + m.group(3), body, flags=re.S)
+    return theme_sections(body)
+
+
 # ------------------------------------------------------------------ layouts
 def build_fragment_page(meta, body):
     path = url_for(meta['slug'])
@@ -301,6 +484,9 @@ def build_fragment_page(meta, body):
                  'You found the secret button! As a reward for your curiosity, enjoy 14 days of SOMIN on us. '
                  'Just click and drop your details in the form below.</a>')
     meta.setdefault('group', meta.get('type'))
+    if path != '/' and not any('BreadcrumbList' in js for js in meta.get('jsonld', [])):
+        meta['_schema'] = [breadcrumbs([('Home', '/'), ((meta.get('seo_title') or meta['title']).split(' | ')[0], path)])]
+    body = theme_fragment(body)
     write(path, page(meta, body, path))
     pr = '1.0' if path == '/' else ('0.9' if meta['type'] in ('solution', 'product') else '0.8')
     add_sitemap(path, meta.get('lastmod'), pr, meta.get('robots', 'index'))
@@ -323,9 +509,11 @@ def build_doc_page(meta, body):
   <p class="eyebrow">{eyebrow}</p>
   <h1>{E(meta.get('h1') or meta['title'])}</h1>{updated}
 </div></section>'''
-    wrap = f'<div class="container"><div class="doc-layout">{toc_html or "<div></div>"}<article class="doc">{body}</article></div></div>'
+    wrap = f'<section class="doc-wrap"><div class="container"><div class="doc-layout">{toc_html or "<div></div>"}<article class="doc">{body}</article></div></div></section>'
     if not toc_html:
-        wrap = f'<div class="container"><div style="padding:56px 0 96px"><article class="doc" style="margin:0 auto">{body}</article></div></div>'
+        wrap = f'<section class="doc-wrap"><div class="container"><div style="padding:56px 0 96px"><article class="doc" style="margin:0 auto">{body}</article></div></div></section>'
+    if meta.get('variant') == 'vision':
+        wrap = f'<section class="vision-wrap"><div class="container">{body}</div></section>'
     node = {"@type": "WebPage", "@id": absu(path) + "#webpage", "url": absu(path), "name": meta.get('h1') or meta['title'],
             "description": meta.get('description'), "isPartOf": {"@id": f"{BASE}/#website"}, "publisher": {"@id": f"{BASE}/#organization"}, "inLanguage": "en"}
     if meta.get('updated'):
@@ -368,9 +556,9 @@ def post_card(p, cls='card', feature=False):
     meta = (f'<div class="meta byline"><span class="avatar" aria-hidden="true">{initials(p["author"])}</span><span class="who"><b>{E(p["author"])}</b>'
             f'<small><time datetime="{p["published"][:10]}">{fmt_date(p["published"])}</time> · {p["reading_minutes"]} min read</small></span></div>')
     if feature:
-        return (f'<a class="feature" href="{url_for(p["slug"])}"><div class="feature-media"><img src="{img}" alt="" width="1600" height="1067" fetchpriority="high"></div>'
+        return (f'<a class="feature" href="{url_for(p["slug"])}"><div class="feature-media"><img src="{img}" alt="{E(p['title'])}" width="1600" height="1067" fetchpriority="high"></div>'
                 f'<div class="feature-body"><span class="eyebrow">Latest · {E(tag)}</span><h2>{E(p["title"])}</h2><p>{E(p["description"])}</p>{meta}</div></a>')
-    return (f'<a class="{cls}" href="{url_for(p["slug"])}"{data}><div class="card-media"><img src="{img}" alt="" width="720" height="480" loading="lazy" decoding="async"></div>'
+    return (f'<a class="{cls}" href="{url_for(p["slug"])}"{data}><div class="card-media"><img src="{img}" alt="{E(p['title'])}" width="720" height="480" loading="lazy" decoding="async"></div>'
             f'<div class="card-body"><span class="card-tag">{E(tag)}</span><h3>{E(p["title"])}</h3><p>{E(p["description"])}</p>{meta}</div></a>')
 
 
@@ -428,7 +616,7 @@ def build_post(meta, body, posts):
                "wordCount": meta['words'], "timeRequired": f"PT{meta['reading_minutes']}M", "inLanguage": "en", "isPartOf": {"@id": f"{BASE}/blog/#blog"}}
     meta['_schema'] = [org_node(), website_node(), posting, breadcrumbs([('Home', '/'), ('Blog', '/blog/'), (meta['title'], path)])]
     meta['group'] = 'blog'
-    meta['seo_title'] = f"{meta['title']} | SOMIN Blog" if len(meta['title']) <= 52 else meta['title']
+    meta['seo_title'] = meta.get('seo_title') or (f"{meta['title']} | SOMIN Blog" if len(meta['title']) <= 52 else meta['title'])
     meta['og_title'] = meta['title']
     write(path, page(meta, hero + main, path))
     add_sitemap(path, meta['published'][:10], '0.7')
@@ -659,6 +847,44 @@ def build_lead_pages():
     meta = {'title': 'Thank You — SOMIN', 'description': 'Thanks for requesting SOMIN trial access.', 'type': 'thank_you', 'lead_type': 'trial',
             'layout': 'thank-you', 'robots': 'noindex,nofollow', 'group': 'thank_you'}
     write('/thank-you-trial-somin/', page(meta, body, '/thank-you-trial-somin/'))
+
+    # ---- /thank-you-plugin/  (Marketing Mondays plugin download release)
+    body = f'''<section class="hero"><div class="container" style="max-width:980px" data-plugin-release>
+  <div class="ty-card" data-plugin-state="ready" hidden>
+    <div class="ty-check">{ICON['check']}</div>
+    <p class="eyebrow">Your plugin is ready</p>
+    <h1 class="dl-title" style="font-size:clamp(28px,3.6vw,42px);margin-top:12px">The Marketing Mondays plugin for Claude</h1>
+    <p class="dl-meta">marketing-mondays.plugin · 664 KB · 26 skills and the SOMIN connector in one file</p>
+    <div class="dl-actions">
+      <a class="btn btn--solid" href="#" data-plugin-dl="{PLUGIN['file']}" data-plugin-main rel="noopener" data-gtm-id="plugin_download_file">{ICON['download']} Download the plugin</a>
+      <a class="btn btn--ghost" href="#" data-plugin-dl="{PLUGIN['zip']}" rel="noopener" data-gtm-id="plugin_download_zip">Using Claude Code? Get the .zip</a>
+    </div>
+    <p class="dl-note" data-plugin-auto-note hidden><strong>Your download has started.</strong> Look for marketing-mondays.plugin in your downloads folder; if nothing appears, use the button above.</p>
+  </div>
+  <div class="ty-card" data-plugin-state="locked" hidden>
+    <p class="eyebrow">One step left</p>
+    <h2 class="dl-title" style="font-size:clamp(28px,3.6vw,42px);margin-top:12px">Get the free Marketing Mondays plugin</h2>
+    <p class="dl-meta">Tell us who you are and the download starts straight away.</p>
+    <a class="btn btn--solid" href="/marketing-mondays-plugin/" data-lead-form="plugin" data-gtm-id="thank_you_plugin_unlock">Get the plugin</a>
+  </div>
+  <div class="ty-card" style="margin-top:20px">
+    <p class="eyebrow">Add it to Claude · about three minutes</p>
+    <ol class="steps">
+      <li><span><strong>Sign in to SOMIN first, then Claude</strong>Sign in at <a href="https://cloud.somin.ai/auth/signin" target="_blank" rel="noopener" data-gtm-id="thank_you_plugin_somin_signin">cloud.somin.ai</a>, then open <a href="https://claude.ai/" target="_blank" rel="noopener">claude.ai</a> or the Claude desktop app. Claude links to whichever SOMIN account is signed in when you click Connect.</span></li>
+      <li><span><strong>Upload the plugin</strong>In Claude open <a href="https://claude.ai/customize/plugins" target="_blank" rel="noopener">Customize › Plugins</a>, click Add › Upload plugin and choose marketing-mondays.plugin.</span></li>
+      <li><span><strong>Connect SOMIN</strong>Open Marketing Mondays in Customize › Plugins, go to its Connectors tab and click Connect (Add first, if asked).</span></li>
+      <li><span><strong>Test it</strong>Ask Claude which SOMIN workspaces it can see. A list within seconds means you are connected; then ask for a brand deck.</span></li>
+    </ol>
+    <p class="dl-note">No Connectors tab? Add SOMIN as a custom connector instead: Customize › Connectors › Add custom connector, name <b>SOMIN</b>, server URL <b>{PLUGIN['mcp']}</b> (keep the underscore). Full guide: <a href="/marketing-mondays-plugin/#install" data-gtm-id="thank_you_plugin_guide">install steps</a>.</p>
+    <div class="cta-row" style="justify-content:flex-start;margin-top:22px">
+      <a class="btn btn--solid" href="{CAL_DEFAULT}" data-gtm-id="thank_you_plugin_book_call">Book a 30-minute setup call</a>
+      <a class="btn btn--ghost" href="https://cloud.somin.ai/auth/signin" data-gtm-id="thank_you_plugin_login">Sign in to SOMIN</a>
+    </div>
+  </div>
+</div></section>'''
+    meta = {'title': 'Your Marketing Mondays Plugin — SOMIN', 'description': 'Download the free Marketing Mondays plugin for Claude and connect it to SOMIN.',
+            'type': 'thank_you', 'lead_type': 'plugin', 'layout': 'thank-you', 'robots': 'noindex,nofollow', 'group': 'thank_you'}
+    write('/thank-you-plugin/', page(meta, body, '/thank-you-plugin/'))
     return manifest
 
 
@@ -680,7 +906,7 @@ def build_cases_hub(manifest):
         read = (f'<a class="cs-read" href="{E(v["page"])}" data-gtm-id="cases_hub_read_{E(k[:40])}">Read the story {ICON["arrow"]}</a>'
                 if v['page'] else '')
         return f"""<article class="cs-card" data-cs-card data-q="{E(q)}">
-  <a class="cs-media" {media_href} tabindex="-1" aria-hidden="true"><img src="{E(v['cover'])}" alt="" width="800" height="420" loading="lazy" decoding="async"></a>
+  <a class="cs-media" {media_href} tabindex="-1" aria-hidden="true"><img src="{E(v['cover'])}" alt="{E(v['title'])} case study cover" width="800" height="420" loading="lazy" decoding="async"></a>
   <div class="cs-body">
     <p class="cs-kicker">{E(kicker)}</p>
     <h3>{E(v['title'])}</h3>
@@ -719,8 +945,8 @@ def build_cases_hub(manifest):
 
     def item_url(k, v):
         return absu(v['page']) if v['page'] else absu(f'/get-case-study/?cs={k}')
-    desc = (f'{total} SOMIN case studies for brands, agencies and creators: competitor intelligence, category whitespace, '
-            'content calendars and measured ROI. Download any full PDF free.')
+    desc = (f'{total} SOMIN case studies for brands, agencies and creators: competitor intelligence, whitespace, '
+            'content calendars and ROI. Every full PDF is free.')
     coll = {"@type": "CollectionPage", "@id": f"{BASE}{path}#webpage", "url": f"{BASE}{path}", "name": "SOMIN Case Studies",
             "description": desc, "inLanguage": "en", "isPartOf": {"@id": f"{BASE}/#website"}, "about": {"@id": f"{BASE}/#organization"},
             "primaryImageOfPage": absu('/assets/img/og/cases-hub.jpg'),
@@ -783,6 +1009,7 @@ User-agent: *
 Allow: /
 Disallow: /thank-you-trial-somin/
 Disallow: /thank-you-case-study/
+Disallow: /thank-you-plugin/
 
 # AI assistants and answer engines are welcome to read and cite this site.
 User-agent: GPTBot
@@ -814,6 +1041,8 @@ def build_llms(pages, posts, manifest=None):
     home = next((m for m in pages if m['slug'] == ''), None)
     parts = [f'# SOMIN', '', f'> {SITE["description"]}', '',
              'SOMIN (somin.ai, legal name Somin Pte. Ltd., Singapore) is an agentic AI marketing-intelligence platform. Its SOMONITOR engine reads competitor ads, posts and creators plus live audience conversation, finds category whitespace, and produces pre-scored propositions, briefs and on-brand creative concepts for brands, agencies and creator programmes across 11+ markets in APAC, MENA and Europe. Recognised as a Gartner Cool Vendor in Marketing AI and a Zapier agentic-AI partner.', '',
+             'How SOMIN works: one loop in five steps, run by AI agents on verified category data. Listen (what happened?), Decode (who is winning, and how?), Decide (what do we say?), Make (what does it look like?) and Ship (when does it go out?). Every idea answers four questions: who are we talking to (persona), what is bugging them (tension), why does that happen (angle) and what is the one line that says it (story). Every number traces back to a SOMIN post, study or ID.', '',
+             f'Free tool: the Marketing Mondays plugin for Claude ({BASE}/marketing-mondays-plugin/) packs 8 main skills (26 in all) and the SOMIN connector (MCP server {PLUGIN["mcp"]}) so Claude can run that loop on a team\'s own SOMIN data.', '',
              '## Key pages']
     if home:
         parts.append(f'- [Home]({BASE}/): {home.get("description")}')
@@ -827,7 +1056,7 @@ def build_llms(pages, posts, manifest=None):
         parts += ['', '### More case studies (PDF on the case-studies page)'] + [f'- {v["title"]} ({", ".join(x for x in (v["category"], v["market"]) if x)}): {v["summary"]}' for v in more]
     parts += ['', '## Blog (latest first)'] + [f'- [{p["title"]}]({absu(url_for(p["slug"]))}): {p["description"]}' for p in posts]
     parts += ['', '## Company & legal', f'- [Our Vision]({BASE}/vision/)', f'- [Privacy Policy]({BASE}/privacy-policy/)', f'- [SaaS Agreement]({BASE}/saas-terms-general/)',
-              '', '## Contact', f'- Book a call: {CAL_DEFAULT}', f'- Try SOMIN: {BASE}/try-somin/', '- Platform login: https://cloud.somin.ai/auth/signin', '']
+              '', '## Contact', f'- Book a call: {CAL_DEFAULT}', f'- Try SOMIN: {BASE}/try-somin/', f'- Free Claude plugin: {BASE}/marketing-mondays-plugin/', '- Platform login: https://cloud.somin.ai/auth/signin', '']
     (OUT / 'llms.txt').write_text('\n'.join(parts), encoding='utf-8')
     # llms-full.txt: plain-text bodies of the blog for answer engines
     full = ['# SOMIN — full text of articles', '']
@@ -848,6 +1077,7 @@ def main():
     pages = []
     for f in sorted((ROOT / 'content/pages').glob('*.html')):
         meta, body = read_content(f)
+        body = expand_shortcodes(body)
         pages.append(meta)
         layout = meta.get('layout')
         if layout == 'fragment':

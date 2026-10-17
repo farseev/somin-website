@@ -1,0 +1,109 @@
+[
+ {
+  "name": "home",
+  "slug": "",
+  "eyebrow": "AI marketing intelligence",
+  "title": "Stop guessing what works. Start knowing.",
+  "image": "static/assets/img/brand/visual-signal-network.webp"
+ },
+ {
+  "name": "default",
+  "slug": "",
+  "eyebrow": "AI marketing intelligence",
+  "title": "Live category data in. Campaigns you can defend out.",
+  "image": "static/assets/img/brand/visual-signal-network.webp"
+ },
+ {
+  "name": "vision",
+  "slug": "vision",
+  "eyebrow": "Our vision",
+  "title": "Advertising with purpose, balance and excellence.",
+  "image": "static/assets/img/brand/visual-vision.webp"
+ },
+ {
+  "name": "case-miraflora-gwi",
+  "slug": "case",
+  "eyebrow": "Case study · eCommerce · USA",
+  "title": "Miraflora Wagyu × GWI",
+  "image": "static/assets/img/cases/case.webp"
+ },
+ {
+  "name": "somin-crm",
+  "slug": "somin-crm",
+  "eyebrow": "SOMIN AI agent",
+  "image": "static/assets/img/og/l2yblkpvml1929u7ario2xbj.jpg"
+ },
+ {
+  "name": "somin-influencer-gmv",
+  "slug": "somin-influencer-gmv",
+  "eyebrow": "SOMIN AI agent",
+  "image": "static/assets/img/og/ymcpbc7451vlifpfj12087tq.jpg"
+ },
+ {
+  "name": "somin-paid-media",
+  "slug": "somin-paid-media",
+  "eyebrow": "SOMIN AI agent",
+  "image": "static/assets/img/og/jinkyak4uz61qvot4r1h7xng.jpg"
+ },
+ {
+  "name": "somin-reporting",
+  "slug": "somin-reporting",
+  "eyebrow": "SOMIN AI agent",
+  "image": "static/assets/img/og/av0xvd15ddcqzwixflizgjhz.jpg"
+ },
+ {
+  "name": "somin-social-media-manager",
+  "slug": "somin-social-media-manager",
+  "eyebrow": "SOMIN AI agent",
+  "image": "static/assets/img/og/av0xvd15ddcqzwixflizgjhz.jpg"
+ },
+ {
+  "name": "somin-strategy",
+  "slug": "somin-strategy",
+  "eyebrow": "SOMIN AI agent",
+  "image": "static/assets/img/og/sntjgv1en4mvc1g1464hzj3i.jpg"
+ },
+ {
+  "name": "somin-vs-email-tools",
+  "slug": "somin-vs-email-tools",
+  "eyebrow": "Comparison",
+  "image": "static/assets/img/og/vr44t0htqigqymxo2sz7y4g8.jpg"
+ },
+ {
+  "name": "somin-vs-influencer-tools",
+  "slug": "somin-vs-influencer-tools",
+  "eyebrow": "Comparison",
+  "image": "static/assets/img/og/df8rxaaxov8mmmnvstyq62uv.jpg"
+ },
+ {
+  "name": "somin-vs-paid-media-tools",
+  "slug": "somin-vs-paid-media-tools",
+  "eyebrow": "Comparison",
+  "image": "static/assets/img/og/njbedwhmy0dvelu78xq3lsex.jpg"
+ },
+ {
+  "name": "somin-vs-reporting-tools",
+  "slug": "somin-vs-reporting-tools",
+  "eyebrow": "Comparison",
+  "image": "static/assets/img/og/gxuxfrfy3ewkpneiyt1qrja4.jpg"
+ },
+ {
+  "name": "somin-vs-social-tools",
+  "slug": "somin-vs-social-tools",
+  "eyebrow": "Comparison",
+  "image": "static/assets/img/og/ifg2kbomwfdmvq3dt6ulj115.jpg"
+ },
+ {
+  "name": "somin-vs-strategy-tools",
+  "slug": "somin-vs-strategy-tools",
+  "eyebrow": "Comparison",
+  "image": "static/assets/img/og/k7txkp8pte39kgsn2v0b1l6x.jpg"
+ },
+ {
+  "name": "plugin",
+  "slug": "marketing-mondays-plugin",
+  "eyebrow": "Free plugin for Claude",
+  "title": "Take the agentic marketing team home.",
+  "image": "static/assets/img/plugin/a05.webp"
+ }
+]

@@ -13,7 +13,7 @@ tracking.js ──► dataLayer (page context + attribution)
                               ──► LinkedIn Insight 6960748 / 2907724
                               ──► Microsoft Clarity pfshy7yc19
                               ──► Calendly listener (calendly.event_scheduled → generate_lead / Lead / LinkedIn 20526828)
-            ──► Typeform embed SDK (on demand) — trial + case-study forms with hidden attribution fields
+            ──► Typeform embed SDK (on demand) — trial, case-study and plugin forms with hidden attribution fields
             ──► Calendly popup widget (on demand) — UTMs passed through
             ──► (conversions) thank-you page view → GTM thank-you triggers → GA4 generate_lead, Meta Lead, LinkedIn 21236668 / 20526508
 ```
@@ -40,16 +40,20 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 
 | event_name | When | Extra params |
 |---|---|---|
-| `lead_form_open` | A Typeform popup is opened | `form_type` (trial / case_study), `case_study`, `cta_id` |
+| `lead_form_open` | A Typeform popup is opened | `form_type` (trial / case_study / plugin), `case_study`, `cta_id` |
 | `lead_form_view` | An inline Typeform (on /try-somin/, /get-case-study/) is shown | `form_type` |
 | `lead_form_ready` / `lead_form_start` / `lead_form_close` | Typeform SDK lifecycle | `form_type` |
-| `trial_form_submit` / `case_study_form_submit` | Typeform submitted | `form_type`, `case_study`, `response_id`, `cta_id` |
+| `trial_form_submit` / `case_study_form_submit` / `plugin_form_submit` | Typeform submitted (`<form_type>_form_submit`) | `form_type`, `case_study`, `response_id`, `cta_id` |
 | `generate_lead` | Sent by GTM (not this script) when the thank-you page loads after a submit — GA4 key event | — |
 | `lead_form_fallback` | Typeform SDK blocked → visitor sent to form.typeform.com with the same hidden fields | `form_type` |
 | `thank_you_view` | Thank-you page viewed | `lead_type` |
 | `case_study_download` | Download / preview button on /thank-you-case-study/ | `case_study`, `cta_text`, `link_url` |
 | `case_study_auto_download` | The PDF download started automatically right after the form | `case_study`, `link_url` |
 | `cases_filter` / `cases_search` | Section filter / search on /cases-ai-marketing-strategy/ | `cta_text` = section / query |
+| `plugin_download` | Download buttons on /thank-you-plugin/ (.plugin file or Claude Code .zip) | `cta_text`, `link_url` |
+| `plugin_auto_download` | The plugin download started automatically right after the plugin form | `link_url` |
+| `replay_play` | Visitor presses play on a session replay (they autoplay muted when on screen) | `cta_text` = replay question |
+| `replay_step_click` | Step tab clicked in the five-step loop player (Listen … Ship) | `cta_text` = step |
 | `book_call_click` | Any calendly.com link (opens popup) | `link_url` |
 | `login_click` / `platform_click` | Links to cloud.somin.ai | `link_url` |
 | `email_click` / `phone_click` | mailto: / tel: | — |
@@ -67,7 +71,7 @@ Captured on landing and stored first-touch (90 days) + last-touch: `utm_*`, `gcl
 They are sent as Typeform hidden fields and appended to Calendly as UTMs, so every lead in Typeform/Calendly
 can be joined back to GA4 and ad platforms. `window.sominTracking.attributionFields()` returns the current set.
 
-## GTM wiring for lead conversions (container version 50, published 16 Oct 2026)
+## GTM wiring for lead conversions (container version 51, published 17 Oct 2026)
 
 Lead conversions live in GTM and fire on the thank-you page view that follows every Typeform submit:
 
@@ -75,14 +79,22 @@ Lead conversions live in GTM and fire on the thank-you page view that follows ev
 |---|---|---|
 | [NEO] Somonitor - Thank You Page - Free Trial | Page Path contains `/thank-you-trial-somin` | GA4 generate_lead - trial, Facebook - Main - Somonitor Lead, LinkedIn - Main - Somonitor Lead (21236668) |
 | somin.ai - Thank - You - Case | Page Path contains `/thank-you-case-study` | GA4 generate_lead - case_study, Facebook - Main - Case Study Lead, LinkedIn - Main - Case Study Lead (20526508) |
+| somin.ai - Thank You - Plugin | Page Path contains `/thank-you-plugin` | GA4 generate_lead - plugin, Facebook - Main - Plugin Lead (no LinkedIn conversion ID exists for the plugin yet) |
 | [NEO] event_scheduled - calendly | dataLayer `calendly_event` = event_scheduled | GA4 generate_lead - calendly, Meta Lead, LinkedIn 20526828 |
 
-Before version 50 those two thank-you triggers matched `Page URL contains https://www.somin.ai/thank-you-…/`.
+Key interactions also reach the Meta pixel (version 51): trigger **CE - somin_event - key events** (Custom Event `somin_event`,
+`DLV - event_name` matches `^(book_call_click|lead_form_open|trial_form_submit|case_study_form_submit|plugin_form_submit|case_study_download|case_study_auto_download|plugin_download|plugin_auto_download|login_click|replay_play)$`)
+fires **Facebook - somin key events (custom)**, which sends the event under its own name with `event_id` (dedup) and
+`content_name` / `content_category` = `cta_text` / `cta_location`. Use them in Meta for custom audiences and custom conversions.
+GA4 already receives every `somin_event` through **GA4 - Router - somin_event**; LinkedIn gets CTA clicks through the
+`[data-gtm-id]` click trigger (conversion 20526804).
+
+Before version 50 the trial and case-study thank-you triggers matched `Page URL contains https://www.somin.ai/thank-you-…/`.
 `www.somin.ai` 301-redirects to `somin.ai`, so they never fired on the Leadpages site. Path matching works on both
 the Leadpages site and this one (with or without the trailing slash).
 
 `tracking.js` therefore does **not** fire conversions itself (`direct_conversions.enabled: false`) and does not push
-`generate_lead`; it only records `trial_form_submit` / `case_study_form_submit` and then redirects to the thank-you page.
+`generate_lead`; it only records `<form_type>_form_submit` and then redirects to the thank-you page.
 The test suite asserts each conversion fires exactly once. Keep it that way: if you ever turn `direct_conversions`
 back on, remove the GTM thank-you triggers first.
 
@@ -97,7 +109,9 @@ Optional:
 
 1. **Clarity**: two projects existed (`pfshy7yc19` in GTM, `ikcdjzmpym` hard-coded by Leadpages). Only the GTM one
    loads now. To use `ikcdjzmpym` instead, pause the GTM Clarity tag and put the ID in `CONFIG.clarity_id`.
-2. Mark `generate_lead` (and optionally `case_study_download`, `book_call_click`) as key events in GA4.
+2. Mark `generate_lead` (and optionally `case_study_download`, `plugin_download`, `book_call_click`) as key events in GA4.
+3. LinkedIn: create a URL-based conversion for `/thank-you-plugin/` in Campaign Manager (the Insight tag already records the page view),
+   or add a conversion ID and a LinkedIn tag on the plugin trigger in GTM.
 
 ## Testing
 
@@ -108,8 +122,9 @@ It simulates Typeform submissions with the same `postMessage` the real embed sen
 
 Sections covered: base tags on load · CTA clicks and Calendly popup with UTMs · Calendly booking conversion ·
 trial Typeform popup, hidden fields, submit, redirect, GA4/Meta/LinkedIn conversions · case-study form →
-instant download release, and the locked state on direct visits · login, scroll-depth and blog events ·
-crawl of all 97 pages for JavaScript errors and a single GTM container.
+instant download release, and the locked state on direct visits · cases hub · home-hero plugin card → plugin form →
+auto-download + GA4/Meta conversions + Meta key events · session replays (load, tab switch, VideoObject) ·
+login, scroll-depth and blog events · crawl of all 100 pages for JavaScript errors and a single GTM container.
 
 ```
 python3 tests/test_tracking.py                      # local build

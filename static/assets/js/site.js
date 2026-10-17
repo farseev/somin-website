@@ -216,6 +216,108 @@
     if (inline && k2) { inline.setAttribute('data-case-study', k2); if (it2) inline.setAttribute('data-case-study-label', it2.title); }
   }
 
+  /* ---------- session replays: muted, load + play only while on screen ---------- */
+  // <video data-replay data-src="/assets/video/x.mp4" poster="…" muted playsinline loop preload="none">
+  // <div data-mm-player> … <button data-mm-tab data-src data-poster data-q data-skill data-step> … <video data-replay>
+  var REDUCED = !!(w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var replays = [].slice.call(d.querySelectorAll('video[data-replay]'));
+  // H.264 MP4 everywhere it plays; VP9 WebM twin for browsers built without H.264 (some Linux Chromium builds)
+  var canMp4 = (function () { try { return d.createElement('video').canPlayType('video/mp4; codecs="avc1.64001F"') !== ''; } catch (e) { return true; } })();
+  var vurl = function (s) { return !canMp4 && /\.mp4$/.test(s) ? s.replace(/\.mp4$/, '.webm') : s; };
+  var vload = function (v) { var s = v.getAttribute('data-src'); if (s && v.getAttribute('data-loaded') !== s) { v.setAttribute('data-loaded', s); v.src = vurl(s); } };
+  var vplay = function (v) { vload(v); var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+  var vsync = function (v) {
+    var t = v.__toggle; if (!t) return;
+    t.setAttribute('aria-pressed', String(!v.paused)); t.setAttribute('aria-label', v.paused ? 'Play replay' : 'Pause replay');
+  };
+  replays.forEach(function (v) {
+    var fig = v.closest('[data-replay-box], .mm-screen');
+    v.__toggle = fig ? fig.querySelector('.mm-toggle') : null;
+    var toggle = function () {
+      if (v.paused) { v.__userPaused = false; vplay(v); track('replay_play', { cta_text: v.getAttribute('aria-label') || '', funnel_stage: 'awareness' }); }
+      else { v.__userPaused = true; v.pause(); }
+    };
+    if (v.__toggle) v.__toggle.addEventListener('click', toggle);
+    v.addEventListener('click', toggle);
+    v.addEventListener('play', function () { vsync(v); });
+    v.addEventListener('pause', function () { vsync(v); });
+    vsync(v);
+  });
+  if ('IntersectionObserver' in w) {
+    var vio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { if (!REDUCED && !v.__userPaused) vplay(v); else vload(v); }
+        else if (!v.paused) v.pause();
+      });
+    }, { threshold: 0.35 });
+    replays.forEach(function (v) { vio.observe(v); });
+  } else replays.forEach(vload);
+
+  d.querySelectorAll('[data-mm-player]').forEach(function (pl) {
+    var tabs = [].slice.call(pl.querySelectorAll('[data-mm-tab]'));
+    var v = pl.querySelector('video[data-replay]');
+    var q = pl.querySelector('[data-mm-q]'), sk = pl.querySelector('[data-mm-skill]');
+    if (!v || !tabs.length) return;
+    var idx = 0;
+    var select = function (i, user) {
+      idx = (i + tabs.length) % tabs.length;
+      var t = tabs[idx];
+      tabs.forEach(function (b, j) { b.setAttribute('aria-selected', String(j === idx)); b.tabIndex = j === idx ? 0 : -1; b.style.setProperty('--p', '0'); });
+      v.setAttribute('data-src', t.getAttribute('data-src'));
+      v.poster = t.getAttribute('data-poster');
+      v.setAttribute('aria-label', t.getAttribute('data-q'));
+      if (q) q.textContent = t.getAttribute('data-q');
+      if (sk) sk.textContent = t.getAttribute('data-skill');
+      if (v.getAttribute('data-loaded')) {
+        if (user) v.__userPaused = false;
+        if (user || (!REDUCED && !v.__userPaused)) vplay(v); else vload(v);
+      }
+      if (user) track('replay_step_click', { cta_text: t.getAttribute('data-step') || '', funnel_stage: 'awareness' });
+    };
+    tabs.forEach(function (b, i) {
+      b.addEventListener('click', function () { select(i, true); });
+      b.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); select(idx + (e.key === 'ArrowRight' ? 1 : -1), true); tabs[idx].focus(); }
+      });
+    });
+    v.addEventListener('timeupdate', function () { if (v.duration) tabs[idx].style.setProperty('--p', (v.currentTime / v.duration).toFixed(3)); });
+    v.addEventListener('ended', function () { tabs[idx].style.setProperty('--p', '1'); select(idx + 1); });
+    select(0);
+  });
+
+  /* ---------- thank-you-plugin: release + auto-start the plugin download ---------- */
+  // Same rule as the case studies: unlocked after the plugin Typeform was submitted in this browser, or when arriving
+  // straight from the form redirect with a Typeform response id.
+  var prel = d.querySelector('[data-plugin-release]');
+  if (prel) {
+    var pqs = new URLSearchParams(location.search);
+    var prid = pqs.get('rid') || '';
+    var pflag = null;
+    try { pflag = localStorage.getItem('somin_plugin_unlocked') || sessionStorage.getItem('somin_lead_plugin'); } catch (e) {}
+    var pfromSite = !!d.referrer && d.referrer.indexOf(location.origin) === 0;
+    var punlocked = !!pflag || (/^[A-Za-z0-9_-]{16,}$/.test(prid) && pfromSite);
+    d.querySelectorAll('[data-plugin-state]').forEach(function (n) { n.hidden = n.getAttribute('data-plugin-state') !== (punlocked ? 'ready' : 'locked'); });
+    if (punlocked) {
+      var pmain = '';
+      d.querySelectorAll('[data-plugin-dl]').forEach(function (a) {
+        a.href = a.getAttribute('data-plugin-dl');
+        if (a.hasAttribute('data-plugin-main')) pmain = a.href;
+        a.addEventListener('click', function () { track('plugin_download', { funnel_stage: 'conversion', cta_text: a.textContent.trim(), link_url: a.href }); });
+      });
+      var pkey = 'somin_plugin_auto_' + (prid || 'x');
+      var pdone = false; try { pdone = !!sessionStorage.getItem(pkey); } catch (e) {}
+      if (prid && pmain && !pdone) {
+        try { sessionStorage.setItem(pkey, '1'); } catch (e) {}
+        var pnote = d.querySelector('[data-plugin-auto-note]'); if (pnote) pnote.hidden = false;
+        setTimeout(function () {
+          track('plugin_auto_download', { funnel_stage: 'conversion', link_url: pmain });
+          w.location.assign(pmain);   // served as application/octet-stream, so the page stays put
+        }, 1200);
+      }
+    }
+  }
+
   /* ---------- footer year ---------- */
   d.querySelectorAll('[data-year]').forEach(function (n) { n.textContent = new Date().getFullYear(); });
 })(window, document);

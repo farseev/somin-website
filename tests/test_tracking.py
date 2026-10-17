@@ -133,6 +133,9 @@ async def new_context(browser, hits):
         if re.match(r'^https://drive\.usercontent\.google\.com/download', u):
             hits.add('download', r.request)   # the real Drive file is never fetched
             return await r.fulfill(status=200, body=b'%PDF-1.4 test', headers={'content-type': 'application/pdf', 'content-disposition': 'attachment; filename="test.pdf"'})
+        if re.match(r'^https://mondays\.marketing/downloads/', u):
+            hits.add('download', r.request)   # the plugin file is never fetched in tests
+            return await r.fulfill(status=200, body=b'PK test', headers={'content-type': 'application/octet-stream'})
         if BLOCK_NAV.search(u) and r.request.resource_type == 'document':
             hits.add('nav', r.request)
             return await r.fulfill(status=200, content_type='text/html', body='<html><body>blocked in test</body></html>')
@@ -370,6 +373,71 @@ async def main():
         record('No JavaScript errors', not errors, '; '.join(errors[:3]))
         await ctx.close()
 
+        # ---------------------------------------------------------------- 5c. Claude plugin (home hero card)
+        print('\n[5c] Home hero plugin card → plugin Typeform → thank-you → auto-download')
+        hits = Hits(); ctx = await new_context(browser, hits); page = await ctx.new_page()
+        errors = []; page.on('pageerror', lambda e: errors.append(str(e)[:200]))
+        await page.goto(BASE + '/?utm_source=plugin_test&utm_campaign=mm_plugin', wait_until='load')
+        await page.wait_for_timeout(2500)
+        t0 = time.time()
+        card = page.locator('a.mm-plugin-card[data-lead-form="plugin"]')
+        record('Hero shows the plugin card', await card.count() == 1)
+        await card.click()
+        ok = await wait_for(lambda: page.evaluate("!![...document.querySelectorAll('iframe')].find(i=>/form\\.typeform\\.com\\/to\\/PI0VcVHp/.test(i.src))"), 12)
+        record('Typeform popup opens with plugin form PI0VcVHp', ok)
+        src = urllib.parse.unquote(await page.evaluate("([...document.querySelectorAll('iframe')].find(i=>/typeform/.test(i.src))||{}).src||''"))
+        record('Hidden fields lead_type=plugin, utm_source, cta_id', all(x in src for x in ['lead_type=plugin', 'utm_source=plugin_test', 'cta_id=home_hero_plugin']), src[src.find('#'):][:200])
+        await wait_for(lambda: page.evaluate("(window.sominTracking.log||[]).some(x=>x.event_name==='lead_form_ready')"), 15)
+        await simulate_typeform_submit(page, 'TEST-RID-PLUGIN')
+        try:
+            await page.wait_for_url(re.compile(r'/thank-you-plugin/\?.*rid=TEST-RID-PLUGIN'), timeout=8000); moved = True
+        except Exception:
+            moved = False
+        record('Redirect to /thank-you-plugin/?rid=…', moved, page.url)
+        await page.wait_for_timeout(2500)
+        auto = hits.downloads(t0)
+        record('Plugin download starts automatically (once, page stays put)',
+               len(auto) == 1 and auto[0].endswith('/downloads/marketing-mondays.plugin') and '/thank-you-plugin/' in page.url, (auto[:1] or ['none'])[0][:120])
+        record('Download buttons released (plugin + zip)', await page.evaluate("!document.querySelector('[data-plugin-state=\"ready\"]').hidden && document.querySelector('[data-plugin-main]').href.endsWith('.plugin')"))
+        await ga4_wait(hits, ['generate_lead', 'plugin_auto_download'], t0)
+        g = hits.ga4_events(t0); names = [e.get('en') for e in g]
+        record('plugin_form_submit + plugin_auto_download tracked', hits.fired('plugin_form_submit', t0) and 'plugin_auto_download' in names, ','.join(n for n in names if n))
+        n_gl = sum(1 for e in g if e.get('en') == 'generate_lead')
+        record('GA4 generate_lead fired exactly once (GTM thank-you-plugin trigger)', n_gl == 1, f'{n_gl}x')
+        n_lead = sum(1 for m in hits.meta_events(t0) if m.get('ev') == 'Lead')
+        record('Meta Lead fired exactly once (GTM)', n_lead == 1, f'{n_lead}x')
+        mev = [m.get('ev') for m in hits.meta_events(t0)]
+        record('Meta key events via GTM (lead_form_open, plugin_form_submit, plugin_auto_download)',
+               all(x in mev for x in ['lead_form_open', 'plugin_form_submit', 'plugin_auto_download']), ','.join(sorted(set(str(x) for x in mev))))
+        p2 = await ctx.new_page()
+        await p2.goto(BASE + '/thank-you-plugin/?rid=abcdefghijklmnopqrstuvwxyz123456', wait_until='load'); await p2.wait_for_timeout(800)
+        # same browser already submitted → stays unlocked; a fresh browser with a made-up id must stay locked
+        ctx2 = await new_context(browser, Hits()); p3 = await ctx2.new_page()
+        await p3.goto(BASE + '/thank-you-plugin/?rid=abcdefghijklmnopqrstuvwxyz123456', wait_until='load'); await p3.wait_for_timeout(800)
+        record('Direct visit with a made-up response id stays locked', await p3.evaluate("!document.querySelector('[data-plugin-state=\"locked\"]').hidden && document.querySelector('[data-plugin-main]').getAttribute('href') === '#'"))
+        await ctx2.close()
+        record('No JavaScript errors', not errors, '; '.join(errors[:3]))
+        await ctx.close()
+
+        # ---------------------------------------------------------------- 5d. session replays
+        print('\n[5d] Session replays (home loop player)')
+        hits = Hits(); ctx = await new_context(browser, hits); page = await ctx.new_page()
+        errors = []; page.on('pageerror', lambda e: errors.append(str(e)[:200]))
+        await page.goto(BASE + '/', wait_until='load'); await page.wait_for_timeout(1500)
+        await page.locator('[data-mm-player] video').scroll_into_view_if_needed(); await page.wait_for_timeout(2500)
+        st = await page.evaluate("(() => { const v = document.querySelector('[data-mm-player] video'); return {src: v.currentSrc, rs: v.readyState, t: v.currentTime}; })()")
+        record('Loop replay loads and plays when scrolled into view', bool(re.search(r'/assets/video/listen-landscape-report\.(mp4|webm)$', st['src'])) and st['rs'] >= 2 and st['t'] > 0, json.dumps(st))
+        t0 = time.time()
+        await page.locator('[data-mm-tab][data-step="Make"]').click(); await page.wait_for_timeout(1500)
+        st = await page.evaluate("(() => { const v = document.querySelector('[data-mm-player] video'); return {src: v.currentSrc, q: document.querySelector('[data-mm-q]').textContent}; })()")
+        record('Step tab switches the replay (Make → Figma)', 'make-figma' in st['src'], json.dumps(st))
+        await ga4_wait(hits, ['replay_step_click'], t0, timeout=8)
+        record('replay_step_click tracked (GA4)', 'replay_step_click' in [e.get('en') for e in hits.ga4_events(t0)])
+        n_vo = await page.evaluate("[...document.querySelectorAll('script[type=\"application/ld+json\"]')].filter(s => s.textContent.includes('VideoObject')).length")
+        record('VideoObject schema on the home page', n_vo >= 1)
+        record('No JavaScript errors', not errors, '; '.join(errors[:3]))
+        await ctx.close()
+
         # ---------------------------------------------------------------- 6. login, scroll, blog
         print('\n[6] Login click, scroll depth, blog engagement')
         hits = Hits(); ctx = await new_context(browser, hits); page = await ctx.new_page()
@@ -390,7 +458,7 @@ async def main():
         # ---------------------------------------------------------------- 7. crawl every page for JS errors + single GTM
         print('\n[7] Crawl all pages (JS errors, one GTM container, tracking.js present)')
         sm = (Path(__file__).resolve().parent.parent / '_site/sitemap.xml').read_text()
-        paths = [u.replace('https://somin.ai', '') for u in re.findall(r'<loc>(.*?)</loc>', sm)] + ['/try-somin/', '/get-case-study/', '/thank-you-trial-somin/', '/c5584ab5-007d-4499-b460-978130fe387b/']
+        paths = [u.replace('https://somin.ai', '') for u in re.findall(r'<loc>(.*?)</loc>', sm)] + ['/try-somin/', '/get-case-study/', '/thank-you-trial-somin/', '/thank-you-plugin/', '/c5584ab5-007d-4499-b460-978130fe387b/']
         hits = Hits(); ctx = await new_context(browser, hits)
         bad = []
         sem = asyncio.Semaphore(6)

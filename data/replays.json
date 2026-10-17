@@ -1,0 +1,26 @@
+{
+  "_doc": "Screen recordings of real SOMIN agent runs (Claude + SOMIN MCP) on Grab Singapore data, shown live at Marketing Mondays on 12 Oct 2026 (https://mondays.marketing/sessions/the-2027-marketing-team/). Files: static/assets/video/<key>.mp4 + <key>.webp poster (1152x432). Use in pages with <!--mm:replay KEY--> or the five-step player <!--mm:loop-->.",
+  "session_url": "https://mondays.marketing/sessions/the-2027-marketing-team/index.html",
+  "session_title": "The 2027 marketing team: smaller, faster, or obsolete?",
+  "session_date": "2026-10-12",
+  "items": {
+    "listen-landscape-report": {"step": "Listen", "q": "What happened in food delivery last month?", "skill": "/somin-landscape-report", "dur": 32},
+    "listen-pulse": {"step": "Listen", "q": "What worked this week, and why?", "skill": "/somin-pulse", "dur": 32},
+    "decode-audience-content": {"step": "Decode", "q": "Who's winning attention, and how?", "skill": "/competitor-audience-content-analysis", "dur": 34},
+    "decode-competitor-products": {"step": "Decode", "q": "What are competitors selling, and paying for?", "skill": "/competitor-product-market-insights", "dur": 34},
+    "decide-insight-engine": {"step": "Decide", "q": "From signal to insight, per pillar", "skill": "/somin-insight-engine-dashboard", "dur": 31},
+    "decide-brand-deck": {"step": "Decide", "q": "Food: everyone is shouting price. What do we say?", "skill": "/somin-brand-deck", "dur": 26},
+    "prompt-by-prompt": {"step": "Decide", "q": "Four questions, four prompts, every answer from data", "skill": "persona → tension → angle → story", "dur": 30},
+    "grab-two-markets": {"step": "Scope", "q": "One app, two markets, two competitive sets", "skill": "/scope-elicitation", "dur": 28},
+    "make-figma": {"step": "Make", "q": "On-brand, in the brand's own Figma file", "skill": "Figma MCP", "dur": 23},
+    "check-content-diversity": {"step": "Check", "q": "Is Grab's own feed repeating itself?", "skill": "/content-diversity-scorer", "dur": 31},
+    "ship-strategy-to-postly": {"step": "Ship", "q": "Ship, and know when to stop", "skill": "/somin-strategy-to-postly", "dur": 19}
+  },
+  "loop": [
+    {"key": "listen-landscape-report", "n": "01", "step": "Listen", "label": "What happened?"},
+    {"key": "decode-audience-content", "n": "02", "step": "Decode", "label": "Who's winning, and how?"},
+    {"key": "decide-brand-deck", "n": "03", "step": "Decide", "label": "What do we say?"},
+    {"key": "make-figma", "n": "04", "step": "Make", "label": "What does it look like?"},
+    {"key": "ship-strategy-to-postly", "n": "05", "step": "Ship", "label": "When does it go out?"}
+  ]
+}
