@@ -52,6 +52,7 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 | `cases_filter` / `cases_search` | Section filter / search on /cases-ai-marketing-strategy/ | `cta_text` = section / query |
 | `plugin_download` | Download buttons on /thank-you-plugin/ (.plugin file or Claude Code .zip) | `cta_text`, `link_url` |
 | `plugin_auto_download` | The plugin download started automatically right after the plugin form | `link_url` |
+| `rating_badge_click` | G2 / Capterra rating badge clicked (hero, footer, review sections) | `cta_id` = `rating_badge_g2` / `rating_badge_capterra` |
 | `replay_play` | Visitor presses play on a session replay (they autoplay muted when on screen) | `cta_text` = replay question |
 | `replay_step_click` | Step tab clicked in the five-step loop player (Listen … Ship) | `cta_text` = step |
 | `book_call_click` | Any calendly.com link (opens popup) | `link_url` |

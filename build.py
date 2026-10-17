@@ -89,7 +89,90 @@ def replay_loop():
             f'aria-label="{E(it0["q"])}"></video>{_replay_cap()}</figure></div>')
 
 
+REVIEWS = json.loads((ROOT / 'data/reviews.json').read_text(encoding='utf-8'))
+# Founder's rule: never show reviews by anyone named Aleks or a derivative of it.
+_EXCLUDED_NAME = re.compile(r'^(ale[kx]|aless|alexa|oleks|sasha|sascha|shura)', re.I)
+MONTHS = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split()
+
+
+def _usable_reviews():
+    return [r for r in REVIEWS['reviews'] if not _EXCLUDED_NAME.match(r['name'].strip()) and (r.get('rating') or 0) >= 3.5]
+
+
+def stars(r, cls='rv-stars'):
+    pct = max(0, min(100, round(float(r) / 5 * 100)))
+    return (f'<span class="{cls}" role="img" aria-label="{r:g} out of 5 stars"><span class="rv-stars-on" style="width:{pct}%">★★★★★</span>★★★★★</span>')
+
+
+def rating_badges(extra=''):
+    """G2 / Capterra rating badges (real averages from data/reviews.json, linked to the profiles)."""
+    out = []
+    for key, pl in REVIEWS['platforms'].items():
+        if pl.get('rating'):
+            n = pl.get('count') or 0
+            out.append(f'<a class="rv-badge" href="{E(pl["url"])}" target="_blank" rel="noopener" data-gtm-id="rating_badge_{key}" data-track="rating_badge_click">'
+                       f'<span class="rv-src rv-src--{key}">{E(pl["name"])}</span>{stars(pl["rating"])}'
+                       f'<span class="rv-score"><b>{pl["rating"]:.1f}</b>/5</span><span class="rv-count">{n} review{"s" if n != 1 else ""}</span></a>')
+        else:
+            out.append(f'<a class="rv-badge" href="{E(pl["url"])}" target="_blank" rel="noopener" data-gtm-id="rating_badge_{key}" data-track="rating_badge_click">'
+                       f'<span class="rv-src rv-src--{key}">{E(pl["name"])}</span><span class="rv-count">Read our reviews</span></a>')
+    return f'<div class="rv-badges{(" " + extra) if extra else ""}">{"".join(out)}</div>'
+
+
+def _excerpt(t):
+    t = t.strip()
+    if t[:1].islower():
+        t = '…' + t
+    if t[-1:] not in '.!?':
+        t = t + '…'
+    return t
+
+
+def review_cards(tags, limit=3):
+    tags = [t.strip() for t in tags if t.strip()]
+    picks = []
+    for r in _usable_reviews():
+        best = None
+        for q in r['quotes']:
+            score = sum(1 for t in tags if t in q['tags'])
+            if score and (best is None or score > best[0]):
+                best = (score, q)
+        if best:
+            picks.append((best[0], r.get('rating') or 0, r['date'], r, best[1]))
+    picks.sort(key=lambda x: x[2], reverse=True)          # newest first among equals
+    picks.sort(key=lambda x: (-x[0], -x[1]))
+    cards = []
+    for _, _, _, r, q in picks[:limit]:
+        pl = REVIEWS['platforms'][r['platform']]
+        y, m, _d = r['date'].split('-')
+        who = ' · '.join(x for x in (r.get('role'), r.get('size')) if x)
+        cards.append(f'<figure class="rv-card">{stars(r["rating"])}<blockquote>“{E(_excerpt(q["text"]))}”</blockquote>'
+                     f'<figcaption><b>{E(r["name"])}</b>{f"<span>{E(who)}</span>" if who else ""}'
+                     f'<a href="{E(pl["url"])}" target="_blank" rel="noopener" data-gtm-id="review_source_{r["platform"]}">{"Validated review on G2" if r["platform"] == "g2" else "Verified review on " + E(pl["name"])}'
+                     f'{(" (" + E(r["source_note"]) + ")") if r.get("source_note") else ""} · {MONTHS[int(m) - 1]} {y}</a></figcaption></figure>')
+    return cards
+
+
+def reviews_section(attrs):
+    tags = (attrs.get('tags') or 'home').split(',')
+    limit = int(attrs.get('limit') or 3)
+    cards = review_cards(tags, limit)
+    if not cards:
+        return ''
+    title = attrs.get('title') or 'What users say about SOMIN.'
+    native = attrs.get('native') == '1'
+    cls = 'rv-section sec sec--light' if native else 'rv-section'
+    pls = ' and '.join(f'<a href="{E(p["url"])}" target="_blank" rel="noopener">{E(p["name"])}</a>' for p in REVIEWS['platforms'].values())
+    return (f'<section class="{cls}" aria-label="Reviews on G2 and Capterra"><div class="rv-wrap">'
+            f'<div class="rv-head"><div><p class="rv-kicker">Rated by users on G2 and Capterra</p><h2>{E(title)}</h2></div>{rating_badges()}</div>'
+            f'<div class="rv-grid rv-grid--{min(len(cards), 3)}">{"".join(cards)}</div>'
+            f'<p class="rv-note">Short excerpts from validated reviews, quoted as written. Read every review in full on {pls}.</p>'
+            f'</div></section>')
+
+
 def expand_shortcodes(body):
+    body = re.sub(r'<!--\s*mm:reviews((?:\s+\w+="[^"]*")*)\s*-->', lambda m: reviews_section(dict(re.findall(r'(\w+)="([^"]*)"', m.group(1)))), body)
+    body = re.sub(r'<!--\s*mm:ratings((?:\s+\w+="[^"]*")*)\s*-->', lambda m: rating_badges(dict(re.findall(r'(\w+)="([^"]*)"', m.group(1))).get('cls', '')), body)
     body = re.sub(r'<!--\s*mm:replay\s+([a-z0-9-]+)\s*-->', lambda m: replay_figure(m.group(1)), body)
     return re.sub(r'<!--\s*mm:loop\s*-->', lambda m: replay_loop(), body)
 
@@ -210,7 +293,7 @@ def render_footer():
     for col in f['columns']:
         cols += f'<div class="f-col"><h3>{E(col["title"])}</h3><ul>' + ''.join(f'<li><a {link_attrs(l)}>{E(l["label"])}</a></li>' for l in col['links']) + '</ul></div>'
     badges = ''.join(f'<a class="f-badge" href="{E(b["href"])}" rel="noopener" target="_blank"><img src="{E(b["img"])}" alt="{E(b["alt"])}" width="64" height="64" loading="lazy"><span>{E(b["text"])}</span></a>' for b in f['badges'])
-    reviews = ''.join(f'<a href="{E(r["href"])}" rel="noopener" target="_blank">{E(r["label"])}</a>' for r in f['reviews'])
+    reviews = rating_badges('rv-badges--footer') + ''.join(f'<a href="{E(r["href"])}" rel="noopener" target="_blank">{E(r["label"])}</a>' for r in f['reviews'] if r['label'] not in ('G2', 'Capterra'))
     return f'''<footer class="site-footer">
   <nav class="f-compare" aria-label="Comparisons"><ul>{compare}</ul></nav>
   <div class="f-main">
@@ -487,6 +570,7 @@ def build_fragment_page(meta, body):
     if path != '/' and not any('BreadcrumbList' in js for js in meta.get('jsonld', [])):
         meta['_schema'] = [breadcrumbs([('Home', '/'), ((meta.get('seo_title') or meta['title']).split(' | ')[0], path)])]
     body = theme_fragment(body)
+    body = hero_image(body, meta, 'u-band u-hero')
     write(path, page(meta, body, path))
     pr = '1.0' if path == '/' else ('0.9' if meta['type'] in ('solution', 'product') else '0.8')
     add_sitemap(path, meta.get('lastmod'), pr, meta.get('robots', 'index'))
@@ -527,8 +611,21 @@ def build_doc_page(meta, body):
     add_sitemap(path, node.get('dateModified'), '0.3' if is_legal else '0.5', meta.get('robots', 'index'))
 
 
+def hero_image(body, meta, marker):
+    """Topic background (SOMIN image-generate, static/assets/img/cases/bg/<slug>.webp) behind a case study's hero."""
+    slug = meta.get('slug') or ''
+    if meta.get('type') != 'case_study' or not (ROOT / f'static/assets/img/cases/bg/{slug}.webp').exists():
+        return body
+    i = body.find(f'class="{marker}')
+    if i < 0:
+        return body
+    j = i + len(f'class="{marker}')
+    return body[:j] + f' u-hero--img" style="--hero-img:url(/assets/img/cases/bg/{slug}.webp)' + body[j:]
+
+
 def build_native_page(meta, body):
     path = url_for(meta['slug'])
+    body = hero_image(body, meta, 'hero')
     trail = [('Home', '/'), (meta['title'].split(' | ')[0], path)]
     meta['_schema'] = [org_node(), website_node(),
                        {"@type": "WebPage", "@id": absu(path) + "#webpage", "url": absu(path), "name": meta['title'], "description": meta.get('description'),
@@ -731,6 +828,7 @@ def build_lead_pages():
       <li><span><strong>Agents that run the loop</strong> — strategy, paid media, creators, social, CRM and reporting.</span></li>
     </ul>
     <div class="trust"><span>Trusted by teams at <b>P&amp;G</b>, <b>Audi</b>, <b>Dentsu</b> and <b>Havas</b></span><span>Gartner Cool Vendor in Marketing AI</span></div>
+    {rating_badges("rv-badges--hero")}
     <p style="margin-top:28px"><a class="btn btn--ghost" href="{CAL_DEFAULT}" data-gtm-id="try_page_book_call">Prefer to talk? Book a call</a></p>
   </div>
   <div class="form-card"><div data-lead-form-inline="trial" data-height="640" data-gtm-id="try_page_inline_form">
@@ -931,6 +1029,7 @@ def build_cases_hub(manifest):
   <p class="eyebrow">Case studies</p>
   <h1>What SOMIN finds in <em>real</em> categories.</h1>
   <p class="lede">{total} case studies from brands, agencies and creators across Asia-Pacific, the Middle East, Europe and the Americas: competitor reads, whitespace maps, content calendars and the time and cost savings agencies measured. Every full PDF is free: fill in a short form and the download starts straight away.</p>
+  {rating_badges("rv-badges--hero")}
   <div class="cases-stats"><div><strong>{count['brands']}</strong><span>brand studies</span></div><div><strong>{count['agencies']}</strong><span>agency stories</span></div><div><strong>{count['creators']}</strong><span>creator strategies</span></div></div>
   <div class="cs-proof" aria-label="Measured results">{proof_html}</div>
   <div class="blog-tools"><div class="chips" role="group" aria-label="Filter case studies">{chips}</div>
@@ -1042,6 +1141,7 @@ def build_llms(pages, posts, manifest=None):
     parts = [f'# SOMIN', '', f'> {SITE["description"]}', '',
              'SOMIN (somin.ai, legal name Somin Pte. Ltd., Singapore) is an agentic AI marketing-intelligence platform. Its SOMONITOR engine reads competitor ads, posts and creators plus live audience conversation, finds category whitespace, and produces pre-scored propositions, briefs and on-brand creative concepts for brands, agencies and creator programmes across 11+ markets in APAC, MENA and Europe. Recognised as a Gartner Cool Vendor in Marketing AI and a Zapier agentic-AI partner.', '',
              'How SOMIN works: one loop in five steps, run by AI agents on verified category data. Listen (what happened?), Decode (who is winning, and how?), Decide (what do we say?), Make (what does it look like?) and Ship (when does it go out?). Every idea answers four questions: who are we talking to (persona), what is bugging them (tension), why does that happen (angle) and what is the one line that says it (story). Every number traces back to a SOMIN post, study or ID.', '',
+             'Third-party ratings: ' + '; '.join(f'{p["rating"]:.1f}/5 on {p["name"]} ({p["count"]} review{"s" if p["count"] != 1 else ""}, {p["url"]})' for p in REVIEWS['platforms'].values() if p.get('rating')) + '.', '',
              f'Free tool: the Marketing Mondays plugin for Claude ({BASE}/marketing-mondays-plugin/) packs 8 main skills (26 in all) and the SOMIN connector (MCP server {PLUGIN["mcp"]}) so Claude can run that loop on a team\'s own SOMIN data.', '',
              '## Key pages']
     if home:

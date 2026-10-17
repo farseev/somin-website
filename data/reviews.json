@@ -1,0 +1,314 @@
+{
+ "_doc": "Third-party ratings and review excerpts shown on the site (RTB). Excerpts are verbatim and short, always attributed and linked to the source; read in full on the platform. Rule from the founder: never use reviews written by anyone named Aleks or a derivative (Alex, Alexander, Aleksandr, Alexei, Oleksandr, Alessandro, Sasha, Sascha...) - build.py also filters them out. Only positive excerpts (what the reviewer likes / the problem it solves). Update ratings and counts when the platforms change; 'checked' is the date they were last read.",
+ "platforms": {
+  "g2": {
+   "name": "G2",
+   "rating": 4.5,
+   "count": 9,
+   "url": "https://www.g2.com/products/somin-ai/reviews",
+   "checked": "2026-10-17"
+  },
+  "capterra": {
+   "name": "Capterra",
+   "rating": 5.0,
+   "count": 1,
+   "url": "https://www.capterra.com/p/237614/SoMin/reviews/",
+   "checked": "2026-10-17"
+  }
+ },
+ "reviews": [
+  {
+   "id": "g2-russel",
+   "platform": "g2",
+   "name": "Russel Dione M.",
+   "role": "AI Engineer",
+   "size": "Small business",
+   "date": "2026-10-08",
+   "rating": 5,
+   "title": "SoMin Powers a Repeatable, Traceable Agentic Strategy Workflow",
+   "quotes": [
+    {
+     "text": "I can run the whole strategy process in one conversation.",
+     "tags": [
+      "agents",
+      "plugin",
+      "strategy",
+      "home"
+     ]
+    },
+    {
+     "text": "every output can be traced back to the SoMin data behind it.",
+     "tags": [
+      "strategy",
+      "agents",
+      "data",
+      "home"
+     ]
+    }
+   ],
+   "source_note": ""
+  },
+  {
+   "id": "g2-erik",
+   "platform": "g2",
+   "name": "Erik M.",
+   "role": "Senior Account Director, Click2View",
+   "size": "Small business",
+   "date": "2026-10-03",
+   "rating": 5,
+   "title": "From days to minutes",
+   "quotes": [
+    {
+     "text": "Research that used to take hours now takes minutes.",
+     "tags": [
+      "agency",
+      "home",
+      "click2view",
+      "reporting",
+      "strategy"
+     ]
+    },
+    {
+     "text": "helps us explain the thinking behind a recommendation.",
+     "tags": [
+      "agency",
+      "strategy",
+      "click2view"
+     ]
+    },
+    {
+     "text": "we can turn findings into a client-ready deck very quickly.",
+     "tags": [
+      "agency",
+      "reporting",
+      "plugin",
+      "click2view"
+     ]
+    }
+   ],
+   "source_note": ""
+  },
+  {
+   "id": "g2-angeline",
+   "platform": "g2",
+   "name": "Angeline N.",
+   "role": "Director, GTM consultancy",
+   "size": "Small business",
+   "date": "2026-10-08",
+   "rating": 4,
+   "title": "A Sharp Edge for GTM and Competitive Analysis",
+   "quotes": [
+    {
+     "text": "What I value most is that the insights are data-backed, not speculative.",
+     "tags": [
+      "home",
+      "brands",
+      "strategy",
+      "agency",
+      "data"
+     ]
+    },
+    {
+     "text": "The setup was quick (a couple of days) and the team is genuinely responsive.",
+     "tags": [
+      "support",
+      "brands",
+      "try"
+     ]
+    }
+   ],
+   "source_note": ""
+  },
+  {
+   "id": "g2-iskander",
+   "platform": "g2",
+   "name": "Iskander F.",
+   "role": "Chief Research Officer",
+   "size": "Small business",
+   "date": "2026-07-28",
+   "rating": 4.5,
+   "title": "Super Helpful MCP Server for Agentic Workflows",
+   "quotes": [
+    {
+     "text": "Their MCP server - it is super helpful in my agentic workflows.",
+     "tags": [
+      "agents",
+      "plugin"
+     ]
+    },
+    {
+     "text": "Helps to come up with new marketing funnels differently for my multi-market brand",
+     "tags": [
+      "paid",
+      "brands",
+      "funnels"
+     ]
+    }
+   ],
+   "source_note": ""
+  },
+  {
+   "id": "g2-wai-yeong",
+   "platform": "g2",
+   "name": "Wai Yeong L.",
+   "role": "",
+   "size": "Mid-market",
+   "date": "2026-07-23",
+   "rating": 3.5,
+   "title": "Automated Insights, Needs Better UI",
+   "quotes": [
+    {
+     "text": "I really appreciate how accurate and precise the data they gather is",
+     "tags": [
+      "data",
+      "brands",
+      "paid",
+      "home"
+     ]
+    },
+    {
+     "text": "helps the creative team to ideate newer campaign assets that they haven't considered.",
+     "tags": [
+      "social",
+      "paid",
+      "brands",
+      "creative"
+     ]
+    }
+   ],
+   "source_note": ""
+  },
+  {
+   "id": "g2-ronan",
+   "platform": "g2",
+   "name": "Ronan B.",
+   "role": "Managing Director",
+   "size": "Small business",
+   "date": "2026-10-12",
+   "rating": 4.5,
+   "title": "SOMIN + Claude Integration Makes Social Marketing Reports Effortless",
+   "quotes": [
+    {
+     "text": "very easy to generate intuitive, instructive reports on our social marketing campaigns",
+     "tags": [
+      "reporting",
+      "plugin",
+      "agents",
+      "home"
+     ]
+    },
+    {
+     "text": "We can quickly compare our campaigns with those of our competitors or market leaders",
+     "tags": [
+      "reporting",
+      "brands",
+      "social"
+     ]
+    }
+   ],
+   "source_note": ""
+  },
+  {
+   "id": "g2-joy",
+   "platform": "g2",
+   "name": "Joy C.",
+   "role": "Marketing Manager",
+   "size": "Small business",
+   "date": "2026-07-26",
+   "rating": 5,
+   "title": "Strong Customer Success Team and an Easy-to-Use MCP Server",
+   "quotes": [
+    {
+     "text": "a very strong customer success team, and the MCP server is very easy to use.",
+     "tags": [
+      "support",
+      "plugin",
+      "agents",
+      "try",
+      "home"
+     ]
+    },
+    {
+     "text": "It helps me come up with new content ideas",
+     "tags": [
+      "social",
+      "creators",
+      "brands"
+     ]
+    }
+   ],
+   "source_note": ""
+  },
+  {
+   "id": "g2-mabel",
+   "platform": "g2",
+   "name": "Mabel W.",
+   "role": "Executive Director",
+   "size": "Small business",
+   "date": "2026-07-28",
+   "rating": 4,
+   "title": "SoMin.ai Deepens Content Insights and Inspires Creative Ad Funnel Directions",
+   "quotes": [
+    {
+     "text": "It cuts down research time and gives creative a head start in conceptualisation.",
+     "tags": [
+      "agency",
+      "creators",
+      "home",
+      "creative",
+      "paid"
+     ]
+    },
+    {
+     "text": "useful for identifying common narratives, personas",
+     "tags": [
+      "creators",
+      "influencer",
+      "strategy"
+     ]
+    }
+   ],
+   "source_note": ""
+  },
+  {
+   "id": "capterra-katerina",
+   "platform": "capterra",
+   "name": "Katerina S.",
+   "role": "Director",
+   "size": "Consumer goods",
+   "date": "2026-05-08",
+   "rating": 5,
+   "title": "A Powerful Tool for Understanding Audiences and Shaping Creative Direction",
+   "source_note": "invited by SOMIN",
+   "quotes": [
+    {
+     "text": "SOMIN replaces guesswork with grounded, data-backed direction",
+     "tags": [
+      "home",
+      "brands",
+      "data",
+      "strategy"
+     ]
+    },
+    {
+     "text": "it effectively functions as an extension of a research and marketing department",
+     "tags": [
+      "brands",
+      "try",
+      "creators",
+      "social"
+     ]
+    },
+    {
+     "text": "transform raw data into clear insights and market-ready creative directions",
+     "tags": [
+      "creative",
+      "paid",
+      "social",
+      "brands"
+     ]
+    }
+   ]
+  }
+ ]
+}

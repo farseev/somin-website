@@ -48,3 +48,10 @@ Run all three before every commit that changes content, templates, CSS or JS.
     `<!--mm:loop-->`; the builder adds the markup and VideoObject schema. They load and play muted only while on screen.
 13. **FAQ schema**: a visible `<details><summary>Q</summary>A</details>` FAQ gets FAQPage JSON-LD automatically when the page
     has none in its meta; keep answers in the visible HTML, never in schema only.
+14. **Third-party reviews** (G2, Capterra) live in `data/reviews.json`: real averages and short verbatim excerpts, each attributed
+    and linked to the platform. Never edit a quote's wording, never invent or merge reviews, never show reviews by anyone named
+    Aleks or a derivative (the builder filters them too), and don't add AggregateRating schema for them (Google disallows
+    ratings aggregated from other sites). Use `<!--mm:ratings-->` for the badges and
+    `<!--mm:reviews tags="agency,strategy" limit="3" title="…"-->` for a review section.
+15. **Case-study hero backgrounds** are `static/assets/img/cases/bg/<slug>.webp` (SOMIN image-generate, dark teal, subject on the
+    right, no text or logos); a case page picks its own up automatically.

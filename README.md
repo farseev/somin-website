@@ -136,6 +136,14 @@ from the Marketing Mondays session of 12 Oct 2026) are in `static/assets/video/`
 Listen → Decode → Decide → Make → Ship player); they appear on the home page, AI agents, the plugin page, the three solution
 pages and five product pages. Videos load only when scrolled into view and play muted; reduced-motion users get the poster.
 
+**Ratings and reviews.** G2 (4.5/5, 9 reviews) and Capterra (5.0/5, 1 review) badges sit in the home hero, the cases hub,
+/try-somin/ and the footer; short verbatim excerpts from validated reviews appear as proof on the home page, AI agents, the
+plugin page, the solution and product pages and the Click2View case (`data/reviews.json`, `<!--mm:reviews-->`). G2's own
+star-rating widget needs a paid G2 plan, so the badges are SOMIN-styled and link to the profiles.
+
+**Case-study heroes.** Every case-study page has its own topic background generated with SOMIN image-generate
+(`static/assets/img/cases/bg/`).
+
 **Case-study hub.** `/cases-ai-marketing-strategy/` lists all 45 case studies (27 brands, 12 agencies, 6 creators) with
 section filters and search, built from `data/case-studies.json` (`hub` blocks carry the tile title, sector, market and
 summary from the Leadpages hub). Every tile's **Get the PDF** opens the case-study Typeform; tiles with a full story page
