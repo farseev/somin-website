@@ -147,9 +147,11 @@ Version 53 (go-live on GitHub Pages, 18 Oct 2026; nothing deleted, unpause from 
 
 Version 54 (18 Oct 2026): `LinkedIn Insight Tags` (All Pages) is paused and in the same archive folder. It sent page views to
 partner 2907724, which isn't in either SOMIN ad account (SoMin.ai 512925300 uses 6960748; Boost SOMIN 517674190 has no Insight
-Tag). All SOMIN LinkedIn conversions (6960748: 20526804, 21236668, 20526508, 20526828) still fire. No LinkedIn tag loads on a
-plain page view now, so `tests/test_tracking.py` reports "LinkedIn Insight loaded" and "LinkedIn page hit" as failing until an
-All Pages Insight tag for 6960748 is added in GTM (needed for LinkedIn retargeting and website demographics).
+Tag). All SOMIN LinkedIn conversions (6960748: 20526804, 21236668, 20526508, 20526828) still fire.
+
+Version 55 (18 Oct 2026): new tag **LinkedIn Insight - page view (SOMIN 6960748)** on All Pages, so SOMIN's own ad account gets
+page views for retargeting and website demographics. Every page load now sends one page view to partner 6960748 and nothing to
+2907724; `tests/test_tracking.py` checks "LinkedIn Insight loaded" and "LinkedIn page hit" pass again.
 
 Optional:
 
