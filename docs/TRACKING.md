@@ -67,7 +67,7 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 | `replay_step_click` | Step tab clicked in the five-step loop player (Listen … Ship) | `cta_text` = step |
 | `book_call_click` | Any calendly.com link (opens popup) | `link_url` |
 | `login_click` / `platform_click` | Links to cloud.somin.ai | `link_url` |
-| `partner_click` | Strategic-partner and faithdriven.sg links (home plate, Vision page) | `link_url`, `cta_text` |
+| `partner_click` | Strategic-partner logo links (home plate, Vision cards) and the Vision page's redemptive-marketing links (Forbes essay, faithdriven.sg, orthodox.sg) | `link_url`, `cta_text` (partner name on the home plate) |
 | `email_click` / `phone_click` | mailto: / tel: | — |
 | `article_read_50` / `article_read_90` | Blog article depth (page path identifies the post) | — |
 | `blog_filter` / `blog_search` / `share` | Blog index and article tools | `cta_text` = topic / query / share channel |
@@ -85,6 +85,27 @@ Captured on landing and stored first-touch (90 days) + last-touch: `utm_*`, `gcl
 `li_fat_id`, `msclkid`, `ttclid`, `landing_page`, `referrer`, plus `ga_client_id`, `_fbp`, `_fbc` cookies.
 They are sent as Typeform hidden fields and appended to Calendly as UTMs, so every lead in Typeform/Calendly
 can be joined back to GA4 and ad platforms. `window.sominTracking.attributionFields()` returns the current set.
+
+## Lead routing: Typeform → Pipedrive → Slack (set up 18 Oct 2026)
+
+Nothing in this repo sends leads anywhere; routing lives in Typeform and Pipedrive. The three forms are trial `jC5qqGJ0`,
+case study `lHmWeOX7` and plugin `PI0VcVHp` (Typeform account "sominanalytics").
+
+1. **Typeform → Pipedrive** (Typeform's "Pipedrive Classic" integration on each form, authorised as sominanalytics@gmail.com)
+   creates a person, an organisation and a deal in **[SALES] MAIN → Qualified Leads**. Deal title = Company. Mapped fields:
+   person name/email/phone, organisation name, and the deal fields `Website: Work Email`, `Website: Company`,
+   `Website: Position`, `Website: Last Name`, `Website: Ad Budget`, `Website: Subject of Inquiry` (needs / enquiry),
+   `Website: Lead Form` (`lead_type`), `Website: Case Study`, `Website: CTA` (`cta_id`), `Website: Landing Page`,
+   `Website: Referrer` and `Website: UTM Source/Medium/Campaign/Term/Content` (hidden fields). The `Website: …` fields
+   from Last Name onwards were added for this on 18 Oct 2026. The integration has no edit mode: to change a mapping,
+   delete the form's Pipedrive integration and connect it again.
+2. **Pipedrive automation** "[AUTO] Website lead (Typeform): owner Filipp, Booked date, post to #sales_main" (active for all
+   users): when a deal is created in Qualified Leads with `Website: Work Email` filled, it sets owner = Filipp and
+   Deal source = Inbound, sets the person's name to first + last name, owner = Filipp, Lead Source = Website Form and
+   Booked = the lead's date, then posts to Slack **#sales_main** with `@channel`: form, company, name, email, phone, position,
+   budget, needs, case study, CTA, landing page, referrer, UTMs and the deal link.
+3. Typeform's own Slack integration on each form also posts to #sales_main (all fields, but no `@channel`). Once the
+   Pipedrive post is confirmed with a test lead, switch it off in Typeform → Connect → Slack so each lead is posted once.
 
 ## GTM wiring for lead conversions (container version 52, published 17 Oct 2026)
 

@@ -180,26 +180,41 @@ def reviews_section(attrs):
 PARTNERS = json.loads((ROOT / 'data/partners.json').read_text(encoding='utf-8'))
 
 
+def partner_logo(p, dark=False, scale=1.0):
+    """<img> for a partner logo at its optical display height (strip_h × scale); width follows the file's aspect ratio.
+    The height also goes in as the unitless --lh so CSS can scale the whole set with the viewport without distorting a logo."""
+    h = round(p.get('strip_h', 22) * scale)
+    w = round(h * p['logo_w'] / p['logo_h'])
+    return (f'<img src="{E(p["logo_dark"] if dark else p["logo"])}" alt="{E(p["name"])} logo" width="{w}" height="{h}" '
+            f'style="--lh:{h}" loading="lazy" decoding="async">')
+
+
 def partners_block(attrs):
-    """<!--mm:partners compact="1"--> = a two-line plate (home hero, under the client marquee);
-    <!--mm:partners--> = the full Vision-page section with a card per partner and ItemList schema."""
+    """<!--mm:partners compact="1"--> = a two-line logo plate (home hero, under the client marquee);
+    <!--mm:partners--> = the full Vision-page section with a logo card per partner and ItemList schema."""
     items = PARTNERS['items']
     if attrs.get('compact'):
         links = ''.join(
-            f'<a href="{E(p["url"])}" target="_blank" rel="noopener" data-track="partner_click" title="{E(p["description"])}">'
-            f'<b>{E(p["name"])}</b>{f" <span>{E(p["short"])}</span>" if p.get("short") else ""}</a>' for p in items)
-        return (f'<div class="se-partners" aria-label="Strategic partners powered by SOMIN"><span class="se-partners-label">'
+            f'<a class="se-partners-logo" href="{E(p["url"])}" target="_blank" rel="noopener" data-track="partner_click" '
+            f'title="{E(p["description"])}" aria-label="{E(p["name"])}">{partner_logo(p, dark=True)}</a>' for p in items)
+        return (f'<div class="se-partners" role="group" aria-label="Strategic partners powered by SOMIN"><span class="se-partners-label">'
                 f'Strategic partners powered by <b>SO</b>MIN</span>{links}<a class="se-partners-all" href="/vision/#partners">All partners →</a></div>')
-    cards = ''.join(
-        f'<a class="pt-card" href="{E(p["url"])}" target="_blank" rel="noopener" data-track="partner_click">'
-        f'<strong>{E(p["name"])}</strong><span>{E(p["description"])}</span>'
-        f'<em>{E(re.sub(r"^https?://(www[.])?", "", p["url"]).strip("/"))} ↗</em></a>' for p in items)
+    def card(p):
+        # spaces between the parts keep the link text (and partner_click's cta_text) readable; the flex column ignores them
+        short = f' <span class="pt-short">{E(p["short"])}</span>' if p.get('short') else ''
+        host = re.sub(r'^https?://(www[.])?', '', p['url']).strip('/')
+        return (f'<a class="pt-card" href="{E(p["url"])}" target="_blank" rel="noopener" data-track="partner_click">'
+                f'<span class="pt-logo">{partner_logo(p, scale=1.5)}</span> <strong>{E(p["name"])}</strong>{short} '
+                f'<span class="pt-desc">{E(p["description"])}</span> <em>{E(host)} ↗</em></a>')
+    cards = ''.join(card(p) for p in items)
     ld = {"@type": "ItemList", "@id": absu('/vision/') + '#partners', "name": "Strategic partners powered by SOMIN",
           "itemListElement": [{"@type": "ListItem", "position": i + 1,
-                               "item": {"@type": "Organization", "name": p['name'], "url": p['url'], "description": p['description']}}
+                               "item": {"@type": "Organization", "name": p['name'], "url": p['url'], "description": p['description'],
+                                        **({"logo": BASE + p['logo']} if p.get('logo') else {})}}
                               for i, p in enumerate(items)]}
     title = attrs.get('title') or 'Strategic partners powered by SOMIN'
-    lede = attrs.get('lede') or ('Businesses that run SOMIN for their own clients or build on our team and research. Each one links to its own website.')
+    lede = attrs.get('lede') or ('Businesses and communities that run SOMIN for their own clients or build on our team and research. '
+                                 'Each one links to its own website.')
     return (f'<section class="pt-sec" id="partners" aria-labelledby="partners-h"><p class="eyebrow eyebrow--ink">Strategic partners</p>'
             f'<h2 id="partners-h">{E(title)}</h2><p class="pt-lede">{E(lede)}</p><div class="pt-grid">{cards}</div></section>'
             f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>')

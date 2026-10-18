@@ -1,35 +1,148 @@
 {
- "_doc": "Strategic partners powered by SOMIN. Each runs SOMIN's platform for its own clients (their cloud.<domain> deployments report into the somin.ai GA4 property) or builds on SOMIN's team and research. 'short' is the 2-4 word line on the home-page plate; 'description' is the Vision-page card and schema text. Write descriptions from the partner's own website only. Rendered by <!--mm:partners--> (Vision page, #partners) and <!--mm:partners compact=\"1\"--> (home hero plate).",
+ "_doc": "Strategic partners powered by SOMIN. Each runs SOMIN's platform for its own clients (their cloud.<domain> deployments report into the somin.ai GA4 property) or builds on SOMIN's team and research. 'short' is the 2-5 word tagline on the Vision card; 'description' is the Vision-page card, home-plate tooltip and schema text. Write descriptions from the partner's own website only. Logos: 'logo' (for light backgrounds, Vision cards) and 'logo_dark' (on-dark variant, home plate) are trimmed transparent WebP in static/assets/img/partners/ rendered with the brand's own fonts; 'logo_w'/'logo_h' are the light file's pixel size (the dark file has the same aspect ratio); 'strip_h' is the logo's display height in px on the home plate (set per logo so they read at the same optical size; Vision cards use 1.5x, capped at 190px wide). Rendered by <!--mm:partners--> (Vision page, #partners) and <!--mm:partners compact=\"1\"--> (home hero plate).",
  "items": [
   {
    "name": "ToucHigh",
    "url": "https://touchigh.ai/",
    "short": "AI search visibility for exporters",
-   "description": "Gets Chinese cross-border sellers cited by US AI answer engines such as ChatGPT and Perplexity, and automates their US social posts, articles and ads. Co-founded by SOMIN's CTO, Kirill Lepikhin."
+   "description": "Gets Chinese cross-border sellers cited by US AI answer engines such as ChatGPT and Perplexity, and automates their US social posts, articles and ads. Co-founded by SOMIN's CTO, Kirill Lepikhin.",
+   "logo": "/assets/img/partners/touchigh.webp",
+   "logo_dark": "/assets/img/partners/touchigh-on-dark.webp",
+   "logo_w": 550,
+   "logo_h": 96,
+   "strip_h": 19
   },
   {
    "name": "Defy",
    "url": "https://defygroup.ai/",
    "short": "Agency and brand intelligence",
-   "description": "An AI insight and automation platform that gives independent agencies and in-house brand teams competitor, audience and conversation intelligence, with Claude-native tools and agentic workflows."
+   "description": "An AI insight and automation platform that gives independent agencies and in-house brand teams competitor, audience and conversation intelligence, with Claude-native tools and agentic workflows.",
+   "logo": "/assets/img/partners/defy.webp",
+   "logo_dark": "/assets/img/partners/defy-on-dark.webp",
+   "logo_w": 222,
+   "logo_h": 96,
+   "strip_h": 24
   },
   {
    "name": "Matrex Analytica",
    "url": "https://matrexanalytica.com/",
-   "short": "",
-   "description": "Runs its client platform on SOMIN."
+   "short": "Digital presence intelligence",
+   "description": "Builds systems for managing online presence — continuous competitive intelligence for investment firms, corporate operations and social-impact teams.",
+   "logo": "/assets/img/partners/matrex-analytica.webp",
+   "logo_dark": "/assets/img/partners/matrex-analytica-on-dark.webp",
+   "logo_w": 1153,
+   "logo_h": 96,
+   "strip_h": 15
   },
   {
    "name": "Voltage X AI",
    "url": "https://www.voltage-x.ai/",
    "short": "AI marketing and PR, Australia",
-   "description": "An Australia-based company that combines AI with marketing: digital marketing, PR, branding and a smart-marketing SaaS tool for clients across industries."
+   "description": "An Australia-based company that combines AI with marketing: digital marketing, PR, branding and a smart-marketing SaaS tool for clients across industries.",
+   "logo": "/assets/img/partners/voltage-x-ai.webp",
+   "logo_dark": "/assets/img/partners/voltage-x-ai-on-dark.webp",
+   "logo_w": 230,
+   "logo_h": 96,
+   "strip_h": 26
   },
   {
    "name": "Gordon Glenister",
    "url": "https://gordonglenister.com/",
    "short": "Influencer marketing, London",
-   "description": "London-based influencer marketing strategist and author who helps brands, organisations and leaders build authority, grow their audiences and get measurable results."
+   "description": "London-based influencer marketing strategist and author who helps brands, organisations and leaders build authority, grow their audiences and get measurable results.",
+   "logo": "/assets/img/partners/gordon-glenister.webp",
+   "logo_dark": "/assets/img/partners/gordon-glenister-on-dark.webp",
+   "logo_w": 309,
+   "logo_h": 96,
+   "strip_h": 26
+  },
+  {
+   "name": "Marketing Mondays",
+   "url": "https://mondays.marketing/",
+   "short": "Singapore marketers' weekly show",
+   "description": "A Singapore marketing community and weekly YouTube show that decodes one real market signal every Monday; founded by SOMIN.",
+   "logo": "/assets/img/partners/marketing-mondays.webp",
+   "logo_dark": "/assets/img/partners/marketing-mondays-on-dark.webp",
+   "logo_w": 678,
+   "logo_h": 96,
+   "strip_h": 23
+  },
+  {
+   "name": "SNMRush",
+   "url": "https://snmrush.com/",
+   "short": "SEO, AEO and GEO agency",
+   "description": "An SEO, AEO and GEO agency that gets brands ranked in search, cited in AI answers and mentioned where buyers ask questions.",
+   "logo": "/assets/img/partners/snmrush.webp",
+   "logo_dark": "/assets/img/partners/snmrush-on-dark.webp",
+   "logo_w": 374,
+   "logo_h": 96,
+   "strip_h": 24
+  },
+  {
+   "name": "GPT5 Marketing",
+   "url": "https://gpt5.marketing/",
+   "short": "AI strategy for reasoning models",
+   "description": "An independent AI strategy studio that redesigns how marketing teams research, plan, create and measure around reasoning models.",
+   "logo": "/assets/img/partners/gpt5-marketing.webp",
+   "logo_dark": "/assets/img/partners/gpt5-marketing-on-dark.webp",
+   "logo_w": 622,
+   "logo_h": 96,
+   "strip_h": 22
+  },
+  {
+   "name": "GPT3 Marketing",
+   "url": "https://gpt3.marketing/",
+   "short": "Generative AI content since 2020",
+   "description": "A generative-AI content consultancy, founded 2020, that builds brand voice systems, prompt libraries and human-edited content operations.",
+   "logo": "/assets/img/partners/gpt3-marketing.webp",
+   "logo_dark": "/assets/img/partners/gpt3-marketing-on-dark.webp",
+   "logo_w": 550,
+   "logo_h": 96,
+   "strip_h": 22
+  },
+  {
+   "name": "FMedia",
+   "url": "https://fmedia.marketing/",
+   "short": "True-profit ROAS for ads",
+   "description": "Connects Meta and Google ad spend to real margin so teams see profitable campaigns, tiring creatives and where budget should go.",
+   "logo": "/assets/img/partners/fmedia.webp",
+   "logo_dark": "/assets/img/partners/fmedia-on-dark.webp",
+   "logo_w": 581,
+   "logo_h": 96,
+   "strip_h": 22
+  },
+  {
+   "name": "Mindfuse",
+   "url": "https://mindfuse.sg/",
+   "short": "Consumer psychology, Southeast Asia",
+   "description": "A Singapore consumer-psychology and cultural-insight consultancy that finds the tensions behind SEA audiences' choices and turns them into creative briefs.",
+   "logo": "/assets/img/partners/mindfuse.webp",
+   "logo_dark": "/assets/img/partners/mindfuse-on-dark.webp",
+   "logo_w": 625,
+   "logo_h": 96,
+   "strip_h": 19
+  },
+  {
+   "name": "Somonitor",
+   "url": "https://somonitor.ai/",
+   "short": "Social listening, traceable signals",
+   "description": "An always-on social listening app tracking share of voice, conversation signals and crisis alerts, each traceable to real posts; runs on SOMIN.",
+   "logo": "/assets/img/partners/somonitor.webp",
+   "logo_dark": "/assets/img/partners/somonitor-on-dark.webp",
+   "logo_w": 381,
+   "logo_h": 96,
+   "strip_h": 24
+  },
+  {
+   "name": "AgentC",
+   "url": "https://agentc.marketing/",
+   "short": "Agentic AI marketing agency",
+   "description": "A Singapore agentic-AI marketing agency where AI agents run research, creative and optimisation loops while senior strategists own judgement.",
+   "logo": "/assets/img/partners/agentc.webp",
+   "logo_dark": "/assets/img/partners/agentc-on-dark.webp",
+   "logo_w": 323,
+   "logo_h": 96,
+   "strip_h": 24
   }
  ]
 }
