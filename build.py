@@ -998,7 +998,13 @@ def build_home_locales(meta, body):
         lb = lb.replace('class="se-hero" id="se-hero-root"', f'class="se-hero" id="se-hero-root" lang="{code}"' + (' dir="rtl"' if code == 'ar' else ''), 1)
         lb = lb.replace('id="se-lang-current">English<', f'id="se-lang-current">{E(l["native"])}<', 1)
         lb += locale_nav(code, langs)
-        sub = strip_tags(d[code].get('sub') or '')
+        # The hero subline alone is short, so the description is headline + subline + "what SOMIN does" line.
+        sub = strip_tags(d[code].get('sub') or '').strip()
+        for k in ('h1a', 'wd_body'):            # add whole sentences only while the description stays within 160 chars
+            extra = strip_tags(d[code].get(k) or '').strip()
+            cand = f'{extra} {sub}' if k == 'h1a' else f'{sub} {extra}'
+            if extra and len(cand) <= 160:
+                sub = cand
         desc = sub if len(sub) <= 160 else sub[:157].rsplit(' ', 1)[0].rstrip(',;:—') + '…'
         lm = {k: v for k, v in meta.items() if k not in ('jsonld', 'keywords', 'seo_title', 'og_title', 'og_description', 'twitter_title', 'twitter_description', 'lastmod')}
         h1 = strip_tags(' '.join(d[code].get(k, '') for k in ('h1a',)) + ' ' + ''.join(d[code].get(k, '') for k in ('h1b_pre', 'h1_it', 'h1b_post')))

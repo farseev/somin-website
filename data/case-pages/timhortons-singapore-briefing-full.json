@@ -9,13 +9,13 @@
   "eyebrow": "Creator case study · Cafe chain · Singapore",
   "h1": "Creators put 63% of Foodie content into discovery, Tim Hortons puts 0%",
   "h1_em": "Tim Hortons puts 0%",
-  "lede": "SOMIN read 12 months of Foodie-directed content from Tim Hortons and six Singapore competitors, verified against the prior year, alongside a separate panel of four Foodie creators. Creators put 63% of their Foodie content into authentic local discovery and cafe experience; Tim Hortons and its competitors put 0%. The briefing turns that into three pillars, nine propositions and a 38-post Q4 calendar.",
+  "lede": "SOMIN read 12 months of Foodie content from Tim Hortons, six Singapore competitors and four Foodie creators. Creators put 63% of theirs into authentic local discovery and cafe experience; the brands put 0%.",
   "meta_line": "A SOMIN creator briefing · Sep 2025 to Sep 2026 · Singapore · Foodies",
   "stats": [
     {
       "num": "63",
       "unit": "%",
-      "label": "Creator Foodie content on local discovery"
+      "label": "Creator content on local discovery"
     },
     {
       "num": "12",
@@ -30,41 +30,41 @@
   ],
   "challenge": {
     "title": "Tim Hortons faces 6 Singapore rivals that already own value",
-    "body": "Tim Hortons competes for Foodie attention with Starbucks, Luckin Coffee, Tanamera Coffee, The Coffee Bean & Tea Leaf, Koi and Paris Baguette Singapore. The category's centre of gravity is value and affordable indulgence, which competitors already own. The question was where Tim Hortons could stand out without out-shouting anyone."
+    "body": "Starbucks, Luckin Coffee, Tanamera Coffee, The Coffee Bean & Tea Leaf, Koi and Paris Baguette Singapore already own value and affordable indulgence. Where could Tim Hortons stand out without out-shouting them?"
   },
   "approach": {
-    "title": "Brand, competitor and creator cohorts across 12 trend windows",
+    "title": "Brand, competitor and creator cohorts over 12 windows",
     "points": [
-      "Read 12 monthly trend windows from Sep 2025 to Sep 2026 and re-ran each against the same windows a year earlier (n=692).",
-      "Kept three cohorts separate and compared them by share, not raw counts: Tim Hortons (71), six competitors (939) and a four-creator Foodie panel (190).",
-      "Checked SOMIN's ads library for paid activity: no brand in the set ran visible paid content in the window.",
-      "Built a persona, tension, angle and story chain for each pillar, then nine propositions and 45 moment triggers.",
+      "Re-ran 12 monthly windows against the year before (n=692).",
+      "Compared cohorts by share, not raw counts: Tim Hortons (71), competitors (939), creators (190).",
+      "Checked SOMIN's ads library for paid activity.",
+      "Linked the pillars to 45 moment triggers.",
       "Added a live 30-day topicality study of 85 panel posts."
     ]
   },
-  "findings_title": "Where Tim Hortons stands on discovery, value and small joys",
+  "findings_title": "Tim Hortons on discovery, value and small joys",
   "findings": [
     {
       "title": "Discovery is wide open",
-      "body": "Authentic local discovery and cafe experience is 63% of creator content and 0% for both Tim Hortons and its competitors. In the last 30 days, discovery still made up 39% of panel posts."
+      "body": "Brands leave it at 0%. In the last 30 days, it was still 39% of creator panel posts."
     },
     {
       "title": "Value is crowded",
-      "body": "Affordable indulgence rose from 11% to 19% of category content, verified against the prior year, but competitors own it. Novelty drops are the largest competitor theme at 20%."
+      "body": "Affordable indulgence rose from 11% to 19% of category content, prior-year verified, but competitors own it; novelty drops lead at 20%."
     },
     {
       "title": "Small joys are Tim Hortons' own strand",
-      "body": "Everyday connection and small-joy indulgence is 27% of Tim Hortons' content against 14% for competitors. The briefing marks it partial: a strand to deepen."
+      "body": "Everyday connection and small-joy indulgence is 27% of Tim Hortons' content against competitors' 14%: partial, a strand to deepen."
     }
   ],
   "delivered": {
     "title": "Three pillars, nine propositions and a 38-post Q4 calendar",
     "points": [
-      "Three pillars weighted by opportunity: The Discovery Destination (45%), Small Joys, Shared (35%) and Fuel for the Active City (20%)",
-      "Three insight chains, each linking a persona, a tension, an angle and a story",
+      "Pillars: The Discovery Destination (45%), Small Joys, Shared (35%) and Fuel for the Active City (20%)",
+      "Three persona-to-story insight chains",
       "Nine SOMIN propositions across product features, USP and promotion",
-      "A Q4 2026 calendar of 38 posts, three a week, with 12 lead posts from 1 Oct",
-      "A creative library of 108 concepts, 36 per pillar across the funnel"
+      "From 1 Oct, three posts a week with 12 lead posts",
+      "108 creative concepts, 36 per pillar across the funnel"
     ]
   },
   "quote": {
@@ -73,20 +73,20 @@
   },
   "outcome": {
     "title": "Tim Hortons should claim The Discovery Destination first",
-    "body": "The briefing ranks The Discovery Destination first: make each Tims store, drink and collab a place worth finding. No brand in the set ran visible paid content, so the whitespace pillar can be claimed without outbidding anyone. Small Joys, Shared and Fuel for the Active City follow as supporting plays."
+    "body": "Make each Tims store, drink and collab worth finding. No brand ran visible paid content, so it can be claimed without outbidding anyone; the other two pillars support it."
   },
   "faq": [
     {
       "q": "Who are the Foodies in this briefing?",
-      "a": "SOMIN classifies what content is about and who it is made for, so Foodies means content made for Foodies, not a measured audience. The primary persona is The Community Connector."
+      "a": "Foodies means content made for Foodies, not a measured audience. The primary persona is The Community Connector."
     },
     {
       "q": "Why is value not the recommended pillar?",
-      "a": "Value and affordable indulgence is the category's centre of gravity and competitors own it, so it is blocked. Whitespace needs creators high and brands low, which only discovery and aesthetic dining content meet."
+      "a": "Competitors own value, the category's centre of gravity, so it is blocked. Only discovery and aesthetic dining content have creators high and brands low."
     },
     {
       "q": "How reliable are the trend calls?",
-      "a": "Every directional status for the brand and competitor cohort was re-run against the same windows a year earlier. The creator panel only starts around Dec 2025, so its trends are labelled unverified, and the Sep to Dec 2025 windows carry low confidence."
+      "a": "Brand and competitor trends were checked against the prior year. Creator trends start around Dec 2025 and are unverified, and Sep to Dec 2025 is low confidence."
     }
   ],
   "slides": [
@@ -97,12 +97,12 @@
     },
     {
       "file": "/assets/img/cases/slides/timhortons-singapore-briefing-full-2.webp",
-      "caption": "Whitespace verdict by content theme",
+      "caption": "Whitespace verdict by theme",
       "alt": "Six content themes scored for Tim Hortons, competitors and creators, with authentic local discovery marked whitespace at a 63% creator share"
     },
     {
       "file": "/assets/img/cases/slides/timhortons-singapore-briefing-full-3.webp",
-      "caption": "How Foodie themes moved over 12 months",
+      "caption": "Foodie themes over 12 months",
       "alt": "Line chart of four content themes from Sep 2025 to Aug 2026, including affordable indulgence and festive gifting, with prior-year verification labels"
     }
   ],

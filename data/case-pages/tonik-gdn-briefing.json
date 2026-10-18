@@ -9,18 +9,18 @@
   "eyebrow": "Brand case study · Digital banking · Philippines",
   "h1": "Tonik went quiet on Google Ads just as MariBank got loud",
   "h1_em": "just as MariBank got loud",
-  "lede": "SOMIN analysed Google Search, Display Network and YouTube ads from Tonik Bank and 7 competitors over about 20 months: 126 Tonik ads against 516 from rivals. It found no Tonik activity for about 5 months, 9 tensions with no open whitespace, and a 0.514-scoring micro-loan angle that was dropped. The result was 5 pillars and 8 display concepts.",
+  "lede": "SOMIN analysed about 20 months of Google ads: 126 from Tonik Bank and 516 from 7 competitors. Tonik went silent for about 5 months and dropped its 0.514-scoring micro-loan angle.",
   "meta_line": "A SOMIN brand briefing · Dec 2024 to Aug 2026 · Philippines · Budget-conscious individuals",
   "stats": [
     {
       "num": "126",
       "unit": "ads",
-      "label": "Tonik Google ads analysed"
+      "label": "Tonik ads analysed"
     },
     {
       "num": "7",
       "unit": "",
-      "label": "Competitor banks benchmarked"
+      "label": "Competitor banks"
     },
     {
       "num": "88",
@@ -29,42 +29,42 @@
     }
   ],
   "challenge": {
-    "title": "Tonik's Google Ads peaked at a 54% share, then went silent",
-    "body": "Tonik Bank competes for budget-conscious Filipinos with Maya, MariBank, Salmon, GoTyme Bank, Union Digital Bank, OFBank and UNO Digital Bank. Its Google Ads ramped through 2025 and peaked at a 54% share of the sampled window in Dec 2025 to Feb 2026, then went silent. The briefing set out to map trends, whitespace and products on Google, then turn them into display creative."
+    "title": "Tonik's Google Ads peaked at a 54% share, then stopped",
+    "body": "Tonik Bank's rivals for budget-conscious Filipinos are Maya, MariBank, Salmon, GoTyme Bank, Union Digital Bank, OFBank and UNO Digital Bank. Its ads ramped through 2025, peaking in Dec 2025 to Feb 2026."
   },
   "approach": {
     "title": "Trends, whitespace and products across 10 Google Ads windows",
     "points": [
-      "Read only Google Search, Display Network and YouTube ads from SOMIN's ads library, with no organic content or other platforms.",
-      "Tracked format, voice share, tensions and audiences across 10 trend windows, rating every directional claim for confidence.",
-      "Compared Tonik with 7 competitors on 9 tensions, calling each lane contested, blocked or partially defensible.",
-      "Mapped Tonik's products and angles by predicted clickability, a pre-launch score rather than a measured outcome.",
-      "Flagged data gaps instead of smoothing them, such as single-brand artefacts and overlapping samples."
+      "Used Google ads only, from SOMIN's ads library.",
+      "Tracked format, voice share, tensions and audiences, rating each claim's confidence.",
+      "Rated 9 tensions as contested, blocked or partially defensible.",
+      "Mapped products and angles by predicted clickability.",
+      "Flagged data gaps such as single-brand artefacts and overlapping samples."
     ]
   },
-  "findings_title": "No open whitespace, one loan product and a dropped top angle",
+  "findings_title": "No open whitespace, one loan and a dropped top angle",
   "findings": [
     {
       "title": "No open whitespace",
-      "body": "All 9 tensions already carry brand or competitor presence. Banking trust, accessibility and fee messaging is 25.6% of competitor ads and 0% of Tonik's, so it is blocked, not open."
+      "body": "All 9 tensions are already occupied. Banking trust, accessibility and fee messaging is 25.6% of competitor ads and 0% of Tonik's: blocked, not open."
     },
     {
       "title": "One loan carries the business",
-      "body": "Credit Builder Loan accounts for 109 ads, 86.5% of Tonik's corpus. Savings and Time Deposit has 21 ads and leans on one generic angle."
+      "body": "Credit Builder Loan has 109 ads, 86.5% of Tonik's corpus; Savings and Time Deposit has 21, on one generic angle."
     },
     {
       "title": "The best angle was dropped",
-      "body": "A ₱20K medical needs micro-loan scored 0.514 predicted clickability, the highest in the corpus. It ran in 2 ads and was discontinued in Feb 2025."
+      "body": "A ₱20K medical needs micro-loan scored a corpus-high 0.514 predicted clickability, but ran in 2 ads and stopped in Feb 2025."
     }
   ],
   "delivered": {
-    "title": "88 banners across 8 display concepts and 5 strategic pillars",
+    "title": "88 banners, 8 display concepts and 5 strategic pillars",
     "points": [
-      "A 10-window trend read on format, voice share, tensions and audiences, including an emerging travel signal",
-      "A whitespace verdict map across 9 tensions, Tonik against 7 competitors",
-      "A product map with predicted clickability for each angle",
-      "5 strategic pillars, each traced to a specific finding",
-      "8 display concepts with every banner at 9 words or fewer, 88 banners across 11 standard sizes"
+      "A 10-window trend read with an emerging travel signal",
+      "A whitespace verdict map of 9 tensions",
+      "A product map with predicted clickability per angle",
+      "5 pillars, each traced to a finding",
+      "Banners in 11 standard sizes, each at 9 words or fewer"
     ]
   },
   "quote": {
@@ -73,20 +73,20 @@
   },
   "outcome": {
     "title": "Tonik should restart Google Ads and re-test its top-scoring angle",
-    "body": "First, confirm why Tonik's Google Ads stopped, since MariBank now runs 70% of the latest sampled window. Then scale the “any goal” Credit Builder Loan angle, re-test the medical needs micro-loan at meaningful volume, and fix the Home Renovation creative before abandoning a lane no competitor holds."
+    "body": "Confirm why the ads stopped: MariBank now runs 70% of the latest window. Then scale the “any goal” Credit Builder Loan angle, re-test the medical micro-loan at volume and fix Home Renovation creative before leaving a lane no competitor holds."
   },
   "faq": [
     {
       "q": "What data did the Tonik briefing use?",
-      "a": "Only Google Search, Display Network and YouTube ads from Google Ads Transparency data, via SOMIN's ads library. Data for this competitive set begins on 23 December 2024, so the trend window covers about 20 months to August 2026."
+      "a": "Google Ads Transparency data on Search, Display Network and YouTube, via SOMIN's ads library, from 23 December 2024 to August 2026."
     },
     {
       "q": "What is predicted clickability?",
-      "a": "It is SOMIN's above-average probability score from creative analysis. It is a pre-launch prediction, not a measured outcome, because the corpus holds no spend or click-through data."
+      "a": "SOMIN's above-average probability score from creative analysis: a pre-launch prediction, as the corpus has no spend or click-through data."
     },
     {
       "q": "Why is there no confirmed whitespace?",
-      "a": "Only two cohorts existed, Tonik and its 7 competitors, with no third audience cohort. Under SOMIN's method that caps verdicts at contested, blocked or partially defensible, and brand absence never counts as whitespace."
+      "a": "With only two cohorts, Tonik and its competitors, SOMIN caps verdicts at contested, blocked or partially defensible, and brand absence is never whitespace."
     }
   ],
   "slides": [
@@ -97,7 +97,7 @@
     },
     {
       "file": "/assets/img/cases/slides/tonik-gdn-briefing-2.webp",
-      "caption": "Format and voice share over time",
+      "caption": "Format and voice share",
       "alt": "Line chart of sampled ads on Google Search, YouTube and Display Partners, beside a stacked bar chart of the advertiser mix from W3 to W12"
     },
     {

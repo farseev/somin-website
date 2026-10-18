@@ -9,13 +9,13 @@
   "eyebrow": "Brand case study · Travel · Middle East",
   "h1": "Wego and 7 rivals lean on adventure and may miss luxury travel in KSA",
   "h1_em": "and may miss luxury travel in KSA",
-  "lede": "For Wego, SOMIN read 16,235 pieces of paid and organic media from 8 travel brands across Bahrain, KSA, Kuwait, Oman, Qatar and the UAE, covering 2023 to 2024. It clustered the content into 6 personas, 6 topics, 6 relatability themes and 6 challenges, then broke each down by market and brand. Adventure Explorers was the largest persona, with 1,125 unique media.",
+  "lede": "For Wego, SOMIN read 16,235 pieces of paid and organic media from 8 travel brands in 6 Middle East markets. Adventure Explorers led 6 personas with 1,125 unique media; luxury travel in KSA looked underused.",
   "meta_line": "A SOMIN brand briefing · 2023 to 2024 · Middle East",
   "stats": [
     {
       "num": "16,235",
       "unit": "",
-      "label": "Pieces of media read"
+      "label": "Media read"
     },
     {
       "num": "6",
@@ -30,40 +30,40 @@
   ],
   "challenge": {
     "title": "Wego against 7 travel brands in 6 Middle East markets",
-    "body": "Wego competes with regional and local travel brands across 6 Middle East markets, from ITL Group and Dadabhai to Regency, Cozmo and Almulla. The study asked who the region's travel brands were talking to, what they talked about, how they tried to relate and which challenges they tried to solve."
+    "body": "Wego's rivals range from ITL Group and Dadabhai to Regency, Cozmo and Almulla. The study asked who they talk to, what about, how they relate and which challenges they address."
   },
   "approach": {
     "title": "Personas, topics, relatability and challenges, by market",
     "points": [
-      "Gathered paid and organic media for 8 brands across 6 markets, with country filters applied to ads.",
-      "Clustered the content into personas, topics, relatability themes and challenges with SOMIN's semantic models.",
-      "Compared every cluster by market, then zoomed in on each brand's focus within each market.",
-      "Closed with a systematic process: understand the market, generate angles, adopt, test and learn, and reinforce what works."
+      "Gathered paid and organic media, with country filters on ads.",
+      "Clustered it with SOMIN's semantic models.",
+      "Compared clusters by market, then each brand's focus within it.",
+      "Defined a test-and-learn process for the findings."
     ]
   },
   "findings_title": "Adventure dominates, KSA luxury lags and Kuwait has specialists",
   "findings": [
     {
       "title": "Adventure is the default",
-      "body": "The most common persona across the region is adventurers: Adventure Explorers accounts for 1,125 unique media. Family Explorers is second in every market except Kuwait."
+      "body": "Adventure Explorers leads the region; Family Explorers is second in every market except Kuwait."
     },
     {
       "title": "Luxury in KSA is underused",
-      "body": "Luxury Adventurers ranks 3rd to 4th in most markets but 5th in Saudi Arabia and Bahrain, which suggests the tracked brands may not be capitalising on luxury travel in KSA."
+      "body": "Luxury Adventurers ranks 3rd to 4th in most markets but 5th in Saudi Arabia and Bahrain."
     },
     {
       "title": "Kuwait has specialists",
-      "body": "In Kuwait, KAPICO and Regency focus heavily on luxury personas and Alghanim Travel on Thrifty Explorers, while Family Explorers is not as crowded."
+      "body": "KAPICO and Regency focus on luxury personas, Alghanim Travel on Thrifty Explorers, and Family Explorers is less crowded."
     }
   ],
   "delivered": {
-    "title": "6 traveller personas and 6 topics, split by market and brand",
+    "title": "6 traveller personas and 6 topics by market and brand",
     "points": [
-      "Media counts for 8 brands in each of Bahrain, KSA, Kuwait, Oman, Qatar and the UAE",
-      "6 traveller personas: Adventure Explorers, Luxury Adventurers and the Soulful, Thrifty, Family and Festive Explorers",
-      "6 topics, led by global travel destinations (491 unique media) and travel offers and packages (456)",
-      "6 relatability themes and 6 challenges, each split by market and brand",
-      "A test-and-learn process for turning the findings into communication directions"
+      "Media counts per brand and market",
+      "Personas: Adventure Explorers, Luxury Adventurers and the Soulful, Thrifty, Family and Festive Explorers",
+      "Topics led by global travel destinations (491 unique media) and travel offers and packages (456)",
+      "6 relatability themes and 6 challenges",
+      "A test-and-learn route to communication directions"
     ]
   },
   "quote": {
@@ -72,20 +72,20 @@
   },
   "outcome": {
     "title": "Wego can test luxury in KSA and families in Kuwait",
-    "body": "The study points to lanes the tracked brands leave open, such as luxury travel in KSA, Family Explorers in Kuwait and Thrifty Explorers in the UAE. Its process is to generate angles from these findings, test and learn, then reinforce what works."
+    "body": "Open lanes include luxury travel in KSA, Family Explorers in Kuwait and Thrifty Explorers in the UAE. Generate angles, adopt, test and learn, then reinforce what works."
   },
   "faq": [
     {
-      "q": "Which markets and brands did the Wego study cover?",
-      "a": "Bahrain, KSA, Kuwait, Oman, Qatar and the UAE, and 8 travel brands: Wego, ITL Group, Dadabhai, Alghanim Travel, KAPICO, Regency, Cozmo and Almulla."
+      "q": "Which markets and brands were covered?",
+      "a": "Bahrain, KSA, Kuwait, Oman, Qatar and the UAE, and 8 brands: Wego, ITL Group, Dadabhai, Alghanim Travel, KAPICO, Regency, Cozmo and Almulla."
     },
     {
       "q": "Does the 16,235 total double count?",
-      "a": "It can. Some pages are regional, so media may be duplicated across market datasets, and the total reflects that duplication."
+      "a": "It can. Some pages are regional, so media may repeat across market datasets."
     },
     {
       "q": "How were the personas built?",
-      "a": "SOMIN clustered the media with an X-means algorithm on ADA embeddings using its audience semantic model, then compared each persona by market and brand."
+      "a": "X-means clustering on ADA embeddings with SOMIN's audience semantic model."
     }
   ],
   "slides": [

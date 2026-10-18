@@ -9,62 +9,62 @@
   "eyebrow": "Agency case study · Youth volunteering · Singapore",
   "h1": "Heartware puts 87.9% of its posts in two voices, and nobody owns a third",
   "h1_em": "and nobody owns a third",
-  "lede": "Fyreflyz used SOMIN to read 1,230 posts from Heartware Network, six competitors and seven youth-sector organisations, 1 May to 19 Aug 2026. It found 87.9% of Heartware's posts in the category's two voices, no paid placements in 12 months, and a client hypothesis the data did not support. The pitch delivers three pillars, 12 propositions, a 39-slot Q4 calendar and an SGD 120,000 media plan.",
-  "meta_line": "A SOMIN agency pitch · 1 May to 19 Aug 2026 · Singapore · Youth aged 14 to 35",
+  "lede": "Fyreflyz used SOMIN to read 1,230 posts from Heartware Network and its category. 87.9% of Heartware's posts used two voices, it ran no paid placements, and its own hypothesis failed.",
+  "meta_line": "A SOMIN agency pitch · 1 May to 19 Aug 2026 · Singapore · Youth 14 to 35",
   "stats": [
     {
       "num": "87.9",
       "unit": "%",
-      "label": "Heartware posts in the Sage or Caregiver voice"
+      "label": "In Sage or Caregiver voice"
     },
     {
       "num": "1,230",
       "unit": "posts",
-      "label": "Three cohorts, one shared window"
+      "label": "Across three cohorts"
     },
     {
       "num": "39",
       "unit": "slots",
-      "label": "Dated Q4 2026 calendar"
+      "label": "Q4 2026 calendar"
     }
   ],
   "challenge": {
     "title": "Heartware holds 20.2% of category voice but sounds like the rest",
-    "body": "Heartware Network already holds 20.2% of category voice on 132 posts, second only to the Cyber Security Agency of Singapore. But 116 of those posts speak as The Sage or The Caregiver, like most of the category, and Heartware has never run a paid placement. Its own brief assumed skill-based volunteering was open ground."
+    "body": "Heartware Network trails only the Cyber Security Agency of Singapore, yet 116 of its 132 posts use The Sage or The Caregiver voice, like most of the category."
   },
   "approach": {
-    "title": "1,230 posts in three cohorts and a client hypothesis tested",
+    "title": "1,230 posts in three cohorts and one tested hypothesis",
     "points": [
-      "Read all 132 of Heartware's organic posts as a census, against 522 posts from six competitors and 576 from seven youth-sector organisations.",
-      "Classified every post by archetype, tone, content type and audience, and measured captions for length, calls to action and first-person voice.",
-      "Scored nine territories against a whitespace rubric across the three cohorts.",
-      "Tested the client's skill-based volunteering hypothesis and checked SOMIN's ads-library index for 12 months of paid activity.",
-      "Drew on 20 SOMIN studies across two workspaces to build three insight stories, 12 propositions and 54 creatives."
+      "Read 132 Heartware posts against six competitors (522) and seven youth-sector organisations (576).",
+      "Tagged archetype, tone, content type, audience and captions.",
+      "Scored nine territories for whitespace.",
+      "Tested the client hypothesis and checked 12 months of paid ads.",
+      "Drew on 20 SOMIN studies in two workspaces."
     ]
   },
-  "findings_title": "Two voices, a failed hypothesis and a Facebook gap for Heartware",
+  "findings_title": "Heartware's two voices, failed hypothesis and Facebook gap",
   "findings": [
     {
       "title": "85.2% of competitor and youth-sector posts use two voices",
-      "body": "85.2% of the 1,098 competitor and youth-sector posts carry The Sage or The Caregiver. Heartware is at 87.9%, with only 4.5% in Creator, Explorer or Jester, the lowest agency share of the three cohorts."
+      "body": "They are The Sage and The Caregiver, across 1,098 posts. Heartware is at 87.9%, with a cohort-low 4.5% in Creator, Explorer or Jester."
     },
     {
       "title": "Skill-based volunteering is not whitespace",
-      "body": "Skill-based volunteering is not whitespace: Heartware sits at 25.0% and competitors at 28.2% on skill-building and career content. Only 1 of 9 territories, restoring self-worth and dignity, clears the whitespace test."
+      "body": "Heartware is at 25.0%, competitors at 28.2%. Only 1 of 9 territories, restoring self-worth and dignity, clears the test."
     },
     {
       "title": "One recap: 337 likes on Instagram, 0 on Facebook",
-      "body": "One recap scored 337 likes on Instagram and 0 on Facebook with identical copy. Facebook takes 22% of output at a mean of 3.1 engagements per post, against 155.1 on Instagram."
+      "body": "The copy was identical. Facebook takes 22% of output at 3.1 engagements per post, against 155.1 on Instagram."
     }
   ],
   "delivered": {
     "title": "An SGD 120,000 media plan, a Q4 calendar and 54 creatives",
     "points": [
-      "Three pillars weighted by verdict: Unfiltered Stories, Level Up Your Impact and Micro-MAD Moments as a ring-fenced test",
-      "12 SOMIN propositions built on three insight stories",
-      "A Q4 calendar of 39 dated slots from 1 Oct to 31 Dec 2026, three posts a week, with no dedicated Facebook slots",
-      "An SGD 120,000 twelve-month working-media plan with an SGD 33,000 Q4 pilot and three-case KPI projections",
-      "54 finished creatives across three pillars and three funnel stages, plus a measurement build plan"
+      "Three pillars: Unfiltered Stories, Level Up Your Impact and Micro-MAD Moments",
+      "12 propositions on three insight stories",
+      "39 dated Q4 slots, three a week, none for Facebook",
+      "A twelve-month plan, an SGD 33,000 Q4 pilot and three-case KPI projections",
+      "Creatives across pillars and funnel stages, plus a measurement plan"
     ]
   },
   "quote": {
@@ -73,20 +73,20 @@
   },
   "outcome": {
     "title": "Heartware's plan: 45% of budget behind volunteer-authored stories",
-    "body": "The plan puts 45% of the budget behind volunteer-authored Unfiltered Stories and 40% behind proof of what a named young person can now do. Micro-MAD Moments runs as a capped SGD 12,000 test with a public readout on 31 Dec 2026. The pitch plans against 520 to 2,792 YouthBank sign-ups over 12 months, as projections, not results."
+    "body": "Another 40% backs proof of what named young people can now do. Micro-MAD Moments is a capped SGD 12,000 test with a public readout on 31 Dec 2026."
   },
   "faq": [
     {
-      "q": "What was wrong with the client's original hypothesis?",
-      "a": "Heartware believed skill-based volunteering was open ground. SOMIN found Heartware at 25.0% and competitors at 28.2% on that territory, so the verdict was blocked. The pillar was kept and re-founded on proof of what volunteers can now do."
+      "q": "What was wrong with the client's hypothesis?",
+      "a": "Heartware assumed skill-based volunteering was open ground. It was not, so the pillar now rests on proof of what volunteers can do."
     },
     {
-      "q": "Why does Facebook get no dedicated budget line?",
-      "a": "The same creative and caption scored 337 likes on Instagram and 0 on Facebook. Meta is bought as one inventory pool optimised to Instagram, and Facebook takes spill only."
+      "q": "Why does Facebook get no budget line?",
+      "a": "Identical creative scored 337 likes on Instagram and 0 on Facebook. Meta is bought as one Instagram-optimised pool; Facebook takes spill only."
     },
     {
       "q": "How reliable are the sign-up projections?",
-      "a": "They are modelled in three cases. The pitch plans against the conservative-to-base band of 520 to 2,792 sign-ups and treats the stretch case of 12,061 as a ceiling, since it exceeds Heartware's onboarding capacity."
+      "a": "They are modelled in three cases. The plan uses 520 to 2,792 YouthBank sign-ups in 12 months; the 12,061 stretch case is a ceiling above onboarding capacity."
     }
   ],
   "slides": [

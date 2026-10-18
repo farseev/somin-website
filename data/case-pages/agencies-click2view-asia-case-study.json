@@ -9,7 +9,7 @@
   "eyebrow": "Agency case study · Content marketing · APAC",
   "h1": "Click2View Asia cut monthly reporting from 9 hours to 1 with SOMIN",
   "h1_em": "from 9 hours to 1 with SOMIN",
-  "lede": "Click2View Asia, a content marketing agency working across Asia-Pacific, runs its competitor monitoring and client reporting on SOMIN. With Brand Tracker and the SODA analytics assistant, monthly reporting fell from 9 hours to 1 and comprehensive competitive analysis from 18 hours to 3, freeing senior time for consultation.",
+  "lede": "Click2View Asia, an APAC content marketing agency, runs competitor monitoring and client reporting on SOMIN's Brand Tracker and SODA. Monthly reporting fell from 9 hours to 1, and comprehensive competitive analysis from 18 to 3.",
   "meta_line": "A SOMIN agency customer story · Asia-Pacific · Content marketing",
   "stats": [
     {
@@ -30,41 +30,39 @@
   ],
   "challenge": {
     "title": "Click2View Asia's strategist hours went on collating data",
-    "body": "Click2View Asia builds editorial-quality brand content programmes for global brands and APAC challengers, with consultative strategy at the core of its offer. Monthly client reporting, competitive landscape audits and content strategy groundwork were consuming dozens of hours every cycle, much of it spent collating data from disparate sources across platforms and clients. The agency wanted to upscale its consultative offering, but needed that time back first."
+    "body": "The agency builds editorial-quality content for global brands and APAC challengers. Reporting and audits took dozens of hours a cycle, time it needed to grow its consulting."
   },
   "approach": {
-    "title": "Brand Tracker and SODA as the agency's reporting layer",
+    "title": "Brand Tracker and SODA as the reporting layer",
     "points": [
-      "Made SOMIN the competitive-intelligence and reporting infrastructure behind the agency's consulting work.",
-      "Brand Tracker handles the cross-client competitor monitoring that would otherwise need multiple analysts.",
-      "SODA, SOMIN's analytics assistant, writes plain-language narrative summaries of category performance that strategists used to write longhand.",
-      "Content Library and Perspective Studies complete the set of SOMIN modules the agency uses.",
-      "The hours reclaimed from reporting and competitor audits feed back into senior consultation."
+      "Brand Tracker monitors competitors across clients, sparing several analysts.",
+      "SODA writes the category summaries strategists once wrote by hand.",
+      "Reclaimed hours go into senior consultation."
     ]
   },
   "findings_title": "80–90% less time on Click2View's repeating workstreams",
   "findings": [
     {
       "title": "Monthly reporting down from 9 hours to 1",
-      "body": "Monthly client reporting now takes 1 hour instead of 9, an 89% time reduction. A mini competitive analysis also fell from 9 hours to 1."
+      "body": "An 89% cut. A mini competitive analysis also fell from 9 hours to 1."
     },
     {
       "title": "Competitive deep dives in 3 hours, not 18",
-      "body": "Comprehensive competitive landscape work, the kind that anchors a category strategy, is now a 3-hour exercise instead of an 18-hour one. Content strategy groundwork fell from 14 hours to 2."
+      "body": "Content strategy groundwork also fell, from 14 hours to 2."
     },
     {
-      "title": "One person per workstream instead of two",
-      "body": "Headcount per workstream dropped from 2 people to 1. Across the core repeating workstreams, time on task fell by 80–90%, with corresponding cost savings."
+      "title": "One person per workstream, not two",
+      "body": "Time on core repeating workstreams fell 80–90%, with matching cost savings."
     }
   ],
   "delivered": {
     "title": "Four SOMIN modules behind Click2View's client work",
     "points": [
       "Brand Tracker for cross-client competitor monitoring",
-      "SODA, the analytics assistant, for plain-language narrative summaries of category performance",
-      "Content Library and Perspective Studies alongside them in the same workflow",
-      "Monthly client reports in 1 hour and comprehensive competitive analyses in 3",
-      "A SOMIN subscription the agency has extended for an additional engagement window"
+      "SODA for plain-language category summaries",
+      "Content Library and Perspective Studies",
+      "Monthly reports in 1 hour, comprehensive analyses in 3",
+      "A SOMIN subscription extended for another engagement window"
     ]
   },
   "quote": {
@@ -73,26 +71,26 @@
   },
   "outcome": {
     "title": "Click2View's reclaimed hours feed upsell and new business",
-    "body": "The reclaimed time goes back into senior consultation, so the agency can take on more strategic work, not just more execution work. Click2View projects a 100–400% new-business uplift and a 100–200% upsell to existing clients, and has extended its SOMIN subscription for an additional engagement window."
+    "body": "The time goes into strategic work, not just execution. Click2View projects a 100–400% new-business uplift and a 100–200% upsell to existing clients."
   },
   "faq": [
     {
       "q": "How much time did Click2View Asia save with SOMIN?",
-      "a": "Monthly client reporting fell from 9 hours to 1 (an 89% reduction), a mini competitive analysis from 9 hours to 1, a comprehensive competitive analysis from 18 hours to 3, and content strategy groundwork from 14 hours to 2."
+      "a": "Monthly reporting fell from 9 hours to 1, comprehensive competitive analysis from 18 to 3, and content strategy groundwork from 14 to 2."
     },
     {
       "q": "Which SOMIN modules does Click2View Asia use?",
-      "a": "Brand Tracker, SODA (SOMIN's analytics assistant), Content Library and Perspective Studies. Brand Tracker handles cross-client competitor monitoring, and SODA writes plain-language summaries of category performance."
+      "a": "Brand Tracker, SODA (the analytics assistant), Content Library and Perspective Studies."
     },
     {
       "q": "What business impact does Click2View Asia expect?",
-      "a": "The agency projects a 100–400% new-business uplift and a 100–200% upsell to existing clients, driven by the bandwidth to take on more strategic work. Headcount per workstream also fell from 2 people to 1."
+      "a": "A 100–400% new-business uplift and a 100–200% upsell to existing clients."
     }
   ],
   "slides": [
     {
       "file": "/assets/img/cases/slides/agencies-click2view-asia-case-study-1.webp",
-      "caption": "Reclaiming strategist time from repetitive reporting",
+      "caption": "Reclaimed strategist time",
       "alt": "Click2View Asia case study cover with a client quote and at-a-glance results: monthly reporting cut from 9h to 1h, competitive analysis from 18h to 3h, and projected new business of +100-400%."
     },
     {

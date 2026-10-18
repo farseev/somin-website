@@ -9,13 +9,13 @@
   "eyebrow": "Brand case study · Personal care · Philippines",
   "h1": "For P&G, search still matters, but Meta tensions don't always carry over",
   "h1_em": "but Meta tensions don't always carry over",
-  "lede": "SOMIN compared how P&G, Unilever and Celeteque used Google Search text ads and Meta in the Philippines, from May to July 2024. Unilever accounted for 80.43% of the search text ads and pointed traffic to publisher-style content sites. SOMIN mapped 6 search personas and the tensions behind each channel, then turned them into ZMOT search experiences and keywords.",
+  "lede": "SOMIN compared how P&G, Unilever and Celeteque used Google Search text ads and Meta in the Philippines. Unilever ran 80.43% of the search text ads, pointing traffic to publisher-style content sites.",
   "meta_line": "A SOMIN brand briefing · May to July 2024 · Philippines",
   "stats": [
     {
       "num": "80.43",
       "unit": "%",
-      "label": "Unilever share of search text ads"
+      "label": "Unilever's share of search ads"
     },
     {
       "num": "6",
@@ -25,44 +25,44 @@
     {
       "num": "1,955,781",
       "unit": "",
-      "label": "Engagements on radiant skin posts"
+      "label": "Radiant skin engagements"
     }
   ],
   "challenge": {
     "title": "Does Google Search still matter for P&G in the Philippines?",
-    "body": "The analysis looked at how P&G, Unilever and Celeteque communicate across Google Search and Meta in the Philippines. Its first question was whether search still matters, as many brands have shifted away from content repositories towards short-form platforms."
+    "body": "Many brands have moved from content repositories to short-form platforms."
   },
   "approach": {
-    "title": "Search text ads and Meta content, read through the same tensions",
+    "title": "Search and Meta content read through the same tensions",
     "points": [
-      "Catalogued Google Search text ads active on 15 July 2024, by brand and destination website.",
-      "Clustered the search ads into 6 audience personas and a set of tensions, from cooking Filipino dishes to hair confidence.",
-      "Mapped Meta posts and ads from Celeteque, Olay and Ponds from May to July 2024, reading ads and posts separately.",
-      "Turned each tension into ZMOT search experiences, with searchability ratings, example queries and keywords."
+      "Catalogued live search text ads by brand and website.",
+      "Clustered them into 6 personas and tensions, from Filipino cooking to hair confidence.",
+      "Read Meta ads and posts separately.",
+      "Turned each tension into ZMOT search experiences."
     ]
   },
   "findings_title": "Unilever's search lead and three different Meta playbooks",
   "findings": [
     {
       "title": "Unilever owns search",
-      "body": "Unilever ran 80.43% of the search text ads, led by its cleanipedia (208) and Allthingshair (155) sites. P&G's biggest search presence came from Head & Shoulders (45) and Pantene (41)."
+      "body": "Its cleanipedia (208) and Allthingshair (155) sites lead; P&G's leaders are Head & Shoulders (45) and Pantene (41)."
     },
     {
       "title": "Three Meta playbooks",
-      "body": "Celeteque relies heavily on Meta ads with more diverse messaging. Olay uses Meta only as an ad platform with less variation, while Ponds boosts posts for high engagement."
+      "body": "Celeteque relies on diverse Meta ads, Olay runs only ads, with less variation, and Ponds boosts posts for engagement."
     },
     {
       "title": "Radiance drives engagement",
-      "body": "On Meta posts, the radiant skin glow tension drew 1,955,781 engagements from 22 pieces of media, against 399,517 from 39 pieces on skin concerns and confidence."
+      "body": "Radiant skin glow posts drew 1,955,781 engagements from 22 pieces, against 399,517 from 39 on skin concerns and confidence."
     }
   ],
   "delivered": {
     "title": "Search personas, tension maps and ZMOT keyword lists",
     "points": [
-      "A Google Search text-ad map by brand and website",
-      "6 search personas, from Healthy Hygiene Enthusiast to Natural Wellness Advocate",
-      "Search and Meta tension maps with media and engagement totals",
-      "ZMOT experience lists for each tension, rated for searchability with example queries and keywords",
+      "A search text-ad map by brand and website",
+      "Search personas from Healthy Hygiene Enthusiast to Natural Wellness Advocate",
+      "Search and Meta tension maps with totals",
+      "ZMOT lists per tension, with searchability, queries and keywords",
       "Analyst notes on search behaviour, Meta spending tactics and cross-platform alignment"
     ]
   },
@@ -71,21 +71,21 @@
     "source": "From the SOMIN analysis"
   },
   "outcome": {
-    "title": "P&G should align the tensions it addresses in search and Meta",
-    "body": "Many customer journeys still rely heavily on a brand's presence in search, yet the tensions brands address on Meta are not always the ones they address in search. Aligning the two would improve customer experience, and the ZMOT lists give P&G concrete queries to start from."
+    "title": "P&G should align its search and Meta tensions",
+    "body": "Customer journeys still rely heavily on search, but brands' Meta tensions do not always match their search ones. The ZMOT lists give P&G queries to start aligning them."
   },
   "faq": [
     {
       "q": "Which brands and channels were compared?",
-      "a": "P&G, Unilever and Celeteque on Google Search text ads, and Celeteque, Olay and Ponds on Meta. Search ads were active as of 15 July 2024, and Meta content ran from May to July 2024."
+      "a": "P&G, Unilever and Celeteque on Google Search text ads (live on 15 July 2024), and Celeteque, Olay and Ponds on Meta (May to July 2024)."
     },
     {
-      "q": "What are the ZMOT experiences in the report?",
-      "a": "Search moments linked to each consumer tension. For each one, SOMIN rated whether it is searchable and listed example queries and keywords, as starting points for search experiences."
+      "q": "What are ZMOT experiences?",
+      "a": "Search moments linked to each consumer tension, rated for searchability, with example queries and keywords."
     },
     {
       "q": "Why does Unilever lead search?",
-      "a": "The analyst notes that Unilever directs search traffic to publisher-style pages that act as content repositories, an approach many brands have since moved away from."
+      "a": "It sends search traffic to publisher-style content repositories, an approach many brands have left."
     }
   ],
   "slides": [
@@ -96,7 +96,7 @@
     },
     {
       "file": "/assets/img/cases/slides/png-philippines-2.webp",
-      "caption": "Google Search text ads by brand",
+      "caption": "Search text ads by brand",
       "alt": "Table of search text ads by brand and website beside a donut chart: Unilever 80.43%, P&G 14.04%, Celeteque 5.53%"
     },
     {

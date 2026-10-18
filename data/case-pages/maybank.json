@@ -9,7 +9,7 @@
   "eyebrow": "Brand case study · Banking · Singapore",
   "h1": "Maybank and 4 rivals lead with community, but money fears stall decisions",
   "h1_em": "but money fears stall decisions",
-  "lede": "SOMIN read Instagram, Facebook and ad library content from Maybank, CIMB, Citi, HSBC and UOB published between 2022 and 2024. Community Support was the most identified interest, found 1,815 times, and the content clustered into 5 audience segments and 6 pain points. SOMIN then planned broad and micro moments and built story-based insights for one segment.",
+  "lede": "SOMIN read social and ad library content from Maybank, CIMB, Citi, HSBC and UOB. Community Support was the top interest, identified 1,815 times, and the content formed 5 segments and 6 pain points.",
   "meta_line": "A SOMIN brand briefing · 2022 to 2024 · Singapore",
   "stats": [
     {
@@ -29,42 +29,42 @@
     }
   ],
   "challenge": {
-    "title": "Maybank against CIMB, Citi, HSBC and UOB on posts and ads",
-    "body": "Maybank competes for attention with CIMB, Citi, HSBC and UOB across social posts and ads. The study looked at who these banks talk to, which pain points they address and which moments a brand could use. Data from 2022 to 2024 was sparse, with a collection cap applied."
+    "title": "Maybank against 4 Singapore banks on posts and ads",
+    "body": "The study asked who these banks target, which pain points they address and which moments a brand could use, working from sparse, capped data."
   },
   "approach": {
     "title": "From 10 top interests to personas, moments and stories",
     "points": [
-      "Collected Instagram, Facebook and ad library content for 5 banks, from 2022 to 2024.",
-      "Ranked the top 10 interests, led by Community Support (1,815), Savings (1,570) and Travel (1,240).",
-      "Segmented the audience into 5 personas and the messaging into 6 pain points, by post count and engagement.",
-      "Picked one pain point and planned broad and micro moments, each with an addressable tension.",
-      "Paired one segment with that pain point and its sociological and psychological reasons to write story-based insights."
+      "Collected content for 5 banks.",
+      "Ranked the top 10 interests.",
+      "Sized segments and pain points by posts and engagement.",
+      "Planned moments for one pain point.",
+      "Wrote story-based insights for one segment."
     ]
   },
   "findings_title": "Community interest, ad-heavy rivals and personal-finance fears",
   "findings": [
     {
       "title": "Community tops the interest list",
-      "body": "Community Support was identified 1,815 times, ahead of Savings (1,570), Travel (1,240) and Loyalty Programs (1,147). Finance came fifth at 827."
+      "body": "Community Support (1,815) leads Savings (1,570), Travel (1,240) and Loyalty Programs (1,147). Finance is fifth at 827."
     },
     {
       "title": "UOB and HSBC lean on ads",
-      "body": "UOB had the biggest footprint with 593 posts and 955 ads. HSBC ran 757 ads against 88 posts, while Maybank published 520 posts and 244 ads."
+      "body": "UOB led with 593 posts and 955 ads, HSBC ran 757 ads to 88 posts, and Maybank had 520 posts and 244 ads."
     },
     {
       "title": "Personal finance is the pressure point",
-      "body": "The Navigating Personal Finance Challenge pain point covers money management, low financial literacy and economic uncertainty. SOMIN linked it to fear of financial insecurity and the desire for instant gratification."
+      "body": "Navigating Personal Finance Challenge covers money management, low financial literacy and economic uncertainty, linked to fear of financial insecurity and the desire for instant gratification."
     }
   ],
   "delivered": {
     "title": "Maybank's 5 segments, 6 pain points and moment plans",
     "points": [
-      "5 audience segments, from Financial Stability Seeker to Community-Minded Advocate for Connection and Belonging",
-      "6 pain points, including financial scams and vulnerabilities in banking, and travel risks and financial concerns",
-      "Broad moments such as festive season financial preparedness, and micro moments such as checking bank balances at the end of the month",
-      "Sociological and psychological reasons behind the tension, each tied to an applied theory",
-      "An imagined character and two sample stories built on one segment and one pain point"
+      "Segments from Financial Stability Seeker to Community-Minded Advocate for Connection and Belonging",
+      "Pain points such as financial scams and vulnerabilities in banking, and travel risks and financial concerns",
+      "Broad and micro moments, each with an addressable tension",
+      "Sociological and psychological reasons, each tied to an applied theory",
+      "An imagined character and two sample stories"
     ]
   },
   "quote": {
@@ -72,27 +72,27 @@
     "source": "From the SOMIN briefing"
   },
   "outcome": {
-    "title": "Maybank can answer fear of financial insecurity with knowledge",
-    "body": "The study shows how one pain point becomes a usable story: fear of financial insecurity, answered with understanding and connection. Micro moments such as an end-of-month balance check, a pay rise or an unexpected bill give Maybank specific times to say it."
+    "title": "Maybank can answer money fears with knowledge",
+    "body": "Answer fear of financial insecurity with understanding and connection, timed to micro moments such as a month-end balance check, a pay rise or an unexpected bill."
   },
   "faq": [
     {
       "q": "Which banks were in the Maybank study?",
-      "a": "Maybank, CIMB, Citi, HSBC and UOB. SOMIN collected their Instagram and Facebook posts and ad library content from 2022 to 2024."
+      "a": "Maybank, CIMB, Citi, HSBC and UOB, on Instagram, Facebook and ad library content from 2022 to 2024."
     },
     {
-      "q": "What is the difference between broad and micro moments?",
-      "a": "Broad moments are wider occasions, such as festive seasons or property fairs. Micro moments are specific instants, such as seeing late fees on a credit card bill, each paired with an addressable tension and the consumer's thought."
+      "q": "What are broad and micro moments?",
+      "a": "Broad moments are occasions such as festive seasons or property fairs. Micro moments are instants such as late fees on a credit card bill, each with a tension and the consumer's thought."
     },
     {
-      "q": "Is the character in the stories a real customer?",
-      "a": "No. SOMIN imagines a character that embodies an audience segment, then combines it with a pain point and a psychological reason to write a story-based insight."
+      "q": "Is the story character a real customer?",
+      "a": "No. SOMIN imagines one for a segment and adds a pain point and a psychological reason."
     }
   ],
   "slides": [
     {
       "file": "/assets/img/cases/slides/maybank-1.webp",
-      "caption": "Three of five audience segments",
+      "caption": "Three of five segments",
       "alt": "Audience segment cards for Financial Stability Seeker, Financially Independent Community Connector and Culinary Enthusiast & Community Connector, with illustrations"
     },
     {

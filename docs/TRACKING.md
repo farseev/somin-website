@@ -99,13 +99,14 @@ case study `lHmWeOX7` and plugin `PI0VcVHp` (Typeform account "sominanalytics").
    `Website: Referrer` and `Website: UTM Source/Medium/Campaign/Term/Content` (hidden fields). The `Website: …` fields
    from Last Name onwards were added for this on 18 Oct 2026. The integration has no edit mode: to change a mapping,
    delete the form's Pipedrive integration and connect it again.
-2. **Pipedrive automation** "[AUTO] Website lead (Typeform): owner Filipp, Booked date, post to #sales_main" (active for all
-   users): when a deal is created in Qualified Leads with `Website: Work Email` filled, it sets owner = Filipp and
-   Deal source = Inbound, sets the person's name to first + last name, owner = Filipp, Lead Source = Website Form and
-   Booked = the lead's date, then posts to Slack **#sales_main** with `@channel`: form, company, name, email, phone, position,
-   budget, needs, case study, CTA, landing page, referrer, UTMs and the deal link.
-3. Typeform's own Slack integration on each form also posts to #sales_main (all fields, but no `@channel`). Once the
-   Pipedrive post is confirmed with a test lead, switch it off in Typeform → Connect → Slack so each lead is posted once.
+   The case-study and plugin forms use exactly this mapping; the trial form's integration was connected by the owner.
+2. **Typeform → Slack** (Typeform's own Slack integration on each form) posts every lead to **#sales_main** with the
+   contact fields, UTMs, landing page, referrer, page path, CTA, lead type and case study. Slack runs from Typeform, not
+   from Pipedrive, so a Pipedrive problem never hides a lead. Typeform's Slack integration cannot add `@channel`.
+3. **Pipedrive automation** "[AUTO] Website lead (Typeform): owner Filipp, Booked date" (active for all users): when a deal
+   is created in Qualified Leads with `Website: Work Email` filled, it sets owner = Filipp and Deal source = Inbound, and
+   sets the person's name to first + last name, owner = Filipp, Lead Source = Website Form and Booked = the lead's date.
+   It does not post to Slack.
 
 ## GTM wiring for lead conversions (container version 52, published 17 Oct 2026)
 

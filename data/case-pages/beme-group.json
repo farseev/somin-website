@@ -9,7 +9,7 @@
   "eyebrow": "Brand case study · Beauty and wellness supplements · Paid and organic social",
   "h1": "BeMe and five rivals ran 2,174 ads, and 1,858 told the same story",
   "h1_em": "and 1,858 told the same story",
-  "lede": "BeMe competes in beauty and wellness supplements with Absolute Collagen, MaryRuth's, NeoCell, Vital Proteins and Youtheory. SOMIN analysed 3,222 pieces of media from the six brands: 2,174 paid ads from six months and 1,048 organic posts from four years. It found 1,858 of the ads in one beauty, wellness and self-care theme, and rivals' content 85.73% to 91.12% similar to BeMe's.",
+  "lede": "SOMIN analysed 3,222 posts and ads from BeMe and five supplement rivals. Most ads told one beauty, wellness and self-care story, and rivals' content was 85.73% to 91.12% similar to BeMe's.",
   "meta_line": "A SOMIN brand briefing · 4 years organic, 6 months paid · Six supplement brands",
   "stats": [
     {
@@ -30,41 +30,39 @@
   ],
   "challenge": {
     "title": "How similar BeMe's content is to five supplement rivals",
-    "body": "BeMe competes for attention with Absolute Collagen, MaryRuth's, NeoCell, Vital Proteins and Youtheory. The question was how similar its content is to theirs, which audiences and problems the category's ads address, and where a distinct communication angle could come from."
+    "body": "Rivals: Absolute Collagen, MaryRuth's, NeoCell, Vital Proteins and Youtheory. Which audiences and problems do their ads address, and where is a distinct angle?"
   },
   "approach": {
-    "title": "3,222 posts and ads labelled, compared and clustered by theme",
+    "title": "3,222 posts and ads labelled, compared and clustered",
     "points": [
-      "Tagged every post and ad with SOMIN's content concept framework: theme, audiences, interests, aspirations, human needs, addressable problem, archetypes, tone of voice and more.",
-      "Measured content similarity between brands with cosine similarity across audiences, interests, aspirations and customer needs.",
-      "Clustered 2,174 ads into themes, first by basic insight and then by addressable problem, and sized each theme by brand.",
-      "Explored society, psychology and economic angles behind the theme Challenges in Finding Effective Skincare and Haircare Solutions.",
-      "Used the selected concepts and psychological factors as story templates to generate illustrated expressions."
+      "Tagged all content with SOMIN's content concept framework.",
+      "Measured cosine similarity between brands.",
+      "Clustered 2,174 ads by basic insight, then by addressable problem.",
+      "Explored society, psychology and economic angles on skincare and haircare doubts."
     ]
   },
   "findings_title": "1,858 ads in one theme, and rivals close to BeMe",
   "findings": [
     {
       "title": "1,858 of 2,174 ads tell one beauty and self-care story",
-      "body": "Split into two themes by basic insight, 1,858 of the 2,174 ads fell into Beauty, Wellness, and Self-Care, against 302 for Wellness, Care, and Relationships."
+      "body": "Split by basic insight, against 302 for Wellness, Care, and Relationships."
     },
     {
       "title": "Rivals are 85.73% to 91.12% similar to BeMe",
-      "body": "Measured against BeMe, average content similarity ran from 85.73% for Vital Proteins to 91.12% for NeoCell across audiences, interests, aspirations and needs."
+      "body": "Vital Proteins is the least similar, NeoCell the most."
     },
     {
       "title": "MaryRuth's ran 47.65% of the ads, BeMe 8.56%",
-      "body": "MaryRuth's ran 1,036 of the 2,174 ads analysed (47.65%) and Absolute Collagen 522 (24.01%), while BeMe ran 186 (8.56%)."
+      "body": "That is 1,036 ads. Absolute Collagen ran 522 (24.01%) and BeMe 186."
     }
   ],
   "delivered": {
-    "title": "Seven ad themes, a similarity matrix and three story expressions",
+    "title": "Seven ad themes, a similarity matrix and three stories",
     "points": [
-      "A labelled content concept framework for the category's ads and posts.",
-      "A similarity matrix comparing BeMe with five competitors, plus the top diverging interests of MaryRuth's and Vital Proteins.",
-      "Seven ad themes by basic insight and six by addressable problem, each sized by ad count per brand.",
-      "Society, psychology and economic angles on why buyers doubt skincare and haircare products, from body image and fear of ageing to the cost of quality products.",
-      "Three illustrated story expressions: The Mirror of Doubt, The Reflection of Diversity and The Price of Perfection."
+      "A similarity matrix, plus the top diverging interests of MaryRuth's and Vital Proteins",
+      "Seven ad themes by basic insight, six by addressable problem, sized per brand",
+      "Doubt drivers, from body image and fear of ageing to the cost of quality products",
+      "Three stories: The Mirror of Doubt, The Reflection of Diversity and The Price of Perfection"
     ]
   },
   "quote": {
@@ -73,36 +71,36 @@
   },
   "outcome": {
     "title": "BeMe can speak to buyers' doubts about skincare and haircare",
-    "body": "The category tells the same beauty, wellness and self-care story in very similar ways. SOMIN's angle work focuses on the doubts buyers carry about skincare and haircare claims, and the three expressions turn those doubts into stories about self-acceptance, diversity and value that sit apart from that shared script."
+    "body": "The category tells one story in very similar ways. SOMIN's three expressions turn buyers' skincare and haircare doubts into stories of self-acceptance, diversity and value."
   },
   "faq": [
     {
       "q": "What data did SOMIN analyse?",
-      "a": "3,222 pieces of media from six brands: 2,174 paid ads covering six months and 1,048 organic posts covering four years."
+      "a": "2,174 paid ads over six months and 1,048 organic posts over four years, from six brands."
     },
     {
-      "q": "How did SOMIN measure how similar the brands are?",
-      "a": "It used cosine similarity on how often audiences, interests, aspirations and customer needs appear in each brand's content, with BeMe as the 100% baseline. The labels were generated using an Azure LLM and SOMIN's SODA pipeline."
+      "q": "How did SOMIN measure brand similarity?",
+      "a": "Cosine similarity across audiences, interests, aspirations and needs, with BeMe as the 100% baseline; labels came from an Azure LLM and SODA."
     },
     {
       "q": "How are the story expressions made?",
-      "a": "A selected concept, its theme and a psychological factor are used as a story template, which builds a prompt for LLM expansion. Each story ends in a one-line insight."
+      "a": "A concept, its theme and a psychological factor form a story template that an LLM expands, ending in a one-line insight."
     }
   ],
   "slides": [
     {
       "file": "/assets/img/cases/slides/beme-group-1.webp",
-      "caption": "The Mirror of Doubt story expression",
+      "caption": "The Mirror of Doubt",
       "alt": "Illustrated story expression titled The Mirror of Doubt: a child seated before an ornate mirror surrounded by skincare and haircare bottles."
     },
     {
       "file": "/assets/img/cases/slides/beme-group-2.webp",
-      "caption": "2,174 ads analysed across six brands",
+      "caption": "2,174 ads across six brands",
       "alt": "Donut chart of 2,174 ads by brand: MaryRuth's 1,036 (47.65%), Absolute Collagen 522 (24.01%), Vital Proteins 322, BeMe 186 (8.56%), Youtheory 80 and NeoCell 28."
     },
     {
       "file": "/assets/img/cases/slides/beme-group-3.webp",
-      "caption": "Content similarity matrix against BeMe",
+      "caption": "Similarity matrix against BeMe",
       "alt": "Heatmap of cosine similarity scores between BeMe and five competitors across audiences, interests, aspirations and needs."
     }
   ],

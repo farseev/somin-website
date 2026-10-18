@@ -9,8 +9,8 @@
   "eyebrow": "Brand case study · Wagyu eCommerce · Colorado, USA",
   "h1": "Miraflora Wagyu's buyers are deal sensitive, not price sensitive",
   "h1_em": "not price sensitive",
-  "lede": "Miraflora Wagyu, a premium wagyu eCommerce brand in the USA, faced a high CPA and suspected its price point. SOMIN read GWI survey data on Colorado cooks, tracked 9 beef brands' content in SOMONITOR and compared online prices. Affluent cooks turned out to be deal sensitive: 61.4% use discount codes and 67.0% use loyalty programmes.",
-  "meta_line": "A SOMIN brand briefing · March to May 2024 · Colorado, USA · Cooks with household income of 85k and above",
+  "lede": "Miraflora Wagyu, a premium US wagyu eCommerce brand, suspected price behind its high CPA. SOMIN's GWI, content and price research found affluent Colorado cooks deal sensitive: 61.4% use discount codes.",
+  "meta_line": "A SOMIN brand briefing · March to May 2024 · Colorado, USA · Cooks, household income 85k and above",
   "stats": [
     {
       "num": "1,318,330",
@@ -20,51 +20,50 @@
     {
       "num": "9",
       "unit": "",
-      "label": "Beef brands tracked in SOMONITOR"
+      "label": "Beef brands tracked"
     },
     {
       "num": "10.1",
       "unit": "%",
-      "label": "Bought meat online in the last month"
+      "label": "Bought meat online last month"
     }
   ],
   "challenge": {
     "title": "Miraflora Wagyu's high CPA and a suspected price problem",
-    "body": "Miraflora Wagyu was paying a high cost per acquisition, and its high price point was the suspected culprit: wagyu is about 3x to 16x more expensive than the grass-fed alternative. SOMIN was asked to analyse March to May 2024 competitor content, see how other brands position wagyu when cheaper steaks are available, and look at what influencers were saying."
+    "body": "Wagyu costs about 3x to 16x more than grass-fed beef. SOMIN read March to May 2024 rival and influencer content on wagyu versus cheaper steaks."
   },
   "approach": {
     "title": "GWI survey data, SOMONITOR tracking and price research",
     "points": [
-      "Profiled Colorado cooks with the SOMIN x GWI Q2 2024 survey: 2,838,296 people interested in cooking, then the 1,318,330 with household income of 85k and above.",
-      "Tracked competitor content in SOMONITOR for 9 brands, including Crowd Cow, Snake River Farms, The Wagyu Shop and Lone Mountain Wagyu, by key message, incentive type and USP.",
-      "Mapped Miraflora's communications onto the awareness, consideration, conversion and advocacy funnel.",
-      "Compared cost per ounce and cost per portion for ribeye, New York strip and filet mignon across 6 online sellers, plus minimum orders and shipping costs.",
-      "Used SoInspire reasoning data to generate emotional moments around holiday meal preparation."
+      "SOMIN x GWI Q2 2024 survey: 2,838,296 Coloradans interested in cooking, 1,318,330 of them affluent.",
+      "Tracked 9 beef brands' key messages, incentives and USPs in SOMONITOR.",
+      "Mapped Miraflora's communications onto the awareness-to-advocacy funnel.",
+      "Compared per-ounce and per-portion prices of ribeye, New York strip and filet mignon at 6 sellers, plus minimums and shipping."
     ]
   },
   "findings_title": "What GWI and SOMONITOR showed about Miraflora's buyers",
   "findings": [
     {
       "title": "Deal sensitive, not price sensitive",
-      "body": "Among affluent Colorado cooks, 61.0% look for the best deals, 59.3% research before buying and 67.0% use loyalty or reward programmes. Their sensitivity is about getting the best value, not the price itself."
+      "body": "61.0% look for the best deals, 59.3% research before buying and 67.0% use loyalty programmes."
     },
     {
       "title": "Strong on quality, missing from free shipping",
-      "body": "Most of Miraflora's propositions sell high-quality wagyu beef. Against 8 other brands in 2024, it fell behind on discounting and was non-existent in the free shipping space."
+      "body": "Against 8 other brands, Miraflora lagged on discounting and was absent from free shipping."
     },
     {
       "title": "Few cooks buy meat online yet",
-      "body": "78.7% of affluent Colorado cooks bought meat in the last month, but only 10.1% bought it online. The briefing reads this as an adoption problem."
+      "body": "78.7% bought meat in the last month, only 10.1% online: an adoption problem."
     }
   ],
   "delivered": {
     "title": "A 4Ps plan and 6 personas for Miraflora Wagyu",
     "points": [
-      "6 SOMONITOR-identified personas, from The Festive Celebrator to The Grill Master, each with an ideal product pairing and a message",
-      "Promotional tactics modelled on competitors, such as $25 off the Wagyu Prime Gift Box and free shipping on a first subscription order",
-      "Place fixes for freshness concerns, a preference for in-person selection and hesitance to pay for delivery, including free shipping above a set order value",
-      "4 emotional moments from SoInspire around holiday meals: anxiety, nostalgia, triumph and frustration",
-      "A worked concept for The Festive Celebrator, 'No More Holiday Hosting Stress', with hook, message, CTA and visuals"
+      "6 SOMONITOR personas, each with a product pairing and a message",
+      "Promotions such as $25 off the Wagyu Prime Gift Box and free first-subscription shipping",
+      "Place fixes for freshness, in-person selection and delivery-cost concerns, such as free shipping over a set value",
+      "4 SoInspire holiday-meal moments: anxiety, nostalgia, triumph and frustration",
+      "A Festive Celebrator concept: 'No More Holiday Hosting Stress'"
     ]
   },
   "quote": {
@@ -73,35 +72,35 @@
   },
   "outcome": {
     "title": "Miraflora Wagyu should compete on deals and an easier checkout",
-    "body": "The briefing recommends strengthening the promotion strategy rather than competing on price, since direct discounts give customers the perception of getting a steal. It also suggests not forcing a minimum order, absorbing those costs elsewhere in the transaction, and building trust to lift online adoption."
+    "body": "Compete on promotions, not price: direct discounts feel like a steal. Drop the forced minimum order, absorb those costs elsewhere and build trust to lift online adoption."
   },
   "faq": [
     {
-      "q": "What data did SOMIN use for the Miraflora Wagyu case?",
-      "a": "The SOMIN x GWI Q2 2024 consumer survey (base audience USA, filtered to Colorado and an interest in cooking), SOMONITOR competitor content data, SoInspire reasoning data and online competitor pricing research."
+      "q": "What data did SOMIN use for Miraflora Wagyu?",
+      "a": "SOMIN x GWI Q2 2024 survey data on Colorado cooks, SOMONITOR content, SoInspire reasoning data and competitor prices."
     },
     {
       "q": "Which brands were compared?",
-      "a": "Content tracking covered 7x Beef, Crowd Cow, GoodChop, Grand Western Steaks, Lone Mountain Wagyu, Miraflora Wagyu, Rastelli's, Snake River Farms and The Wagyu Shop. The price research also included The Meatery and Holy Grail."
+      "a": "7x Beef, Crowd Cow, GoodChop, Grand Western Steaks, Lone Mountain Wagyu, Miraflora Wagyu, Rastelli's, Snake River Farms and The Wagyu Shop, plus The Meatery and Holy Grail on price."
     },
     {
-      "q": "Which personas did SOMIN identify for Miraflora Wagyu?",
-      "a": "Six SOMONITOR-identified personas: The Festive Celebrator, The Healthy Foodie, The Sustainability Chef, The Culture Explorer, The Family Prepper and The Grill Master, each paired with a product and a message."
+      "q": "Which personas did SOMIN identify?",
+      "a": "The Festive Celebrator, The Healthy Foodie, The Sustainability Chef, The Culture Explorer, The Family Prepper and The Grill Master."
     },
     {
       "q": "Where do Colorado cooks find out about brands?",
-      "a": "Word of mouth leads: the briefing reports that 48.1% of Coloradans find brands through friends and family. Recommendations or comments on social media have the highest index, at 149.7."
+      "a": "Word of mouth: 48.1% of Coloradans find brands through friends and family, and social media recommendations index highest, at 149.7."
     }
   ],
   "slides": [
     {
       "file": "/assets/img/cases/slides/case-1.webp",
-      "caption": "Affluent Colorado cooks are savvy shoppers",
+      "caption": "Savvy affluent Colorado cooks",
       "alt": "Illustrated crowd of shoppers on their phones in a mountain setting beside GWI stats for affluent Colorado cooks: 61.0% look for the best deals, 59.3% research before buying, 61.4% use discount codes or coupons and 67.0% use loyalty or reward programs."
     },
     {
       "file": "/assets/img/cases/slides/case-2.webp",
-      "caption": "Incentive types across 9 beef brands",
+      "caption": "Incentive types by beef brand",
       "alt": "Stacked bar chart of incentive types in 2024 beef-brand content, led by discounts, freebies and free shipping, with the note that Miraflora falls behind on discounting and is non-existent in free shipping."
     },
     {

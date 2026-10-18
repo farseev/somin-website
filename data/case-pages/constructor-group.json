@@ -9,7 +9,7 @@
   "eyebrow": "Brand case study · Education technology · Maths learning",
   "h1": "Constructor's Calcularis talks growth, but maths engagement is the gap",
   "h1_em": "but maths engagement is the gap",
-  "lede": "Calcularis, from Constructor Group, shares a content space with maths-learning brands such as IXL, Prodigy Education and KooBits. SOMIN analysed 8,971 pieces of media from 10 brands: 4,663 paid ads from six months and 4,308 organic posts from four years. It found Calcularis focused on intellectual growth, while engagement was the most underrepresented maths-education problem.",
+  "lede": "SOMIN analysed 8,971 posts and ads from Constructor Group's Calcularis and 9 other maths-learning brands. Calcularis' comms focus on intellectual growth, while engagement is the most underrepresented problem in maths education.",
   "meta_line": "A SOMIN brand briefing · 4 years organic, 6 months paid · 10 education brands",
   "stats": [
     {
@@ -29,42 +29,40 @@
     }
   ],
   "challenge": {
-    "title": "Where Constructor's Calcularis sits among 10 education brands",
-    "body": "Calcularis, from Constructor Group, shares a content space with maths-learning brands such as IXL, Prodigy Education, DoodleLearning, KooBits and XtraMath. The question was how these brands address education in their content, where Calcularis focuses, and which maths-learning problems are underrepresented."
+    "title": "Constructor's Calcularis among 10 education brands",
+    "body": "How do these brands address education, where does Calcularis focus, and which maths-learning problems go underrepresented?"
   },
   "approach": {
     "title": "Automated theme detection across 8,971 posts and ads",
     "points": [
-      "Labelled content with SOMIN's content concept framework, adding education fields such as promoted subject and key stage of education.",
-      "Ran automated theme detection (X-means clustering on ADA embeddings) across 8,971 posts and ads from 10 brands.",
-      "Mapped each brand's share of every theme to see where Calcularis focuses.",
-      "Re-clustered the maths education theme into four problem themes and explored the psychological reasons behind the most underrepresented one.",
-      "Turned those reasons into illustrated stories with SOMIN's Story Explorer."
+      "Labelled content, adding fields such as subject and key stage.",
+      "Clustered 4,663 paid ads and 4,308 organic posts into themes.",
+      "Mapped each brand's share of every theme.",
+      "Re-clustered maths education into four problem themes and probed the most underrepresented one."
     ]
   },
   "findings_title": "Growth leads Calcularis' comms, engagement is underrepresented",
   "findings": [
     {
-      "title": "Intellectual growth is Calcularis' main theme, at 494 posts",
-      "body": "Continuous Learning and Intellectual Growth is Calcularis' main focus in comms. At 494 posts, it is also the largest of the 10 themes detected."
+      "title": "Intellectual growth leads Calcularis' comms, at 494 posts",
+      "body": "Continuous Learning and Intellectual Growth, the largest of 10 themes."
     },
     {
-      "title": "Maths education is a smaller theme, at 236 posts",
-      "body": "Importance of Mathematics Education and Strategies for Success held 236 posts. SOMIN drilled into it because Constructor Group mentioned maths as a talking point."
+      "title": "Maths education is smaller, at 236 posts",
+      "body": "SOMIN drilled in because Constructor Group named maths a talking point."
     },
     {
       "title": "Engagement, at 73 posts, is the most underrepresented",
-      "body": "Of four problem themes in maths education, Lack of Engagement and Effectiveness in Math Education, covering 73 posts, is the most underrepresented."
+      "body": "The theme: Lack of Engagement and Effectiveness in Math Education."
     }
   ],
   "delivered": {
-    "title": "Ten content themes, four maths problem themes and three stories",
+    "title": "Ten themes, four maths problems and three stories",
     "points": [
-      "A content concept framework adapted for educational content, with strict, long-form, short-form and sparse labels.",
-      "Ten automated content themes with post counts and a brand-by-brand split.",
-      "Four problem themes within maths education, with the most underrepresented one flagged.",
-      "The psychological reasons behind disengagement, from fear of failure and limited autonomy to negative peer influence.",
-      "Three illustrated Story Explorer stories, including A Mother's Tale of Math Missteps and Breaking Free from Peer Pressure: My Math Odyssey."
+      "A content concept framework adapted for education",
+      "Ten content themes and four maths problem themes, with post counts",
+      "Disengagement drivers: fear of failure, limited autonomy, peer influence",
+      "Three Story Explorer stories, including A Mother's Tale of Math Missteps"
     ]
   },
   "quote": {
@@ -73,7 +71,7 @@
   },
   "outcome": {
     "title": "Constructor's Calcularis can speak to disengaged maths learners",
-    "body": "Engagement is the most underrepresented problem in maths education content. SOMIN's stories show routes into it through fear of failure, autonomy and peer support, giving Calcularis a way to reach disengaged learners and their parents beyond its intellectual-growth message."
+    "body": "Stories on fear of failure, autonomy and peer support help Calcularis reach disengaged learners and their parents beyond its growth message."
   },
   "faq": [
     {
@@ -82,27 +80,27 @@
     },
     {
       "q": "How were the themes detected?",
-      "a": "SOMIN used automated theme detection with X-means clustering on ADA embeddings: two initial centres for the full set and four for the maths subset, each with a maximum of 10 clusters."
+      "a": "X-means clustering on ADA embeddings, with two initial centres for the full set and four for maths, up to 10 clusters each."
     },
     {
       "q": "What is the Story Explorer?",
-      "a": "It helps people understand the data and build more potent insights. Selected concepts, the identified theme and psychological factors form a story template that an LLM expands into a narrative."
+      "a": "A SOMIN tool that turns concepts, a theme and psychological factors into a story template an LLM expands."
     }
   ],
   "slides": [
     {
       "file": "/assets/img/cases/slides/constructor-group-1.webp",
-      "caption": "Story Explorer: A Mother's Tale of Math Missteps",
+      "caption": "A Mother's Tale of Math Missteps",
       "alt": "Story Explorer slide with an illustration of a mother and daughter working on maths at a kitchen table, linked to the fear of failure factor."
     },
     {
       "file": "/assets/img/cases/slides/constructor-group-2.webp",
-      "caption": "Calcularis' main focus in comms",
+      "caption": "Calcularis' main theme",
       "alt": "Theme chart highlighting Theme 8, Continuous Learning and Intellectual Growth, as Calcularis' main focus in comms across 10 brands."
     },
     {
       "file": "/assets/img/cases/slides/constructor-group-3.webp",
-      "caption": "8,971 pieces of media analysed",
+      "caption": "8,971 pieces of media",
       "alt": "Donut chart of 8,971 pieces of media: 4,663 paid ads (51.98%) and 4,308 organic posts (48.02%) from 10 brands."
     }
   ],
