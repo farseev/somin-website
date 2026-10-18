@@ -70,7 +70,9 @@ Run all three before every commit that changes content, templates, CSS or JS.
     pricing lines in `llms.txt`. When the sheet changes, update the JSON (prices, features, Stripe links) and rebuild.
 20. **Languages**: the home page's 17-language dictionary (`DICT_GZ_B64` in `content/pages/index.html`, keyed by `data-i18n`) is
     pre-rendered into static pages `/zh-hans/`, `/ja/`, `/id/` … with hreflang + x-default (titles in `LOCALES` in `build.py`).
-    A new `data-i18n` key needs a value in every language. The hero menu links to those URLs.
+    A new `data-i18n` key needs a value in every language. The hero menu links to those URLs. `/somin-for-agencies/` and
+    `/somin-for-creators/` carry their own 16-language dictionaries (gzip + base64 of `{"k":[keys],"v":{lang:[values]}}`,
+    English read from the page) behind the in-page language switcher; the same rule applies to them.
 21. **Dates**: `data/content-dates.json` stores a fingerprint and last-changed date per indexable URL (sitemap `lastmod`, schema
     `dateModified`). The build updates it; commit it together with the content change. Blog posts use their own `published`/`modified`.
 22. **Authors**: every blog byline gets `/authors/<name>/` (Person + ProfilePage schema). New authors go into `TEAM` in `build.py`
