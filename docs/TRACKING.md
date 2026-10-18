@@ -99,14 +99,17 @@ case study `lHmWeOX7` and plugin `PI0VcVHp` (Typeform account "sominanalytics").
    `Website: Referrer` and `Website: UTM Source/Medium/Campaign/Term/Content` (hidden fields). The `Website: …` fields
    from Last Name onwards were added for this on 18 Oct 2026. The integration has no edit mode: to change a mapping,
    delete the form's Pipedrive integration and connect it again.
-   The case-study and plugin forms use exactly this mapping; the trial form's integration was connected by the owner.
+   All three forms use this mapping (trial and plugin map First/Last name; the case-study form has one Name field).
 2. **Typeform → Slack** (Typeform's own Slack integration on each form) posts every lead to **#sales_main** with the
-   contact fields, UTMs, landing page, referrer, page path, CTA, lead type and case study. Slack runs from Typeform, not
-   from Pipedrive, so a Pipedrive problem never hides a lead. Typeform's Slack integration cannot add `@channel`.
-3. **Pipedrive automation** "[AUTO] Website lead (Typeform): owner Filipp, Booked date" (active for all users): when a deal
-   is created in Qualified Leads with `Website: Work Email` filled, it sets owner = Filipp and Deal source = Inbound, and
-   sets the person's name to first + last name, owner = Filipp, Lead Source = Website Form and Booked = the lead's date.
-   It does not post to Slack.
+   contact fields, UTMs, landing page, referrer, page path, CTA, lead type and case study. The lead notice runs from
+   Typeform, not from Pipedrive, so a Pipedrive problem never hides a lead. Typeform's Slack integration cannot add `@channel`.
+3. **Pipedrive automation** "[AUTO] Website lead (Typeform): owner Filipp, Booked date, deal link to Slack" (active for all
+   users) runs only for website leads: deal created in Qualified Leads AND `Website: Work Email` filled AND Source channel ID
+   contains "Typeform" (Pipedrive tags these deals "Typeform Lead Forms"). It sets owner = Filipp and Deal source = Inbound;
+   sets the person's name to first + last name, owner = Filipp, Lead Source = Website Form and Booked = the lead's date; then
+   posts one short line to #sales_main under the Typeform post: "Pipedrive deal for the website lead above: <deal title>",
+   the deal link (`https://sominai.pipedrive.com/deal/<id>`), owner and email.
+4. Tested end to end on 18 Oct 2026 with one lead per form (deals titled "SOMIN TEST … (delete)").
 
 ## GTM wiring for lead conversions (container version 52, published 17 Oct 2026)
 
