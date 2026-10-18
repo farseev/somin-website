@@ -176,6 +176,35 @@ def reviews_section(attrs):
             f'</div></section>')
 
 
+# ------------------------------------------------------------------ strategic partners powered by SOMIN
+PARTNERS = json.loads((ROOT / 'data/partners.json').read_text(encoding='utf-8'))
+
+
+def partners_block(attrs):
+    """<!--mm:partners compact="1"--> = a two-line plate (home hero, under the client marquee);
+    <!--mm:partners--> = the full Vision-page section with a card per partner and ItemList schema."""
+    items = PARTNERS['items']
+    if attrs.get('compact'):
+        links = ''.join(
+            f'<a href="{E(p["url"])}" target="_blank" rel="noopener" data-track="partner_click" title="{E(p["description"])}">'
+            f'<b>{E(p["name"])}</b>{f" <span>{E(p["short"])}</span>" if p.get("short") else ""}</a>' for p in items)
+        return (f'<div class="se-partners" aria-label="Strategic partners powered by SOMIN"><span class="se-partners-label">'
+                f'Strategic partners powered by <b>SO</b>MIN</span>{links}<a class="se-partners-all" href="/vision/#partners">All partners →</a></div>')
+    cards = ''.join(
+        f'<a class="pt-card" href="{E(p["url"])}" target="_blank" rel="noopener" data-track="partner_click">'
+        f'<strong>{E(p["name"])}</strong><span>{E(p["description"])}</span>'
+        f'<em>{E(re.sub(r"^https?://(www[.])?", "", p["url"]).strip("/"))} ↗</em></a>' for p in items)
+    ld = {"@type": "ItemList", "@id": absu('/vision/') + '#partners', "name": "Strategic partners powered by SOMIN",
+          "itemListElement": [{"@type": "ListItem", "position": i + 1,
+                               "item": {"@type": "Organization", "name": p['name'], "url": p['url'], "description": p['description']}}
+                              for i, p in enumerate(items)]}
+    title = attrs.get('title') or 'Strategic partners powered by SOMIN'
+    lede = attrs.get('lede') or ('Businesses that run SOMIN for their own clients or build on our team and research. Each one links to its own website.')
+    return (f'<section class="pt-sec" id="partners" aria-labelledby="partners-h"><p class="eyebrow eyebrow--ink">Strategic partners</p>'
+            f'<h2 id="partners-h">{E(title)}</h2><p class="pt-lede">{E(lede)}</p><div class="pt-grid">{cards}</div></section>'
+            f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>')
+
+
 # ------------------------------------------------------------------ research (peer-reviewed papers and talks)
 RESEARCH = json.loads((ROOT / 'data/research.json').read_text(encoding='utf-8'))
 RS_VENUES = [('AAAI', 'AAAI Conference on Artificial Intelligence'), ('ACM MM', 'ACM International Conference on Multimedia'),
@@ -251,6 +280,7 @@ def research_note():
 
 def expand_shortcodes(body):
     body = re.sub(r'<!--\s*mm:research((?:\s+\w+="[^"]*")*)\s*-->', lambda m: research_strip(dict(re.findall(r'(\w+)="([^"]*)"', m.group(1)))), body)
+    body = re.sub(r'<!--\s*mm:partners((?:\s+\w+="[^"]*")*)\s*-->', lambda m: partners_block(dict(re.findall(r'(\w+)="([^"]*)"', m.group(1)))), body)
     body = re.sub(r'<!--\s*mm:reviews((?:\s+\w+="[^"]*")*)\s*-->', lambda m: reviews_section(dict(re.findall(r'(\w+)="([^"]*)"', m.group(1)))), body)
     body = re.sub(r'<!--\s*mm:ratings((?:\s+\w+="[^"]*")*)\s*-->', lambda m: rating_badges(dict(re.findall(r'(\w+)="([^"]*)"', m.group(1))).get('cls', '')), body)
     body = re.sub(r'<!--\s*mm:replay\s+([a-z0-9-]+)\s*-->', lambda m: replay_figure(m.group(1)), body)
@@ -508,7 +538,8 @@ def org_node():
             "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "email": o['email'], "url": CAL_DEFAULT, "availableLanguage": ["English"]},
             "knowsAbout": ["AI marketing intelligence", "Competitor ad monitoring", "Audience research", "Campaign planning", "Creative scoring", "Creator marketing", "Agentic AI"],
             "sameAs": _uniq(o['same_as'] + SITE['same_as']),
-            "subjectOf": [{"@type": "Article", "name": s['name'], "url": s['url']} for s in o['subject_of']]}
+            "subjectOf": [{"@type": "Article", "name": s['name'], "url": s['url']} for s in o['subject_of']],
+            **({"memberOf": [{"@type": "Organization", "name": m['name'], "url": m['url']} for m in o['member_of']]} if o.get('member_of') else {})}
 
 
 def offers_node():

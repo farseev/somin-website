@@ -310,6 +310,34 @@ html.nav-locked { overflow: hidden; }
 .vision-pillars strong { display: block; font-family: var(--display); font-weight: 900; font-size: 34px; color: var(--teal-600); line-height: 1; }
 .vision-pillars span { display: block; margin-top: 10px; color: var(--text-2); font-size: 15px; }
 @media (max-width: 760px) { .vision-pillars { grid-template-columns: 1fr; } }
+/* vision: faith-driven leadership + strategic partners */
+.fde-sec, .pt-sec { max-width: 1080px; margin: clamp(56px, 7vw, 88px) auto 0; }
+.fde-sec { padding: clamp(24px, 4vw, 40px); border: 1px solid var(--paper-line); border-radius: 22px; background: var(--paper-2); }
+.fde-sec h2, .pt-sec h2 { font-family: var(--display); font-weight: 800; font-size: clamp(24px, 3vw, 34px); line-height: 1.15; color: var(--ink); margin: 6px 0 16px; }
+.fde-sec p { color: var(--text-2); font-size: 17px; line-height: 1.6; max-width: 820px; margin: 0 0 14px; }
+.fde-sec p a { color: var(--teal-600); font-weight: 700; }
+.fde-sec .wm b { color: var(--teal-600); }
+.fde-link { margin-top: 8px; }
+.pt-lede { color: var(--text-2); font-size: 17px; max-width: 760px; margin: 0 0 22px; }
+.pt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 14px; }
+.pt-card { display: flex; flex-direction: column; gap: 8px; padding: 20px; border: 1px solid var(--paper-line); border-radius: 16px; background: #fff; text-decoration: none; color: var(--text-2); transition: border-color .2s, transform .2s; }
+.pt-card:hover { border-color: var(--teal-600); transform: translateY(-2px); }
+.pt-card strong { font-family: var(--display); font-weight: 800; font-size: 18px; color: var(--ink); }
+.pt-card span { font-size: 14.5px; line-height: 1.5; flex: 1; }
+.pt-card em { font-style: normal; font-size: 13px; font-weight: 700; color: var(--teal-600); }
+/* home hero: strategic partners plate under the client marquee (max two lines; one scrolling line on small screens) */
+.somin-embed .se-partners { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 6px 22px; max-width: 1180px; margin: 36px auto 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.08); font-size: 13px; line-height: 1.5; }
+.somin-embed .se-partners-label { font-family: var(--display); font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.62); }
+.somin-embed .se-partners-label b { color: var(--teal); }
+.somin-embed .se-partners a { color: rgba(255,255,255,.82); text-decoration: none; white-space: nowrap; }
+.somin-embed .se-partners a b { font-weight: 700; color: #fff; }
+.somin-embed .se-partners a span { color: rgba(255,255,255,.6); }
+.somin-embed .se-partners a:hover b, .somin-embed .se-partners a:hover span, .somin-embed .se-partners a.se-partners-all { color: var(--teal); }
+@media (max-width: 900px) {
+  .somin-embed .se-partners { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(to right, black 88%, transparent); mask-image: linear-gradient(to right, black 88%, transparent); padding-bottom: 4px; }
+  .somin-embed .se-partners::-webkit-scrollbar { display: none; }
+  .somin-embed .se-partners-label { white-space: nowrap; }
+}
 
 /* ---------------- native pages (case, offer) ---------------- */
 .np-band { padding: clamp(40px, 6vw, 80px) 0; }

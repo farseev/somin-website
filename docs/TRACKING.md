@@ -67,6 +67,7 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 | `replay_step_click` | Step tab clicked in the five-step loop player (Listen … Ship) | `cta_text` = step |
 | `book_call_click` | Any calendly.com link (opens popup) | `link_url` |
 | `login_click` / `platform_click` | Links to cloud.somin.ai | `link_url` |
+| `partner_click` | Strategic-partner and faithdriven.sg links (home plate, Vision page) | `link_url`, `cta_text` |
 | `email_click` / `phone_click` | mailto: / tel: | — |
 | `article_read_50` / `article_read_90` | Blog article depth (page path identifies the post) | — |
 | `blog_filter` / `blog_search` / `share` | Blog index and article tools | `cta_text` = topic / query / share channel |

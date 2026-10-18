@@ -33,6 +33,9 @@
   "subject_of": [
    {"name": "SOMIN customer story, Google Cloud", "url": "https://cloud.google.com/customers/somin-ai"},
    {"name": "Investible investment notes on SOMIN", "url": "https://www.investible.com/blog/investment-notes-somin-ai"}
+  ],
+  "member_of": [
+   {"name": "Faith Driven Entrepreneur (Faith Driven Singapore)", "url": "https://faithdriven.sg/"}
   ]
  },
  "software": {
