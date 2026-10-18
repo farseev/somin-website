@@ -2169,7 +2169,8 @@ def build_author_pages(post_metas):
         desc = desc if len(desc) <= 160 else desc[:157].rsplit(' ', 1)[0] + '…'
         title = f'{name}, {role_short} | SOMIN'
         meta = {'slug': f'authors/{slug}', 'layout': 'native', 'type': 'author', 'group': 'blog', 'robots': 'index,follow',
-                'title': title if len(title) <= 60 else f'{name} | SOMIN', 'description': desc, 'og_image': '/assets/img/og/card-default.jpg'}
+                'title': title if len(title) <= 60 else (f'{name}, SOMIN author | SOMIN' if len(name) <= 32 else f'{name} | SOMIN'),
+                'description': desc, 'og_image': '/assets/img/og/card-default.jpg'}
         node['mainEntityOfPage'] = absu(path)
         prof = {"@type": "ProfilePage", "@id": absu(path) + "#webpage", "url": absu(path), "name": f'{name}, {role_short}', "isPartOf": {"@id": WEBSITE_ID},
                 "mainEntity": {"@id": node.get('@id')}, "inLanguage": "en"}
