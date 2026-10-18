@@ -134,6 +134,18 @@ Version 52 cleanup (nothing deleted; everything can be unpaused from its folder)
 
 `login_click` / `platform_click` remain: they are clicks on somin.ai links that point to the app, measured on somin.ai.
 
+Version 53 (go-live on GitHub Pages, 18 Oct 2026; nothing deleted, unpause from the folder to restore):
+
+- **Archive - Leadpages site & duplicates (paused, not used)**, 46 tags:
+  - `LinkedIn - cta_click (Unified)` sent conversion 20526804 a second time on every CTA click, next to `LinkedIn - cta_click`.
+    Each CTA click now sends it once (checked on the live site).
+  - `Test HTML` only wrote `console.log('test')` on every page.
+  - 44 Leadpages-era Meta, Google Ads, GA4 and LinkedIn tags. Their triggers only matched the old site: `www.somonitor.ai`
+    or `www.somin.ai/thank-you…` URLs, `lp-button-react` classes, and click texts that no longer exist on any page.
+- Still live: the thank-you, plugin and Calendly lead tags, `GA4 - Router - somin_event`, `GA4 - cta_click`, scroll depth,
+  Meta Pageview and key events, `LinkedIn - cta_click`, the LinkedIn Insight tag, Google Ads remarketing, Conversion Linker
+  and Clarity.
+
 Optional:
 
 1. **Clarity**: two projects existed (`pfshy7yc19` in GTM, `ikcdjzmpym` hard-coded by Leadpages). Only the GTM one
