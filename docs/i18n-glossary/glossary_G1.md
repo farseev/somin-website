@@ -1,0 +1,297 @@
+# Glossary for zh-Hans, zh-Hant, ja, ko (use these renderings consistently)
+
+## zh-Hans
+Style: Mainland/Singapore usage; full-width punctuation (，。：（）); put a space between Latin words/numbers and Chinese characters. Keep SOMIN, MCP, AI, GEO, AEO, MMM in Latin. Use 智能体 for agent, 洞察 for insight.
+- share of voice → 声量份额
+- marketing whitespace / whitespace → 营销空白点
+- consumer tension / tension → 消费者矛盾
+- angle (strategic angle) → 策略角度
+- persona → 用户画像
+- proposition → 价值主张
+- moment (marketing moment) → 营销时刻
+- insight → 洞察
+- story (insight story) → 洞察故事
+- clickability → 点击潜力
+- creative pre-testing → 创意预测试
+- creative fatigue → 创意疲劳
+- social listening → 社交聆听
+- audience research → 受众研究
+- ad optimisation → 广告优化
+- ad library / Meta Ad Library → Meta 广告资料库
+- creative brief → 创意简报
+- case study → 案例研究
+- competitor analysis → 竞品分析
+- competitive intelligence → 竞争情报
+- marketing intelligence → 营销智能
+- campaign planning → 营销活动规划
+- content pillar → 内容支柱
+- thought leadership → 思想领导力
+- engagement → 互动
+- engagement rate → 互动率
+- benchmark → 基准
+- key takeaways → 核心要点
+- FAQ → 常见问题
+- sources → 来源
+- related reading → 相关阅读
+- keep reading → 继续阅读
+- in this article → 本文内容
+- min read → 分钟阅读
+- book a demo → 预约演示
+- book a call → 预约通话
+- try SOMIN → 试用 SOMIN
+- free trial → 免费试用
+- pricing → 定价
+- agency → 广告代理商
+- brand team → 品牌团队
+- creator → 创作者
+- media buyer → 媒介采买
+- performance marketing → 效果营销
+- paid media → 付费媒体
+- organic (organic posts) → 自然内容
+- reach → 触达
+- frequency → 频次
+- conversion → 转化
+- marketing mix modelling (MMM) → 营销组合建模（MMM）
+- incrementality → 增量效果
+- generative engine optimisation (GEO) → 生成式引擎优化（GEO）
+- answer engine optimisation (AEO) → 答案引擎优化（AEO）
+- AI agent → AI 智能体
+- agentic AI → 智能体 AI
+- connector → 连接器
+- plugin → 插件
+- workspace → 工作区
+- dashboard → 仪表盘
+- hallucination (AI) → 幻觉
+- context engineering → 上下文工程
+- localisation → 本地化
+- go-to-market → 上市策略
+- category (product category) → 品类
+- brand-locked creative → 品牌规范锁定的创意
+- pre-scored concepts → 预评分概念
+- home → 首页
+- blog → 博客
+- case studies → 案例研究
+- reference → 参考资料
+- last updated → 最后更新
+
+## zh-Hant
+Style: Taiwan/Hong Kong usage (e.g. 在地化, 部落格, 外掛, 最佳化, 人物誌, 儀表板); full-width punctuation (，。：（）); space between Latin and Chinese. Keep brand names and acronyms in Latin.
+- share of voice → 聲量佔比
+- marketing whitespace / whitespace → 行銷空白點
+- consumer tension / tension → 消費者矛盾
+- angle (strategic angle) → 策略角度
+- persona → 人物誌
+- proposition → 價值主張
+- moment (marketing moment) → 行銷時刻
+- insight → 洞察
+- story (insight story) → 洞察故事
+- clickability → 點擊潛力
+- creative pre-testing → 創意預測試
+- creative fatigue → 創意疲乏
+- social listening → 社群聆聽
+- audience research → 受眾研究
+- ad optimisation → 廣告優化
+- ad library / Meta Ad Library → Meta 廣告檔案庫
+- creative brief → 創意簡報
+- case study → 案例研究
+- competitor analysis → 競品分析
+- competitive intelligence → 競爭情報
+- marketing intelligence → 行銷智慧
+- campaign planning → 行銷活動規劃
+- content pillar → 內容支柱
+- thought leadership → 思想領導力
+- engagement → 互動
+- engagement rate → 互動率
+- benchmark → 基準
+- key takeaways → 重點摘要
+- FAQ → 常見問題
+- sources → 來源
+- related reading → 延伸閱讀
+- keep reading → 繼續閱讀
+- in this article → 本文內容
+- min read → 分鐘閱讀
+- book a demo → 預約示範
+- book a call → 預約通話
+- try SOMIN → 試用 SOMIN
+- free trial → 免費試用
+- pricing → 定價
+- agency → 廣告代理商
+- brand team → 品牌團隊
+- creator → 創作者
+- media buyer → 媒體採購
+- performance marketing → 績效行銷
+- paid media → 付費媒體
+- organic (organic posts) → 自然貼文
+- reach → 觸及
+- frequency → 頻率
+- conversion → 轉換
+- marketing mix modelling (MMM) → 行銷組合模型（MMM）
+- incrementality → 增量成效
+- generative engine optimisation (GEO) → 生成式引擎最佳化（GEO）
+- answer engine optimisation (AEO) → 答案引擎最佳化（AEO）
+- AI agent → AI 代理
+- agentic AI → 代理型 AI
+- connector → 連接器
+- plugin → 外掛
+- workspace → 工作區
+- dashboard → 儀表板
+- hallucination (AI) → 幻覺
+- context engineering → 上下文工程
+- localisation → 在地化
+- go-to-market → 上市策略
+- category (product category) → 品類
+- brand-locked creative → 品牌規範鎖定的創意
+- pre-scored concepts → 預先評分概念
+- home → 首頁
+- blog → 部落格
+- case studies → 案例研究
+- reference → 參考資料
+- last updated → 最後更新
+
+## ja
+Style: Business です/ます; keep katakana loanwords for platform/marketing terms (インサイト, エンゲージメント, ペルソナ); full-width punctuation (、。) and full-width parentheses; no spaces between Japanese and Latin. CTAs as noun/verb-plain form (デモを予約する).
+- share of voice → シェア・オブ・ボイス
+- marketing whitespace / whitespace → マーケティングのホワイトスペース
+- consumer tension / tension → 消費者の葛藤
+- angle (strategic angle) → 戦略的切り口
+- persona → ペルソナ
+- proposition → プロポジション
+- moment (marketing moment) → マーケティング・モーメント
+- insight → インサイト
+- story (insight story) → インサイトストーリー
+- clickability → クリックされやすさ
+- creative pre-testing → クリエイティブ事前テスト
+- creative fatigue → クリエイティブ疲弊
+- social listening → ソーシャルリスニング
+- audience research → オーディエンスリサーチ
+- ad optimisation → 広告最適化
+- ad library / Meta Ad Library → Meta広告ライブラリ
+- creative brief → クリエイティブブリーフ
+- case study → 導入事例
+- competitor analysis → 競合分析
+- competitive intelligence → 競合インテリジェンス
+- marketing intelligence → マーケティングインテリジェンス
+- campaign planning → キャンペーン企画
+- content pillar → コンテンツピラー
+- thought leadership → ソートリーダーシップ
+- engagement → エンゲージメント
+- engagement rate → エンゲージメント率
+- benchmark → ベンチマーク
+- key takeaways → 主なポイント
+- FAQ → よくある質問
+- sources → 出典
+- related reading → 関連記事
+- keep reading → 続きを読む
+- in this article → この記事の内容
+- min read → 分で読めます
+- book a demo → デモを予約する
+- book a call → 通話を予約する
+- try SOMIN → SOMINを試す
+- free trial → 無料トライアル
+- pricing → 料金
+- agency → 広告代理店
+- brand team → ブランドチーム
+- creator → クリエイター
+- media buyer → メディアバイヤー
+- performance marketing → パフォーマンスマーケティング
+- paid media → ペイドメディア
+- organic (organic posts) → オーガニック
+- reach → リーチ
+- frequency → フリークエンシー
+- conversion → コンバージョン
+- marketing mix modelling (MMM) → マーケティング・ミックス・モデリング（MMM）
+- incrementality → 増分効果
+- generative engine optimisation (GEO) → 生成エンジン最適化（GEO）
+- answer engine optimisation (AEO) → 回答エンジン最適化（AEO）
+- AI agent → AIエージェント
+- agentic AI → エージェント型AI
+- connector → コネクタ
+- plugin → プラグイン
+- workspace → ワークスペース
+- dashboard → ダッシュボード
+- hallucination (AI) → ハルシネーション
+- context engineering → コンテキストエンジニアリング
+- localisation → ローカライズ
+- go-to-market → ゴー・トゥ・マーケット（GTM）
+- category (product category) → カテゴリー
+- brand-locked creative → ブランドロック型クリエイティブ
+- pre-scored concepts → 事前スコアリング済みコンセプト
+- home → ホーム
+- blog → ブログ
+- case studies → 導入事例
+- reference → リファレンス
+- last updated → 最終更新日
+
+## ko
+Style: 합니다체 for sentences; CTAs and UI labels as short noun/verb forms (예약하기, 체험하기). Korean marketers use English loanwords (인사이트, 인게이지먼트, 퍼포먼스 마케팅, 크리에이터); acronyms like SOV/MMM/GEO in Latin.
+- share of voice → 쉐어 오브 보이스
+- marketing whitespace / whitespace → 마케팅 화이트스페이스
+- consumer tension / tension → 소비자 갈등
+- angle (strategic angle) → 전략적 앵글
+- persona → 페르소나
+- proposition → 가치 제안
+- moment (marketing moment) → 마케팅 모먼트
+- insight → 인사이트
+- story (insight story) → 인사이트 스토리
+- clickability → 클릭 유도력
+- creative pre-testing → 크리에이티브 사전 테스트
+- creative fatigue → 크리에이티브 피로도
+- social listening → 소셜 리스닝
+- audience research → 오디언스 리서치
+- ad optimisation → 광고 최적화
+- ad library / Meta Ad Library → Meta 광고 라이브러리
+- creative brief → 크리에이티브 브리프
+- case study → 케이스 스터디
+- competitor analysis → 경쟁사 분석
+- competitive intelligence → 경쟁 인텔리전스
+- marketing intelligence → 마케팅 인텔리전스
+- campaign planning → 캠페인 기획
+- content pillar → 콘텐츠 필러
+- thought leadership → 소트 리더십
+- engagement → 인게이지먼트
+- engagement rate → 인게이지먼트율
+- benchmark → 벤치마크
+- key takeaways → 핵심 요약
+- FAQ → 자주 묻는 질문
+- sources → 출처
+- related reading → 관련 글
+- keep reading → 계속 읽기
+- in this article → 이 글의 내용
+- min read → 분 읽기
+- book a demo → 데모 예약하기
+- book a call → 통화 예약하기
+- try SOMIN → SOMIN 체험하기
+- free trial → 무료 체험
+- pricing → 요금제
+- agency → 에이전시
+- brand team → 브랜드 팀
+- creator → 크리에이터
+- media buyer → 미디어 바이어
+- performance marketing → 퍼포먼스 마케팅
+- paid media → 유료 미디어
+- organic (organic posts) → 오가닉
+- reach → 도달
+- frequency → 빈도
+- conversion → 전환
+- marketing mix modelling (MMM) → 마케팅 믹스 모델링(MMM)
+- incrementality → 증분 효과
+- generative engine optimisation (GEO) → 생성형 엔진 최적화(GEO)
+- answer engine optimisation (AEO) → 답변 엔진 최적화(AEO)
+- AI agent → AI 에이전트
+- agentic AI → 에이전틱 AI
+- connector → 커넥터
+- plugin → 플러그인
+- workspace → 워크스페이스
+- dashboard → 대시보드
+- hallucination (AI) → 환각
+- context engineering → 컨텍스트 엔지니어링
+- localisation → 현지화
+- go-to-market → 고투마켓(GTM)
+- category (product category) → 카테고리
+- brand-locked creative → 브랜드 고정형 크리에이티브
+- pre-scored concepts → 사전 점수화된 콘셉트
+- home → 홈
+- blog → 블로그
+- case studies → 케이스 스터디
+- reference → 레퍼런스
+- last updated → 최종 업데이트

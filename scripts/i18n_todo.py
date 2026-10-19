@@ -19,7 +19,9 @@ import i18n  # noqa: E402
 
 SITE = ROOT / '_site'
 sm = (SITE / 'sitemap-en.xml').read_text(encoding='utf-8')
-paths = [m.group(1)[len('https://somin.ai'):] for m in re.finditer(r'<url><loc>([^<]+)</loc>(?:<lastmod>[^<]*</lastmod>)?<xhtml', sm)]
+paths = [m.group(1)[len('https://somin.ai'):] for m in re.finditer(r'<url><loc>([^<]+)</loc>', sm)]
+# every localizable English page, including posts that are English-only until their translations exist
+paths = [p for p in paths if i18n.page_file(SITE, p).exists() and i18n.localizable(i18n.page_file(SITE, p).read_text(encoding='utf-8'))]
 found = i18n.extract(SITE, paths)
 src_file = i18n.I18N_DIR / 'source.json'
 i18n.I18N_DIR.mkdir(parents=True, exist_ok=True)

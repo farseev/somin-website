@@ -1,0 +1,297 @@
+# Glossary for es, fr, de, pt (use these renderings consistently)
+
+## es
+Style: Neutral international Spanish (avoid regionalisms; usted/impersonal infinitive for CTAs: 'probar SOMIN', 'reservar una demo', 'seguir leyendo'). Use 'insight', 'benchmark' as the industry does; sentence case; decimal comma is acceptable but avoid in UI strings.
+- share of voice → cuota de voz
+- marketing whitespace / whitespace → espacio en blanco de marketing
+- consumer tension / tension → tensión del consumidor
+- angle (strategic angle) → ángulo estratégico
+- persona → persona
+- proposition → propuesta de valor
+- moment (marketing moment) → momento de marketing
+- insight → insight
+- story (insight story) → historia de insight
+- clickability → potencial de clics
+- creative pre-testing → pretest creativo
+- creative fatigue → fatiga creativa
+- social listening → escucha social
+- audience research → investigación de audiencias
+- ad optimisation → optimización de anuncios
+- ad library / Meta Ad Library → Biblioteca de anuncios de Meta
+- creative brief → brief creativo
+- case study → estudio de caso
+- competitor analysis → análisis de la competencia
+- competitive intelligence → inteligencia competitiva
+- marketing intelligence → inteligencia de marketing
+- campaign planning → planificación de campañas
+- content pillar → pilar de contenido
+- thought leadership → liderazgo de pensamiento
+- engagement → interacción
+- engagement rate → tasa de interacción
+- benchmark → benchmark
+- key takeaways → puntos clave
+- FAQ → preguntas frecuentes
+- sources → fuentes
+- related reading → lecturas relacionadas
+- keep reading → seguir leyendo
+- in this article → en este artículo
+- min read → min de lectura
+- book a demo → reservar una demo
+- book a call → reservar una llamada
+- try SOMIN → probar SOMIN
+- free trial → prueba gratuita
+- pricing → precios
+- agency → agencia
+- brand team → equipo de marca
+- creator → creador
+- media buyer → comprador de medios
+- performance marketing → marketing de performance
+- paid media → medios pagados
+- organic (organic posts) → orgánico
+- reach → alcance
+- frequency → frecuencia
+- conversion → conversión
+- marketing mix modelling (MMM) → modelado de mezcla de marketing (MMM)
+- incrementality → incrementalidad
+- generative engine optimisation (GEO) → optimización para motores generativos (GEO)
+- answer engine optimisation (AEO) → optimización para motores de respuestas (AEO)
+- AI agent → agente de IA
+- agentic AI → IA agéntica
+- connector → conector
+- plugin → plugin
+- workspace → espacio de trabajo
+- dashboard → panel de control
+- hallucination (AI) → alucinación
+- context engineering → ingeniería de contexto
+- localisation → localización
+- go-to-market → salida al mercado
+- category (product category) → categoría
+- brand-locked creative → creatividad bloqueada a la marca
+- pre-scored concepts → conceptos pre-puntuados
+- home → inicio
+- blog → blog
+- case studies → estudios de caso
+- reference → referencia
+- last updated → última actualización
+
+## fr
+Style: France French, vouvoiement/impersonal infinitive for CTAs ('réserver une démo'). Non-breaking space before : ; ! ? and inside « ». Sentence case (only first word capitalised); keep 'insight', 'benchmark', 'engagement', 'plugin' as used by French marketers.
+- share of voice → part de voix
+- marketing whitespace / whitespace → espace blanc marketing
+- consumer tension / tension → tension du consommateur
+- angle (strategic angle) → angle stratégique
+- persona → persona
+- proposition → proposition
+- moment (marketing moment) → moment marketing
+- insight → insight
+- story (insight story) → récit d'insight
+- clickability → potentiel de clic
+- creative pre-testing → pré-test créatif
+- creative fatigue → fatigue créative
+- social listening → écoute sociale
+- audience research → étude d'audience
+- ad optimisation → optimisation publicitaire
+- ad library / Meta Ad Library → Bibliothèque publicitaire Meta
+- creative brief → brief créatif
+- case study → étude de cas
+- competitor analysis → analyse concurrentielle
+- competitive intelligence → veille concurrentielle
+- marketing intelligence → intelligence marketing
+- campaign planning → planification de campagnes
+- content pillar → pilier de contenu
+- thought leadership → leadership d'opinion
+- engagement → engagement
+- engagement rate → taux d'engagement
+- benchmark → benchmark
+- key takeaways → points clés
+- FAQ → questions fréquentes
+- sources → sources
+- related reading → à lire aussi
+- keep reading → continuer la lecture
+- in this article → dans cet article
+- min read → min de lecture
+- book a demo → réserver une démo
+- book a call → réserver un appel
+- try SOMIN → essayer SOMIN
+- free trial → essai gratuit
+- pricing → tarifs
+- agency → agence
+- brand team → équipe de marque
+- creator → créateur
+- media buyer → acheteur média
+- performance marketing → marketing de la performance
+- paid media → médias payants
+- organic (organic posts) → organique
+- reach → portée
+- frequency → fréquence
+- conversion → conversion
+- marketing mix modelling (MMM) → modélisation du mix marketing (MMM)
+- incrementality → incrémentalité
+- generative engine optimisation (GEO) → optimisation pour les moteurs génératifs (GEO)
+- answer engine optimisation (AEO) → optimisation pour les moteurs de réponse (AEO)
+- AI agent → agent IA
+- agentic AI → IA agentique
+- connector → connecteur
+- plugin → plugin
+- workspace → espace de travail
+- dashboard → tableau de bord
+- hallucination (AI) → hallucination
+- context engineering → ingénierie du contexte
+- localisation → localisation
+- go-to-market → go-to-market
+- category (product category) → catégorie
+- brand-locked creative → créatif verrouillé par la marque
+- pre-scored concepts → concepts pré-scorés
+- home → accueil
+- blog → blog
+- case studies → études de cas
+- reference → référence
+- last updated → dernière mise à jour
+
+## de
+Style: Formal Sie; German nouns capitalised. Use compounds with hyphens for English loans (Marketing-Mix-Modellierung, Engagement-Rate, KI-Agent). Keep common marketing anglicisms (Share of Voice, Insight, Paid Media, Dashboard, Performance-Marketing, Thought Leadership); 'KI' for AI in running text.
+- share of voice → Share of Voice
+- marketing whitespace / whitespace → Marketing-Whitespace
+- consumer tension / tension → Consumer Tension
+- angle (strategic angle) → strategischer Angle
+- persona → Persona
+- proposition → Proposition
+- moment (marketing moment) → Marketing-Moment
+- insight → Insight
+- story (insight story) → Insight-Story
+- clickability → Klickstärke
+- creative pre-testing → Kreativ-Pretest
+- creative fatigue → Creative Fatigue
+- social listening → Social Listening
+- audience research → Zielgruppenforschung
+- ad optimisation → Anzeigenoptimierung
+- ad library / Meta Ad Library → Meta-Werbebibliothek
+- creative brief → Creative Brief
+- case study → Fallstudie
+- competitor analysis → Wettbewerbsanalyse
+- competitive intelligence → Competitive Intelligence
+- marketing intelligence → Marketing Intelligence
+- campaign planning → Kampagnenplanung
+- content pillar → Content-Säule
+- thought leadership → Thought Leadership
+- engagement → Engagement
+- engagement rate → Engagement-Rate
+- benchmark → Benchmark
+- key takeaways → Wichtigste Erkenntnisse
+- FAQ → Häufige Fragen
+- sources → Quellen
+- related reading → verwandte Artikel
+- keep reading → weiterlesen
+- in this article → in diesem Artikel
+- min read → Min. Lesezeit
+- book a demo → Demo buchen
+- book a call → Gespräch vereinbaren
+- try SOMIN → SOMIN testen
+- free trial → kostenlose Testphase
+- pricing → Preise
+- agency → Agentur
+- brand team → Markenteam
+- creator → Creator
+- media buyer → Media-Einkäufer
+- performance marketing → Performance-Marketing
+- paid media → Paid Media
+- organic (organic posts) → organisch
+- reach → Reichweite
+- frequency → Frequenz
+- conversion → Conversion
+- marketing mix modelling (MMM) → Marketing-Mix-Modellierung (MMM)
+- incrementality → Inkrementalität
+- generative engine optimisation (GEO) → Generative Engine Optimization (GEO)
+- answer engine optimisation (AEO) → Answer Engine Optimization (AEO)
+- AI agent → KI-Agent
+- agentic AI → agentische KI
+- connector → Konnektor
+- plugin → Plugin
+- workspace → Workspace
+- dashboard → Dashboard
+- hallucination (AI) → Halluzination
+- context engineering → Context Engineering
+- localisation → Lokalisierung
+- go-to-market → Go-to-Market
+- category (product category) → Kategorie
+- brand-locked creative → markengebundenes Creative
+- pre-scored concepts → vorab bewertete Konzepte
+- home → Startseite
+- blog → Blog
+- case studies → Fallstudien
+- reference → Referenz
+- last updated → zuletzt aktualisiert
+
+## pt
+Style: Brazilian Portuguese (você/impersonal; 'agendar', 'time', 'mídia', 'conteúdo', 'planejamento', 'otimização', 'engajamento'); not European spellings (not 'equipa', 'ecrã', 'facto'). Keep Brazilian marketing anglicisms (share of voice, insight, benchmark, performance, plugin, workspace in UI is acceptable but prefer 'espaço de trabalho').
+- share of voice → share of voice
+- marketing whitespace / whitespace → espaço em branco de marketing
+- consumer tension / tension → tensão do consumidor
+- angle (strategic angle) → ângulo estratégico
+- persona → persona
+- proposition → proposição
+- moment (marketing moment) → momento de marketing
+- insight → insight
+- story (insight story) → história de insight
+- clickability → potencial de clique
+- creative pre-testing → pré-teste de criativos
+- creative fatigue → fadiga criativa
+- social listening → social listening
+- audience research → pesquisa de audiência
+- ad optimisation → otimização de anúncios
+- ad library / Meta Ad Library → Biblioteca de Anúncios da Meta
+- creative brief → briefing criativo
+- case study → estudo de caso
+- competitor analysis → análise de concorrentes
+- competitive intelligence → inteligência competitiva
+- marketing intelligence → inteligência de marketing
+- campaign planning → planejamento de campanhas
+- content pillar → pilar de conteúdo
+- thought leadership → liderança de pensamento
+- engagement → engajamento
+- engagement rate → taxa de engajamento
+- benchmark → benchmark
+- key takeaways → principais conclusões
+- FAQ → perguntas frequentes
+- sources → fontes
+- related reading → leituras relacionadas
+- keep reading → continue lendo
+- in this article → neste artigo
+- min read → min de leitura
+- book a demo → agendar uma demo
+- book a call → agendar uma conversa
+- try SOMIN → experimente o SOMIN
+- free trial → teste grátis
+- pricing → preços
+- agency → agência
+- brand team → time de marca
+- creator → criador
+- media buyer → comprador de mídia
+- performance marketing → marketing de performance
+- paid media → mídia paga
+- organic (organic posts) → orgânico
+- reach → alcance
+- frequency → frequência
+- conversion → conversão
+- marketing mix modelling (MMM) → modelagem de mix de marketing (MMM)
+- incrementality → incrementalidade
+- generative engine optimisation (GEO) → otimização para mecanismos generativos (GEO)
+- answer engine optimisation (AEO) → otimização para mecanismos de resposta (AEO)
+- AI agent → agente de IA
+- agentic AI → IA agêntica
+- connector → conector
+- plugin → plugin
+- workspace → espaço de trabalho
+- dashboard → painel
+- hallucination (AI) → alucinação
+- context engineering → engenharia de contexto
+- localisation → localização
+- go-to-market → go-to-market
+- category (product category) → categoria
+- brand-locked creative → criativo travado à marca
+- pre-scored concepts → conceitos pré-pontuados
+- home → início
+- blog → blog
+- case studies → estudos de caso
+- reference → referência
+- last updated → última atualização

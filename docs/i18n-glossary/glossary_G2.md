@@ -1,0 +1,297 @@
+# Glossary for th, vi, id, ms (use these renderings consistently)
+
+## th
+Style: Formal register (ค่ะ/ครับ-neutral, no particles in UI copy); no spaces between Thai words but space around Latin terms and numbers. Thai marketers transliterate most platform terms (อินไซต์, เอเจนซี่, เพอร์ซอน่า); keep Share of Voice, AI, GEO, AEO, MMM in Latin.
+- share of voice → Share of Voice
+- marketing whitespace / whitespace → ช่องว่างทางการตลาด
+- consumer tension / tension → ความขัดแย้งในใจผู้บริโภค
+- angle (strategic angle) → แองเกิลเชิงกลยุทธ์
+- persona → เพอร์โซน่า
+- proposition → ข้อเสนอคุณค่า
+- moment (marketing moment) → โมเมนต์ทางการตลาด
+- insight → อินไซต์
+- story (insight story) → สตอรี่อินไซต์
+- clickability → ความน่าคลิก
+- creative pre-testing → การทดสอบครีเอทีฟล่วงหน้า
+- creative fatigue → ความล้าของครีเอทีฟ
+- social listening → โซเชียลลิสเซนนิ่ง
+- audience research → การวิจัยกลุ่มเป้าหมาย
+- ad optimisation → การเพิ่มประสิทธิภาพโฆษณา
+- ad library / Meta Ad Library → ไลบรารีโฆษณา Meta
+- creative brief → ครีเอทีฟบรีฟ
+- case study → กรณีศึกษา
+- competitor analysis → การวิเคราะห์คู่แข่ง
+- competitive intelligence → การวิเคราะห์ข้อมูลคู่แข่ง
+- marketing intelligence → ข้อมูลอัจฉริยะทางการตลาด
+- campaign planning → การวางแผนแคมเปญ
+- content pillar → เสาหลักคอนเทนต์
+- thought leadership → ภาวะผู้นำทางความคิด
+- engagement → เอนเกจเมนต์
+- engagement rate → อัตราเอนเกจเมนต์
+- benchmark → เบนช์มาร์ก
+- key takeaways → ประเด็นสำคัญ
+- FAQ → คำถามที่พบบ่อย
+- sources → แหล่งที่มา
+- related reading → บทความที่เกี่ยวข้อง
+- keep reading → อ่านต่อ
+- in this article → ในบทความนี้
+- min read → อ่าน {n} นาที (put the number where {n} is; in segments the number is a placeholder like {1})
+- book a demo → จองเดโม่
+- book a call → จองนัดโทร
+- try SOMIN → ทดลองใช้ SOMIN
+- free trial → ทดลองใช้ฟรี
+- pricing → ราคา
+- agency → เอเจนซี่
+- brand team → ทีมแบรนด์
+- creator → ครีเอเตอร์
+- media buyer → มีเดียบายเออร์
+- performance marketing → เพอร์ฟอร์แมนซ์มาร์เก็ตติ้ง
+- paid media → เพดมีเดีย
+- organic (organic posts) → ออร์แกนิก
+- reach → การเข้าถึง
+- frequency → ความถี่
+- conversion → คอนเวอร์ชัน
+- marketing mix modelling (MMM) → การสร้างแบบจำลองส่วนผสมทางการตลาด (MMM)
+- incrementality → ผลลัพธ์ส่วนเพิ่ม
+- generative engine optimisation (GEO) → การเพิ่มประสิทธิภาพเพื่อ Generative Engine (GEO)
+- answer engine optimisation (AEO) → การเพิ่มประสิทธิภาพเพื่อ Answer Engine (AEO)
+- AI agent → AI เอเจนต์
+- agentic AI → เอเจนติก AI
+- connector → ตัวเชื่อมต่อ
+- plugin → ปลั๊กอิน
+- workspace → เวิร์กสเปซ
+- dashboard → แดชบอร์ด
+- hallucination (AI) → ฮัลลูซิเนชัน
+- context engineering → วิศวกรรมบริบท
+- localisation → การปรับให้เข้ากับท้องถิ่น
+- go-to-market → กลยุทธ์ออกสู่ตลาด
+- category (product category) → หมวดหมู่สินค้า
+- brand-locked creative → ครีเอทีฟที่ล็อกตามแบรนด์
+- pre-scored concepts → คอนเซปต์ที่ให้คะแนนล่วงหน้า
+- home → หน้าแรก
+- blog → บล็อก
+- case studies → กรณีศึกษา
+- reference → เอกสารอ้างอิง
+- last updated → อัปเดตล่าสุด
+
+## vi
+Style: Formal but concise; Vietnamese marketers keep many English terms (insight, persona, agency, performance marketing, paid media, media buyer, social listening, thought leadership). Use sentence case; keep acronyms in Latin.
+- share of voice → Share of Voice
+- marketing whitespace / whitespace → khoảng trống marketing
+- consumer tension / tension → mâu thuẫn người tiêu dùng
+- angle (strategic angle) → góc tiếp cận chiến lược
+- persona → persona
+- proposition → đề xuất giá trị
+- moment (marketing moment) → khoảnh khắc marketing
+- insight → insight
+- story (insight story) → câu chuyện insight
+- clickability → khả năng thu hút nhấp chuột
+- creative pre-testing → kiểm thử creative trước
+- creative fatigue → sự mệt mỏi của creative
+- social listening → social listening
+- audience research → nghiên cứu đối tượng mục tiêu
+- ad optimisation → tối ưu quảng cáo
+- ad library / Meta Ad Library → Thư viện quảng cáo Meta
+- creative brief → brief sáng tạo
+- case study → nghiên cứu điển hình
+- competitor analysis → phân tích đối thủ cạnh tranh
+- competitive intelligence → tình báo cạnh tranh
+- marketing intelligence → trí tuệ marketing
+- campaign planning → lập kế hoạch chiến dịch
+- content pillar → trụ cột nội dung
+- thought leadership → thought leadership
+- engagement → tương tác
+- engagement rate → tỷ lệ tương tác
+- benchmark → điểm chuẩn
+- key takeaways → những điểm chính
+- FAQ → câu hỏi thường gặp
+- sources → nguồn
+- related reading → bài viết liên quan
+- keep reading → đọc tiếp
+- in this article → trong bài viết này
+- min read → phút đọc
+- book a demo → đặt lịch demo
+- book a call → đặt lịch gọi
+- try SOMIN → dùng thử SOMIN
+- free trial → dùng thử miễn phí
+- pricing → bảng giá
+- agency → agency
+- brand team → đội ngũ thương hiệu
+- creator → nhà sáng tạo nội dung
+- media buyer → media buyer
+- performance marketing → performance marketing
+- paid media → truyền thông trả phí
+- organic (organic posts) → organic
+- reach → lượt tiếp cận
+- frequency → tần suất
+- conversion → chuyển đổi
+- marketing mix modelling (MMM) → mô hình hóa marketing mix (MMM)
+- incrementality → hiệu quả gia tăng
+- generative engine optimisation (GEO) → tối ưu hóa cho công cụ tạo sinh (GEO)
+- answer engine optimisation (AEO) → tối ưu hóa cho công cụ trả lời (AEO)
+- AI agent → AI agent
+- agentic AI → agentic AI
+- connector → trình kết nối
+- plugin → plugin
+- workspace → không gian làm việc
+- dashboard → bảng điều khiển
+- hallucination (AI) → ảo giác
+- context engineering → kỹ thuật ngữ cảnh
+- localisation → bản địa hóa
+- go-to-market → chiến lược go-to-market
+- category (product category) → ngành hàng
+- brand-locked creative → creative khóa theo thương hiệu
+- pre-scored concepts → ý tưởng đã được chấm điểm trước
+- home → trang chủ
+- blog → blog
+- case studies → nghiên cứu điển hình
+- reference → tài liệu tham khảo
+- last updated → cập nhật lần cuối
+
+## id
+Style: Bahasa Indonesia, formal-neutral (Anda). Indonesian marketers use many English terms as-is (share of voice, insight, engagement, paid media, performance marketing, thought leadership); prefer Indonesian forms (kampanye, konversi, jangkauan, optimalisasi). Use 'konsumen' for consumer, not 'pengguna'.
+- share of voice → Share of Voice
+- marketing whitespace / whitespace → whitespace pemasaran
+- consumer tension / tension → dilema konsumen
+- angle (strategic angle) → angle strategis
+- persona → persona
+- proposition → proposisi
+- moment (marketing moment) → momen pemasaran
+- insight → insight
+- story (insight story) → cerita insight
+- clickability → daya klik
+- creative pre-testing → pra-pengujian kreatif
+- creative fatigue → kejenuhan kreatif
+- social listening → social listening
+- audience research → riset audiens
+- ad optimisation → optimalisasi iklan
+- ad library / Meta Ad Library → Perpustakaan Iklan Meta
+- creative brief → brief kreatif
+- case study → studi kasus
+- competitor analysis → analisis kompetitor
+- competitive intelligence → intelijen kompetitif
+- marketing intelligence → intelijen pemasaran
+- campaign planning → perencanaan kampanye
+- content pillar → pilar konten
+- thought leadership → thought leadership
+- engagement → engagement
+- engagement rate → engagement rate
+- benchmark → benchmark
+- key takeaways → poin penting
+- FAQ → pertanyaan yang sering diajukan
+- sources → sumber
+- related reading → bacaan terkait
+- keep reading → lanjutkan membaca
+- in this article → dalam artikel ini
+- min read → menit baca
+- book a demo → jadwalkan demo
+- book a call → jadwalkan panggilan
+- try SOMIN → coba SOMIN
+- free trial → uji coba gratis
+- pricing → harga
+- agency → agensi
+- brand team → tim merek
+- creator → kreator
+- media buyer → media buyer
+- performance marketing → performance marketing
+- paid media → paid media
+- organic (organic posts) → organik
+- reach → jangkauan
+- frequency → frekuensi
+- conversion → konversi
+- marketing mix modelling (MMM) → pemodelan bauran pemasaran (MMM)
+- incrementality → inkrementalitas
+- generative engine optimisation (GEO) → optimalisasi mesin generatif (GEO)
+- answer engine optimisation (AEO) → optimalisasi mesin jawaban (AEO)
+- AI agent → agen AI
+- agentic AI → agentic AI
+- connector → konektor
+- plugin → plugin
+- workspace → workspace
+- dashboard → dasbor
+- hallucination (AI) → halusinasi
+- context engineering → rekayasa konteks
+- localisation → lokalisasi
+- go-to-market → go-to-market
+- category (product category) → kategori
+- brand-locked creative → kreatif terkunci brand
+- pre-scored concepts → konsep yang sudah diberi skor
+- home → beranda
+- blog → blog
+- case studies → studi kasus
+- reference → referensi
+- last updated → terakhir diperbarui
+
+## ms
+Style: Bahasa Malaysia, NOT Indonesian: use 'pengguna' for consumer, 'jenama' for brand, 'kempen', 'percuma', 'laman', 'kajian', 'penglibatan', 'penyetempatan', 'pengoptimuman', 'perisikan'. Keep widely used English marketing terms (share of voice, insight, social listening, performance marketing, thought leadership).
+- share of voice → Share of Voice
+- marketing whitespace / whitespace → ruang kosong pemasaran
+- consumer tension / tension → ketegangan pengguna
+- angle (strategic angle) → sudut strategik
+- persona → persona
+- proposition → proposisi
+- moment (marketing moment) → momen pemasaran
+- insight → insight
+- story (insight story) → kisah insight
+- clickability → daya klik
+- creative pre-testing → pra-ujian kreatif
+- creative fatigue → kejemuan kreatif
+- social listening → social listening
+- audience research → kajian khalayak
+- ad optimisation → pengoptimuman iklan
+- ad library / Meta Ad Library → Perpustakaan Iklan Meta
+- creative brief → taklimat kreatif
+- case study → kajian kes
+- competitor analysis → analisis pesaing
+- competitive intelligence → perisikan persaingan
+- marketing intelligence → perisikan pemasaran
+- campaign planning → perancangan kempen
+- content pillar → pilar kandungan
+- thought leadership → kepimpinan pemikiran
+- engagement → penglibatan
+- engagement rate → kadar penglibatan
+- benchmark → penanda aras
+- key takeaways → perkara penting
+- FAQ → soalan lazim
+- sources → sumber
+- related reading → bacaan berkaitan
+- keep reading → teruskan membaca
+- in this article → dalam artikel ini
+- min read → minit bacaan
+- book a demo → tempah demo
+- book a call → tempah panggilan
+- try SOMIN → cuba SOMIN
+- free trial → percubaan percuma
+- pricing → harga
+- agency → agensi
+- brand team → pasukan jenama
+- creator → pencipta kandungan
+- media buyer → pembeli media
+- performance marketing → performance marketing
+- paid media → media berbayar
+- organic (organic posts) → organik
+- reach → capaian
+- frequency → frekuensi
+- conversion → penukaran
+- marketing mix modelling (MMM) → pemodelan bauran pemasaran (MMM)
+- incrementality → inkrementaliti
+- generative engine optimisation (GEO) → pengoptimuman enjin generatif (GEO)
+- answer engine optimisation (AEO) → pengoptimuman enjin jawapan (AEO)
+- AI agent → ejen AI
+- agentic AI → AI agentik
+- connector → penyambung
+- plugin → pemalam
+- workspace → ruang kerja
+- dashboard → papan pemuka
+- hallucination (AI) → halusinasi
+- context engineering → kejuruteraan konteks
+- localisation → penyetempatan
+- go-to-market → go-to-market
+- category (product category) → kategori
+- brand-locked creative → kreatif terkunci jenama
+- pre-scored concepts → konsep yang telah dinilai awal
+- home → laman utama
+- blog → blog
+- case studies → kajian kes
+- reference → rujukan
+- last updated → terakhir dikemas kini

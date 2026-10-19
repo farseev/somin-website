@@ -1,0 +1,297 @@
+# Glossary for hi, fil, ar, ru (use these renderings consistently)
+
+## hi
+Style: Devanagari with standard Hindi business register; keep AI, ROI, CTR, GEO, AEO, MMM, SOMIN in Latin. Transliterate common marketing terms into Devanagari (इनसाइट, एंगेजमेंट, डैशबोर्ड) as Indian marketers do; use the danda (।) for sentence ends.
+- share of voice → शेयर ऑफ़ वॉइस
+- marketing whitespace / whitespace → मार्केटिंग व्हाइटस्पेस
+- consumer tension / tension → उपभोक्ता तनाव
+- angle (strategic angle) → रणनीतिक एंगल
+- persona → पर्सोना
+- proposition → प्रपोज़िशन
+- moment (marketing moment) → मार्केटिंग मोमेंट
+- insight → इनसाइट
+- story (insight story) → इनसाइट स्टोरी
+- clickability → क्लिक क्षमता
+- creative pre-testing → क्रिएटिव प्री-टेस्टिंग
+- creative fatigue → क्रिएटिव फ़ैटीग
+- social listening → सोशल लिसनिंग
+- audience research → ऑडियंस रिसर्च
+- ad optimisation → विज्ञापन ऑप्टिमाइज़ेशन
+- ad library / Meta Ad Library → Meta विज्ञापन लाइब्रेरी
+- creative brief → क्रिएटिव ब्रीफ़
+- case study → केस स्टडी
+- competitor analysis → प्रतिस्पर्धी विश्लेषण
+- competitive intelligence → प्रतिस्पर्धी इंटेलिजेंस
+- marketing intelligence → मार्केटिंग इंटेलिजेंस
+- campaign planning → कैंपेन प्लानिंग
+- content pillar → कंटेंट पिलर
+- thought leadership → थॉट लीडरशिप
+- engagement → एंगेजमेंट
+- engagement rate → एंगेजमेंट रेट
+- benchmark → बेंचमार्क
+- key takeaways → मुख्य बातें
+- FAQ → अक्सर पूछे जाने वाले प्रश्न
+- sources → स्रोत
+- related reading → संबंधित लेख
+- keep reading → आगे पढ़ें
+- in this article → इस लेख में
+- min read → मिनट पढ़ें
+- book a demo → डेमो बुक करें
+- book a call → कॉल बुक करें
+- try SOMIN → SOMIN आज़माएँ
+- free trial → निःशुल्क ट्रायल
+- pricing → मूल्य निर्धारण
+- agency → एजेंसी
+- brand team → ब्रांड टीम
+- creator → क्रिएटर
+- media buyer → मीडिया बायर
+- performance marketing → परफ़ॉर्मेंस मार्केटिंग
+- paid media → पेड मीडिया
+- organic (organic posts) → ऑर्गेनिक
+- reach → रीच
+- frequency → फ़्रीक्वेंसी
+- conversion → कन्वर्ज़न
+- marketing mix modelling (MMM) → मार्केटिंग मिक्स मॉडलिंग (MMM)
+- incrementality → इंक्रीमेंटैलिटी
+- generative engine optimisation (GEO) → जेनरेटिव इंजन ऑप्टिमाइज़ेशन (GEO)
+- answer engine optimisation (AEO) → आंसर इंजन ऑप्टिमाइज़ेशन (AEO)
+- AI agent → AI एजेंट
+- agentic AI → एजेंटिक AI
+- connector → कनेक्टर
+- plugin → प्लगइन
+- workspace → वर्कस्पेस
+- dashboard → डैशबोर्ड
+- hallucination (AI) → हैलुसिनेशन
+- context engineering → कॉन्टेक्स्ट इंजीनियरिंग
+- localisation → स्थानीयकरण
+- go-to-market → गो-टू-मार्केट
+- category (product category) → श्रेणी
+- brand-locked creative → ब्रांड-लॉक्ड क्रिएटिव
+- pre-scored concepts → पहले से स्कोर किए गए कॉन्सेप्ट
+- home → होम
+- blog → ब्लॉग
+- case studies → केस स्टडीज़
+- reference → संदर्भ
+- last updated → अंतिम अपडेट
+
+## fil
+Style: Tagalog business register as Philippine marketers write it: most marketing terms stay English (share of voice, engagement, reach, case study, creator, agency); use Filipino only for connective/UI words (mga, ng, sa, libreng, ituloy ang pagbabasa). Use 'po' only in formal address, not in UI labels.
+- share of voice → Share of Voice
+- marketing whitespace / whitespace → marketing whitespace
+- consumer tension / tension → tensyon ng konsyumer
+- angle (strategic angle) → strategic angle
+- persona → persona
+- proposition → proposisyon
+- moment (marketing moment) → marketing moment
+- insight → insight
+- story (insight story) → insight story
+- clickability → clickability
+- creative pre-testing → creative pre-testing
+- creative fatigue → creative fatigue
+- social listening → social listening
+- audience research → audience research
+- ad optimisation → ad optimization
+- ad library / Meta Ad Library → Meta Ad Library
+- creative brief → creative brief
+- case study → case study
+- competitor analysis → competitor analysis
+- competitive intelligence → competitive intelligence
+- marketing intelligence → marketing intelligence
+- campaign planning → campaign planning
+- content pillar → content pillar
+- thought leadership → thought leadership
+- engagement → engagement
+- engagement rate → engagement rate
+- benchmark → benchmark
+- key takeaways → mga pangunahing aral
+- FAQ → mga madalas itanong
+- sources → mga pinagmulan
+- related reading → kaugnay na babasahin
+- keep reading → ituloy ang pagbabasa
+- in this article → sa artikulong ito
+- min read → minutong pagbabasa
+- book a demo → mag-book ng demo
+- book a call → mag-book ng call
+- try SOMIN → subukan ang SOMIN
+- free trial → libreng trial
+- pricing → presyo
+- agency → agency
+- brand team → brand team
+- creator → creator
+- media buyer → media buyer
+- performance marketing → performance marketing
+- paid media → paid media
+- organic (organic posts) → organic
+- reach → reach
+- frequency → frequency
+- conversion → conversion
+- marketing mix modelling (MMM) → marketing mix modelling (MMM)
+- incrementality → incrementality
+- generative engine optimisation (GEO) → generative engine optimization (GEO)
+- answer engine optimisation (AEO) → answer engine optimization (AEO)
+- AI agent → AI agent
+- agentic AI → agentic AI
+- connector → connector
+- plugin → plugin
+- workspace → workspace
+- dashboard → dashboard
+- hallucination (AI) → hallucination
+- context engineering → context engineering
+- localisation → lokalisasyon
+- go-to-market → go-to-market
+- category (product category) → kategorya
+- brand-locked creative → brand-locked creative
+- pre-scored concepts → mga concept na may paunang score
+- home → home
+- blog → blog
+- case studies → mga case study
+- reference → sanggunian
+- last updated → huling na-update
+
+## ar
+Style: Modern Standard Arabic, right-to-left; keep Latin acronyms and brand names (SOMIN, AI where needed, GEO, AEO, MMM) in Latin script inside Arabic text. Use Western digits (0-9) as is common in Gulf/MENA marketing; Arabic comma (،) and question mark (؟). Prefer the definite form for UI nouns (المصادر, الأسعار).
+- share of voice → حصة الصوت
+- marketing whitespace / whitespace → الفجوة التسويقية
+- consumer tension / tension → توتر المستهلك
+- angle (strategic angle) → الزاوية الاستراتيجية
+- persona → الشخصية المستهدفة
+- proposition → عرض القيمة
+- moment (marketing moment) → اللحظة التسويقية
+- insight → رؤية معمّقة
+- story (insight story) → قصة الرؤية
+- clickability → القابلية للنقر
+- creative pre-testing → الاختبار المسبق للمواد الإبداعية
+- creative fatigue → إرهاق المحتوى الإبداعي
+- social listening → الاستماع الاجتماعي
+- audience research → أبحاث الجمهور
+- ad optimisation → تحسين الإعلانات
+- ad library / Meta Ad Library → مكتبة إعلانات Meta
+- creative brief → الموجز الإبداعي
+- case study → دراسة حالة
+- competitor analysis → تحليل المنافسين
+- competitive intelligence → الذكاء التنافسي
+- marketing intelligence → الذكاء التسويقي
+- campaign planning → تخطيط الحملات
+- content pillar → ركيزة المحتوى
+- thought leadership → القيادة الفكرية
+- engagement → التفاعل
+- engagement rate → معدل التفاعل
+- benchmark → المعيار المرجعي
+- key takeaways → أبرز النقاط
+- FAQ → الأسئلة الشائعة
+- sources → المصادر
+- related reading → قراءات ذات صلة
+- keep reading → تابع القراءة
+- in this article → في هذا المقال
+- min read → دقائق قراءة (adapt to the number)
+- book a demo → احجز عرضًا تجريبيًا
+- book a call → احجز مكالمة
+- try SOMIN → جرّب SOMIN
+- free trial → تجربة مجانية
+- pricing → الأسعار
+- agency → الوكالة
+- brand team → فريق العلامة التجارية
+- creator → صانع المحتوى
+- media buyer → مشتري الوسائط الإعلانية
+- performance marketing → التسويق بالأداء
+- paid media → الإعلام المدفوع
+- organic (organic posts) → العضوي
+- reach → الوصول
+- frequency → التكرار
+- conversion → التحويل
+- marketing mix modelling (MMM) → نمذجة المزيج التسويقي (MMM)
+- incrementality → الأثر الإضافي
+- generative engine optimisation (GEO) → تحسين المحركات التوليدية (GEO)
+- answer engine optimisation (AEO) → تحسين محركات الإجابة (AEO)
+- AI agent → وكيل ذكاء اصطناعي
+- agentic AI → الذكاء الاصطناعي الوكيلي
+- connector → موصّل
+- plugin → إضافة
+- workspace → مساحة العمل
+- dashboard → لوحة المعلومات
+- hallucination (AI) → الهلوسة
+- context engineering → هندسة السياق
+- localisation → التوطين
+- go-to-market → استراتيجية الطرح في السوق
+- category (product category) → الفئة
+- brand-locked creative → محتوى إبداعي مقيّد بالعلامة التجارية
+- pre-scored concepts → مفاهيم مُقيَّمة مسبقًا
+- home → الرئيسية
+- blog → المدونة
+- case studies → دراسات الحالة
+- reference → المراجع
+- last updated → آخر تحديث
+
+## ru
+Style: Formal вы; sentence case; use «» quotes and em-dash with spaces. Russian marketers use both Russian and English-derived terms (бенчмарк, инсайт, креатив, дашборд, performance-маркетинг, медиабайер); keep Latin acronyms (GEO, AEO, MMM, AI where kept) and brand names.
+- share of voice → доля голоса
+- marketing whitespace / whitespace → маркетинговое белое пятно
+- consumer tension / tension → потребительское противоречие
+- angle (strategic angle) → стратегический ракурс
+- persona → персона
+- proposition → ценностное предложение
+- moment (marketing moment) → маркетинговый момент
+- insight → инсайт
+- story (insight story) → инсайт-история
+- clickability → кликабельность
+- creative pre-testing → пре-тестирование креативов
+- creative fatigue → выгорание креативов
+- social listening → социальное прослушивание
+- audience research → исследование аудитории
+- ad optimisation → оптимизация рекламы
+- ad library / Meta Ad Library → Библиотека рекламы Meta
+- creative brief → креативный бриф
+- case study → кейс
+- competitor analysis → анализ конкурентов
+- competitive intelligence → конкурентная аналитика
+- marketing intelligence → маркетинговая аналитика
+- campaign planning → планирование кампаний
+- content pillar → контентный столп
+- thought leadership → экспертное лидерство
+- engagement → вовлечённость
+- engagement rate → уровень вовлечённости
+- benchmark → бенчмарк
+- key takeaways → главное
+- FAQ → часто задаваемые вопросы
+- sources → источники
+- related reading → читайте также
+- keep reading → читать дальше
+- in this article → в этой статье
+- min read → мин чтения
+- book a demo → записаться на демо
+- book a call → записаться на звонок
+- try SOMIN → попробовать SOMIN
+- free trial → бесплатный пробный период
+- pricing → тарифы
+- agency → агентство
+- brand team → бренд-команда
+- creator → креатор
+- media buyer → медиабайер
+- performance marketing → performance-маркетинг
+- paid media → платные медиа
+- organic (organic posts) → органический
+- reach → охват
+- frequency → частота
+- conversion → конверсия
+- marketing mix modelling (MMM) → моделирование маркетингового микса (MMM)
+- incrementality → инкрементальность
+- generative engine optimisation (GEO) → оптимизация под генеративные движки (GEO)
+- answer engine optimisation (AEO) → оптимизация под ответные системы (AEO)
+- AI agent → ИИ-агент
+- agentic AI → агентный ИИ
+- connector → коннектор
+- plugin → плагин
+- workspace → рабочее пространство
+- dashboard → дашборд
+- hallucination (AI) → галлюцинация
+- context engineering → контекст-инжиниринг
+- localisation → локализация
+- go-to-market → выход на рынок
+- category (product category) → категория
+- brand-locked creative → креатив, жёстко привязанный к бренду
+- pre-scored concepts → концепции с предварительной оценкой
+- home → главная
+- blog → блог
+- case studies → кейсы
+- reference → справочные материалы
+- last updated → последнее обновление
