@@ -134,10 +134,28 @@
 .trace-brief a{color:#2DBF9C;font-family:var(--se-display);font-weight:800;text-decoration:none;}
 .trace-need{max-width:var(--se-max);margin:10px auto 0;color:var(--se-white-soft);font-size:13px;}
 .trace-need[hidden]{display:none;}
+.se-hero .trace{padding:0;background:transparent;border:0;}
+.se-hero .trace-head{margin:0 0 12px;grid-template-columns:1fr;gap:4px 12px;}
+.se-hero .trace-cats{grid-column:1;grid-row:auto;flex-direction:row;flex-wrap:wrap;gap:2px 14px;}
+.somin-embed .se-hero .trace-head h2{font-size:clamp(18px,1.7vw,26px);}
+.se-hero .trace-stage{height:540px;max-width:none;}
+.somin-embed .se-hero .trace-tile{width:30%;max-width:190px;padding:7px 8px 8px;}
+.somin-embed .se-hero .trace-tile span{font-size:12px;}
+.se-hero-replay{margin-top:36px;max-width:860px;}
+@media (max-width:900px){
+  .somin-embed .se-hero-top{display:flex;flex-direction:column;}
+  .somin-embed .se-hero-copy{display:contents;}
+  .somin-embed .se-hero-copy > *{order:3;}
+  .somin-embed .se-hero-copy > .se-eyebrow,
+  .somin-embed .se-hero-copy > h1,
+  .somin-embed .se-hero-copy > .se-hero-sub{order:1;}
+  .somin-embed .se-hero-visual{order:2;max-width:none;}
+}
 @media (max-width:800px){
   .trace-head{grid-template-columns:1fr;}
   .trace-cats{grid-column:1;grid-row:auto;flex-direction:row;flex-wrap:wrap;}
   .trace-stage{height:820px;}
+  .se-hero .trace-stage{height:820px;}
   .somin-embed .trace-tile{width:46%;max-width:none;}
   .trace-brief{flex-direction:column;align-items:flex-start;}
   .somin-embed .trace-card{position:fixed;left:12px;right:12px;bottom:12px;top:auto;width:auto;margin:0;z-index:40;max-height:42vh;overflow:auto;}
@@ -186,49 +204,7 @@
         <!--mm:research compact="1"-->
         
       </div>
-      <div class="se-hero-visual se-reveal" data-nosnippet="">
-        <div class="se-demo se-demo-video" id="se-demo-1" role="group" aria-label="SOMIN in action: a real agent run on Grab Singapore data" data-replay-box>
-          <div class="se-demo-bar">
-            <span class="se-shot-dot" aria-hidden="true"></span><span class="se-shot-dot" aria-hidden="true"></span><span class="se-shot-dot" aria-hidden="true"></span>
-            <em><b>Real run</b> · Grab Singapore</em>
-            <button type="button" class="se-vid-toggle mm-toggle" aria-pressed="false" aria-label="Play replay"><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
-          </div>
-          <div class="se-demo-video-wrap">
-            <video class="se-hero-video" data-replay data-src="/assets/video/prompt-by-prompt.mp4" poster="/assets/video/prompt-by-prompt.webp" muted playsinline loop preload="none" width="1152" height="432" aria-label="SOMIN agents answer the four questions for GrabFood from data: who we talk to, what concerns them, why, and the one line that says it" style="aspect-ratio:1152/432"></video>
-          </div>
-          <div class="se-demo-body se-demo-video-body">
-            <div class="se-demo-cap" data-i18n="vis_out_label">What you get</div>
-            <div class="se-hero-outs">
-              <div class="se-hero-out" data-i18n="vis_out1">3 gaps your competitors ignore</div>
-              <div class="se-hero-out" data-i18n="vis_out2">12 on-brand ideas, scored</div>
-              <div class="se-hero-out" data-i18n="vis_out3">1 brief, ready to share</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <a class="mm-plugin-card mm-plugin-card--wide se-reveal" href="/marketing-mondays-plugin/" data-lead-form="plugin" data-gtm-id="home_hero_plugin">
-      <span class="mm-plugin-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3v4M15 3v4"/><path d="M6 7h12v4a6 6 0 01-12 0z"/><path d="M12 17v4"/></svg></span>
-      <span class="mm-plugin-text"><span class="k">Free plugin for Claude</span><b>Take the agentic marketing team home</b><span>8 Marketing Mondays skills on your SOMIN data.</span></span>
-      <span class="mm-plugin-steps" aria-hidden="true"><i>Listen</i><i>Decode</i><i>Decide</i><i>Make</i><i>Ship</i></span>
-      <span class="mm-plugin-cta">Get it free</span>
-    </a>
-    <div class="se-hero-stats se-reveal" data-nosnippet="">
-      <div class="se-hero-stat">
-        <div class="se-num">13<span class="se-unit" data-i18n="stat1_unit">min</span></div>
-        <div class="se-label" data-i18n="stat1_label">From brief to ideas</div>
-      </div>
-      <div class="se-hero-stat">
-        <div class="se-num">75<span class="se-unit" data-i18n="stat2_unit">% lower</span></div>
-        <div class="se-label" data-i18n="stat2_label">Research cost</div>
-      </div>
-      <div class="se-hero-stat">
-        <div class="se-num">11+<span class="se-unit" data-i18n="stat3_unit">markets</span></div>
-        <div class="se-label" data-i18n="stat3_label">APAC · MENA · Europe</div>
-      </div>
-    </div>
-  </header>
-
+      <div class="se-hero-visual se-reveal">
   <section class="trace" id="trace" aria-labelledby="trace-h2">
     <div class="trace-head">
       <p class="trace-kicker" data-i18n="trace_kicker">Play with the data</p>
@@ -273,6 +249,50 @@
       <span data-i18n="tr_bank_skip">They all say start saving. None say what to skip this month.</span>
     </div>
   </section>
+      </div>
+    </div>
+    <div class="se-hero-replay se-reveal" data-nosnippet="">
+        <div class="se-demo se-demo-video" id="se-demo-1" role="group" aria-label="SOMIN in action: a real agent run on Grab Singapore data" data-replay-box>
+          <div class="se-demo-bar">
+            <span class="se-shot-dot" aria-hidden="true"></span><span class="se-shot-dot" aria-hidden="true"></span><span class="se-shot-dot" aria-hidden="true"></span>
+            <em><b>Real run</b> · Grab Singapore</em>
+            <button type="button" class="se-vid-toggle mm-toggle" aria-pressed="false" aria-label="Play replay"><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+          </div>
+          <div class="se-demo-video-wrap">
+            <video class="se-hero-video" data-replay data-src="/assets/video/prompt-by-prompt.mp4" poster="/assets/video/prompt-by-prompt.webp" muted playsinline loop preload="none" width="1152" height="432" aria-label="SOMIN agents answer the four questions for GrabFood from data: who we talk to, what concerns them, why, and the one line that says it" style="aspect-ratio:1152/432"></video>
+          </div>
+          <div class="se-demo-body se-demo-video-body">
+            <div class="se-demo-cap" data-i18n="vis_out_label">What you get</div>
+            <div class="se-hero-outs">
+              <div class="se-hero-out" data-i18n="vis_out1">3 gaps your competitors ignore</div>
+              <div class="se-hero-out" data-i18n="vis_out2">12 on-brand ideas, scored</div>
+              <div class="se-hero-out" data-i18n="vis_out3">1 brief, ready to share</div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <a class="mm-plugin-card mm-plugin-card--wide se-reveal" href="/marketing-mondays-plugin/" data-lead-form="plugin" data-gtm-id="home_hero_plugin">
+      <span class="mm-plugin-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3v4M15 3v4"/><path d="M6 7h12v4a6 6 0 01-12 0z"/><path d="M12 17v4"/></svg></span>
+      <span class="mm-plugin-text"><span class="k">Free plugin for Claude</span><b>Take the agentic marketing team home</b><span>8 Marketing Mondays skills on your SOMIN data.</span></span>
+      <span class="mm-plugin-steps" aria-hidden="true"><i>Listen</i><i>Decode</i><i>Decide</i><i>Make</i><i>Ship</i></span>
+      <span class="mm-plugin-cta">Get it free</span>
+    </a>
+    <div class="se-hero-stats se-reveal" data-nosnippet="">
+      <div class="se-hero-stat">
+        <div class="se-num">13<span class="se-unit" data-i18n="stat1_unit">min</span></div>
+        <div class="se-label" data-i18n="stat1_label">From brief to ideas</div>
+      </div>
+      <div class="se-hero-stat">
+        <div class="se-num">75<span class="se-unit" data-i18n="stat2_unit">% lower</span></div>
+        <div class="se-label" data-i18n="stat2_label">Research cost</div>
+      </div>
+      <div class="se-hero-stat">
+        <div class="se-num">11+<span class="se-unit" data-i18n="stat3_unit">markets</span></div>
+        <div class="se-label" data-i18n="stat3_label">APAC · MENA · Europe</div>
+      </div>
+    </div>
+  </header>
+
   <script>
   (function () {
     var stage = document.getElementById('trace-stage');
@@ -363,18 +383,15 @@
       return text('trace_src_' + kind) || kind;
     }
     function cellsFor() {
-      var narrow = stage.clientWidth < 860;
-      var out = [], i, col, row;
-      if (narrow) {
-        for (i = 0; i < 16; i++) {
-          col = i % 2;
-          row = Math.floor(i / 2);
-          out.push({ x: 3 + col * 50, y: 1.5 + row * 12.2 });
-        }
-      } else {
-        for (row = 0; row < 4; row++) {
-          for (col = 0; col < 4; col++) out.push({ x: 3 + col * 24.2, y: 7 + row * 22.5 });
-        }
+      var w = stage.clientWidth;
+      var cols, rows, x0, y0, xStep, yStep, i, col, row, out = [];
+      if (w >= 980) { cols = 4; rows = 4; x0 = 3; y0 = 7; xStep = 24.2; yStep = 22.5; }
+      else if (w >= 520) { cols = 3; rows = 6; x0 = 3; y0 = 3; xStep = 33; yStep = 15.8; }
+      else { cols = 2; rows = 8; x0 = 3; y0 = 1.5; xStep = 50; yStep = 12.2; }
+      for (i = 0; i < cols * rows; i++) {
+        col = i % cols;
+        row = Math.floor(i / cols);
+        out.push({ x: x0 + col * xStep, y: y0 + row * yStep });
       }
       return out;
     }

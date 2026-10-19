@@ -1039,7 +1039,10 @@ html body .prose details p { margin: 0 0 16px; color: var(--text-2); }
 .lang-switch > summary::-webkit-details-marker { display: none; }
 .lang-switch > summary:hover, .lang-switch[open] > summary { color: #fff; border-color: var(--teal); }
 .lang-switch > summary:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
-.lang-menu { position: absolute; right: 0; top: calc(100% + 8px); list-style: none; margin: 0; padding: 8px; min-width: 210px; max-height: min(70vh, 560px); overflow-y: auto; background: #1A2422; border: 1px solid var(--ink-line); border-radius: 14px; box-shadow: 0 24px 60px rgba(0,0,0,.45); z-index: 950; }
+.lang-menu { position: absolute; right: 0; top: calc(100% + 8px); list-style: none; margin: 0; padding: 8px; min-width: 210px; max-height: min(calc(100dvh - 96px), 720px); overflow-y: auto; display: flex; flex-direction: column; background: #1A2422; border: 1px solid var(--ink-line); border-radius: 14px; box-shadow: 0 24px 60px rgba(0,0,0,.45); z-index: 950; }
+.lang-menu li { order: 2; }
+.lang-menu li:has(a[lang="en"]) { order: 0; }
+.lang-menu li:has(a[lang="ru"]) { order: 1; }
 .lang-menu a { display: block; padding: 8px 12px; border-radius: 8px; color: var(--on-ink-2); text-decoration: none; font-size: 14px; line-height: 1.3; }
 .lang-menu a:hover, .lang-menu a:focus-visible { background: rgba(45,191,156,.12); color: #fff; }
 .lang-menu a[aria-current] { color: var(--teal); font-weight: 700; }
