@@ -65,6 +65,13 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 | `research_venue_click` / `research_profile_click` | Venue chip (AAAI, ACM MM, SIGIR…) or a research profile (Google Scholar, Semantic Scholar, ACM DL) clicked | `link_url` |
 | `replay_play` | Visitor presses play on a session replay (they autoplay muted when on screen) | `cta_text` = replay question |
 | `replay_step_click` | Step tab clicked in the five-step loop player (Listen … Ship) | `cta_text` = step |
+| `ic_intro_view` / `ic_intro_exit` | Home Insight Chain game shown as the first-visit intro screen / left (skip, continue, Esc) | `cta_text` = how it was left, `step` = game step at exit |
+| `ic_brand_switch` | Case-study tab switched in the Insight Chain game | `cta_text` = client |
+| `ic_connect` | A persona was wired to a pain point in the game | `cta_text` = persona → pain point |
+| `ic_angle_pick` | An angle card was picked | `cta_text` = angle, `first_try` = yes / no / miss |
+| `ic_ship` | An expression was dropped into a channel (Facebook, Instagram, LinkedIn, SEO article) | `cta_text` = channel (fb/ig/li/seo), `funnel_stage` = TOFU/MOFU/BOFU |
+| `ic_chain_complete` | A full chain reached the recap (persona → … → channels) | `cta_text` = client · persona, `channels` |
+| `ic_case_click` | "Read the case study" in the game recap (`data-track`) | `cta_text`, `link_url` |
 | `book_call_click` | Any calendly.com link (opens popup) | `link_url` |
 | `login_click` / `platform_click` | Links to cloud.somin.ai | `link_url` |
 | `partner_click` | Strategic-partner logo links (home plate, Vision cards) and the Vision page's redemptive-marketing links (Forbes essay, faithdriven.sg, orthodox.sg) | `link_url`, `cta_text` (partner name on the home plate) |
