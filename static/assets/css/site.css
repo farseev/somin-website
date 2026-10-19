@@ -266,6 +266,11 @@ html.nav-locked { overflow: hidden; }
 .author-box span { color: var(--text-3); font-size: 14px; }
 .post-tags { max-width: 720px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
 .post-tags .tag { color: var(--teal-600); border-color: var(--paper-line); background: #fff; }
+.post-xref { max-width: 720px; margin-top: 28px; }
+.post-xref h2 { font-family: var(--display); font-weight: 800; font-size: 18px; margin: 0 0 12px; color: var(--ink); }
+.post-xref ul { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.post-xref a { display: inline-block; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--paper-line); background: #fff; color: var(--teal-600); font-weight: 600; font-size: 14px; text-decoration: none; }
+.post-xref a:hover { border-color: var(--teal); color: var(--ink); }
 .related { background: var(--paper-2); color: var(--text); padding: 70px 0 90px; border-top: 1px solid var(--paper-line); }
 .related h2 { font-family: var(--display); font-weight: 800; font-size: 26px; margin: 0 0 26px; color: var(--ink); }
 

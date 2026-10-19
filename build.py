@@ -1484,6 +1484,69 @@ def post_card(p, cls='card', feature=False):
             f'<div class="card-body"><span class="card-tag">{E(tag)}</span><h3>{E(p["title"])}</h3><p>{E(p["description"])}</p>{meta}</div></a>')
 
 
+def xref_pools():
+    """Audience heroes, agent/product heroes, and case studies a blog post can point at."""
+    pools = {'brand': [], 'agency': [], 'creator': []}
+    for key, item in CASES['items'].items():
+        page = item.get('page')
+        if not page:
+            continue
+        title = ((item.get('hub') or {}).get('title') or key).strip()
+        if page.startswith('/agencies'):
+            pools['agency'].append((page, title))
+        elif page.startswith('/influencers'):
+            pools['creator'].append((page, title))
+        elif page.startswith('/brands'):
+            pools['brand'].append((page, title))
+    for rows in pools.values():
+        rows.sort()
+    return pools
+
+
+def post_xrefs(meta):
+    """Three links to different SOMIN pages: an audience hero, an agent or product hero, and a case study."""
+    text = ' '.join([meta.get('slug', ''), meta.get('title', ''), ' '.join(meta.get('tags') or [])]).lower()
+    if any(w in text for w in ('agency', 'agencies', 'retainer', 'pitch')):
+        family = 'agency'
+    elif any(w in text for w in ('creator', 'influencer', 'kol', 'ugc')):
+        family = 'creator'
+    else:
+        family = 'brand'
+    audience = {
+        'brand': ('/somin-for-brands/', 'For brands'),
+        'agency': ('/somin-for-agencies/', 'For agencies'),
+        'creator': ('/somin-for-creators/', 'For creators'),
+    }[family]
+    heroes = [
+        ('/ai-agents/', 'AI agents'),
+        ('/somin-strategy/', 'Strategy'),
+        ('/somin-paid-media/', 'Paid Media'),
+        ('/somin-crm/', 'CRM'),
+        ('/somin-reporting/', 'Reporting'),
+        ('/', 'Home'),
+    ]
+    if family == 'creator':
+        heroes = [('/somin-influencer-gmv/', 'Creators')] + heroes
+    n = int(hashlib.sha1(meta['slug'].encode()).hexdigest()[:8], 16)
+    hero = heroes[n % len(heroes)]
+    cases = xref_pools()[family] or xref_pools()['brand']
+    case = cases[n % len(cases)]
+    links = [audience, hero, case]
+    # keep three different URLs even if a rotation collides
+    seen, out = set(), []
+    for href, label in links:
+        if href in seen:
+            continue
+        seen.add(href)
+        out.append((href, label))
+    return out
+
+
+def post_xref_html(meta):
+    items = ''.join(f'<li><a href="{E(href)}">{E(label)}</a></li>' for href, label in post_xrefs(meta))
+    return f'<nav class="post-xref" aria-label="See it on SOMIN"><h2>See it on SOMIN</h2><ul>{items}</ul></nav>'
+
+
 def build_post(meta, body, posts):
     path = url_for(meta['slug'])
     body = add_heading_ids(body, ('h2', 'h3'))
@@ -1527,6 +1590,7 @@ def build_post(meta, body, posts):
     main = f'''<div class="post-wrap"><div class="container"><div class="post-grid-layout">
   <div><article class="prose" data-article>{body}</article>
     <div class="post-tags">{tags_html}</div>
+    {post_xref_html(meta)}
     <div class="author-box"><span class="avatar" aria-hidden="true">{initials(a)}</span><div><strong>{author_link(a)}</strong><span>{E(AUTHOR_ROLE.get(a, 'SOMIN'))}</span>{'' if a == 'SOMIN Team' else f'<a class="author-more" href="/authors/{author_slug(a)}/">More from {E(re.sub(r"^(Prof|Dr)[.] *", "", a).split()[0])} →</a>'}</div></div>
     {research_strip({'compact': '1', 'cls': 'rs-line--light'})}
   </div>
