@@ -65,13 +65,14 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 | `research_venue_click` / `research_profile_click` | Venue chip (AAAI, ACM MM, SIGIR…) or a research profile (Google Scholar, Semantic Scholar, ACM DL) clicked | `link_url` |
 | `replay_play` | Visitor presses play on a session replay (they autoplay muted when on screen) | `cta_text` = replay question |
 | `replay_step_click` | Step tab clicked in the five-step loop player (Listen … Ship) | `cta_text` = step |
-| `ic_intro_view` / `ic_intro_exit` | Home Insight Chain game shown as the first-visit intro screen / left (skip, continue, Esc) | `cta_text` = how it was left, `step` = game step at exit |
+| `ic_play_click` | **Play the game** button under the home hero video (opens the Insight Chain game full screen). Key event: also in GTM trigger *CE - somin_event - key events* (container v56) → Meta custom event. The button carries no `data-gtm-id`, so the cta_click tags (GA4, LinkedIn 20526804, Meta) do not fire for it | `cta_id` = `home_hero_play_game`, `funnel_stage` = engagement |
+| `ic_intro_view` / `ic_intro_exit` | Home Insight Chain game shown as the first-visit screen (desktop only) / closed (skip, back, continue, Esc) | `cta_text` = how it was closed, `step` = game step, `mode` = first_visit / play_button |
 | `ic_brand_switch` | Case-study tab switched in the Insight Chain game | `cta_text` = client |
 | `ic_connect` | A persona was wired to a pain point in the game | `cta_text` = persona → pain point |
 | `ic_angle_pick` | An angle card was picked | `cta_text` = angle, `first_try` = yes / no / miss |
-| `ic_ship` | An expression was dropped into a channel (Facebook, Instagram, LinkedIn, SEO article) | `cta_text` = channel (fb/ig/li/seo), `funnel_stage` = TOFU/MOFU/BOFU |
+| `ic_ship` | An expression was dropped into a channel (Facebook, Instagram, LinkedIn, SEO article draft) | `cta_text` = channel (fb/ig/li/seo), `funnel_stage` = TOFU/MOFU/BOFU |
 | `ic_chain_complete` | A full chain reached the recap (persona → … → channels) | `cta_text` = client · persona, `channels` |
-| `ic_case_click` | "Read the case study" in the game recap (`data-track`) | `cta_text`, `link_url` |
+| `ic_case_click` | "Read the case study" in the game recap (`data-track`, no `data-gtm-id`) | `cta_text`, `link_url` |
 | `book_call_click` | Any calendly.com link (opens popup) | `link_url` |
 | `login_click` / `platform_click` | Links to cloud.somin.ai | `link_url` |
 | `partner_click` | Strategic-partner logo links (home plate, Vision cards) and the Vision page's redemptive-marketing links (Forbes essay, faithdriven.sg, orthodox.sg) | `link_url`, `cta_text` (partner name on the home plate) |
@@ -133,8 +134,8 @@ Lead conversions live in GTM and fire on the thank-you page view that follows ev
 | somin.ai - Thank You - Plugin | Page Path contains `/thank-you-plugin` | GA4 generate_lead - plugin, Facebook - Main - Plugin Lead (no LinkedIn conversion ID exists for the plugin yet) |
 | Calendly - event_scheduled (somin.ai) | Custom Event `calendly`, `DLV - calendly_event` = event_scheduled (pushed by the tag **cHTML - Calendly listener (somin.ai)**) | GA4 generate_lead - calendly, Meta Lead, LinkedIn 20526828 |
 
-Key interactions also reach the Meta pixel (version 51): trigger **CE - somin_event - key events** (Custom Event `somin_event`,
-`DLV - event_name` matches `^(book_call_click|lead_form_open|trial_form_submit|case_study_form_submit|plugin_form_submit|case_study_download|case_study_auto_download|plugin_download|plugin_auto_download|login_click|replay_play)$`)
+Key interactions also reach the Meta pixel (version 51; `ic_play_click` added in version 56, 20 Oct 2026): trigger **CE - somin_event - key events** (Custom Event `somin_event`,
+`DLV - event_name` matches `^(book_call_click|lead_form_open|trial_form_submit|case_study_form_submit|plugin_form_submit|case_study_download|case_study_auto_download|plugin_download|plugin_auto_download|login_click|replay_play|ic_play_click)$`)
 fires **Facebook - somin key events (custom)**, which sends the event under its own name with `event_id` (dedup) and
 `content_name` / `content_category` = `cta_text` / `cta_location`. Use them in Meta for custom audiences and custom conversions.
 GA4 already receives every `somin_event` through **GA4 - Router - somin_event**; LinkedIn gets CTA clicks through the
