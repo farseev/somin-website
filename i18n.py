@@ -535,20 +535,6 @@ def switcher_html(current_code, group_links):
             f'<ul class="lang-menu">{"".join(items)}</ul></details>')
 
 
-def locale_bar(current_code, group_links):
-    names = [('en', 'English')] + [(l[0], l[4]) for l in LANGS]
-    links = []
-    for code, native in names:
-        href = group_links.get(code)
-        if not href:
-            continue
-        hl = 'en' if code == 'en' else LANG[code][2]
-        cur = ' aria-current="page"' if code == current_code else ''
-        links.append(f'<a href="{href}" hreflang="{hl}" lang="{code}"{cur}>{html.escape(native)}</a>')
-    return (f'<nav class="locale-nav notranslate" translate="no" aria-label="This page in other languages" data-nosnippet>'
-            f'<div class="container"><span>Languages</span>{"".join(links)}</div></nav>')
-
-
 # ------------------------------------------------------------------ in-page dictionaries (home + four solution pages)
 def page_dictionary(doc, code):
     """The home page and four solution pages carry gzip+base64 dictionaries keyed by data-i18n (written for an older in-page
@@ -719,8 +705,6 @@ def build(out_dir, base, entries, log=print):
             body = localize_dates(body, code)
             body = localize_links(body, seg_name, url_map[code])
             body = body.replace('<!--i18n:switch-->', switcher_html(code, links_for(path)), 1)
-            if 'class="locale-nav' not in body:
-                body = body.replace('<footer class="site-footer">', locale_bar(code, links_for(path)) + '<footer class="site-footer">', 1)
             doc = doc[:head_end] + body
             if path != '/':                              # /<lang>/ home copies already carry their own head from build.py
                 doc = localize_head(doc, base, path, loc, code, group, seg, url_map[code])
@@ -733,8 +717,6 @@ def build(out_dir, base, entries, log=print):
         head = re.sub(r'<link rel="alternate" hreflang="[^"]*" href="[^"]*">', '', en_doc[:head_end])
         head = head.replace('<meta name="theme-color"', alternates_html(group, base) + '<meta name="theme-color"', 1)
         body = en_doc[head_end:].replace('<!--i18n:switch-->', switcher_html('en', links_for(path)), 1)
-        if 'class="locale-nav' not in body:
-            body = body.replace('<footer class="site-footer">', locale_bar('en', links_for(path)) + '<footer class="site-footer">', 1)
         f.write_text(head + body, encoding='utf-8')
         rows.append((path, meta[path][0], meta[path][1], 'en', group))
     for path in skip:

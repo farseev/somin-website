@@ -886,6 +886,8 @@ def theme_sections(body):
             plan.append('u-dark u-hero-tail'); alt = 0; continue
         if re.search(r'final', c):
             plan.append('u-dark u-cta'); continue
+        if re.search(r'(^|\s)trace(\s|$)', c):
+            plan.append('u-dark'); alt = 0; continue
         if re.search(r'proof|impact', c) or (re.search(r'class="[^"]*\b\w+-(?:quote|pullquote|testimonial)\b', inner) and re.search(r'-stat|-num\b', inner)):
             plan.append('u-dark'); alt = 0; continue
         plan.append('u-light' if alt % 2 == 0 else 'u-mist'); alt += 1
@@ -975,18 +977,6 @@ def apply_i18n(body, dct, fallback):
     return ''.join(out)
 
 
-def locale_nav(current, langs):
-    links = []
-    for l in langs:
-        code = l['code']
-        href = '/' if code == 'en' else f'/{LOCALES[code][0]}/'
-        hl = 'en' if code == 'en' else LOCALES[code][1]
-        cur = ' aria-current="page"' if code == current else ''
-        links.append(f'<a href="{href}" hreflang="{hl}" lang="{E(code)}" data-locale-link="{E(code)}"{cur}>{E(l["native"])}</a>')
-    return (f'<nav class="locale-nav" aria-label="SOMIN in other languages" data-nosnippet><div class="container">'
-            f'<span>SOMIN in your language</span>{"".join(links)}</div></nav>')
-
-
 def build_home_locales(meta, body):
     """Write /<lang>/ for every language in the home dictionary; returns the hreflang alternates for the English page."""
     d, langs = _home_dict(body)
@@ -1004,8 +994,6 @@ def build_home_locales(meta, body):
         path = f'/{seg}/'
         lb = apply_i18n(base, d[code], en)
         lb = lb.replace('class="se-hero" id="se-hero-root"', f'class="se-hero" id="se-hero-root" lang="{code}"' + (' dir="rtl"' if code == 'ar' else ''), 1)
-        lb = lb.replace('id="se-lang-current">English<', f'id="se-lang-current">{E(l["native"])}<', 1)
-        lb += locale_nav(code, langs)
         # The hero subline alone is short, so the description is headline + subline + "what SOMIN does" line.
         sub = strip_tags(d[code].get('sub') or '').strip()
         for k in ('h1a', 'wd_body'):            # add whole sentences only while the description stays within 160 chars
@@ -1046,8 +1034,6 @@ def build_fragment_page(meta, body):
         alts = build_home_locales(meta, body)
         if alts:
             meta['_alternates'] = alts
-            d, langs = _home_dict(body)
-            body += locale_nav('en', [l for l in langs if l['code'] == 'en' or l['code'] in LOCALES])
     write(path, page(meta, body, path))
     pr = '1.0' if path == '/' else ('0.9' if meta['type'] in ('solution', 'product') else '0.8')
     add_sitemap(path, meta.get('lastmod'), pr, meta.get('robots', 'index'))
