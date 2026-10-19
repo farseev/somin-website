@@ -30,6 +30,8 @@ import urllib.parse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
+import i18n  # noqa: E402  per-language copies of every page (see i18n.py)
 OUT = ROOT / '_site'
 CFG = json.loads((ROOT / 'site.config.json').read_text(encoding='utf-8'))
 SITE = CFG['site']
@@ -486,6 +488,7 @@ def render_header(path):
     return f'''<header class="site-header">
   <div class="bar">
     <a class="site-logo" href="/" aria-label="SOMIN home"><span class="wm-logo" aria-hidden="true"><span class="so">SO</span><span class="min">MIN</span></span></a>
+    <!--i18n:switch-->
     <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul class="nav-list">{''.join(items)}</ul>
@@ -791,6 +794,11 @@ def add_heading_ids(body, levels=('h2', 'h3')):
     return re.sub(pat, rep, body, flags=re.S)
 
 
+def wrap_tables(body):
+    """Wide tables scroll inside their own box on phones instead of pushing the page wider."""
+    return re.sub(r'(<table\b.*?</table>)', r'<div class="table-wrap">\1</div>', body, flags=re.S)
+
+
 def toc_items(body, levels=('h2', 'h3'), only_numbered=False):
     out = []
     for m in re.finditer(r'<(' + '|'.join(levels) + r')\b[^>]*id="([^"]+)"[^>]*>(.*?)</\1>', body, re.S):
@@ -1048,13 +1056,15 @@ def build_fragment_page(meta, body):
 def build_doc_page(meta, body):
     path = url_for(meta['slug'])
     is_legal = meta.get('type') == 'legal'
+    is_ref = meta.get('type') == 'reference'
     body = add_heading_ids(body, ('h2', 'h3'))
-    toc = toc_items(body, ('h2', 'h3'), only_numbered=is_legal) if is_legal else []
+    body = wrap_tables(body)
+    toc = toc_items(body, ('h2', 'h3'), only_numbered=is_legal) if is_legal else (toc_items(body, ('h2',)) if is_ref else [])
     toc_html = ''
     if len(toc) >= 3:
         toc_html = '<aside class="toc-dark" aria-label="On this page"><h2>On this page</h2><ol>' + ''.join(
             f'<li><a href="#{i}">{E(t)}</a></li>' for _, i, t in toc) + '</ol></aside>'
-    eyebrow = 'Legal' if is_legal else 'Company'
+    eyebrow = 'Legal' if is_legal else ('Reference' if is_ref else 'Company')
     updated = f'<p class="updated">Last updated: {E(meta["updated"])}</p>' if meta.get('updated') else ''
     trail = [('Home', '/'), (meta.get('h1') or meta['title'].split(' | ')[0], path)]
     hero = f'''<section class="hero doc-hero"><div class="container">
@@ -1075,9 +1085,9 @@ def build_doc_page(meta, body):
         except ValueError:
             pass
     meta['_schema'] = [org_node(), website_node(), node, breadcrumbs(trail)]
-    meta.setdefault('group', 'company')
+    meta.setdefault('group', 'resources' if is_ref else 'company')
     write(path, page(meta, hero + wrap, path))
-    add_sitemap(path, node.get('dateModified'), '0.3' if is_legal else '0.5', meta.get('robots', 'index'))
+    add_sitemap(path, node.get('dateModified'), '0.3' if is_legal else ('0.7' if is_ref else '0.5'), meta.get('robots', 'index'))
 
 
 def hero_image(body, meta, marker):
@@ -1477,6 +1487,7 @@ def post_card(p, cls='card', feature=False):
 def build_post(meta, body, posts):
     path = url_for(meta['slug'])
     body = add_heading_ids(body, ('h2', 'h3'))
+    body = wrap_tables(body)
     toc = toc_items(body, ('h2', 'h3'))
     # in-article CTA after ~45% of the paragraphs
     paras = [m.end() for m in re.finditer(r'</p>', body)]
@@ -2306,7 +2317,7 @@ def build_robots():
     (OUT / 'robots.txt').write_text(txt, encoding='utf-8')
 
 
-def build_llms(pages, posts, manifest=None):
+def build_llms(pages, posts, manifest=None, localized=()):
     by = lambda t: [m for m in pages if m.get('type') == t and m.get('robots', 'index').startswith('index')]
     def line(m):
         return f'- [{m["title"].split(" | ")[0]}]({absu(url_for(m["slug"]))}): {m.get("description") or ""}'
@@ -2343,6 +2354,12 @@ def build_llms(pages, posts, manifest=None):
     authors = [m for m in pages if m.get('type') == 'author']
     if authors:
         parts += ['', '## Authors'] + [f'- [{m["title"].split(" | ")[0]}]({absu(url_for(m["slug"]))})' for m in authors]
+    if localized:
+        parts += ['', '## Languages',
+                  f'{len(localized)} of the pages above also exist in {len(i18n.LANGS)} other languages at /<language>/<path>/ '
+                  f'(for example {BASE}/ja/somin-strategy/), linked with hreflang; the language sitemaps list them. '
+                  f'Legal documents are English only. Language home pages and sitemaps:']
+        parts += [f'- {native} ({code}): {BASE}/{seg}/ · sitemap {BASE}/sitemap-{seg}.xml' for code, seg, hl, ogl, native, d in i18n.LANGS]
     parts += ['', '## Company & legal', f'- [About SOMIN]({BASE}/about/)', f'- [Our Vision]({BASE}/vision/)', f'- [Privacy Policy]({BASE}/privacy-policy/)', f'- [SaaS Agreement]({BASE}/saas-terms-general/)',
               '', '## Contact', f'- Book a call: {CAL_DEFAULT}', f'- Try SOMIN: {BASE}/try-somin/', f'- Free Claude plugin: {BASE}/marketing-mondays-plugin/', '- Platform login: https://cloud.somin.ai/auth/signin', '']
     (OUT / 'llms.txt').write_text('\n'.join(parts), encoding='utf-8')
@@ -2401,12 +2418,14 @@ def main():
     build_cases_hub(manifest)
     build_404()
     build_redirects()
-    n = build_sitemap()
-    build_robots()
-    build_llms(pages, post_metas, manifest)
     save_dates()
+    # every indexable page (legal pages excepted) gets its own static copy in 16 languages, with hreflang everywhere
+    rows, localized = i18n.build(OUT, BASE, [(p, PAGE_DATES.get(p) or lm, pr) for p, lm, pr in SITEMAP])
+    n, maps = i18n.write_sitemaps(OUT, BASE, rows, PAGE_DATES)
+    build_robots()
+    build_llms(pages, post_metas, manifest, localized)
     (OUT / '.nojekyll').write_text('', encoding='utf-8')
-    print(f'Built {len(pages)} pages + {len(posts)} posts → {OUT} (sitemap: {n} URLs)')
+    print(f'Built {len(pages)} pages + {len(posts)} posts → {OUT} (sitemaps: {n} URLs in {len(maps)} files, {len(localized)} pages × {len(i18n.LANGS)} languages)')
 
 
 def apply_base_path(base):

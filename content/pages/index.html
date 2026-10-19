@@ -1119,23 +1119,8 @@
     // ---- Starting language: saved choice > browser locale (instant) > geo-IP (async refine) ----
     var saved = null;
     try { saved = localStorage.getItem('somin_hero_lang'); } catch (e) {}
-    var initial = FORCED && supported(FORCED) ? FORCED : (saved && supported(saved)) ? saved : detectFromBrowser();
-    applyLang(root, initial, { silent: !saved || !!FORCED });
-    if (!saved && !FORCED) {
-      try {
-        var controller = ('AbortController' in window) ? new AbortController() : null;
-        var geoTimer = setTimeout(function () { if (controller) controller.abort(); }, 1800);
-        fetch('https://ipapi.co/json/', controller ? { signal: controller.signal } : {})
-          .then(function (r) { return r && r.ok ? r.json() : null; })
-          .then(function (data) {
-            clearTimeout(geoTimer);
-            if (!data || !data.country_code) return;
-            var mapped = COUNTRY_MAP[data.country_code];
-            if (mapped && supported(mapped) && mapped !== initial) applyLang(root, mapped, { silent: true });
-          })
-          .catch(function () {});
-      } catch (e) {}
-    }
+    var initial = FORCED && supported(FORCED) ? FORCED : 'en';
+    applyLang(root, initial, { silent: true });
     var frameImg = root.querySelector('#se-hero-video');
     var vidToggle = root.querySelector('#se-vid-toggle');
     if (frameImg && FRAMES && FRAMES.length) {

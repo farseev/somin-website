@@ -79,3 +79,11 @@ Run all three before every commit that changes content, templates, CSS or JS.
     with their role and LinkedIn URL.
 23. **Copy**: use a real dash (—), never ` -- `.
 
+
+## Languages (separate pages, i18n.py)
+- Every indexable page is rebuilt after the English build as /<lang>/<path>/ for 16 languages (i18n.LANGS); legal pages stay English.
+- Translations live in data/i18n/<lang>.json (translation memory keyed by segment hash); data/i18n/source.json holds the English segments.
+- After changing content: `python3 scripts/i18n_todo.py --write` lists untranslated segments per language in _i18n_todo/;
+  translate them (keep <gN>, <xN/>, {N} placeholders) and merge with `python3 scripts/i18n_merge.py <lang> file.tsv`.
+- A page gets a language copy only when at least 97% of its segments are translated (i18n.MIN_COVERAGE); until then it stays
+  English-only and is left out of that language's sitemap and hreflang. The header language switch fires `language_switch`.

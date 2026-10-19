@@ -1023,3 +1023,82 @@ html body .prose details p { margin: 0 0 16px; color: var(--text-2); }
 .locale-nav a { color: var(--on-ink-2); text-decoration: none; }
 .locale-nav a:hover { color: #fff; }
 .locale-nav a[aria-current="page"] { color: #fff; font-weight: 700; }
+
+/* ---------------- languages: every language is its own page (i18n.py); the header menu is plain links ---------------- */
+.site-header .bar > .site-logo { order: 0; }
+.site-header .bar > .site-nav { order: 1; }
+.site-header .bar > .lang-switch { order: 2; }
+.site-header .bar > .nav-toggle { order: 3; }
+.lang-switch { position: relative; flex: none; }
+.lang-switch > summary { list-style: none; display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 11px; border: 1px solid var(--ink-line); border-radius: 999px; color: var(--on-ink-2); font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .08em; cursor: pointer; user-select: none; }
+.lang-switch > summary::-webkit-details-marker { display: none; }
+.lang-switch > summary:hover, .lang-switch[open] > summary { color: #fff; border-color: var(--teal); }
+.lang-switch > summary:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.lang-menu { position: absolute; right: 0; top: calc(100% + 8px); list-style: none; margin: 0; padding: 8px; min-width: 210px; max-height: min(70vh, 560px); overflow-y: auto; background: #1A2422; border: 1px solid var(--ink-line); border-radius: 14px; box-shadow: 0 24px 60px rgba(0,0,0,.45); z-index: 950; }
+.lang-menu a { display: block; padding: 8px 12px; border-radius: 8px; color: var(--on-ink-2); text-decoration: none; font-size: 14px; line-height: 1.3; }
+.lang-menu a:hover, .lang-menu a:focus-visible { background: rgba(45,191,156,.12); color: #fff; }
+.lang-menu a[aria-current] { color: var(--teal); font-weight: 700; }
+[dir="rtl"] .lang-menu { right: auto; left: 0; }
+.lang-switch + .nav-toggle { margin-left: 6px; }
+@media (max-width: 1080px) { .site-header .bar > .lang-switch { margin-left: auto; } }
+
+/* wide tables in posts and reference pages scroll inside their own box */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.6em 0; }
+.table-wrap > table { margin: 0; min-width: 560px; }
+
+/* reference pages (layout doc, type reference): tables and FAQ blocks */
+.doc table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; }
+.doc th, .doc td { border-bottom: 1px solid var(--paper-line); padding: 10px 12px; text-align: start; vertical-align: top; }
+.doc thead th { font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--ink); background: var(--paper-2); }
+html body .doc details { background: var(--paper-2); border: 1px solid var(--paper-line); border-radius: 14px; padding: 0 20px; margin: 10px 0; }
+html body .doc summary { cursor: pointer; list-style: none; padding: 16px 30px 16px 0; position: relative; font-family: var(--display); font-weight: 700; font-size: 16px; line-height: 1.4; color: var(--ink); }
+html body .doc summary::-webkit-details-marker { display: none; }
+html body .doc summary::after { content: '+'; position: absolute; right: 0; top: 12px; font-size: 22px; font-weight: 600; color: var(--teal-600); }
+html body .doc details[open] summary::after { content: '–'; }
+html body .doc details p { margin: 0 0 16px; color: var(--text-2); }
+
+/* right-to-left pages (Arabic) */
+[dir="rtl"] .prose blockquote { border-left: 0; border-right: 3px solid var(--teal); padding: 4px 22px 4px 0; }
+[dir="rtl"] .toc { border-left: 0; border-right: 1px solid var(--paper-line); padding-left: 0; padding-right: 18px; }
+[dir="rtl"] .prose th, [dir="rtl"] .prose td { text-align: right; }
+[dir="rtl"] .prose ul, [dir="rtl"] .prose ol, [dir="rtl"] .doc ul, [dir="rtl"] .doc ol { padding-left: 0; padding-right: 1.3em; }
+html[dir="rtl"] body .prose summary, html[dir="rtl"] body .doc summary { padding: 16px 0 16px 30px; }
+html[dir="rtl"] body .prose summary::after, html[dir="rtl"] body .doc summary::after { right: auto; left: 0; }
+[dir="rtl"] .lang-switch + .nav-toggle { margin-left: 0; margin-right: 6px; }
+@media (min-width: 1081px) { .f-main { grid-template-columns: 1.2fr repeat(5, minmax(0,1fr)); gap: 28px; } }
+
+/* ---------------- header fit for translated labels ---------------- */
+@media (min-width: 1081px) {
+  .site-header .bar { gap: 16px; }
+  .nav-link { padding-left: 9px; padding-right: 9px; }
+  .nav-item.has-sub > .nav-link { padding-right: 2px; }
+  .nav-sub-toggle { padding-left: 3px; padding-right: 6px; }
+  .nav-cta { margin-left: 6px; }
+}
+/* site.js adds html.nav-compact when the desktop header still does not fit (long labels in some languages):
+   the header then uses the same off-canvas menu as below 1080px */
+html.nav-compact .nav-toggle { display: block; }
+html.nav-compact .site-nav { position: fixed; top: var(--header-h); left: 0; right: 0; height: calc(100vh - var(--header-h)); height: calc(100dvh - var(--header-h)); flex-direction: column; align-items: stretch; gap: 0; padding: 12px var(--pad) 32px; background: var(--ink); overflow-y: auto; transform: translateX(100%); visibility: hidden; transition: transform .25s ease, visibility 0s linear .25s; margin: 0; }
+html.nav-compact .site-header.is-open { background: var(--ink); }
+html.nav-compact .site-header.is-open .site-nav { transform: none; visibility: visible; transition: transform .25s ease, visibility 0s; }
+html.nav-compact .site-header.is-open .nav-toggle span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+html.nav-compact .site-header.is-open .nav-toggle span:nth-child(2) { opacity: 0; }
+html.nav-compact .site-header.is-open .nav-toggle span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+html.nav-compact .nav-list { flex-direction: column; align-items: stretch; }
+html.nav-compact .nav-item { border-bottom: 1px solid var(--ink-line-soft); }
+html.nav-compact .nav-item.has-sub { flex-wrap: wrap; }
+html.nav-compact .nav-item.has-sub > .nav-link { flex: 1; }
+html.nav-compact .nav-link, html.nav-compact .nav-sub-toggle { padding: 16px 4px; font-size: 16px; }
+html.nav-compact .nav-sub-toggle { padding: 16px 12px; }
+html.nav-compact .nav-sub { position: static; min-width: 0; max-width: none; width: 100%; columns: auto; display: none; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: 0; background: transparent; padding: 0 0 12px 8px; }
+html.nav-compact .nav-item.is-open > .nav-sub { display: block; }
+html.nav-compact .nav-cta { margin: 20px 0 0; }
+html.nav-compact .nav-cta .btn { width: 100%; }
+html.nav-compact .site-header .bar > .lang-switch { margin-left: auto; }
+
+/* ---------------- RTL (Arabic) header details ---------------- */
+[dir="rtl"] .skip-link { left: auto; right: -9999px; }
+[dir="rtl"] .skip-link:focus { right: 8px; }
+[dir="rtl"] .nav-sub { left: auto; right: 0; }
+@media (max-width: 1080px) { [dir="rtl"] .site-header .bar > .lang-switch { margin-left: 0; margin-right: auto; } }
+html.nav-compact[dir="rtl"] .site-header .bar > .lang-switch { margin-left: 0; margin-right: auto; }

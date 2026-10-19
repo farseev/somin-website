@@ -1,0 +1,129 @@
+<!--meta
+{
+ "slug": "blog/what-is-creative-clickability",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "What is creative clickability, and can you predict it before spend?",
+ "seo_title": "What is creative clickability? A practical guide | SOMIN",
+ "description": "Creative clickability is an ad's predicted chance of beating comparable ads on clicks, scored before spend. How the models work, where they fail, how to test.",
+ "published": "2026-10-18T05:00:00Z",
+ "author": "Dr. Yang Qi",
+ "tags": [
+  "Performance Advertising",
+  "Artificial Intelligence",
+  "Meta Advertising"
+ ],
+ "words": 1964,
+ "reading_minutes": 9,
+ "image": "/assets/img/blog/what-is-creative-clickability.webp",
+ "image_card": "/assets/img/blog/what-is-creative-clickability-card.webp",
+ "og_image": "/assets/img/og/blog-what-is-creative-clickability.jpg",
+ "image_generated": true,
+ "robots": "index,follow",
+ "image_prompt": "Isometric dark-teal 3D illustration of three glowing ad creatives on pedestals of different heights, each with a soft probability bar beside it, a cursor icon hovering over the tallest, set on a dark grid with teal accent lighting, no text, no logos."
+}
+-->
+<p>Creative clickability is the predicted likelihood that an ad will earn more, or fewer, clicks than comparable ads, estimated from the creative itself before any media money is spent. You can predict it, as a probability rather than a promise: a model trained on ads with known results sorts new creative into High, Normal or Low. Use the band to decide what to fix, cut and test first, not to skip the test.</p>
+<h2>Key takeaways</h2>
+<ul>
+<li>Clickability is relative and probabilistic. A score says how likely a creative is to beat, match or trail similar ads on click-through, not what its click-through rate will be.</li>
+<li>Models learn from labelled ads, linking what is in the image, copy and set-up to how similar ads performed.</li>
+<li>When SOMIN scored 631 ads from ad-optimisation vendors (October 2025 to October 2026), 15% came out High, 68% Normal and 18% Low. On Meta, 40% of video ads scored High and none scored Low.</li>
+<li>Scores are weakest where the model sees least: text-only search ads, unfamiliar formats, and outcomes beyond the click.</li>
+<li>In a test plan, fix or cut Low, test High against your current best, and keep one wildcard to check the model.</li>
+</ul>
+<h2>What does creative clickability mean?</h2>
+<p>It is a forecast of relative click-through, made before launch. Click-through rate (CTR) is clicks divided by impressions, and it can only be measured after an ad has run and been paid for. Clickability estimates which side of the benchmark a creative is likely to land on before that happens.</p>
+<p>The forecast is relative for a practical reason. A 1% CTR can be strong for one placement and objective and weak for another, so a raw number travels badly. The useful question is narrower: compared with ads like this one, shown in similar places, is this creative likely to do better, about the same or worse?</p>
+<p>In SOMIN's data every scored creative carries three probabilities, for below-average, average and above-average click-through, which add up to one. Broadly, the band is the most likely of the three. Two Madgicx video ads from the ads-optimisation workspace show how this reads:</p>
+<ul>
+<li>A video headlined "Kill your wasted ad spend", which started on 5 October 2026, scored 0.76 for above-average, 0.23 for average and 0.01 for below-average. It is High, with a clear margin.</li>
+<li>A video about worry-free holidays for e-commerce owners scored 0.56 for average and 0.39 for above-average. It is Normal, but close to High, and worth more attention than a Normal with a 0.10 chance of beating the benchmark.</li>
+</ul>
+<p>So read the probabilities, not only the label. Two creatives with the same band can carry very different odds.</p>
+<h2>How does a clickability model work, in plain terms?</h2>
+<p>It learns from ads whose results are already known, then applies that experience to creative it has never seen. The steps are simple to describe, even if the engineering is not.</p>
+<ol>
+<li><strong>Collect labelled examples.</strong> Gather many ads with real impressions and clicks, and label each by whether its CTR was above, near or below a benchmark for comparable ads.</li>
+<li><strong>Describe each ad.</strong> Turn the creative into features the model can compare: what the image shows and how it is composed, how much text sits on it, what the copy offers and how it sounds, the format, the placement and the intended audience.</li>
+<li><strong>Train.</strong> The model learns which combinations of features tend to go with above- or below-average results, and how confident it can be.</li>
+<li><strong>Score new creative.</strong> A new ad gets the three probabilities, and its band.</li>
+<li><strong>Explain.</strong> A useful model says which features pushed the score up or down, so a designer knows what to change.</li>
+<li><strong>Recalibrate.</strong> Live results go back into the model, so its idea of "average" keeps up with the market.</li>
+</ol>
+<p>Because the model reads only the creative and its set-up, it needs no access to the advertiser's account. That is what lets SOMIN score competitors' ads from public ad libraries, as in the example below, and score a brand's drafts before they exist as ads.</p>
+<p>Our published work covers several of these steps. <a href="https://doi.org/10.1145/3539597.3573032" target="_blank" rel="noopener">SoCraft</a>, a demonstration at WSDM 2023, scores an advertiser's Meta creatives from text, image, targeting and settings before launch. <a href="https://doi.org/10.1145/3581783.3612817" target="_blank" rel="noopener">"Against Opacity"</a> (ACM Multimedia 2023) predicts CTR for new creatives and explains the drivers in plain language. A <a href="https://doi.org/10.1145/3725885" target="_blank" rel="noopener">2025 paper in ACM Transactions on Information Systems</a> pairs prediction models with large language models to turn scores into recommendations. All are listed on the <a href="/research/">SOMIN research page</a>. For the wider choice between panels, A/B tests and models, see our guide to <a href="/blog/predict-ad-performance-before-you-spend-creative-pre-testing/">pre-testing creative before you spend</a>.</p>
+<h2>What does a High, Normal and Low split look like in real data?</h2>
+<p>Mostly Normal, with High scarce. We used the clickability filter in SOMIN's ads-optimisation workspace to count the scores for every ad that Smartly, Madgicx, Strike Social and Adzooma ran at any point between 18 October 2025 and 17 October 2026. Of the 633 ads, 631 carried a score.</p>
+<table>
+<thead><tr><th>Ads scored</th><th>Count</th><th>High</th><th>Normal</th><th>Low</th></tr></thead>
+<tbody>
+<tr><td>All ads</td><td>631</td><td>92 (15%)</td><td>428 (68%)</td><td>111 (18%)</td></tr>
+<tr><td>Meta ads</td><td>302</td><td>84 (28%)</td><td>182 (60%)</td><td>36 (12%)</td></tr>
+<tr><td>Google ads</td><td>329</td><td>8 (2%)</td><td>246 (75%)</td><td>75 (23%)</td></tr>
+</tbody>
+</table>
+<p>The Meta ads split again by format. Counts are SOMIN's media-type labels, and an ad with several types appears in more than one row.</p>
+<table>
+<thead><tr><th>Meta ads by format</th><th>Count</th><th>High</th><th>Normal</th><th>Low</th></tr></thead>
+<tbody>
+<tr><td>Video</td><td>63</td><td>25 (40%)</td><td>38 (60%)</td><td>0</td></tr>
+<tr><td>Single image</td><td>108</td><td>36 (33%)</td><td>66 (61%)</td><td>6 (6%)</td></tr>
+<tr><td>Several creatives (carousel or dynamic creative)</td><td>131</td><td>23 (18%)</td><td>78 (60%)</td><td>30 (23%)</td></tr>
+</tbody>
+</table>
+<p>Three readings follow, each with a caution.</p>
+<ul>
+<li><strong>Normal is the default.</strong> Two in three ads land there, so a Normal score is no reason to cut. It means "no strong signal either way".</li>
+<li><strong>Video skewed High and multi-creative ads skewed Low.</strong> But format is tangled with advertiser: Madgicx made 44 of the 63 videos, and Smartly made most of the dynamic-creative ads. Compare formats within one brand before drawing a rule.</li>
+<li><strong>Google ads scored lower, probably because of format rather than quality.</strong> 305 of the 331 Google ads were text ads, which give a model far fewer visual signals than an image or a video, so treat those scores with care.</li>
+</ul>
+<p>Versions matter too. Among 128 Meta ads with several versions, the chance of above-average click-through usually differed little between versions, by a median of 0.05. In one ad the gap between its best and worst version was 0.68. Score every version, not just the ad.</p>
+<p>What the vendors promise in those ads is a separate story, which we cover in <a href="/blog/what-do-ad-optimisation-platforms-advertise/">what ad optimisation platforms promise in their own ads</a>.</p>
+<h2>What can't a clickability score tell you?</h2>
+<p>It cannot tell you about anything the model does not see. These are the limits we check for first.</p>
+<ul>
+<li><strong>Clicks are not sales.</strong> Conversion depends on the landing page, price, offer and stock. A creative can win the click and lose the sale.</li>
+<li><strong>Clicks can be the wrong goal.</strong> Curiosity and provocation win clicks from people who will never buy. Pair clickability with a downstream measure for any conversion campaign.</li>
+<li><strong>"Average" depends on the training data.</strong> A score is relative to the ads the model learned from. A format, market or language it has seen little of gets a weaker estimate.</li>
+<li><strong>Context sits outside the creative.</strong> Audience, auction pressure, timing, seasonality and frequency all move results, and none of them are in the image.</li>
+<li><strong>A probability is not a verdict.</strong> A Normal ad with a 0.39 chance of beating the benchmark will often beat it. Expect surprises in both directions.</li>
+<li><strong>Brand effects are out of scope.</strong> Clickability says nothing about memory, distinctiveness or long-term brand building.</li>
+</ul>
+<h2>How do you use High, Normal and Low scores in a testing plan?</h2>
+<p>Use the band to order the work, then let a proper test decide. The table sets the default action for each band.</p>
+<table>
+<thead><tr><th>Band</th><th>Read it as</th><th>Default action</th></tr></thead>
+<tbody>
+<tr><td>High</td><td>Likely to beat comparable ads on click-through</td><td>Test first, against your current best ad as the control</td></tr>
+<tr><td>Normal</td><td>No strong signal; most creative lands here</td><td>Improve it using the score's explanation, re-score, and test the strongest</td></tr>
+<tr><td>Low</td><td>Likely to trail comparable ads</td><td>Fix the drivers or cut it, unless it carries a message you must test anyway</td></tr>
+</tbody>
+</table>
+<ol>
+<li><strong>Define "comparable".</strong> Score against ads with the same objective, placement and audience, or the bands mean little.</li>
+<li><strong>Score every version.</strong> Include each asset you would feed into a dynamic-creative or flexible ad, since versions of one ad can differ widely.</li>
+<li><strong>Edit before you spend.</strong> Read why a draft scored Low or Normal, change the image or copy, and score it again.</li>
+<li><strong>Build the test.</strong> Put High candidates against your control, and keep one Normal or Low wildcard each round so the model is checked against something it doubted.</li>
+<li><strong>Use a real split test for the read.</strong> <a href="https://www.facebook.com/business/help/170372403538781" target="_blank" rel="noopener">Meta's help centre</a> notes that dynamic creative reports aggregate performance across all variations and does not recommend it as a substitute for split testing.</li>
+<li><strong>Log predicted against actual.</strong> After a few rounds, check whether High ads beat Normal ads more often than chance in your account. That is your local accuracy.</li>
+<li><strong>Re-score as ads age.</strong> A High creative still wears out; refresh it when frequency climbs and results fall.</li>
+</ol>
+<p>In practice this changes where budget goes. In SOMIN's <a href="/brands-fujifilm-case-study/">Fujifilm UK case study</a>, 72 concepts were scored for predicted clickability before any spend, and 15 crossed the 80% "Top performer potential" bar, so the test budget could start with those.</p>
+<h2>How accurate is clickability prediction?</h2>
+<p>Accurate enough to rank creative, not accurate enough to replace a test. SOMIN's scoring model behind the <a href="/somin-paid-media/">Paid Media agent</a> is trained on tens of thousands of labelled ads and reaches 78% click-through prediction accuracy across customer benchmarks, roughly three times the human baseline.</p>
+<p>A published figure is a starting point. What matters is how the model performs on your category and your formats, which is why step six above matters more than any vendor's headline number. If a model cannot show you its predictions next to your real results, treat its scores as opinions.</p>
+<p>To score competitors' creative as well as your own, start with their public ads; our guide to <a href="/blog/how-to-research-competitor-ads-in-meta-ad-library/">researching competitor ads in the Meta Ad Library</a> covers the collection.</p>
+<h2>FAQ</h2>
+<details><summary>Is clickability the same as click-through rate?</summary><p>No. Click-through rate is measured after an ad runs. Clickability is a prediction, made before spend, of whether an ad's click-through will be above, near or below that of comparable ads.</p></details>
+<details><summary>What is a good clickability score?</summary><p>High is the best band, but look at the probabilities. In SOMIN's scoring of 631 vendor ads, only 15% scored High, so a Normal with a strong chance of above-average click-through is also worth testing.</p></details>
+<details><summary>Can you predict the clickability of competitors' ads?</summary><p>Yes. The model needs only the creative and its set-up, not account data, so public ads from the Meta Ad Library or Google's Ads Transparency Center can be scored. The score is a prediction; it does not reveal the competitor's real results.</p></details>
+<details><summary>Does a High score guarantee results?</summary><p>No. It means the creative is more likely than comparable ads to earn clicks. Landing pages, offers, audiences and auctions still decide the outcome, so test High creative against a control.</p></details>
+<details><summary>How is clickability different from creative pre-testing?</summary><p>Clickability is one pre-testing method: a model's prediction of relative click-through. Pre-testing also includes audience panels and small live tests, and most teams combine them.</p></details>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://doi.org/10.1145/3539597.3573032" target="_blank" rel="noopener">SoCraft: Advertiser-level Predictive Scoring for Creative Performance on Meta</a>, WSDM 2023</li>
+<li><a href="https://doi.org/10.1145/3581783.3612817" target="_blank" rel="noopener">Against Opacity: Explainable AI and Large Language Models for Effective Digital Advertising</a>, ACM Multimedia 2023</li>
+<li><a href="https://doi.org/10.1145/3725885" target="_blank" rel="noopener">Fusing Predictive and Large Language Models for Actionable Recommendations in Creative Marketing</a>, ACM Transactions on Information Systems, 2025</li>
+<li><a href="https://www.facebook.com/business/help/170372403538781" target="_blank" rel="noopener">About dynamic creative in Meta Ads Manager</a>, Meta Business Help Centre</li>
+</ul>

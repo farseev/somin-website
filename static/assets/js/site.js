@@ -4,6 +4,24 @@
   'use strict';
   var track = function (n, p) { if (w.sominTrack) w.sominTrack(n, p); };
 
+  /* ---------- languages: each language is its own page; menus only navigate ---------- */
+  w.sominGoLang = function (code) {
+    var a = d.querySelector('.lang-switch a[lang="' + code + '"]') || d.querySelector('.locale-nav a[lang="' + code + '"]');
+    if (!a) return false;
+    if (a.getAttribute('aria-current')) return true;
+    track('language_switch', { language: code, from_language: d.documentElement.getAttribute('lang') || 'en' });
+    w.location.href = a.href;
+    return true;
+  };
+  d.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('.lang-switch a, .locale-nav a') : null;
+    if (a && !a.getAttribute('aria-current')) track('language_switch', { language: a.getAttribute('lang'), from_language: d.documentElement.getAttribute('lang') || 'en' });
+    d.querySelectorAll('details.lang-switch[open]').forEach(function (x) { if (!x.contains(e.target)) x.removeAttribute('open'); });
+  });
+  d.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') d.querySelectorAll('details.lang-switch[open]').forEach(function (x) { x.removeAttribute('open'); });
+  });
+
   /* ---------- header: mobile menu + dropdowns ---------- */
   var header = d.querySelector('.site-header');
   if (header) {
@@ -31,6 +49,25 @@
     d.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') { header.classList.remove('is-open'); d.documentElement.classList.remove('nav-locked'); header.querySelectorAll('.nav-item.is-open').forEach(function (x) { x.classList.remove('is-open'); }); }
     });
+    /* long translated labels: fall back to the off-canvas menu when the desktop header does not fit */
+    var bar = header.querySelector('.bar'), root = d.documentElement;
+    var fitNav = function () {
+      if (!bar || header.classList.contains('is-open')) return;
+      root.classList.remove('nav-compact');
+      if (w.innerWidth <= 1080) return;
+      var cs = w.getComputedStyle(bar), br = bar.getBoundingClientRect();
+      var lo = br.left + parseFloat(cs.paddingLeft) - 1, hi = br.right - parseFloat(cs.paddingRight) + 1;
+      var over = Array.prototype.some.call(bar.children, function (el) {
+        if (!el.offsetWidth) return false;
+        var r = el.getBoundingClientRect();
+        return r.left < lo || r.right > hi;
+      });
+      if (over) root.classList.add('nav-compact');
+    };
+    var fitTimer;
+    fitNav();
+    w.addEventListener('resize', function () { clearTimeout(fitTimer); fitTimer = setTimeout(fitNav, 80); });
+    if (d.fonts && d.fonts.ready) d.fonts.ready.then(fitNav);
     var onScroll = function () { header.classList.toggle('is-scrolled', w.scrollY > 8); };
     w.addEventListener('scroll', onScroll, { passive: true }); onScroll();
   }

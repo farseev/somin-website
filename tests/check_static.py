@@ -83,7 +83,9 @@ for f in pages:
         if other.exists() and f'href="{BASE}{rel}"' not in other.read_text(encoding='utf-8')[:20000]:
             problems.append(f'{rel}: hreflang {hl} target {href} does not link back')
     # --- case-study standard (docs/CASE_STUDY_SEO.md)
-    if 'data-page-type="case_study"' in t and robots and robots.group(1).startswith('index'):
+    is_en = bool(re.search(r'<html lang="en"', t))
+    # the case-study copy standard applies to the English originals; translated copies follow their source
+    if is_en and 'data-page-type="case_study"' in t and robots and robots.group(1).startswith('index'):
         tt = html.unescape(title.group(1)) if title else ''
         dsc = html.unescape((re.search(r'<meta name="description" content="([^"]*)"', head) or [None, ''])[1])
         if not (40 <= len(tt) <= 60) or not tt.endswith('| SOMIN') or 'Case Study' not in tt:
@@ -143,9 +145,22 @@ for f in pages:
         if not exists(m.group(2)):
             problems.append(f'{rel}: missing css asset {m.group(2)}')
 
-# sitemap / robots / llms
+# sitemap / robots / llms  (sitemap.xml may be a sitemap index of per-language sitemaps)
 sm = (SITE / 'sitemap.xml').read_text()
-locs = re.findall(r'<loc>(.*?)</loc>', sm)
+locs = []
+if '<sitemapindex' in sm:
+    for child in re.findall(r'<loc>(.*?)</loc>', sm):
+        f = SITE / child.replace(BASE + '/', '')
+        if not f.exists():
+            problems.append(f'sitemap index: {child} does not exist')
+            continue
+        cx = f.read_text()
+        locs += re.findall(r'<loc>(.*?)</loc>', cx)
+        for hl, href in re.findall(r'<xhtml:link rel="alternate" hreflang="([^"]+)" href="([^"]+)"/>', cx):
+            if not exists(href.replace(BASE, '')):
+                problems.append(f'{child}: alternate {hl} {href} does not exist')
+else:
+    locs = re.findall(r'<loc>(.*?)</loc>', sm)
 for u in locs:
     if not exists(u.replace(BASE, '')):
         problems.append(f'sitemap: {u} does not exist')
