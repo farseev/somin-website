@@ -67,13 +67,14 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 | `replay_step_click` | Step tab clicked in the five-step loop player (Listen … Ship) | `cta_text` = step |
 | `ic_play_click` | **Play the game** button under the home hero video (opens the Insight Chain game full screen). Key event: also in GTM trigger *CE - somin_event - key events* (container v56) → Meta custom event. The button carries no `data-gtm-id`, so the cta_click tags (GA4, LinkedIn 20526804, Meta) do not fire for it | `cta_id` = `home_hero_play_game`, `funnel_stage` = engagement |
 | `ic_intro_view` / `ic_intro_exit` | Home Insight Chain game shown as the first-visit screen (desktop only) / closed (skip, back, continue, Esc) | `cta_text` = how it was closed, `step` = game step, `mode` = first_visit / play_button |
-| `ic_brand_switch` | Case-study tab switched in the Insight Chain game | `cta_text` = client |
+| `ic_brand_switch` | Industry switched in the Insight Chain game menu (or "Surprise me") | `cta_text` = industry key, `shuffle:<industry>` for Surprise me |
+| `ic_bot` | SOMIN bot tips muted / turned back on in the game | `cta_text` = mute / unmute |
 | `ic_connect` | A persona was wired to a pain point in the game | `cta_text` = persona → pain point |
 | `ic_angle_pick` | An angle card was picked | `cta_text` = angle, `first_try` = yes / no / miss |
 | `ic_ship` | An expression was dropped into a channel (Facebook, Instagram, LinkedIn, SEO article draft) | `cta_text` = channel (fb/ig/li/seo), `funnel_stage` = TOFU/MOFU/BOFU |
 | `ic_chain_complete` | A full chain reached the results finale (Launch the campaign) | `cta_text` = client · persona, `channels` |
 | `ic_case_click` | "Read the case study" in the game recap (`data-track`, no `data-gtm-id`) | `cta_text`, `link_url` |
-| `ic_next_chain` | "Build the next chain" / "Try another brand" on the game's results finale | `cta_text` = next_chain / next_brand |
+| `ic_next_chain` | "Build the next chain" / "Try another industry" on the game's results finale | `cta_text` = next_chain / next_brand |
 | `book_call_click` (game) | **Book a call** on the game's results finale: a Calendly link with `data-gtm-id="home_game_book_call"`, so the usual `book_call_click` key event and the `[data-gtm-id]` cta_click tags (GA4, Meta, LinkedIn 20526804) fire as for the hero call button | `cta_id` = `home_game_book_call`, `link_url` |
 | `book_call_click` | Any calendly.com link (opens popup) | `link_url` |
 | `login_click` / `platform_click` | Links to cloud.somin.ai | `link_url` |
