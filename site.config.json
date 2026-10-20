@@ -43,8 +43,52 @@
      "href": "/brands-reassured-case-study/"
     },
     {
+     "label": "Automotive: Land Rover Defender",
+     "href": "/brands-defender-case-study/"
+    },
+    {
+     "label": "Food Delivery App: Keeta HK",
+     "href": "/brands-keeta-hk-case-study/"
+    },
+    {
+     "label": "Health & Wellness (CBD): Miraflora",
+     "href": "/brands-miraflora-case-study/"
+    },
+    {
+     "label": "eCommerce / Premium Beef: Miraflora Wagyu",
+     "href": "/brands-miraflora-wagyu-gwi-case-study/"
+    },
+    {
+     "label": "Retail / Baby Goods: Mothercare Singapore",
+     "href": "/brands-mothercare-sg-case-study/"
+    },
+    {
      "label": "FMCG / Beverage: Pepsi India",
      "href": "/brands-pepsi-india-case-study/"
+    },
+    {
+     "label": "Travel: Wego",
+     "href": "/brands-wego-case-study/"
+    },
+    {
+     "label": "Mother & Baby: Mothercare Singapore — New Mothers",
+     "href": "/brands-mothercare-new-mothers-case-study/"
+    },
+    {
+     "label": "Haircare: P&G Philippines",
+     "href": "/brands-pg-philippines-case-study/"
+    },
+    {
+     "label": "Transportation, B2B: Gojek",
+     "href": "/brands-gojek-case-study/"
+    },
+    {
+     "label": "Finance: Maybank",
+     "href": "/brands-maybank-case-study/"
+    },
+    {
+     "label": "Beverage: Coca-Cola",
+     "href": "/brands-coca-cola-case-study/"
     },
     {
      "label": "Dance Academy: Ballroom Dance Academy",
@@ -75,6 +119,30 @@
     {
      "label": "Data Analytics Agency: Analytic Partners",
      "href": "/agencies-analytic-partners-case-study/"
+    },
+    {
+     "label": "Media Agency: KPI Media",
+     "href": "/agencies-kpi-media-case-study/"
+    },
+    {
+     "label": "Digital Marketing Agency: NEO360",
+     "href": "/agencies-neo360/"
+    },
+    {
+     "label": "Global Media Agency: Havas Media",
+     "href": "/agencies-havas-media-case-study/"
+    },
+    {
+     "label": "Content Marketing Agency: Click2View Asia",
+     "href": "/agencies-click2view-asia-case-study/"
+    },
+    {
+     "label": "Creative Agency: SAMY",
+     "href": "/agencies-samy-case-study/"
+    },
+    {
+     "label": "Creative Agency: Blak Labs",
+     "href": "/agencies-blak-labs-case-study/"
     },
     {
      "label": "Social Services Nonprofit: YMCA Singapore",
@@ -383,7 +451,7 @@
  },
  "redirects": {
   "/forms/": "/",
-  "/case/": "/cases-ai-marketing-strategy/",
+  "/case/": "/brands-miraflora-wagyu-gwi-case-study/",
   "/pixel/": "/",
   "/somin-comparisons/": "/somin-strategy/",
   "/blog/expanding-horizons-leveraging-large-language-models-for-business-innovation-beyond-chatbots-copy/": "/blog/expanding-horizons-leveraging-large-language-models-for-business-innovation-beyond-chatbots/",
@@ -392,35 +460,18 @@
   "/blog/page/4/": "/blog/",
   "/thank-you/": "/thank-you-trial-somin/",
   "/soads-case-study/": "/somin-paid-media/",
-  "/somin-lead-magnet-mothercare-case-study/": "/cases-ai-marketing-strategy/",
+  "/somin-lead-magnet-mothercare-case-study/": "/brands-mothercare-sg-case-study/",
   "/somonitor-psg-ai-digital-marketing-grant-for-smes-in-singapore/": "https://share.somin.ai/psg",
-  "/agencies-blak-labs-case-study/": "/cases-ai-marketing-strategy/",
-  "/agencies-click2view-asia-case-study/": "/cases-ai-marketing-strategy/",
   "/agencies-fyreflyz-heartware-case-study/": "/cases-ai-marketing-strategy/",
-  "/agencies-havas-media-case-study/": "/cases-ai-marketing-strategy/",
-  "/agencies-kpi-media-case-study/": "/cases-ai-marketing-strategy/",
-  "/agencies-neo360/": "/cases-ai-marketing-strategy/",
-  "/agencies-samy-case-study/": "/cases-ai-marketing-strategy/",
   "/agencies-vamp-creator-portfolio-case-stud/": "/cases-ai-marketing-strategy/",
   "/brands-anti-scam-case-study/": "/cases-ai-marketing-strategy/",
   "/brands-aplus-construction-case-study/": "/cases-ai-marketing-strategy/",
   "/brands-beme-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-coca-cola-case-study/": "/cases-ai-marketing-strategy/",
   "/brands-constructor-group-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-defender-case-study/": "/cases-ai-marketing-strategy/",
   "/brands-exostride-case-study/": "/cases-ai-marketing-strategy/",
   "/brands-fjor-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-gojek-case-study/": "/cases-ai-marketing-strategy/",
   "/brands-hea-energy-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-keeta-hk-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-maybank-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-miraflora-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-miraflora-wagyu-gwi-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-mothercare-new-mothers-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-mothercare-sg-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-pg-philippines-case-study/": "/cases-ai-marketing-strategy/",
   "/brands-tonik-bank-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-wego-case-study/": "/cases-ai-marketing-strategy/",
   "/influencers-caltex-creators-case-study/": "/cases-ai-marketing-strategy/",
   "/influencers-daisy-iggy-case-study/": "/cases-ai-marketing-strategy/",
   "/influencers-nikki-taylor-case-study/": "/cases-ai-marketing-strategy/"

@@ -1,0 +1,113 @@
+{
+  "key": "coca-cola",
+  "slug": "brands-coca-cola-case-study",
+  "section": "brands",
+  "client": "Coca-Cola",
+  "client_short": "Coca-Cola",
+  "seo_title": "Coca-Cola Case Study: Foodie Creator Whitespace | SOMIN",
+  "description": "SOMIN read Foodie creators and the cola category for Coca-Cola in four markets and found home cooking at 62.9% of Indian creator content, with cola at 0%.",
+  "eyebrow": "Brand case study · Soft drinks · 4 markets",
+  "h1": "Coca-Cola owns the table in 4 markets, Foodie creators own the kitchen",
+  "h1_em": "Foodie creators own the kitchen",
+  "lede": "SOMIN read Coca-Cola, 2–5 soft-drink rivals and 5–7 Foodie creators in each of India, the UK, Mexico and South Africa. Creators were loudest on home cooking and regional discovery, up to 82.9% of their content; cola had 0%.",
+  "meta_line": "A SOMIN brand briefing · Jun 2025 – May 2026 · India, United Kingdom, Mexico, South Africa · Foodies",
+  "stats": [
+    {
+      "num": "4",
+      "unit": "",
+      "label": "Markets read"
+    },
+    {
+      "num": "8",
+      "unit": "",
+      "label": "Content strands mapped"
+    },
+    {
+      "num": "62.9",
+      "unit": "%",
+      "label": "Indian Foodie-creator voice on home cooking"
+    }
+  ],
+  "challenge": {
+    "title": "Coca-Cola's voice sits in celebration and sport, like its rivals",
+    "body": "Benchmarking Pepsi, Limca, Corona or Irn-Bru only shows where parity is required. The question was where Foodie audiences talk, and whether cola is there at all."
+  },
+  "approach": {
+    "title": "Three cohorts and eight content strands in each of 4 markets",
+    "points": [
+      "Perspective Studies on Coca-Cola, competitors and leading Foodie creators over four quarters.",
+      "Share of voice across eight content strands, from home cooking to sports fandom.",
+      "One anchor SOMIN persona and three pillars per market.",
+      "Share and volume read together, so a falling share is not mistaken for decline."
+    ]
+  },
+  "findings_title": "Home cooking and regional discovery are open in all 4 markets",
+  "findings": [
+    {
+      "title": "Home cooking is 62.9% of Indian Foodie content, cola 0%",
+      "body": "Coca-Cola and its rivals had 0.0%; Coca-Cola put 57.1% of its voice into shared celebration."
+    },
+    {
+      "title": "Regional discovery: 76.8% in Mexico, 82.9% in South Africa",
+      "body": "Authentic and regional culinary discovery, where neither Coca-Cola nor its rivals published."
+    },
+    {
+      "title": "UK creators split 48.2% home cooking, 43.7% discovery",
+      "body": "Cola sat at 0.0% on both; Coca-Cola put 69.2% of its voice into shared celebration."
+    }
+  ],
+  "delivered": {
+    "title": "A persona and three pillars for each of Coca-Cola's 4 markets",
+    "points": [
+      "Pillars such as Home-Cooking Confidence, World on Your Table, Reclaim the Roots and Honour the Craft",
+      "A whitespace table and quarterly topicality read per market",
+      "Strategic angles mapped per tension, one to pick per pillar",
+      "A cross-market plan: lead with culinary whitespace, hold an everyday-pairing bridge, defend or extend the third pillar"
+    ]
+  },
+  "quote": {
+    "text": "Coca-Cola owns the table. The Foodie creators own the kitchen.",
+    "source": "From the SOMIN brand briefing"
+  },
+  "outcome": {
+    "title": "Coca-Cola should lead each market on its culinary whitespace",
+    "body": "Creator collaborations lead on home cooking or authentic discovery, SOMIN moments set the calendar, the everyday-pairing bridge runs on real propositions, and celebration is defended in Mexico and South Africa."
+  },
+  "faq": [
+    {
+      "q": "Why look at Foodie creators and not only at competitors?",
+      "a": "Competitors show only the floor. Foodie creators spot food trends first, so where their audience leans in and no cola brand follows is the opportunity."
+    },
+    {
+      "q": "What does whitespace mean in this briefing?",
+      "a": "Whitespace: the creator cohort, a proxy for demand, is active and the cola category is not. A quiet brand alone does not count; its silence may be deliberate."
+    },
+    {
+      "q": "Is the plan the same in every market?",
+      "a": "The move is the same: lead with culinary whitespace and keep an everyday-pairing bridge where Coca-Cola has a foothold. The persona, pillars and cultural route change."
+    },
+    {
+      "q": "Why read volume as well as share?",
+      "a": "In India, creator share on regional discovery fell from 81% to 37%, but volume grew from 48 to 559 posts: a composition effect, not a decline."
+    }
+  ],
+  "slides": [
+    {
+      "file": "/assets/img/cases/slides/coca-cola-1.webp",
+      "caption": "Where the Foodie conversation is",
+      "alt": "Bar chart comparing Foodie-creator and cola-category share of voice by content strand in India, with home-cooking enablement at 63% for creators and 0% for the category."
+    },
+    {
+      "file": "/assets/img/cases/slides/coca-cola-2.webp",
+      "caption": "India's anchor persona and three pillars",
+      "alt": "SOMIN persona card for India with three pillars: Home-Cooking Confidence, Nostalgic Everyday Pairing and Health Without Sacrifice, each with its whitespace verdict."
+    },
+    {
+      "file": "/assets/img/cases/slides/coca-cola-3.webp",
+      "caption": "India's conversation across the year",
+      "alt": "Quarterly topicality charts for India comparing post volumes and strand shares for the cola category and for Foodie creators."
+    }
+  ],
+  "image_prompt": "A warm home kitchen at golden hour, hands chopping fresh vegetables and spices beside simmering pots, a table laid for a family gathering in soft focus behind. No text, no logos, no brand marks, no recognisable people.",
+  "published": "2026-06-15"
+}

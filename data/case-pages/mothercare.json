@@ -1,0 +1,109 @@
+{
+  "key": "mothercare",
+  "slug": "brands-mothercare-new-mothers-case-study",
+  "section": "brands",
+  "client": "Mothercare SG",
+  "client_short": "Mothercare SG",
+  "seo_title": "Mothercare SG Case Study: Reaching New Mothers | SOMIN",
+  "description": "SOMIN read 4,049 posts and ads from 11 baby and parenting brands for Mothercare SG and found new mothers the most addressed type, identified 2,999 times.",
+  "eyebrow": "Brand case study · Baby and maternity retail · Singapore",
+  "h1": "Mothercare SG should inspire new mothers, then convert within their budget",
+  "h1_em": "then convert within their budget",
+  "lede": "For Mothercare SG, SOMIN read 4,049 social posts and ads from 11 baby and parenting brands. New mothers were the most addressed type of mother, identified 2,999 times, so SOMIN mapped how brands reach them.",
+  "meta_line": "A SOMIN custom study · Singapore · New mothers",
+  "stats": [
+    {
+      "num": "11",
+      "unit": "",
+      "label": "Brands"
+    },
+    {
+      "num": "4,049",
+      "unit": "",
+      "label": "Posts and ads"
+    },
+    {
+      "num": "2,999",
+      "unit": "",
+      "label": "Aimed at new mothers"
+    }
+  ],
+  "challenge": {
+    "title": "New mothers face a lifestyle shock and a financial concern",
+    "body": "This is especially true of a first child. The study compared how brands address new mothers in ads and in organic posts."
+  },
+  "approach": {
+    "title": "4,049 items sorted by mother type, persona and tension",
+    "points": [
+      "Collected Instagram, Facebook and Ads Library content.",
+      "Classified items by mother type, from expectant mothers to empty nesters.",
+      "Detected ad and post personas, tensions and engagement ratios.",
+      "Added psychological, sociological and economic reasons."
+    ]
+  },
+  "findings_title": "How 11 baby brands address new mothers",
+  "findings": [
+    {
+      "title": "Ads sell savings, posts sell family life",
+      "body": "The Family-Centered Savings Seeker led ads (131 items); the Family-Centered Wellness Advocate led posts (2,416 items, 80,573 engagements)."
+    },
+    {
+      "title": "Affordable quality dominates both channels",
+      "body": "Affordable and High-Quality Baby Products was the top tension in ads (90 items) and posts (1,120)."
+    },
+    {
+      "title": "Life beyond the product engages more",
+      "body": "Creating Safe and Comfortable Spaces for Babies drew the most post engagement, 39,657 from 797 posts. Parenthood challenges engage more than products."
+    }
+  ],
+  "delivered": {
+    "title": "Mothercare SG's new-mother map of personas and tensions",
+    "points": [
+      "Types of mother: new mothers (2,999), mothers of infants (2,308) and of toddlers (1,823)",
+      "5 ad and 4 post personas by media and engagement",
+      "5 ad and 5 post tensions",
+      "Reasons behind the tensions, to inspire creative directions"
+    ]
+  },
+  "quote": {
+    "text": "When it comes to purchasing, it’s about providing the best you can within your budget.",
+    "source": "From the SOMIN study"
+  },
+  "outcome": {
+    "title": "Mothercare SG needs a funnel from aspiration to budget",
+    "body": "Tap an aspirational mindset in awareness and consideration, then show how Mothercare SG fulfils it within a mother's means, with a purpose for each platform."
+  },
+  "faq": [
+    {
+      "q": "Which brands were in the study?",
+      "a": "Baby Kingdom, Babyland, Cotton On Kids, First Few Years, Hatchery Cribs, Kiddy Palace, MothercareSG, Motherswork, Mummys Market, Pramfox and Pupsik."
+    },
+    {
+      "q": "How do ads and posts differ for new mothers?",
+      "a": "Ads lean on savers and value seekers, posts on family-centric wellness advocates. Other personas earn higher engagement ratios, so the persona is multi-faceted."
+    },
+    {
+      "q": "Are the reasons based on market data?",
+      "a": "No. They are textbook theories, which SOMIN usually checks against survey or BI data."
+    }
+  ],
+  "slides": [
+    {
+      "file": "/assets/img/cases/slides/mothercare-1.webp",
+      "caption": "Tensions in new-mother posts",
+      "alt": "Three tension cards for new-mother posts with illustrated scenes: a family opening gifts by a Christmas tree, a mother feeding her baby at home, and parents shopping at a baby fair, with media and engagement counts."
+    },
+    {
+      "file": "/assets/img/cases/slides/mothercare-2.webp",
+      "caption": "Content by type of mother",
+      "alt": "Table and donut chart of content by type of mother, led by new mothers at 2,999 (30.78%), mothers of infants at 2,308 and mothers of toddlers at 1,823."
+    },
+    {
+      "file": "/assets/img/cases/slides/mothercare-3.webp",
+      "caption": "Personas in organic posts",
+      "alt": "Three persona cards for organic posts, the Family-Centric Toy Enthusiast, the Family-Centered Happiness Seeker and the Family-Centered Wellness Advocate, each with an illustrated family scene and media and engagement counts."
+    }
+  ],
+  "image_prompt": "A soft, cinematic scene of a new mother holding her newborn by a sunlit nursery window, with a cot, a stroller and neatly folded baby clothes nearby, faces not visible. No text, no logos, no brand marks, no recognisable people.",
+  "published": "2026-05-22"
+}
