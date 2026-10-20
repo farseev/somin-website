@@ -8317,5 +8317,226 @@
     ]
    }
   ]
+ },
+ "influencers-nada-alkutbi-case-study": {
+  "client": "Nada Alkutbi",
+  "chains": [
+   {
+    "id": "human-voices",
+    "persona": "Avery Chen",
+    "arch": "The Empowered Visionary",
+    "tension": "Navigating the Complexities of Social Media in the Age of AI",
+    "angle": "Erosion of Trust in Digital Interactions",
+    "items": [
+     {
+      "id": "t01",
+      "stage": "TOFU",
+      "text": "Empower your voice; let trust be the foundation.",
+      "concept": "USP",
+      "img": ""
+     },
+     {
+      "id": "t02",
+      "stage": "TOFU",
+      "text": "Inspire Trust. Empower Engagement.",
+      "concept": "USP",
+      "img": ""
+     },
+     {
+      "id": "t03",
+      "stage": "TOFU",
+      "text": "Together, we amplify authenticity!",
+      "concept": "USP",
+      "img": ""
+     },
+     {
+      "id": "t04",
+      "stage": "TOFU",
+      "text": "Lead with Trust. Connect Authentically.",
+      "concept": "USP",
+      "img": ""
+     },
+     {
+      "id": "t05",
+      "stage": "TOFU",
+      "text": "AI can assist, but only trust can connect.",
+      "concept": "USP",
+      "img": ""
+     },
+     {
+      "id": "t06",
+      "stage": "TOFU",
+      "text": "Engage with Transparency. Trust the Process.",
+      "concept": "USP",
+      "img": ""
+     },
+     {
+      "id": "t07",
+      "stage": "TOFU",
+      "text": "Turn AI interactions into genuine conversations.",
+      "concept": "USP",
+      "img": ""
+     },
+     {
+      "id": "t08",
+      "stage": "TOFU",
+      "text": "Trust Transforms Engagement into Connection.",
+      "concept": "USP",
+      "img": ""
+     },
+     {
+      "id": "t09",
+      "stage": "TOFU",
+      "text": "In a sea of noise, let trust guide your path.",
+      "concept": "USP",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "id": "lead-like-a-coach",
+    "persona": "Kira Vasquez",
+    "arch": "The Purposeful Innovator",
+    "tension": "Navigating Career Challenges: Overcoming Barriers to Success",
+    "angle": "Burnout from Leadership Challenges",
+    "items": [
+     {
+      "id": "t01",
+      "stage": "TOFU",
+      "text": "Dare to lead differently: Break free from exhausting habits.",
+      "concept": "USP",
+      "img": ""
+     },
+     {
+      "id": "t02",
+      "stage": "TOFU",
+      "text": "Lift others up without losing yourself.",
+      "concept": "Reason to believe",
+      "img": ""
+     },
+     {
+      "id": "t03",
+      "stage": "TOFU",
+      "text": "Lead passionately, but don't let passion consume you.",
+      "concept": "USP",
+      "img": ""
+     },
+     {
+      "id": "t04",
+      "stage": "TOFU",
+      "text": "Set your boundaries; lead with clarity.",
+      "concept": "Reason to believe",
+      "img": ""
+     },
+     {
+      "id": "t05",
+      "stage": "TOFU",
+      "text": "Step into the light of effective leadership by honoring your own needs.",
+      "concept": "USP",
+      "img": ""
+     },
+     {
+      "id": "t06",
+      "stage": "TOFU",
+      "text": "Fuel your leadership without burning out.",
+      "concept": "Reason to believe",
+      "img": ""
+     },
+     {
+      "id": "t07",
+      "stage": "TOFU",
+      "text": "Transform stress into strength by leading with care and intention.",
+      "concept": "USP",
+      "img": ""
+     },
+     {
+      "id": "t08",
+      "stage": "TOFU",
+      "text": "Empower yourself to empower others.",
+      "concept": "Reason to believe",
+      "img": ""
+     },
+     {
+      "id": "t09",
+      "stage": "TOFU",
+      "text": "Empower yourself and your team; lead without limits but with self-care.",
+      "concept": "USP",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "id": "younger-self",
+    "persona": "Jordan Tressel",
+    "arch": "The Ambitious Connector",
+    "tension": "Navigating Career Challenges and Authentic Connections",
+    "angle": "Lack of Mentorship",
+    "items": [
+     {
+      "id": "t01",
+      "stage": "TOFU",
+      "text": "Forge your path with trusted mentorship!",
+      "concept": "Reason to believe",
+      "img": ""
+     },
+     {
+      "id": "t02",
+      "stage": "TOFU",
+      "text": "Your network is your greatest resource—empower it today.",
+      "concept": "Product feature",
+      "img": ""
+     },
+     {
+      "id": "t03",
+      "stage": "TOFU",
+      "text": "Break down barriers, build connections.",
+      "concept": "Promotion",
+      "img": ""
+     },
+     {
+      "id": "t04",
+      "stage": "TOFU",
+      "text": "From networking to supportive partnerships!",
+      "concept": "Reason to believe",
+      "img": ""
+     },
+     {
+      "id": "t05",
+      "stage": "TOFU",
+      "text": "Break barriers together—learn from shared experiences.",
+      "concept": "Product feature",
+      "img": ""
+     },
+     {
+      "id": "t06",
+      "stage": "TOFU",
+      "text": "Your career thrives on the connections you build.",
+      "concept": "Promotion",
+      "img": ""
+     },
+     {
+      "id": "t07",
+      "stage": "TOFU",
+      "text": "Succeed with authenticity, connect for impact!",
+      "concept": "Reason to believe",
+      "img": ""
+     },
+     {
+      "id": "t08",
+      "stage": "TOFU",
+      "text": "Grow your career through connections that matter.",
+      "concept": "Product feature",
+      "img": ""
+     },
+     {
+      "id": "t09",
+      "stage": "TOFU",
+      "text": "Find your guide to career success through authentic mentoring.",
+      "concept": "Promotion",
+      "img": ""
+     }
+    ]
+   }
+  ]
  }
 }

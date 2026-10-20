@@ -38,10 +38,8 @@
       }).join('');
       var cols = STAGES.map(function (st) {
         var items = (ch.items || []).filter(function (it) { return it.stage === st[0]; });
-        var body = items.length
-          ? items.map(card).join('')
-          : '<p class="cs-chain-empty">No ' + esc(st[1].toLowerCase()) + ' lines in this chain.</p>';
-        return '<div class="cs-chain-col"><h3>' + esc(st[0]) + ' · ' + esc(st[1]) + '</h3>' + body + '</div>';
+        if (!items.length) return '';
+        return '<div class="cs-chain-col"><h3>' + esc(st[0]) + ' · ' + esc(st[1]) + '</h3>' + items.map(card).join('') + '</div>';
       }).join('');
       var meta = [ch.arch, ch.angle].filter(Boolean).join(' · ');
       root.innerHTML =

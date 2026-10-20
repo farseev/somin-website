@@ -1195,12 +1195,17 @@ def case_funnels():
 
 def funnel_section(slug, client, native=False):
     """Interactive library: pick an insight chain, see every TOFU / MOFU / BOFU line from that chain."""
-    if slug not in case_funnels():
+    block = case_funnels().get(slug)
+    if not block:
         return ''
     h2 = f'{client} creatives by insight chain'
     if len(h2) > 65:
         h2 = 'Creatives by insight chain'
-    lede = 'Choose a chain. The awareness, consideration and conversion lines from that chain appear together.'
+    stages = {it.get('stage') for ch in block.get('chains', []) for it in ch.get('items', [])}
+    if stages == {'TOFU'}:
+        lede = 'Choose a chain. The awareness lines written for that chain appear together.'
+    else:
+        lede = 'Choose a chain. The awareness, consideration and conversion lines from that chain appear together.'
     script = '<script src="/assets/js/case-funnel.js" defer></script>'
     if native:
         return (f'<section class="sec sec--light" aria-label="Creative library by insight chain"><div class="container">'
@@ -1701,8 +1706,9 @@ def case_manifest():
         hub = it.get('hub') or {}
         label, sector = nav_labels.get(key) or (None, '')
         title = hub.get('title') or label or re.sub(r'\.pdf$', '', it['file'], flags=re.I).replace('_', ' ').title()
-        out[key] = {'title': title, 'download': drive_download(it['drive_id']), 'drive_id': it['drive_id'],
-                    'view': f'https://drive.google.com/file/d/{it["drive_id"]}/view', 'size_mb': it['size_mb'],
+        did = it.get('drive_id') or ''
+        out[key] = {'title': title, 'download': drive_download(did) if did else '', 'drive_id': did,
+                    'view': f'https://drive.google.com/file/d/{did}/view' if did else '', 'size_mb': it['size_mb'],
                     'page': it.get('page') or (url_for(CASE_PAGES[key]['slug']) if key in CASE_PAGES else None), 'cover': hub.get('cover') or pm.get('og_image'),
                     'category': hub.get('sector') or sector or it.get('category'), 'market': hub.get('market', ''),
                     'section': hub.get('section') or {'influencers': 'creators'}.get(it.get('category'), it.get('category')),
@@ -1828,7 +1834,7 @@ def build_lead_pages():
 </div></section>
 <section class="section" style="padding-top:0"><div class="container" style="max-width:980px"><h2 class="section-title">More SOMIN case studies</h2><div class="mini-grid">{cards}</div>
 <p style="margin-top:22px"><a class="btn btn--ghost" href="/cases-ai-marketing-strategy/" data-gtm-id="thank_you_case_all_cases">Browse all {sum(1 for v in manifest.values() if v['on_hub'])} case studies</a></p></div></section>
-<script type="application/json" id="cs-manifest">{json.dumps({k: dict(public[k], f=_obf(v['drive_id'])) for k, v in manifest.items()}, ensure_ascii=False)}</script>'''
+<script type="application/json" id="cs-manifest">{json.dumps({k: dict(public[k], **({'f': _obf(v['drive_id'])} if v.get('drive_id') else {})) for k, v in manifest.items()}, ensure_ascii=False)}</script>'''
     meta = {'title': 'Your SOMIN Case Study Download', 'description': 'Download your SOMIN case study.', 'type': 'thank_you', 'lead_type': 'case_study',
             'layout': 'thank-you', 'robots': 'noindex,nofollow', 'group': 'thank_you'}
     write('/thank-you-case-study/', page(meta, body, '/thank-you-case-study/'))

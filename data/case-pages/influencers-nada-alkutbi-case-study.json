@@ -1,0 +1,102 @@
+{
+  "key": "influencers-nada-alkutbi-case-study",
+  "slug": "influencers-nada-alkutbi-case-study",
+  "section": "creators",
+  "client": "Nada Alkutbi",
+  "client_short": "Nada Alkutbi",
+  "seo_title": "Nada Alkutbi Case Study: LinkedIn Advocacy | SOMIN",
+  "description": "SOMIN read Nada Alkutbi's 5 LinkedIn posts against 80 from five UK peers. Only 3 of those 80 touch employee advocacy, and hers average 163 engagements.",
+  "eyebrow": "Creator case study · LinkedIn · United Kingdom",
+  "h1": "Nada posted 5 times in 6 months, peers barely post on advocacy",
+  "h1_em": "peers barely post on advocacy",
+  "lede": "SOMIN read Nada Alkutbi's five LinkedIn posts from April to October 2026 against 80 posts from five peers in the United Kingdom. Only three of those 80 posts touch employee advocacy. Her own posts average 163 engagements.",
+  "meta_line": "A SOMIN creator briefing · 19 Apr to 19 Oct 2026 · United Kingdom · LinkedIn",
+  "stats": [
+    {
+      "num": "5",
+      "unit": "posts",
+      "label": "In six months, about 0.2 a week"
+    },
+    {
+      "num": "163",
+      "unit": "avg",
+      "label": "Engagements per post, 5.4% rate"
+    },
+    {
+      "num": "27",
+      "unit": "lines",
+      "label": "Awareness concepts, three pillars"
+    }
+  ],
+  "challenge": {
+    "title": "Five posts in six months leave the advocacy lane open",
+    "body": "Nada Alkutbi manages global social strategy at IBM and posted five times between 19 April and 19 October 2026. Those posts average 163 engagements, 816 in total, and a 5.4% engagement rate. The strongest was an eight-image IBM AI Sports Club post with 411 reactions. The open question is which lane she can lead before a peer does."
+  },
+  "approach": {
+    "title": "Five peers, three audiences and six months of posts",
+    "points": [
+      "Read her 5 posts from 19 April to 19 October 2026.",
+      "Compared 80 posts from Sylvia Brendel, Caner Daywood, Eduardo Beltrao, Gretchen Garland and Joshua Walton-Prince.",
+      "Mapped three audience proxies: marketing and social media (n=36), managers and leaders (n=44), and early-career professionals (n=28).",
+      "Built one insight chain per audience, then nine awareness lines on each story.",
+      "Shares sit on each cohort's own base. Her base is five posts, so her percentages are not compared on the competitor axis."
+    ]
+  },
+  "findings_title": "Advocacy is open, coaching is hers, confidence is rising",
+  "findings": [
+    {
+      "title": "Advocacy peers barely publish on it",
+      "body": "Joshua Walton-Prince, Gretchen Garland and Eduardo Beltrao work in employee advocacy, yet only 3 of the set's 80 posts touch it, for 77 engagements in total. It is 40% of Nada's voice and 30% of competitor content: a differentiate territory."
+    },
+    {
+      "title": "Coaching is a lane nobody else leads",
+      "body": "Coach-style leadership, covering boundaries, feedback and burnout, is 60% of her five posts and 14% of the competitor set. No peer leads that craft. The nearest competitor theme is general work-life struggle."
+    },
+    {
+      "title": "Career confidence is rising, unverified",
+      "body": "With no prior-year data, three windows of 26, 35 and 24 posts show career confidence rising from 38.5% to 54.2%, and AI-versus-human content falling from 38.5% to 16.7%. Employee advocacy moves from 0% to 4.2%."
+    }
+  ],
+  "delivered": {
+    "title": "Three chains, 27 awareness lines and a 39-post calendar",
+    "points": [
+      "Human Voices, Smart Feeds at 60%, for marketing and social media professionals.",
+      "Lead Like a Coach at 25%, for managers and leaders.",
+      "Letters to My Younger Self at 15%, for early-career professionals.",
+      "27 awareness lines, nine per story. Click scores are still pending, so none are shown.",
+      "A 39-post calendar from 27 October 2026 to 21 January 2027, three posts a week."
+    ]
+  },
+  "quote": {
+    "text": "Trust is the foundation; without it, all connections crumble.",
+    "source": "Human Voices, Smart Feeds, story 3745"
+  },
+  "outcome": {
+    "title": "Lead employee advocacy at three posts a week",
+    "body": "Move from about 0.2 posts a week to 3, and hold the 163 average engagement as volume rises. Put 23 of the 39 posts on advocacy. Lead with the multi-image posts that already work for her: the IBM AI Sports Club carousel drew 411 reactions and a 12.6% engagement rate. This briefing is awareness only. It has no consideration or conversion lines."
+  },
+  "faq": [
+    {
+      "q": "Who was Nada Alkutbi compared with?",
+      "a": "Five LinkedIn voices over the same six months, chosen by similarity of interests: Sylvia Brendel (0.43, 24 posts, 41 average engagements), Caner Daywood (0.41, 23 posts, 826), Eduardo Beltrao at HSBC (0.33, 12 posts, 8), Gretchen Garland at Microsoft (0.11, 2 posts, 111) and Joshua Walton-Prince at SAP (0.09, 18 posts, 212). Sally Jacobs and Ramon Isaac were left out."
+    },
+    {
+      "q": "Why treat the engagement averages carefully?",
+      "a": "The two highest competitor averages include reposts, and those reactions belong to the original author. Caner Daywood's set includes posts at 10,586 and 7,647 reactions. Nada's 163 is the average of her own five posts."
+    },
+    {
+      "q": "Are the trend calls verified?",
+      "a": "No. There is no prior-year data. The windows hold 26, 35 and 24 posts. Career confidence is marked rising, AI versus human falling, business efficiency seasonal (19.2% to 25%), and employee advocacy emerging."
+    },
+    {
+      "q": "What does audience mean here?",
+      "a": "A content proxy, not her follower list. The marketing and social media panel is 36 posts, managers and leaders 44, and early-career professionals 28. A theme share is that cohort's own base, and one post can sit in more than one theme."
+    },
+    {
+      "q": "Does this briefing include consideration and conversion lines?",
+      "a": "No. The deck has 27 awareness lines, nine on each of three stories. Consideration and conversion lines are not in the source. Predicted click scores are pending, so the page does not show any."
+    }
+  ],
+  "slides": [],
+  "published": "2026-10-20"
+}

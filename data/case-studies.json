@@ -318,13 +318,35 @@
    "file": "VAMP CREATORS.pdf",
    "drive_id": "1y12vouTl-WhTAjSxaxcF1Kywi-OsqcEQ",
    "size_mb": 0.3,
-   "category": "influencers"
+   "category": "influencers",
+   "page": "/agencies-vamp-creator-portfolio-case-stud/",
+   "hub": {
+    "order": 15,
+    "section": "creators",
+    "title": "Vamp Creators",
+    "sector": "Influencer Marketing",
+    "market": "Global",
+    "summary": "Inside a SOMIN creator portfolio read: 12 months of engagement across Vamp’s 8-creator roster, mapped into 8 distinct, non-overlapping content territories.",
+    "cover": "/assets/img/cases/agencies-vamp-creator-portfolio-case-stud.webp",
+    "source_tile": "diJf2eoYDNyMxSuok7u44X"
+   }
   },
   "influencers-daisy-iggy-case-study": {
    "file": "DAISY IGGY.pdf",
    "drive_id": "1YAZm53xYbhE2WlTc9MGtXRA0w9Dtyr-P",
    "size_mb": 2.0,
-   "category": "influencers"
+   "category": "influencers",
+   "page": "/influencers-daisy-iggy-case-study/",
+   "hub": {
+    "order": 12,
+    "section": "creators",
+    "title": "Daisy Iggy",
+    "sector": "Pet Influencer",
+    "market": "Singapore",
+    "summary": "Inside a SOMIN creator strategy for @daisy_iggy_levretka: real whitespace analysis, a named persona, and a 39-post calendar built from real engagement data.",
+    "cover": "/assets/img/cases/influencers-daisy-iggy-case-study.webp",
+    "source_tile": "WZv9bGrn7oPxwVrjFLHsE8"
+   }
   },
   "influencers-vamp-aaron-brooks-case-study": {
    "file": "VAMP CEO AARON.pdf",
@@ -347,7 +369,18 @@
    "file": "NIKKI TAYLOR.pdf",
    "drive_id": "1U8c1cmL2LMi3CF2BYfnYvtvIOxRav0_2",
    "size_mb": 1.5,
-   "category": "influencers"
+   "category": "influencers",
+   "page": "/influencers-nikki-taylor-case-study/",
+   "hub": {
+    "order": 13,
+    "section": "creators",
+    "title": "Nikki Taylor",
+    "sector": "Marketing & Analytics",
+    "market": "Singapore",
+    "summary": "Inside a SOMIN creator strategy: 24 months of LinkedIn engagement data, a 5-name competitive set, and a whitespace-backed content plan for Nikki Taylor.",
+    "cover": "/assets/img/cases/influencers-nikki-taylor-case-study.webp",
+    "source_tile": "jigdbAv7NnBpsaSQUWuvKD"
+   }
   },
   "fjor": {
    "file": "FJOR.pdf",
@@ -728,6 +761,22 @@
     "summary": "See how Fyreflyz used SOMIN’s analytics to build a data-backed pitch for YMCA Singapore, turning a distribution gap into a content and paid media growth strategy.",
     "cover": "/assets/img/cases/fyreflyz-ymca-singapore-pitch-full.webp",
     "source_tile": "TvLDgcFytCwPUn5r9Ch5WV"
+   }
+  },
+  "influencers-nada-alkutbi-case-study": {
+   "file": "Nada_Alkutbi_LinkedIn_Strategy.pdf",
+   "drive_id": "",
+   "size_mb": 3.0,
+   "category": "influencers",
+   "page": "/influencers-nada-alkutbi-case-study/",
+   "hub": {
+    "order": 17,
+    "section": "creators",
+    "title": "Nada Alkutbi",
+    "sector": "LinkedIn",
+    "market": "UK",
+    "summary": "SOMIN read Nada Alkutbi's 5 LinkedIn posts against 80 from five peers: only 3 of those 80 touch employee advocacy.",
+    "cover": "/assets/img/og/card-default.jpg"
    }
   }
  }

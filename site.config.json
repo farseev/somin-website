@@ -105,6 +105,14 @@
     {
      "label": "Ride-Hailing: inDrive Philippines",
      "href": "/brands-indrive-philippines-case-study/"
+    },
+    {
+     "label": "Education: Constructor Group",
+     "href": "/brands-constructor-group-case-study/"
+    },
+    {
+     "label": "Digital Banking: Tonik Bank",
+     "href": "/brands-tonik-bank-case-study/"
     }
    ]
   },
@@ -165,6 +173,22 @@
     {
      "label": "Coffee & Cafe Chain: Tim Hortons Singapore",
      "href": "/influencers-tim-hortons-singapore-case-study/"
+    },
+    {
+     "label": "Influencer Agency: Vamp Portfolio",
+     "href": "/agencies-vamp-creator-portfolio-case-stud/"
+    },
+    {
+     "label": "B2B / LinkedIn Creator: Nikki Taylor",
+     "href": "/influencers-nikki-taylor-case-study/"
+    },
+    {
+     "label": "Pet Influencer: Daisy Iggy Levretka (The Dog)",
+     "href": "/influencers-daisy-iggy-case-study/"
+    },
+    {
+     "label": "LinkedIn Creator: Nada Alkutbi",
+     "href": "/influencers-nada-alkutbi-case-study/"
     }
    ]
   },
@@ -463,17 +487,12 @@
   "/somin-lead-magnet-mothercare-case-study/": "/brands-mothercare-sg-case-study/",
   "/somonitor-psg-ai-digital-marketing-grant-for-smes-in-singapore/": "https://share.somin.ai/psg",
   "/agencies-fyreflyz-heartware-case-study/": "/cases-ai-marketing-strategy/",
-  "/agencies-vamp-creator-portfolio-case-stud/": "/cases-ai-marketing-strategy/",
   "/brands-anti-scam-case-study/": "/cases-ai-marketing-strategy/",
   "/brands-aplus-construction-case-study/": "/cases-ai-marketing-strategy/",
   "/brands-beme-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-constructor-group-case-study/": "/cases-ai-marketing-strategy/",
   "/brands-exostride-case-study/": "/cases-ai-marketing-strategy/",
   "/brands-fjor-case-study/": "/cases-ai-marketing-strategy/",
   "/brands-hea-energy-case-study/": "/cases-ai-marketing-strategy/",
-  "/brands-tonik-bank-case-study/": "/cases-ai-marketing-strategy/",
-  "/influencers-caltex-creators-case-study/": "/cases-ai-marketing-strategy/",
-  "/influencers-daisy-iggy-case-study/": "/cases-ai-marketing-strategy/",
-  "/influencers-nikki-taylor-case-study/": "/cases-ai-marketing-strategy/"
+  "/influencers-caltex-creators-case-study/": "/cases-ai-marketing-strategy/"
  }
 }
