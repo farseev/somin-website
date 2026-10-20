@@ -18,11 +18,17 @@
     var current = 0;
 
     function card(it) {
+      var text = (it.text || '').trim();
       var img = it.img
-        ? '<img src="' + esc(it.img) + '" alt="' + esc(it.text) + '" loading="lazy" decoding="async">'
+        ? '<img src="' + esc(it.img) + '" alt="' + esc(text || it.concept || '') + '" loading="lazy" decoding="async">'
         : '';
-      var concept = it.concept ? '<small>' + esc(it.concept) + '</small>' : '';
-      return '<article class="cs-chain-card">' + img + '<p>' + esc(it.text) + '</p>' + concept + '</article>';
+      if (!text && !img) return '';
+      var concept = (it.concept || '').trim();
+      var showConcept = concept && concept.toLowerCase() !== text.toLowerCase();
+      return '<article class="cs-chain-card">' + img +
+        (text ? '<p>' + esc(text) + '</p>' : '') +
+        (showConcept ? '<small>' + esc(concept) + '</small>' : '') +
+        '</article>';
     }
 
     function paint() {
@@ -37,7 +43,9 @@
           '</button>';
       }).join('');
       var cols = STAGES.map(function (st) {
-        var items = (ch.items || []).filter(function (it) { return it.stage === st[0]; });
+        var items = (ch.items || []).filter(function (it) {
+          return it.stage === st[0] && ((it.text || '').trim() || it.img);
+        });
         if (!items.length) return '';
         return '<div class="cs-chain-col"><h3>' + esc(st[0]) + ' · ' + esc(st[1]) + '</h3>' + items.map(card).join('') + '</div>';
       }).join('');

@@ -1112,7 +1112,8 @@ html.nav-compact .site-header .bar > .lang-switch { margin-left: auto; }
 html.nav-compact[dir="rtl"] .site-header .bar > .lang-switch { margin-left: 0; margin-right: auto; }
 
 /* Insight-chain creative library on case-study pages */
-.cs-chain { margin-top: 8px; background: var(--paper-2); color: var(--ink); border: 1px solid var(--paper-line); border-radius: 18px; padding: 16px; }
+.cs-chain { margin-top: 8px; background: var(--paper-2); color: var(--ink); border: 1px solid var(--paper-line); border-radius: 18px; padding: 16px; font-family: var(--display); }
+.cs-chain-meta, .cs-chain-card p, .cs-chain-card small { font-family: var(--display); }
 .cs-chain-picks { display: flex; flex-wrap: wrap; gap: 8px; }
 .cs-chain-picks button { flex: 1 1 180px; text-align: left; appearance: none; cursor: pointer; background: #fff; color: var(--ink); border: 1px solid var(--paper-line); border-radius: 12px; padding: 10px 12px; font-family: var(--display); }
 .cs-chain-picks button strong { display: block; font-size: 13px; font-weight: 700; }
