@@ -6,18 +6,7 @@
    "file": "DEFENDER.pdf",
    "drive_id": "1IVD6xxDWWYuq_46wKG4OPSlxW0CU4Xvu",
    "size_mb": 1.2,
-   "category": "brands",
-   "page": "/brands-defender-case-study/",
-   "hub": {
-    "order": 34,
-    "section": "brands",
-    "title": "Land Rover Defender",
-    "sector": "Automotive",
-    "market": "UK / Japan / US",
-    "summary": "Inside a SOMIN cross-market briefing: 766 posts across UK, Japan and US, three independent personas, and three market-specific pillars for Land Rover Defender.",
-    "cover": "/assets/img/cases/brands-defender-case-study.webp",
-    "source_tile": "NK3tBUrjbidaPEwj8PtuYB"
-   }
+   "category": "brands"
   },
   "brands-reassured-case-study": {
    "file": "REASSURED.pdf",
@@ -40,35 +29,13 @@
    "file": "MIRAFLORA.pdf",
    "drive_id": "1Ltyu6F1_9U7z5HbwdOG-28pI9WlLiti4",
    "size_mb": 3.6,
-   "category": "brands",
-   "page": "/brands-miraflora-case-study/",
-   "hub": {
-    "order": 25,
-    "section": "brands",
-    "title": "Miraflora",
-    "sector": "CBD",
-    "market": "USA",
-    "summary": "See how SOMIN benchmarked Miraflora against 7 CBD rivals, read 2,745 pieces of content, and built a plan to find real outlier posts, not vanity metrics.",
-    "cover": "/assets/img/cases/brands-miraflora-case-study.webp",
-    "source_tile": "evhCZ3Uer7NMo63AQo2fBk"
-   }
+   "category": "brands"
   },
   "case": {
    "file": "MIRAFLORA GWI.pdf",
    "drive_id": "1TZpoAbhEP6KD5XAsL4gYlnNX3xvaAk4Y",
    "size_mb": 31.1,
-   "category": "brands",
-   "page": "/brands-miraflora-wagyu-gwi-case-study/",
-   "hub": {
-    "order": 29,
-    "section": "brands",
-    "title": "Miraflora Wagyu × GWI",
-    "sector": "eCommerce",
-    "market": "USA",
-    "summary": "See how SOMIN used GWI consumer analytics to uncover the personas and behaviors behind Miraflora's premium beef positioning and turned that into sharper, higher ROI.",
-    "cover": "/assets/img/cases/case.webp",
-    "source_tile": "48eVJmPWdoeHTwm46JSfzP"
-   }
+   "category": "brands"
   },
   "brands-pepsi-india-case-study": {
    "file": "PEPSI INDIA.pdf",
@@ -91,35 +58,13 @@
    "file": "MOTHERCARE SG.pdf",
    "drive_id": "1umkIB6PsqDltvLRuqIlSUnS0pwV5p5SS",
    "size_mb": 28.5,
-   "category": "brands",
-   "page": "/brands-mothercare-sg-case-study/",
-   "hub": {
-    "order": 32,
-    "section": "brands",
-    "title": "Mothercare Singapore × GWI",
-    "sector": "Mother & Baby Products",
-    "market": "Singapore",
-    "summary": "How Mothercare Singapore used SOMIN and GWI behavioural data to cut research time 80%, triple audience segmentation accuracy, and save 74% on execution costs.",
-    "cover": "/assets/img/cases/brands-mothercare-sg-case-study.webp",
-    "source_tile": "LHSYDSLxg52U5rGtvGUNJd"
-   }
+   "category": "brands"
   },
   "brands-keeta-hk-case-study": {
    "file": "KEETA HK.pdf",
    "drive_id": "1cORxBr3uCMPmtrIG9f-rGDGc2IrmjmKC",
    "size_mb": 8.4,
-   "category": "brands",
-   "page": "/brands-keeta-hk-case-study/",
-   "hub": {
-    "order": 31,
-    "section": "brands",
-    "title": "Keeta HK",
-    "sector": "Food Delivery",
-    "market": "Hong Kong",
-    "summary": "Inside a SOMIN creative ideation sample: 145 benchmarked ads and 72 bilingual ad lines rewritten around real Hong Kong food-delivery audience data for Keeta HK.",
-    "cover": "/assets/img/cases/brands-keeta-hk-case-study.webp",
-    "source_tile": "kuA4R4EpmhBFWh7JwzYmNj"
-   }
+   "category": "brands"
   },
   "brands-viva-school-case-study": {
    "file": "VIVA SCHOOL OF MUSIC AND BALLET.pdf",
@@ -142,18 +87,7 @@
    "file": "EXOSTRIDE SG.pdf",
    "drive_id": "1LV_xAPNKVSRkZnLt6xlRSR8dOXUCIg12",
    "size_mb": 0.6,
-   "category": "brands",
-   "page": "/brands-exostride-case-study/",
-   "hub": {
-    "order": 39,
-    "section": "brands",
-    "title": "ExoStride",
-    "sector": "Exoskeleton Technology",
-    "market": "Singapore",
-    "summary": "How SOMIN mapped HT Science’s ExoStride hip exoskeleton to three real Singapore journeys: rehabilitation, the outdoor trails, and the daily commute.",
-    "cover": "/assets/img/cases/brands-exostride-case-study.webp",
-    "source_tile": "43vZJawCJZcphuMGxmETXN"
-   }
+   "category": "brands"
   },
   "brands-sm-universe-case-study": {
    "file": "SM UNIVERSE.pdf",
@@ -193,18 +127,7 @@
    "file": "BLAK LABS.pdf",
    "drive_id": "1F6oVd_x738wMhTmVaEjfmr99mr5FbvTF",
    "size_mb": 0.9,
-   "category": "agencies",
-   "page": "/agencies-blak-labs-case-study/",
-   "hub": {
-    "order": 4,
-    "section": "agencies",
-    "title": "Blak Labs",
-    "sector": "Integrated Agency",
-    "market": "Singapore",
-    "summary": "How Blak Labs, a 50-person Singapore advertising agency, used SOMIN to cut brand analysis from 10 hours to 1 and client-reporting cost from $10K to $6K a month.",
-    "cover": "/assets/img/cases/agencies-blak-labs-case-study.webp",
-    "source_tile": "bET8ccLR5vRbQ7CinTbt7g"
-   }
+   "category": "agencies"
   },
   "agencies-analytic-partners-case-study": {
    "file": "ANALYTIC PARTNERS COMMERCIAL.pdf",
@@ -244,120 +167,43 @@
    "file": "CLICK2VIEW ASIA.pdf",
    "drive_id": "1lCZuPvJHL3DmMzo5xo_V0EQ75UB70n0f",
    "size_mb": 0.9,
-   "category": "agencies",
-   "page": "/agencies-click2view-asia-case-study/",
-   "hub": {
-    "order": 3,
-    "section": "agencies",
-    "title": "Click2View Asia",
-    "sector": "Production Agency",
-    "market": "Singapore",
-    "summary": "How Click2View Asia, an APAC content marketing agency, used SOMIN to cut monthly reporting from 9 hours to 1 and competitive analysis from 18 hours to 3.",
-    "cover": "/assets/img/cases/agencies-click2view-asia-case-study.webp",
-    "source_tile": "pY4PBtLMwKPBDs2eCfRbpV"
-   }
+   "category": "agencies"
   },
   "agencies-havas-media-case-study": {
    "file": "HAVAS MEDIA.pdf",
    "drive_id": "1805w1RSmQuOGDQNAvobjocCtF3YgyuuS",
    "size_mb": 0.9,
-   "category": "agencies",
-   "page": "/agencies-havas-media-case-study/",
-   "hub": {
-    "order": 1,
-    "section": "agencies",
-    "title": "Havas Media",
-    "sector": "Media Agency",
-    "market": "Middle East",
-    "summary": "How Havas Media’s Middle East Performance Practice replaced manual competitor tracking with SOMIN’s real-time data and cut new client onboarding to day one.",
-    "cover": "/assets/img/cases/agencies-havas-media-case-study.webp",
-    "source_tile": "KkQKGoyEkNGayfv4bn5eSL"
-   }
+   "category": "agencies"
   },
   "agencies-neo360": {
    "file": "NEO360.pdf",
    "drive_id": "1Emm34r8aBaiMXSsfBzVp3IJCrhXuQGMi",
    "size_mb": 0.8,
-   "category": "agencies",
-   "page": "/agencies-neo360/",
-   "hub": {
-    "order": 5,
-    "section": "agencies",
-    "title": "NEO360",
-    "sector": "SEO Agency",
-    "market": "Singapore",
-    "summary": "See how NEO360, a Singapore digital marketing agency, cut proposal team size from 3 to 1, turnaround from 4h to 2.5h, and cost per proposal 30% using SOMIN.",
-    "cover": "/assets/img/cases/agencies-neo360.webp",
-    "source_tile": "6yGm8QG3Qja34sSan7RUV2"
-   }
+   "category": "agencies"
   },
   "agencies-samy-case-study": {
    "file": "SAMY.pdf",
    "drive_id": "1exyMpOMYi1E-pB1KDtQeABaokZ6wlP23",
    "size_mb": 0.9,
-   "category": "agencies",
-   "page": "/agencies-samy-case-study/",
-   "hub": {
-    "order": 0,
-    "section": "agencies",
-    "title": "SAMY",
-    "sector": "Creative Agency",
-    "market": "USA",
-    "summary": "How SAMY, an independent creative agency, used SOMIN’s competitive intelligence to win a multi-million-pound retainer: 12x faster planning, 78% CTR accuracy.",
-    "cover": "/assets/img/cases/agencies-samy-case-study.webp",
-    "source_tile": "NtN7boX5sNSPmiZYkMjsrf"
-   }
+   "category": "agencies"
   },
   "agencies-kpi-media-case-study": {
    "file": "KPI MEDIA.pdf",
    "drive_id": "1ClObXqwY6hLIPym-JLgpKT6qIhRqXV_I",
    "size_mb": 0.8,
-   "category": "agencies",
-   "page": "/agencies-kpi-media-case-study/",
-   "hub": {
-    "order": 2,
-    "section": "agencies",
-    "title": "KPI Media",
-    "sector": "Performance Agency",
-    "market": "Singapore",
-    "summary": "KPI Media, a Singapore performance marketing agency, used SOMIN to cut pitch prep from 1 week to 2 days, cut cost 75%, and close a new $5K/month retainer.",
-    "cover": "/assets/img/cases/agencies-kpi-media-case-study.webp",
-    "source_tile": "wyMeAzC7xBJ6pud8cpHxoL"
-   }
+   "category": "agencies"
   },
   "agencies-vamp-creator-portfolio-case-stud": {
    "file": "VAMP CREATORS.pdf",
    "drive_id": "1y12vouTl-WhTAjSxaxcF1Kywi-OsqcEQ",
    "size_mb": 0.3,
-   "category": "influencers",
-   "page": "/agencies-vamp-creator-portfolio-case-stud/",
-   "hub": {
-    "order": 15,
-    "section": "creators",
-    "title": "Vamp Creators",
-    "sector": "Influencer Marketing",
-    "market": "Global",
-    "summary": "Inside a SOMIN creator portfolio read: 12 months of engagement across Vamp’s 8-creator roster, mapped into 8 distinct, non-overlapping content territories.",
-    "cover": "/assets/img/cases/agencies-vamp-creator-portfolio-case-stud.webp",
-    "source_tile": "diJf2eoYDNyMxSuok7u44X"
-   }
+   "category": "influencers"
   },
   "influencers-daisy-iggy-case-study": {
    "file": "DAISY IGGY.pdf",
    "drive_id": "1YAZm53xYbhE2WlTc9MGtXRA0w9Dtyr-P",
    "size_mb": 2.0,
-   "category": "influencers",
-   "page": "/influencers-daisy-iggy-case-study/",
-   "hub": {
-    "order": 12,
-    "section": "creators",
-    "title": "Daisy Iggy",
-    "sector": "Pet Influencer",
-    "market": "Singapore",
-    "summary": "Inside a SOMIN creator strategy for @daisy_iggy_levretka: real whitespace analysis, a named persona, and a 39-post calendar built from real engagement data.",
-    "cover": "/assets/img/cases/influencers-daisy-iggy-case-study.webp",
-    "source_tile": "WZv9bGrn7oPxwVrjFLHsE8"
-   }
+   "category": "influencers"
   },
   "influencers-vamp-aaron-brooks-case-study": {
    "file": "VAMP CEO AARON.pdf",
@@ -380,18 +226,7 @@
    "file": "NIKKI TAYLOR.pdf",
    "drive_id": "1U8c1cmL2LMi3CF2BYfnYvtvIOxRav0_2",
    "size_mb": 1.5,
-   "category": "influencers",
-   "page": "/influencers-nikki-taylor-case-study/",
-   "hub": {
-    "order": 13,
-    "section": "creators",
-    "title": "Nikki Taylor",
-    "sector": "Marketing & Analytics",
-    "market": "Singapore",
-    "summary": "Inside a SOMIN creator strategy: 24 months of LinkedIn engagement data, a 5-name competitive set, and a whitespace-backed content plan for Nikki Taylor.",
-    "cover": "/assets/img/cases/influencers-nikki-taylor-case-study.webp",
-    "source_tile": "jigdbAv7NnBpsaSQUWuvKD"
-   }
+   "category": "influencers"
   },
   "fjor": {
    "file": "FJOR.pdf",

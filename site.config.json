@@ -39,84 +39,12 @@
      "href": "/brands-fujifilm-case-study/"
     },
     {
-     "label": "Healthcare / MedTech: ExoStride Singapore",
-     "href": "/brands-exostride-case-study/"
-    },
-    {
      "label": "Insurance / Finance: Reassured",
      "href": "/brands-reassured-case-study/"
     },
     {
-     "label": "Automotive: Land Rover Defender",
-     "href": "/brands-defender-case-study/"
-    },
-    {
-     "label": "Food Delivery App: Keeta HK",
-     "href": "/brands-keeta-hk-case-study/"
-    },
-    {
-     "label": "Health & Wellness (CBD): Miraflora",
-     "href": "/brands-miraflora-case-study/"
-    },
-    {
-     "label": "eCommerce / Premium Beef: Miraflora Wagyu",
-     "href": "/brands-miraflora-wagyu-gwi-case-study/"
-    },
-    {
-     "label": "Retail / Baby Goods: Mothercare Singapore",
-     "href": "/brands-mothercare-sg-case-study/"
-    },
-    {
      "label": "FMCG / Beverage: Pepsi India",
      "href": "/brands-pepsi-india-case-study/"
-    },
-    {
-     "label": "Travel: Wego",
-     "href": "/brands-wego-case-study/"
-    },
-    {
-     "label": "Mother & Baby: Mothercare Singapore — New Mothers",
-     "href": "/brands-mothercare-new-mothers-case-study/"
-    },
-    {
-     "label": "Haircare: P&G Philippines",
-     "href": "/brands-pg-philippines-case-study/"
-    },
-    {
-     "label": "Electricity Market: HEA Energy",
-     "href": "/brands-hea-energy-case-study/"
-    },
-    {
-     "label": "Transportation, B2B: Gojek",
-     "href": "/brands-gojek-case-study/"
-    },
-    {
-     "label": "Education: Constructor Group",
-     "href": "/brands-constructor-group-case-study/"
-    },
-    {
-     "label": "Food Supplements: BeMe",
-     "href": "/brands-beme-case-study/"
-    },
-    {
-     "label": "Anti Scam: Anti-Scam Communications",
-     "href": "/brands-anti-scam-case-study/"
-    },
-    {
-     "label": "Keto Diet App: Fjor",
-     "href": "/brands-fjor-case-study/"
-    },
-    {
-     "label": "Finance: Maybank",
-     "href": "/brands-maybank-case-study/"
-    },
-    {
-     "label": "General Contractor: A+ Construction",
-     "href": "/brands-aplus-construction-case-study/"
-    },
-    {
-     "label": "Beverage: Coca-Cola",
-     "href": "/brands-coca-cola-case-study/"
     },
     {
      "label": "Dance Academy: Ballroom Dance Academy",
@@ -129,10 +57,6 @@
     {
      "label": "Private Healthcare: Thomson Medical",
      "href": "/brands-thomson-medical-case-study/"
-    },
-    {
-     "label": "Digital Banking: Tonik Bank",
-     "href": "/brands-tonik-bank-case-study/"
     },
     {
      "label": "Ride-Hailing: inDrive Philippines",
@@ -153,40 +77,12 @@
      "href": "/agencies-analytic-partners-case-study/"
     },
     {
-     "label": "Media Agency: KPI Media",
-     "href": "/agencies-kpi-media-case-study/"
-    },
-    {
-     "label": "Digital Marketing Agency: NEO360",
-     "href": "/agencies-neo360/"
-    },
-    {
-     "label": "Global Media Agency: Havas Media",
-     "href": "/agencies-havas-media-case-study/"
-    },
-    {
-     "label": "Content Marketing Agency: Click2View Asia",
-     "href": "/agencies-click2view-asia-case-study/"
-    },
-    {
-     "label": "Creative Agency: SAMY",
-     "href": "/agencies-samy-case-study/"
-    },
-    {
-     "label": "Creative Agency: Blak Labs",
-     "href": "/agencies-blak-labs-case-study/"
-    },
-    {
      "label": "Social Services Nonprofit: YMCA Singapore",
      "href": "/agencies-fyreflyz-ymca-case-study/"
     },
     {
      "label": "Business Chamber / Trade Association: SICCI",
      "href": "/agencies-fyreflyz-sicci-case-study/"
-    },
-    {
-     "label": "Youth Volunteering / Social Enterprise: Heartware Network",
-     "href": "/agencies-fyreflyz-heartware-case-study/"
     }
    ]
   },
@@ -195,24 +91,8 @@
    "href": "/somin-for-creators/",
    "children": [
     {
-     "label": "Influencer Agency: Vamp Portfolio",
-     "href": "/agencies-vamp-creator-portfolio-case-stud/"
-    },
-    {
      "label": "Art & Illustration Creator: Aaron Brooks",
      "href": "/influencers-vamp-aaron-brooks-case-study/"
-    },
-    {
-     "label": "B2B / LinkedIn Creator: Nikki Taylor",
-     "href": "/influencers-nikki-taylor-case-study/"
-    },
-    {
-     "label": "Pet Influencer: Daisy Iggy Levretka (The Dog)",
-     "href": "/influencers-daisy-iggy-case-study/"
-    },
-    {
-     "label": "Fuel & Petroleum Retail: Caltex Creators",
-     "href": "/influencers-caltex-creators-case-study/"
     },
     {
      "label": "Coffee & Cafe Chain: Tim Hortons Singapore",
@@ -262,21 +142,25 @@
   },
   {
    "label": "CASES",
-   "href": "/cases-ai-marketing-strategy/"
+   "href": "/cases-ai-marketing-strategy/",
+   "children": []
   },
   {
    "label": "BLOG",
-   "href": "/blog/"
+   "href": "/blog/",
+   "children": []
   },
   {
    "label": "PRICING",
    "href": "/pricing/",
-   "gtm_id": "nav_pricing"
+   "gtm_id": "nav_pricing",
+   "children": []
   },
   {
    "label": "LOGIN",
    "href": "https://cloud.somin.ai/auth/signin",
-   "gtm_id": "nav_login"
+   "gtm_id": "nav_login",
+   "children": []
   }
  ],
  "nav_cta": {
@@ -499,7 +383,7 @@
  },
  "redirects": {
   "/forms/": "/",
-  "/case/": "/brands-miraflora-wagyu-gwi-case-study/",
+  "/case/": "/cases-ai-marketing-strategy/",
   "/pixel/": "/",
   "/somin-comparisons/": "/somin-strategy/",
   "/blog/expanding-horizons-leveraging-large-language-models-for-business-innovation-beyond-chatbots-copy/": "/blog/expanding-horizons-leveraging-large-language-models-for-business-innovation-beyond-chatbots/",
@@ -508,7 +392,37 @@
   "/blog/page/4/": "/blog/",
   "/thank-you/": "/thank-you-trial-somin/",
   "/soads-case-study/": "/somin-paid-media/",
-  "/somin-lead-magnet-mothercare-case-study/": "/brands-mothercare-sg-case-study/",
-  "/somonitor-psg-ai-digital-marketing-grant-for-smes-in-singapore/": "https://share.somin.ai/psg"
+  "/somin-lead-magnet-mothercare-case-study/": "/cases-ai-marketing-strategy/",
+  "/somonitor-psg-ai-digital-marketing-grant-for-smes-in-singapore/": "https://share.somin.ai/psg",
+  "/agencies-blak-labs-case-study/": "/cases-ai-marketing-strategy/",
+  "/agencies-click2view-asia-case-study/": "/cases-ai-marketing-strategy/",
+  "/agencies-fyreflyz-heartware-case-study/": "/cases-ai-marketing-strategy/",
+  "/agencies-havas-media-case-study/": "/cases-ai-marketing-strategy/",
+  "/agencies-kpi-media-case-study/": "/cases-ai-marketing-strategy/",
+  "/agencies-neo360/": "/cases-ai-marketing-strategy/",
+  "/agencies-samy-case-study/": "/cases-ai-marketing-strategy/",
+  "/agencies-vamp-creator-portfolio-case-stud/": "/cases-ai-marketing-strategy/",
+  "/brands-anti-scam-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-aplus-construction-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-beme-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-coca-cola-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-constructor-group-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-defender-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-exostride-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-fjor-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-gojek-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-hea-energy-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-keeta-hk-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-maybank-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-miraflora-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-miraflora-wagyu-gwi-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-mothercare-new-mothers-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-mothercare-sg-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-pg-philippines-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-tonik-bank-case-study/": "/cases-ai-marketing-strategy/",
+  "/brands-wego-case-study/": "/cases-ai-marketing-strategy/",
+  "/influencers-caltex-creators-case-study/": "/cases-ai-marketing-strategy/",
+  "/influencers-daisy-iggy-case-study/": "/cases-ai-marketing-strategy/",
+  "/influencers-nikki-taylor-case-study/": "/cases-ai-marketing-strategy/"
  }
 }

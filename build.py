@@ -1186,6 +1186,32 @@ def case_page_meta(key, c):
             'robots': 'index,follow', 'case_study_label': c['client'], 'group': 'case_study', 'h1': c['h1'], 'published': c.get('published')}
 
 
+def case_funnels():
+    path = ROOT / 'static/assets/data/case-funnels.json'
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding='utf-8'))
+
+
+def funnel_section(slug, client, native=False):
+    """Interactive library: pick an insight chain, see every TOFU / MOFU / BOFU line from that chain."""
+    if slug not in case_funnels():
+        return ''
+    h2 = f'{client} creatives by insight chain'
+    if len(h2) > 65:
+        h2 = 'Creatives by insight chain'
+    lede = 'Choose a chain. The awareness, consideration and conversion lines from that chain appear together.'
+    script = '<script src="/assets/js/case-funnel.js" defer></script>'
+    if native:
+        return (f'<section class="sec sec--light" aria-label="Creative library by insight chain"><div class="container">'
+                f'<div class="sec-head sec-head--center"><p class="eyebrow eyebrow--ink">The creative</p><h2>{E(h2)}</h2><p>{E(lede)}</p></div>'
+                f'<div class="cs-chain" data-case="{E(slug)}"></div></div></section>\n{script}\n')
+    return (f'<section class="sc-section" aria-label="Creative library by insight chain">'
+            f'<div class="sc-section-tag sc-reveal" data-nosnippet="">The creative</div>'
+            f'<h2 class="sc-reveal">{E(h2)}</h2><p class="sc-lede sc-reveal">{E(lede)}</p>'
+            f'<div class="cs-chain" data-case="{E(slug)}"></div></section>\n{script}\n')
+
+
 def build_case_pages(manifest):
     """Case-study pages composed from data/case-pages/<key>.json (content taken from each case-study PDF)."""
     metas = []
@@ -1267,6 +1293,9 @@ def build_case_pages(manifest):
   </div>
 </div></section>
 '''
+        funnel = funnel_section(c['slug'], cs, native=True)
+        if funnel:
+            body += funnel
         if c.get('reviews'):
             rv = c['reviews']
             body += reviews_section({'tags': rv.get('tags', ''), 'limit': str(rv.get('limit', 1)), 'title': rv.get('title') or f'What the {cs} team says on G2', 'native': '1'}) + '\n'
@@ -2326,15 +2355,22 @@ def build_404():
     (OUT / '404.html').write_text(html_text.replace(f'<link rel="canonical" href="{BASE}/404.html">', ''), encoding='utf-8')
 
 
+def write_redirect(src, target):
+    body = (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Redirecting…</title>'
+            f'<meta name="robots" content="noindex,follow"><link rel="canonical" href="{absu(target)}">'
+            f'<meta http-equiv="refresh" content="0; url={E(target)}">'
+            f'<script>location.replace({json.dumps(target)} + location.search + location.hash);</script></head>'
+            f'<body><p>This page has moved to <a href="{E(target)}">{E(absu(target))}</a>.</p></body></html>')
+    write(src, body)
+
+
 def build_redirects():
     for src, dst in CFG['redirects'].items():
-        target = dst
-        body = (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Redirecting…</title>'
-                f'<meta name="robots" content="noindex,follow"><link rel="canonical" href="{absu(target)}">'
-                f'<meta http-equiv="refresh" content="0; url={E(target)}">'
-                f'<script>location.replace({json.dumps(target)} + location.search + location.hash);</script></head>'
-                f'<body><p>This page has moved to <a href="{E(target)}">{E(absu(target))}</a>.</p></body></html>')
-        write(src, body)
+        write_redirect(src, dst)
+        # Retired case studies: language URLs follow the English page to the hub.
+        if dst == '/cases-ai-marketing-strategy/':
+            for seg in i18n.SEGS:
+                write_redirect(f'/{seg}{src}', dst)
 
 
 # ------------------------------------------------------------------ SEO / AEO / GEO files

@@ -1110,3 +1110,20 @@ html.nav-compact .site-header .bar > .lang-switch { margin-left: auto; }
 [dir="rtl"] .nav-sub { left: auto; right: 0; }
 @media (max-width: 1080px) { [dir="rtl"] .site-header .bar > .lang-switch { margin-left: 0; margin-right: auto; } }
 html.nav-compact[dir="rtl"] .site-header .bar > .lang-switch { margin-left: 0; margin-right: auto; }
+
+/* Insight-chain creative library on case-study pages */
+.cs-chain { margin-top: 8px; background: var(--paper-2); color: var(--ink); border: 1px solid var(--paper-line); border-radius: 18px; padding: 16px; }
+.cs-chain-picks { display: flex; flex-wrap: wrap; gap: 8px; }
+.cs-chain-picks button { flex: 1 1 180px; text-align: left; appearance: none; cursor: pointer; background: #fff; color: var(--ink); border: 1px solid var(--paper-line); border-radius: 12px; padding: 10px 12px; font-family: var(--display); }
+.cs-chain-picks button strong { display: block; font-size: 13px; font-weight: 700; }
+.cs-chain-picks button span { display: block; margin-top: 3px; font-size: 12px; font-weight: 500; line-height: 1.35; color: var(--text-2, #3d4a48); }
+.cs-chain-picks button[aria-pressed="true"] { border-color: var(--teal); background: #e7f8f3; }
+.cs-chain-meta { margin: 14px 0 10px; font-size: 13px; }
+.cs-chain-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.cs-chain-col h3 { margin: 0 0 8px; font-family: var(--display); font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-600, #1a8f74); }
+.cs-chain-card { background: #fff; border: 1px solid var(--paper-line); border-radius: 12px; overflow: hidden; margin-bottom: 8px; }
+.cs-chain-card img { display: block; width: 100%; height: auto; }
+.cs-chain-card p { margin: 0; padding: 10px 12px 4px; font-size: 13.5px; line-height: 1.45; font-weight: 600; }
+.cs-chain-card small { display: block; padding: 0 12px 10px; font-size: 11.5px; color: var(--text-2, #3d4a48); }
+.cs-chain-empty { font-size: 13px; color: var(--text-2, #3d4a48); }
+@media (max-width: 800px) { .cs-chain-board { grid-template-columns: 1fr; } }
