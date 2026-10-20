@@ -251,6 +251,12 @@
   "image": "static/assets/img/cases/bg/influencers-nikki-taylor-case-study.webp"
  },
  {
+  "name": "case-influencers-nada-alkutbi-case-study",
+  "slug": "influencers-nada-alkutbi-case-study",
+  "eyebrow": "Creator case study · Nada Alkutbi",
+  "image": "static/assets/img/cases/bg/influencers-nada-alkutbi-case-study.webp"
+ },
+ {
   "name": "case-case",
   "slug": "brands-miraflora-wagyu-gwi-case-study",
   "eyebrow": "Brand case study · Miraflora Wagyu",
