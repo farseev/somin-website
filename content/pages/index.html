@@ -124,6 +124,8 @@
 .ic .ic-wm{font-family:var(--ic-d);font-weight:900;font-size:22px;letter-spacing:-.02em;color:#fff;}
 .ic .ic-wm b{color:var(--se-mint,#2DBF9C);font-weight:900;}
 .ic .ic-skip{display:inline-flex;align-items:center;gap:8px;font-family:var(--ic-d);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ic-w2);padding:11px 18px;border:1px solid var(--ic-line);border-radius:999px;background:rgba(255,255,255,.03);transition:border-color .2s,background .2s,color .2s;}
+.ic .ic-langsel{margin-left:auto;margin-right:10px;font:700 12px var(--ic-d);color:var(--ic-w2);background:rgba(255,255,255,.06);border:1px solid var(--ic-line);border-radius:999px;padding:10px 12px;max-width:150px;}
+.ic .ic-langsel option{color:#111;background:#fff;}
 .ic .ic-skip:hover,.ic .ic-skip:focus-visible{border-color:var(--ic-mint);color:#fff;background:var(--ic-soft);}
 .ic .ic-skip svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;}
 .ic .ic-head{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px 40px;align-items:end;margin-bottom:18px;}
@@ -2551,6 +2553,30 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
       root.classList.add('ic--leaving');
       setTimeout(finish, 360);
     }
+    (function () {  /* language picker on the intro screen, built from the page's hreflang alternates */
+      var bar = root.querySelector('.ic-introbar'), skip = document.getElementById('ic-skip');
+      if (!bar || !skip) return;
+      var N = { 'en': 'English', 'zh-Hans': '简体中文', 'zh-Hant': '繁體中文', 'ja': '日本語', 'ko': '한국어', 'th': 'ไทย', 'vi': 'Tiếng Việt', 'id': 'Bahasa Indonesia', 'ms': 'Bahasa Melayu', 'hi': 'हिन्दी', 'tl': 'Filipino', 'es': 'Español', 'fr': 'Français', 'de': 'Deutsch', 'pt': 'Português', 'ar': 'العربية', 'ru': 'Русский' };
+      var sel = document.createElement('select'), cur = document.documentElement.getAttribute('data-locale') || 'en';
+      sel.className = 'ic-langsel notranslate'; sel.setAttribute('translate', 'no'); sel.setAttribute('aria-label', 'Language');
+      var links = document.querySelectorAll('link[rel="alternate"][hreflang]'), seen = {};
+      Object.keys(N).forEach(function (k) {
+        var l = null;
+        for (var i = 0; i < links.length; i++) { if (links[i].getAttribute('hreflang') === k) { l = links[i]; break; } }
+        if (!l) return;
+        var a = document.createElement('a'); a.href = l.href;
+        var o = document.createElement('option'); o.value = a.pathname; o.textContent = N[k]; o.setAttribute('data-k', k);
+        if (k === 'en' ? cur === 'en' : (cur.toLowerCase() === k.toLowerCase() || (cur === 'fil' && k === 'tl'))) o.selected = true;
+        sel.appendChild(o); seen[k] = 1;
+      });
+      if (sel.options.length < 2) return;
+      sel.addEventListener('change', function () {
+        var k = sel.options[sel.selectedIndex].getAttribute('data-k');
+        try { localStorage.setItem('somin_hero_lang', k === 'tl' ? 'fil' : k); } catch (e) {}
+        location.href = sel.value + location.search;
+      });
+      bar.insertBefore(sel, skip);
+    })();
     document.getElementById('ic-skip').addEventListener('click', function () { exitIntro(root.classList.contains('ic--first') ? 'skip' : 'back'); });
     var playBtn = document.getElementById('ic-play');
     if (playBtn) playBtn.addEventListener('click', function () {
