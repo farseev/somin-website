@@ -1134,3 +1134,13 @@ html.nav-compact[dir="rtl"] .site-header .bar > .lang-switch { margin-left: 0; m
   .cs-chain-board { grid-template-columns: 1fr; }
   .cs-chain-board:has(.cs-chain-col:only-child) .cs-chain-col { grid-template-columns: 1fr; }
 }
+
+/* Science & Press visuals */
+html body .rs-band { display: block; width: 100%; height: auto; max-height: 340px; object-fit: cover; border-radius: 20px; margin: 22px 0 6px; box-shadow: 0 18px 44px rgba(22,32,31,.12); }
+html body .rs-chart { display: block; width: 100%; max-width: 780px; height: auto; margin: 18px 0 8px; }
+html body .rs-chart rect { fill: var(--teal); }
+html body .rs-chart text { fill: var(--ink); font: 800 12px var(--display); }
+html body .rs-chart text.rs-yr { fill: var(--text-3); font-weight: 700; font-size: 11px; }
+
+html body .rs-hero .cs-hero-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 720px) { html body .rs-hero .cs-hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
