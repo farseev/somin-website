@@ -869,5 +869,63 @@
    "date": "2022-09-26",
    "publisher": "Forbes Technology Council"
   }
+ ],
+ "press": [
+  {
+   "title": "Recognised by Google DeepMind, this is how SOMIN aims to redefine AI-powered marketing",
+   "url": "https://e27.co/recognised-by-google-deepmind-this-is-how-somin-aims-to-redefine-ai-powered-marketing-20250408/",
+   "publisher": "e27",
+   "date": "2025-04-08",
+   "summary": "e27 reports on SOMIN's recognition by Google DeepMind and its plan to rework AI-powered marketing."
+  },
+  {
+   "title": "Prof. Aleks Farseev: Leading the charge in AI-driven digital marketing and strategic communications",
+   "url": "https://www.ceoinsightsasia.com/leader/prof-aleks-farseev-leading-the-charge-in-ai-driven-digital-marketing-strategic-communications-cid-7760.html",
+   "publisher": "CEO Insights Asia",
+   "date": "2025-01-01",
+   "summary": "An interview profile of SOMIN's co-founder and CEO on his career, AI marketing work and views on generative AI."
+  },
+  {
+   "title": "SOMIN: a Google Cloud customer story",
+   "url": "https://cloud.google.com/customers/somin-ai",
+   "publisher": "Google Cloud",
+   "date": "",
+   "summary": "How SOMIN uses Gemini and Google Cloud to shorten campaign analysis from days to minutes."
+  },
+  {
+   "title": "How a pivot is done: childlike faith and insights shape SoMin.ai",
+   "url": "https://newinasia.com/2024/08/28/how-a-pivot-is-done-in-somin-ai/",
+   "publisher": "New In Asia",
+   "date": "2024-08-28",
+   "summary": "How the company moved from ad optimisation to its SOMONITOR research tools."
+  },
+  {
+   "title": "How a child-like prayer for ducks laid the faith foundation for an AI start-up",
+   "url": "https://saltandlight.sg/business/how-a-child-like-prayer-for-ducks-laid-the-faith-foundation-for-an-ai-start-up/",
+   "publisher": "Salt&Light",
+   "date": "2024-02-20",
+   "summary": "A profile of Prof. Aleks Farseev on how his faith and experiences shaped the business."
+  },
+  {
+   "title": "From academic research to adtech entrepreneurship: the journey of Aleks Farseev and Somin.AI",
+   "url": "https://fg.ventures/from-academic-research-to-adtech-entrepreneurship-the-journey-of-aleks-farseev-and-somin-ai/",
+   "publisher": "FG Ventures",
+   "date": "2023-06-06",
+   "summary": "An interview on the move from academia to founding an AI advertising company, with startup lessons."
+  },
+  {
+   "title": "From academic research to AI-powered marketing: the inspiring journey of SoMin.ai's founder",
+   "url": "https://jj.capital/portfolio-startup-case-somin",
+   "publisher": "Joint Journey (JJ Capital)",
+   "date": "",
+   "summary": "An investor profile of the founder, the platform and the road from research to a company."
+  },
+  {
+   "title": "ITMO professor Aleksandr Farseev on long tail marketing and the 2020 Gartner Cool Vendors award",
+   "url": "https://news.itmo.ru/en/startups_and_business/business_success/news/10141/",
+   "publisher": "ITMO News",
+   "date": "2020-12-01",
+   "summary": "An interview on the Gartner Cool Vendor award, AI ad targeting and plans for 2021."
+  }
  ]
 }
