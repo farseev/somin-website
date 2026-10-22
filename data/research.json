@@ -12,6 +12,10 @@
    "url": "https://scholar.google.com/citations?user=ZJW7F18AAAAJ"
   },
   {
+   "label": "Forbes Technology Council",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/people/aleksfarseev/"
+  },
+  {
    "label": "Semantic Scholar",
    "url": "https://www.semanticscholar.org/author/2229491"
   },
@@ -116,7 +120,7 @@
    "venue_short": "AAAI",
    "year": 2017,
    "url": "https://doi.org/10.1609/aaai.v31i1.10497",
-   "pdf": "https://ojs.aaai.org/index.php/AAAI/article/view/10497/10356",
+   "pdf": "/assets/papers/tweetfit-wellness-profile-learning.pdf",
    "topic": "combining social media posts with wearable-sensor data to learn users' wellness profiles",
    "tier": "top",
    "kind": "Full paper",
@@ -132,7 +136,7 @@
    "venue_short": "ACM MM",
    "year": 2022,
    "url": "https://doi.org/10.1145/3503161.3548769",
-   "pdf": "https://arxiv.org/abs/2207.12236",
+   "pdf": "/assets/papers/personality-driven-social-multimedia-content-recommendation.pdf",
    "topic": "using inferred personality traits of an audience to recommend which social content to show them",
    "tier": "top",
    "kind": "Full paper",
@@ -228,7 +232,7 @@
    "venue_short": "ACM MM",
    "year": 2023,
    "url": "https://doi.org/10.1145/3581783.3612817",
-   "pdf": "https://arxiv.org/abs/2504.20064",
+   "pdf": "/assets/papers/against-opacity-explainable-ai-llm-digital-advertising.pdf",
    "topic": "predicting click-through rate for new ad creatives and explaining the drivers with an LLM assistant (SODA)",
    "tier": "strong",
    "kind": "Paper",
@@ -244,7 +248,7 @@
    "venue_short": "ACM MM",
    "year": 2025,
    "url": "https://doi.org/10.1145/3746027.3758167",
-   "pdf": "https://arxiv.org/abs/2512.04112",
+   "pdf": "/assets/papers/mindfuse-genai-explainability-marketing-strategy.pdf",
    "topic": "explainable GenAI that combines creative CTR scoring with LLMs to co-create marketing strategy from real ad data",
    "tier": "strong",
    "kind": "Paper",
@@ -260,7 +264,7 @@
    "venue_short": "AAAI",
    "year": 2017,
    "url": "https://doi.org/10.1609/aaai.v31i1.11105",
-   "pdf": "https://ojs.aaai.org/index.php/AAAI/article/view/11105/10964",
+   "pdf": "/assets/papers/personality-profiling-multiple-social-networks.pdf",
    "topic": "predicting personality type from a user's activity across several social networks",
    "tier": "strong",
    "kind": "Student abstract",
@@ -324,7 +328,7 @@
    "venue_short": "WSDM",
    "year": 2021,
    "url": "https://doi.org/10.1145/3437963.3441714",
-   "pdf": "https://arxiv.org/pdf/2011.14615",
+   "pdf": "/assets/papers/somin-ai-personality-driven-content-generation-platform.pdf",
    "topic": "inferring an audience's MBTI personality from social content and generating posts suited to that personality",
    "tier": "strong",
    "kind": "Demo paper",
@@ -388,7 +392,7 @@
    "venue_short": "AAAI",
    "year": 2020,
    "url": "https://doi.org/10.1609/aaai.v34i10.7258",
-   "pdf": "https://ojs.aaai.org/index.php/AAAI/article/view/7258/7112",
+   "pdf": "/assets/papers/i-know-where-you-are-coming-from-aaai.pdf",
    "topic": "how the choice of social network as a data source changes the accuracy of AI user models",
    "tier": "strong",
    "kind": "Student abstract",
@@ -404,7 +408,7 @@
    "venue_short": "AAAI",
    "year": 2019,
    "url": "https://doi.org/10.1609/aaai.v33i01.330110025",
-   "pdf": "https://ojs.aaai.org/index.php/AAAI/article/view/5149/5022",
+   "pdf": "/assets/papers/a-whole-new-ball-game-player-profiling.pdf",
    "topic": "profiling players from in-game behaviour data",
    "tier": "strong",
    "kind": "Student abstract",
@@ -452,7 +456,7 @@
    "venue_short": "Frontiers in Big Data",
    "year": 2022,
    "url": "https://doi.org/10.3389/fdata.2022.931206",
-   "pdf": "https://www.frontiersin.org/journals/big-data/articles/10.3389/fdata.2022.931206/pdf",
+   "pdf": "/assets/papers/twitter-facebook-personality-profiling-frontiers.pdf",
    "topic": "estimating MBTI personality from text and images across Twitter, Facebook and PersonalityCafe, and using it to improve content recommendation",
    "tier": "other",
    "kind": "Journal article",
@@ -468,7 +472,7 @@
    "venue_short": "ICMR workshop",
    "year": 2021,
    "url": "https://doi.org/10.1145/3463944.3469270",
-   "pdf": "https://arxiv.org/pdf/2106.10673",
+   "pdf": "/assets/papers/two-faced-humans-twitter-facebook-personality-profiling.pdf",
    "topic": "comparing how well each social network and data type predicts MBTI personality, with a released dataset",
    "tier": "other",
    "kind": "Workshop paper",
@@ -564,7 +568,7 @@
    "venue_short": "arXiv",
    "year": 2024,
    "url": "https://arxiv.org/abs/2407.13117",
-   "pdf": null,
+   "pdf": "/assets/papers/somonitor-explainable-ai-llm-marketing-analytics.pdf",
    "topic": "technical description of SOMONITOR, combining explainable ad-performance models with LLMs for competitor and marketing analytics",
    "tier": "other",
    "kind": "Preprint",
@@ -760,6 +764,110 @@
    "summary": "Russian-language lecture on inferring user attributes from many data sources of different modalities.",
    "language": "Russian",
    "source_checked": "https://www.youtube.com/watch?v=_ifF3HbGVY8"
+  }
+ ],
+ "articles": [
+  {
+   "title": "18 Powerful Applications Of AI Agents In Marketing",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2025/07/22/18-powerful-applications-of-ai-agents-in-marketing/",
+   "date": "2025-07-22",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Will AI Make Agencies Obsolete? The Future Of Advertising",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2025/05/22/will-ai-make-agencies-obsolete-the-future-of-advertising/",
+   "date": "2025-05-22",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Prompting, Fine-Tuning, RAG And AI Agents For Future Marketing",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2025/02/28/prompting-fine-tuning-rag-and-ai-agents-for-future-marketing/",
+   "date": "2025-02-28",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "LLMs Vs. Small Neural Networks In Marketing: Is Bigger Always Better Or Is It About The Technique?",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2024/07/31/llms-vs-small-neural-networks-in-marketing-is-bigger-always-better-or-is-it-about-the-technique/",
+   "date": "2024-07-31",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Eight AI-Powered Strategies To Transform Your Marketing Strategy",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2024/07/22/eight-ai-powered-strategies-to-transform-your-marketing-strategy/",
+   "date": "2024-07-22",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Redemptive Marketing: The Path To Resolving Transparency And Performance Dilemmas In Digital Advertising",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2024/05/20/redemptive-marketing-the-path-to-resolving-transparency-and-performance-dilemmas-in-digital-advertising/",
+   "date": "2024-05-20",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Why Transparency Matters For Today's Marketing-Driven Companies",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2024/02/28/why-transparency-matters-for-todays-marketing-driven-companies/",
+   "date": "2024-02-28",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Low-Funnel Ad Optimization On Social Media Platforms",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2024/01/12/low-funnel-ad-optimization-on-social-media-platforms/",
+   "date": "2024-01-12",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Mastering Social Media Advertising: A Comprehensive Guide To Metrics And Optimization",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2023/12/08/mastering-social-media-advertising-a-comprehensive-guide-to-metrics-and-optimization/",
+   "date": "2023-12-08",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Overcoming The Volatility Of Today's Ad Prices",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2023/11/13/overcoming-the-volatility-of-todays-ad-prices/",
+   "date": "2023-11-13",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Beyond Chatbots: Harnessing The Power Of LLMs In Business",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2023/07/26/beyond-chatbots-harnessing-the-power-of-llms-in-business/",
+   "date": "2023-07-26",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Unlocking VC Investment: The Key Element For Large Language Model-Backed Startups",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2023/06/15/unlocking-vc-investment-the-key-element-for-large-language-model-backed-startups/",
+   "date": "2023-06-15",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Can AI Have Intuition, And What Is So Special About GPT-4's Multimodality?",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2023/05/09/can-ai-have-intuition-and-what-is-so-special-about-gpt-4s-multimodality/",
+   "date": "2023-05-09",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Is Bigger Better? Why The ChatGPT Vs. GPT-3 Vs. GPT-4 Battle Is Just A Family Chat",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2023/02/17/is-bigger-better-why-the-chatgpt-vs-gpt-3-vs-gpt-4-battle-is-just-a-family-chat/",
+   "date": "2023-02-17",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Four Lessons I Learned Along A Rough Road To Becoming The CEO Of An AI Startup",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2023/01/05/four-lessons-i-learned-along-a-rough-road-to-becoming-the-ceo-of-an-ai-startup/",
+   "date": "2023-01-05",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Will Machines Replace Human Creativity?",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2022/10/21/will-machines-replace-human-creativity/",
+   "date": "2022-10-21",
+   "publisher": "Forbes Technology Council"
+  },
+  {
+   "title": "Closing The Gap Between Marketing And AI Systems",
+   "url": "https://www.forbes.com/councils/forbestechcouncil/2022/09/26/closing-the-gap-between-marketing-and-ai-systems/",
+   "date": "2022-09-26",
+   "publisher": "Forbes Technology Council"
   }
  ]
 }
