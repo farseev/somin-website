@@ -2354,6 +2354,7 @@ def build_404():
   <p class="lede">But that doesn't mean we can't help you find what you're looking for!</p>
   <div class="cta-row" style="margin-top:28px"><a class="btn btn--solid" href="/">Go to the homepage</a><a class="btn btn--ghost" href="{CAL_DEFAULT}" data-gtm-id="404_book_call">Book a call</a></div>
   <div class="mini-grid">{cards}</div>
+<script>(function(){{var p=location.pathname;if(/^\/(app|admin|auth|s|brand|platform|api|login|logout|signin|signup|dashboard|workspace)(\/|$)/.test(p))location.replace('https://cloud.somin.ai'+p+location.search+location.hash)}})();</script>
 </div></section>'''
     meta = {'title': 'Page not found — SOMIN', 'description': 'The page you were looking for could not be found.', 'type': '404', 'layout': '404', 'robots': 'noindex,follow'}
     html_text = page(meta, body, '/404.html')
