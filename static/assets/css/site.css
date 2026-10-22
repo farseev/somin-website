@@ -1144,3 +1144,14 @@ html body .rs-chart text.rs-yr { fill: var(--text-3); font-weight: 700; font-siz
 
 html body .rs-hero .cs-hero-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 720px) { html body .rs-hero .cs-hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* header: keep the call button and labels on one line; site.js falls back to the compact menu when the header overflows */
+.nav-cta .btn, .nav-link { white-space: nowrap; }
+@media (min-width: 1081px) {
+  .site-header .bar { gap: 10px; }
+  .nav-link { padding-left: 6px; padding-right: 6px; font-size: 13px; }
+  .nav-item.has-sub > .nav-link { padding-right: 1px; }
+  .nav-cta { margin-left: 2px; }
+  .nav-cta .btn { padding-left: 14px; padding-right: 14px; }
+}
+html body .rs-theme-img { display: block; width: 100%; height: 150px; object-fit: cover; border-radius: 12px; margin: 0 0 14px; }
