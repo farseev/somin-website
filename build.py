@@ -244,7 +244,7 @@ def _rs_papers(themes=None, limit=3):
 def _rs_venue_link(short):
     p = next((p for p in RESEARCH['papers'] if p['venue_short'] == short and p['tier'] == 'top'), None) or \
         next((p for p in RESEARCH['papers'] if p['venue_short'] == short), None)
-    return p['url'] if p else '/research/'
+    return p['url'] if p else '/science-press/'
 
 
 def rs_venue_chips(cls='rs-venues'):
@@ -270,7 +270,7 @@ def research_strip(attrs):
     if attrs.get('compact') == '1':
         return (f'<div class="rs-line{(" " + E(attrs["cls"])) if attrs.get("cls") else ""}"><span class="rs-line-k">Built by seasoned marketers and an AI professor</span>'
                 f'<span class="rs-line-t">Research published at</span>{rs_venue_chips("rs-venues rs-venues--line")}'
-                f'<a class="rs-line-more" href="/research/" data-gtm-id="research_line_more">See the research →</a></div>')
+                f'<a class="rs-line-more" href="/science-press/" data-gtm-id="research_line_more">See the research →</a></div>')
     themes = [t.strip() for t in (attrs.get('themes') or '').split(',') if t.strip()]
     papers = ''.join(rs_paper_card(p) for p in _rs_papers(themes, int(attrs.get('limit') or 3)))
     by_id = {t['id']: t for t in RESEARCH['talks']}
@@ -281,7 +281,7 @@ def research_strip(attrs):
             f'<div class="rs-head"><div><p class="rs-kicker">Peer-reviewed research</p><h2>{E(title)}</h2><p class="rs-lede">{E(attrs.get("lede") or RS_LEDE)}</p></div>'
             f'{rs_venue_chips()}</div><div class="rs-grid">{papers}</div>'
             f'<div class="rs-talks"><span class="rs-tlabel">Watch the talks</span>{talks}</div>'
-            f'<p class="rs-more"><a class="rs-btn" href="/research/" data-gtm-id="research_strip_all">All papers and talks</a>'
+            f'<p class="rs-more"><a class="rs-btn" href="/science-press/" data-gtm-id="research_strip_all">All papers and talks</a>'
             f'<a class="rs-ext" href="{E(RESEARCH["profiles"][0]["url"])}" target="_blank" rel="noopener" data-track="research_profile_click" data-gtm-id="research_scholar">Google Scholar profile</a></p>'
             f'</div></section>')
 
@@ -292,7 +292,7 @@ def research_note():
                       for s, n in (('AAAI', 'AAAI'), ('ACM MM', 'ACM Multimedia'), ('SIGIR', 'SIGIR'), ('WSDM', 'WSDM')))
     return (f'<p class="rs-note">Built by seasoned marketers and an AI professor: the methods behind this study are peer-reviewed at {links} '
             f'and in <a href="{E(_rs_venue_link("ACM TOIS"))}" target="_blank" rel="noopener" data-track="research_venue_click">ACM TOIS</a>. '
-            f'<a href="/research/" data-gtm-id="case_research_note">See the research and talks</a>.</p>')
+            f'<a href="/science-press/" data-gtm-id="case_research_note">See the research and talks</a>.</p>')
 
 
 def expand_shortcodes(body):
@@ -510,7 +510,7 @@ def render_footer():
   <nav class="f-compare" aria-label="Comparisons"><ul>{compare}</ul></nav>
   <div class="f-main">
     <div class="f-brand"><a href="/" aria-label="SOMIN home" style="text-decoration:none"><span class="wm-logo" aria-hidden="true"><span class="so">SO</span><span class="min">MIN</span></span></a>
-      <p>{E(SITE['tagline'][:1].upper() + SITE['tagline'][1:])}. Built in Singapore by seasoned marketers and an AI professor, used across 11+ markets. <a href="/research/" data-gtm-id="footer_research">Read the research</a>.</p>
+      <p>{E(SITE['tagline'][:1].upper() + SITE['tagline'][1:])}. Built in Singapore by seasoned marketers and an AI professor, used across 11+ markets. <a href="/science-press/" data-gtm-id="footer_research">Read the research</a>.</p>
       <a class="btn btn--line btn--sm" href="{CAL_DEFAULT}" data-gtm-id="footer_book_a_call_btn">Book a call</a></div>
     {cols}
   </div>
@@ -1331,14 +1331,14 @@ def build_case_pages(manifest):
 
 
 def build_research_page():
-    """/research/: Prof. Aleks Farseev's peer-reviewed papers and talks, mapped to the SOMIN features they power."""
-    path = '/research/'
+    """/science-press/: Prof. Aleks Farseev's peer-reviewed papers and talks, mapped to the SOMIN features they power."""
+    path = '/science-press/'
     R = RESEARCH
     peer = [p for p in R['papers'] if p['peer_reviewed']]
     venues = sorted({p['venue_short'] for p in peer if p['tier'] in ('top', 'strong') and not p['venue_short'].startswith(('CLEF', 'WebSci'))})
     first = min(p['year'] for p in peer)
     mt = R['metrics']
-    meta = {'slug': 'research', 'layout': 'native', 'type': 'company', 'group': 'research',
+    meta = {'slug': 'science-press', 'layout': 'native', 'type': 'company', 'group': 'research',
             'title': 'SOMIN Research: Peer-Reviewed AI for Marketing | SOMIN',
             'description': f'The peer-reviewed research behind SOMIN: {len(peer)} papers by Prof. Aleks Farseev and the SOMIN team at AAAI, ACM Multimedia, SIGIR, WSDM and WWW, plus talks.',
             'og_image': '/assets/img/og/card-research.jpg' if (ROOT / 'static/assets/img/og/card-research.jpg').exists() else SITE['default_og_image'],
@@ -2238,7 +2238,7 @@ def build_about_page(post_metas):
 
 <section class="sec sec--mist"><div class="container">
   <div class="sec-head"><p class="eyebrow eyebrow--ink">Who builds SOMIN</p><h2>Seasoned marketers and an AI professor</h2>
-  <p>{E(f["description"])} Next to the research team, SOMIN's marketers turn those models into the playbooks brand and agency teams run every week. <a href="/research/">Read the research</a> or <a href="/vision/">our vision</a>.</p></div>
+  <p>{E(f["description"])} Next to the research team, SOMIN's marketers turn those models into the playbooks brand and agency teams run every week. <a href="/science-press/">Read the research</a> or <a href="/vision/">our vision</a>.</p></div>
   <div class="mini-grid ab-team">{team_html}</div>
 </div></section>
 
@@ -2291,7 +2291,7 @@ def build_author_pages(post_metas):
         first = re.sub(r'^(Prof|Dr)[.] *', '', name).split()[0]
         if name == 'Prof. Aleks Farseev':
             bio = (f'<p>{E(ORG["founder"]["description"])}</p><p>He leads SOMIN\'s research on audience profiling, personality-driven content and '
-                   f'explainable AI for advertising; the papers and talks are on the <a href="/research/">research page</a>.</p>')
+                   f'explainable AI for advertising; the papers and talks are on the <a href="/science-press/">research page</a>.</p>')
         else:
             bio = f'<p>{E(name)} is {E(role_short)} at SOMIN, the Singapore AI marketing-intelligence company.' + (
                 f' {E(first)} writes on the SOMIN blog about {E(", ".join(topics[:3]).lower())}.</p>' if topics else '</p>')
@@ -2436,7 +2436,7 @@ def build_llms(pages, posts, manifest=None, localized=()):
         more = sorted([v for v in manifest.values() if v['on_hub'] and not v['page']], key=lambda v: v['order'])
         parts += ['', '### More case studies (PDF on the case-studies page)'] + [f'- {v["title"]} ({", ".join(x for x in (v["category"], v["market"]) if x)}): {v["summary"]}' for v in more]
     peer = [p for p in RESEARCH['papers'] if p['peer_reviewed']]
-    parts += ['', '## Research behind SOMIN', f'- [SOMIN research: papers and talks]({BASE}/research/): SOMIN is built by seasoned marketers and an AI professor. Co-founder Prof. Aleks Farseev and the SOMIN team have published {len(peer)} peer-reviewed papers, demos and abstracts since {min(p["year"] for p in peer)}, at venues including AAAI, ACM Multimedia, SIGIR, WSDM and The Web Conference, and in ACM TOIS and ACM TIST.']
+    parts += ['', '## Research behind SOMIN', f'- [SOMIN research: papers and talks]({BASE}/science-press/): SOMIN is built by seasoned marketers and an AI professor. Co-founder Prof. Aleks Farseev and the SOMIN team have published {len(peer)} peer-reviewed papers, demos and abstracts since {min(p["year"] for p in peer)}, at venues including AAAI, ACM Multimedia, SIGIR, WSDM and The Web Conference, and in ACM TOIS and ACM TIST.']
     parts += [f'- {p["venue_short"]} {p["year"]}: [{p["title"]}]({p["url"]}) ({p["authors"]})' for p in sorted(peer, key=lambda p: (p['tier'] != 'top', -p['year']))[:14]]
     parts += ['', '### Talks'] + [f'- {t["kind"]}, {t["event"]} ({t["date"][:4]}): [{t["title"]}]({t["url"]})' for t in sorted(RESEARCH['talks'], key=lambda t: t['date'], reverse=True) if t['language'] == 'English'][:10]
     parts += ['', '## Blog (latest first)'] + [f'- [{p["title"]}]({absu(url_for(p["slug"]))}): {p["description"]}' for p in posts]
