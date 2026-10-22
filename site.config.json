@@ -474,6 +474,15 @@
   ]
  },
  "redirects": {
+    "/somin-website/": "/",
+    "/agencies-havas-media-case-study/If/": "/agencies-havas-media-case-study/",
+    "/influencers-caltex-creator-portfolio-case-study/": "/influencers-caltex-creators-case-study/",
+    "/isv-google/": "/about/",
+    "/mna/": "/about/",
+    "/camera/": "/",
+    "/farseev45/": "/authors/aleks-farseev/",
+    "/forbes-4/": "/authors/aleks-farseev/",
+    "/forbes-12/": "/authors/aleks-farseev/",
     "/research/": "/science-press/",
     "/science-press/index/": "/science-press/",
     "/science/": "/science-press/",
