@@ -1339,11 +1339,11 @@ def build_research_page():
     first = min(p['year'] for p in peer)
     mt = R['metrics']
     meta = {'slug': 'science-press', 'layout': 'native', 'type': 'company', 'group': 'research',
-            'title': 'SOMIN Research: Peer-Reviewed AI for Marketing | SOMIN',
-            'description': f'The peer-reviewed research behind SOMIN: {len(peer)} papers by Prof. Aleks Farseev and the SOMIN team at AAAI, ACM Multimedia, SIGIR, WSDM and WWW, plus talks.',
+            'title': 'SOMIN Science & Press: Research, Articles and Media | SOMIN',
+            'description': f'Science & Press at SOMIN: {len(peer)} peer-reviewed papers you can download, Forbes articles by Prof. Aleks Farseev, press coverage of SOMIN and its founders, and talks.',
             'og_image': '/assets/img/og/card-research.jpg' if (ROOT / 'static/assets/img/og/card-research.jpg').exists() else SITE['default_og_image'],
-            'hero_bg': '/assets/img/brand/hero-research.webp' if (ROOT / 'static/assets/img/brand/hero-research.webp').exists() else None,
-            'robots': 'index,follow', 'h1': 'The peer-reviewed AI research behind SOMIN'}
+            'hero_bg': '/assets/img/brand/hero-science-press.webp',
+            'robots': 'index,follow', 'h1': 'Science & Press: the research and coverage behind SOMIN'}
     by_theme = {}
     for p in sorted(R['papers'], key=lambda p: (-p['year'], p['id'])):
         by_theme.setdefault(p['theme'], []).append(p)
@@ -1382,18 +1382,31 @@ def build_research_page():
         f'<li><a href="{E(a["url"])}" target="_blank" rel="noopener" data-track="research_article_click" data-gtm-id="research_forbes_article"><strong>{E(a["title"])}</strong></a>'
         f'<span class="rs-auth">{E(a["publisher"])} · {E(a["date"][:4])}</span></li>'
         for a in sorted(R.get('articles', []), key=lambda a: a['date'], reverse=True))
+    yrs = sorted({p['year'] for p in peer}); cnt = {y: sum(1 for p in peer if p['year'] == y) for y in range(yrs[0], yrs[-1] + 1)}
+    mx = max(cnt.values()); bw = 700 / len(cnt)
+    bars = ''.join(
+        f'<rect x="{40 + i * bw + 4:.1f}" y="{190 - 150 * c / mx:.1f}" width="{bw - 8:.1f}" height="{150 * c / mx:.1f}" rx="4"/>'
+        f'<text x="{40 + i * bw + bw / 2:.1f}" y="{182 - 150 * c / mx:.1f}" text-anchor="middle">{c or ""}</text>'
+        f'<text x="{40 + i * bw + bw / 2:.1f}" y="210" text-anchor="middle" class="rs-yr">{y}</text>'
+        for i, (y, c) in enumerate(cnt.items()))
+    chart = f'<svg class="rs-chart" viewBox="0 0 780 224" role="img" aria-label="Peer-reviewed papers per year, {yrs[0]} to {yrs[-1]}">{bars}</svg>'
+    press_html = ''.join(
+        f'<a class="rs-tcard" href="{E(a["url"])}" target="_blank" rel="noopener" data-track="research_press_click" data-gtm-id="research_press_card">'
+        f'<span class="rs-venue">{E(a["publisher"])}{" · " + E(a["date"][:4]) if a["date"] else ""}</span>'
+        f'<strong>{E(a["title"])}</strong><p>{E(a["summary"])}</p></a>'
+        for a in R.get('press', []))
     cite = f'{mt["citations"]:,}'
     body = f'''<section class="hero rs-hero"><div class="container">
-  <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Research</li></ol></nav>
-  <p class="eyebrow">Research · Built by seasoned marketers and an AI professor</p>
-  <h1>The peer-reviewed AI research <em>behind SOMIN</em></h1>
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Science &amp; Press</li></ol></nav>
+  <p class="eyebrow">Science &amp; Press · Built by seasoned marketers and an AI professor</p>
+  <h1>Science &amp; Press: the research and coverage <em>behind SOMIN</em></h1>
   <p class="lede">SOMIN's audience personas, creative scoring and competitor analytics come from research by co-founder Prof. Aleks Farseev and the SOMIN team, published at AAAI, ACM Multimedia, SIGIR, WSDM and The Web Conference, and in ACM TOIS.</p>
   <div class="cta-row cta-row--left">
     <a class="btn btn--solid" href="#papers" data-gtm-id="research_hero_papers">See the papers</a>
-    <a class="btn btn--ghost" href="#articles" data-gtm-id="research_hero_articles">Read the articles</a>
+    <a class="btn btn--ghost" href="#articles" data-gtm-id="research_hero_articles">Articles and press</a>
     <a class="btn btn--ghost" href="#talks" data-gtm-id="research_hero_talks">Watch the talks</a>
   </div>
-  <div class="cs-hero-stats"><div><strong>{len(peer)}</strong><small>Peer-reviewed papers, demos and abstracts</small></div><div><strong>{len(venues)}</strong><small>Top venues incl. AAAI, ACM MM, SIGIR</small></div><div><strong>{first}</strong><small>Publishing since</small></div></div>
+  <div class="cs-hero-stats"><div><strong>{len(peer)}</strong><small>Peer-reviewed papers, demos and abstracts</small></div><div><strong>{len(venues)}</strong><small>Top venues incl. AAAI, ACM MM, SIGIR</small></div><div><strong>{first}</strong><small>Publishing since</small></div><div><strong>{len(R.get("articles", [])) + len(R.get("press", []))}</strong><small>Articles and press pieces</small></div></div>
 </div></section>
 
 <section class="sec sec--light"><div class="container split">
@@ -1416,6 +1429,7 @@ def build_research_page():
 <section class="sec sec--light" id="papers"><div class="container">
   <div class="sec-head"><p class="eyebrow eyebrow--ink">Publications</p><h2>Top-tier conference and journal papers</h2>
   <p>Full papers and journal articles at AAAI, ACM Multimedia, SIGIR and in ACM TOIS and ACM TIST.</p></div>
+  {chart}
   {plist(top)}
   <div class="sec-head" style="margin-top:48px"><h2>Papers, demos and abstracts at top venues</h2>
   <p>Papers, industry and demo papers, and student abstracts at ACM Multimedia, AAAI, SIGIR, WSDM, The Web Conference, ICMR, CLEF and WebSci.</p></div>
@@ -1427,12 +1441,20 @@ def build_research_page():
 <section class="sec sec--mist" id="articles"><div class="container">
   <div class="sec-head"><p class="eyebrow eyebrow--ink">Articles</p><h2>Forbes Technology Council articles by Prof. Aleks Farseev</h2>
   <p>Plain-language articles on the technology behind SOMIN: large language models, AI agents, explainable AI and ad optimisation for marketers. Each opens on Forbes.</p></div>
+  <img class="rs-band" src="/assets/img/brand/science-articles.webp" alt="Printed articles turning into flowing data lines" width="1536" height="1024" loading="lazy">
   <ol class="rs-list">{arts_html}</ol>
 </div></section>
 
-<section class="sec sec--light" id="talks"><div class="container">
+<section class="sec sec--light" id="press"><div class="container">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">In the press</p><h2>SOMIN and its founders in the news</h2>
+  <p>Interviews, profiles and customer stories about SOMIN and Prof. Aleks Farseev from independent publications, investors and partners. Each opens on the publisher's site.</p></div>
+  <div class="rs-tgrid">{press_html}</div>
+</div></section>
+
+<section class="sec sec--mist" id="talks"><div class="container">
   <div class="sec-head"><p class="eyebrow eyebrow--ink">Talks and lectures</p><h2>Keynotes, lectures and Marketing Mondays sessions</h2>
   <p>Prof. Aleks Farseev on AI in advertising, from ACM Multimedia and INSEAD to Marketing Mondays. Videos open on YouTube.</p></div>
+  <img class="rs-band" src="/assets/img/brand/science-talks.webp" alt="A conference stage turning into sound waves and data bars" width="1536" height="1024" loading="lazy">
   <div class="rs-tgrid">{talks}</div>
   <p style="margin-top:22px"><a class="btn btn--ghost btn--ink" href="/marketing-mondays-plugin/" data-gtm-id="research_mm_plugin">Marketing Mondays: get the free Claude plugin</a></p>
 </div></section>
@@ -2448,7 +2470,7 @@ def build_llms(pages, posts, manifest=None, localized=()):
         more = sorted([v for v in manifest.values() if v['on_hub'] and not v['page']], key=lambda v: v['order'])
         parts += ['', '### More case studies (PDF on the case-studies page)'] + [f'- {v["title"]} ({", ".join(x for x in (v["category"], v["market"]) if x)}): {v["summary"]}' for v in more]
     peer = [p for p in RESEARCH['papers'] if p['peer_reviewed']]
-    parts += ['', '## Research behind SOMIN', f'- [SOMIN research: papers and talks]({BASE}/science-press/): SOMIN is built by seasoned marketers and an AI professor. Co-founder Prof. Aleks Farseev and the SOMIN team have published {len(peer)} peer-reviewed papers, demos and abstracts since {min(p["year"] for p in peer)}, at venues including AAAI, ACM Multimedia, SIGIR, WSDM and The Web Conference, and in ACM TOIS and ACM TIST.']
+    parts += ['', '## Research behind SOMIN', f'- [SOMIN Science & Press: papers, Forbes articles, press and talks]({BASE}/science-press/): SOMIN is built by seasoned marketers and an AI professor. Co-founder Prof. Aleks Farseev and the SOMIN team have published {len(peer)} peer-reviewed papers, demos and abstracts since {min(p["year"] for p in peer)}, at venues including AAAI, ACM Multimedia, SIGIR, WSDM and The Web Conference, and in ACM TOIS and ACM TIST.']
     parts += [f'- {p["venue_short"]} {p["year"]}: [{p["title"]}]({p["url"]}) ({p["authors"]})' for p in sorted(peer, key=lambda p: (p['tier'] != 'top', -p['year']))[:14]]
     parts += ['', '### Talks'] + [f'- {t["kind"]}, {t["event"]} ({t["date"][:4]}): [{t["title"]}]({t["url"]})' for t in sorted(RESEARCH['talks'], key=lambda t: t['date'], reverse=True) if t['language'] == 'English'][:10]
     parts += ['', '## Blog (latest first)'] + [f'- [{p["title"]}]({absu(url_for(p["slug"]))}): {p["description"]}' for p in posts]

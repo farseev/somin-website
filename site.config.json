@@ -202,7 +202,7 @@
      "gtm_id": "nav_plugin"
     },
     {
-     "label": "RESEARCH & PAPERS",
+     "label": "SCIENCE & PRESS",
      "href": "/science-press/",
      "gtm_id": "nav_research"
     },
@@ -236,7 +236,13 @@
    "label": "CASES",
    "href": "/cases-ai-marketing-strategy/",
    "children": []
+  },  {
+   "label": "SCIENCE & PRESS",
+   "href": "/science-press/",
+   "gtm_id": "nav_science_press",
+   "children": []
   },
+
   {
    "label": "BLOG",
    "href": "/blog/",
@@ -355,7 +361,7 @@
       "href": "/blog/"
      },
      {
-      "label": "Research & papers",
+      "label": "Science & Press",
       "href": "/science-press/"
      },
      {
