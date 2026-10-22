@@ -1351,7 +1351,7 @@ def build_research_page():
     for i, t in enumerate(R['themes'], 1):
         items = ''.join(f'<li><a href="{E(p["url"])}" target="_blank" rel="noopener" data-track="research_paper_click"><b>{E(p["venue_short"])} {p["year"]}</b> {E(p["title"])}</a></li>'
                         for p in by_theme.get(t['key'], [])[:4])
-        themes += (f'<div class="rs-theme"><span class="tile-num">{i:02d}</span><h3>{E(t["title"])}</h3><p>{E(t["body"])}</p><ul>{items}</ul>'
+        themes += (f'<div class="rs-theme"><img class="rs-theme-img" src="/assets/img/brand/science-theme-{t["key"]}.webp" alt="" width="640" height="640" loading="lazy"><span class="tile-num">{i:02d}</span><h3>{E(t["title"])}</h3><p>{E(t["body"])}</p><ul>{items}</ul>'
                    f'<a class="rs-uses" href="{E(t["href"])}" data-gtm-id="research_theme_product">In SOMIN today: {E(t["product"])} →</a></div>')
     def plist(rows):
         return '<ol class="rs-list">' + ''.join(
@@ -1448,6 +1448,7 @@ def build_research_page():
 <section class="sec sec--light" id="press"><div class="container">
   <div class="sec-head"><p class="eyebrow eyebrow--ink">In the press</p><h2>SOMIN and its founders in the news</h2>
   <p>Interviews, profiles and customer stories about SOMIN and Prof. Aleks Farseev from independent publications, investors and partners. Each opens on the publisher's site.</p></div>
+  <img class="rs-band" src="/assets/img/brand/science-press.webp" alt="" width="1400" height="933" loading="lazy">
   <div class="rs-tgrid">{press_html}</div>
 </div></section>
 
