@@ -515,6 +515,9 @@ def alternates_html(group, base):
     return ''.join(f'<link rel="alternate" hreflang="{hl}" href="{base}{p}">' for hl, p in group)
 
 
+AUTO_LANG = '<script>'+"(function(){try{var d=document.documentElement;if(d.getAttribute('data-locale')||navigator.webdriver)return;var A={};var L=document.querySelectorAll('link[rel=alternate][hreflang]');for(var i=0;i<L.length;i++){var h=L[i].getAttribute('hreflang');if(h!=='en'&&h!=='x-default'){var a=document.createElement('a');a.href=L[i].href;A[h]=a.pathname}}var go=function(k){if(!A[k])return false;location.replace(A[k]+location.search+location.hash);return true};var s=null;try{s=localStorage.getItem('somin_hero_lang')}catch(e){}if(s){if(s==='en')return;go(s==='fil'?'tl':s);return}var P=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en'];for(var j=0;j<P.length;j++){var t=String(P[j]).toLowerCase(),p=t.split('-')[0];if(p==='en')return;var k=p==='zh'?(/hant|tw|hk|mo/.test(t)?'zh-Hant':'zh-Hans'):(p==='fil'||p==='tl'?'tl':p);if(go(k))return}}catch(e){}})();"+'</script>'
+
+
 def switcher_html(current_code, group_links):
     """Header language menu: a <details> list of plain links (works without JavaScript, crawlable)."""
     names = [('en', 'English')] + [(l[0], l[4]) for l in LANGS]
@@ -715,7 +718,7 @@ def build(out_dir, base, entries, log=print):
         # the English page: alternates, switcher, language bar
         head_end = en_doc.find('</head>')
         head = re.sub(r'<link rel="alternate" hreflang="[^"]*" href="[^"]*">', '', en_doc[:head_end])
-        head = head.replace('<meta name="theme-color"', alternates_html(group, base) + '<meta name="theme-color"', 1)
+        head = head.replace('<meta name="theme-color"', alternates_html(group, base) + AUTO_LANG + '<meta name="theme-color"', 1)
         body = en_doc[head_end:].replace('<!--i18n:switch-->', switcher_html('en', links_for(path)), 1)
         f.write_text(head + body, encoding='utf-8')
         rows.append((path, meta[path][0], meta[path][1], 'en', group))
