@@ -1358,7 +1358,7 @@ def build_research_page():
             f'<li><span class="rs-venue">{E(p["venue_short"])} · {p["year"]} · {E(p["kind"])}</span>'
             f'<a href="{E(p["url"])}" target="_blank" rel="noopener" data-track="research_paper_click" data-gtm-id="research_list_paper"><strong>{E(p["title"])}</strong></a>'
             f'<span class="rs-auth">{E(p["authors"])}. {E(p["venue"])}.</span>'
-            + (f'<a class="rs-pdf" href="{E(p["pdf"])}" target="_blank" rel="noopener" data-track="research_pdf_click">Open-access PDF</a>' if p.get('pdf') else '') + '</li>'
+            + (f'<a class="rs-pdf" href="{E(p["pdf"])}" target="_blank" rel="noopener" data-track="research_pdf_click"' + (' download' if p['pdf'].startswith('/') else '') + '>' + ('Download PDF' if p['pdf'].startswith('/') else 'Open-access PDF') + '</a>' if p.get('pdf') else '') + '</li>'
             for p in rows) + '</ol>'
     srt = lambda rows: sorted(rows, key=lambda p: (-p['year'], p['id']))
     top = srt([p for p in R['papers'] if p['tier'] == 'top'])
@@ -1378,6 +1378,10 @@ def build_research_page():
         ('Where can I watch talks about SOMIN?', 'Talks are listed above with links: an industry expert talk at ACM Multimedia 2025, a keynote at the Digital Marketing Conference Kuala Lumpur 2025, lectures at INSEAD and NUS, the ATxSG 2026 pitch and Marketing Mondays sessions on YouTube.'),
     ]
     faq_html = ''.join(f'<details><summary>{E(q)}</summary><p>{E(a)}</p></details>' for q, a in faq)
+    arts_html = ''.join(
+        f'<li><a href="{E(a["url"])}" target="_blank" rel="noopener" data-track="research_article_click" data-gtm-id="research_forbes_article"><strong>{E(a["title"])}</strong></a>'
+        f'<span class="rs-auth">{E(a["publisher"])} · {E(a["date"][:4])}</span></li>'
+        for a in sorted(R.get('articles', []), key=lambda a: a['date'], reverse=True))
     cite = f'{mt["citations"]:,}'
     body = f'''<section class="hero rs-hero"><div class="container">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Research</li></ol></nav>
@@ -1386,6 +1390,7 @@ def build_research_page():
   <p class="lede">SOMIN's audience personas, creative scoring and competitor analytics come from research by co-founder Prof. Aleks Farseev and the SOMIN team, published at AAAI, ACM Multimedia, SIGIR, WSDM and The Web Conference, and in ACM TOIS.</p>
   <div class="cta-row cta-row--left">
     <a class="btn btn--solid" href="#papers" data-gtm-id="research_hero_papers">See the papers</a>
+    <a class="btn btn--ghost" href="#articles" data-gtm-id="research_hero_articles">Read the articles</a>
     <a class="btn btn--ghost" href="#talks" data-gtm-id="research_hero_talks">Watch the talks</a>
   </div>
   <div class="cs-hero-stats"><div><strong>{len(peer)}</strong><small>Peer-reviewed papers, demos and abstracts</small></div><div><strong>{len(venues)}</strong><small>Top venues incl. AAAI, ACM MM, SIGIR</small></div><div><strong>{first}</strong><small>Publishing since</small></div></div>
@@ -1419,7 +1424,13 @@ def build_research_page():
   {plist(other)}
 </div></section>
 
-<section class="sec sec--mist" id="talks"><div class="container">
+<section class="sec sec--mist" id="articles"><div class="container">
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">Articles</p><h2>Forbes Technology Council articles by Prof. Aleks Farseev</h2>
+  <p>Plain-language articles on the technology behind SOMIN: large language models, AI agents, explainable AI and ad optimisation for marketers. Each opens on Forbes.</p></div>
+  <ol class="rs-list">{arts_html}</ol>
+</div></section>
+
+<section class="sec sec--light" id="talks"><div class="container">
   <div class="sec-head"><p class="eyebrow eyebrow--ink">Talks and lectures</p><h2>Keynotes, lectures and Marketing Mondays sessions</h2>
   <p>Prof. Aleks Farseev on AI in advertising, from ACM Multimedia and INSEAD to Marketing Mondays. Videos open on YouTube.</p></div>
   <div class="rs-tgrid">{talks}</div>
@@ -1438,7 +1449,7 @@ def build_research_page():
     arts = [{"@type": "ListItem", "position": i + 1, "item": {"@type": "ScholarlyArticle", "name": p['title'], "headline": p['title'][:110],
              "author": [{"@type": "Person", "name": a.strip()} for a in p['authors'].replace(', et al.', '').split(',') if a.strip()],
              "datePublished": str(p['year']), "isPartOf": {"@type": "Periodical" if re.search(r'Transactions|Frontiers|Newsletter', p['venue']) else "Book", "name": p['venue']},
-             "url": p['url'], **({"sameAs": p['pdf']} if p.get('pdf') else {})}} for i, p in enumerate(srt(peer))]
+             "url": p['url'], **({"sameAs": absu(p['pdf']) if p['pdf'].startswith('/') else p['pdf']} if p.get('pdf') else {})}} for i, p in enumerate(srt(peer))]
     graph = {"@context": "https://schema.org", "@graph": [person, {"@type": "ItemList", "@id": absu(path) + "#papers", "name": "Peer-reviewed papers by Prof. Aleks Farseev and the SOMIN team", "itemListElement": arts}]}
     meta['jsonld'] = [json.dumps(graph, ensure_ascii=False)]
     build_native_page(meta, body)
@@ -2364,7 +2375,7 @@ def build_404():
 
 def write_redirect(src, target):
     body = (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Redirecting…</title>'
-            f'<meta name="robots" content="noindex,follow"><link rel="canonical" href="{absu(target)}">'
+            f'<meta name="robots" content="noindex,follow"><link rel="canonical" href="{absu(target.split("#")[0])}">'
             f'<meta http-equiv="refresh" content="0; url={E(target)}">'
             f'<script>location.replace({json.dumps(target)} + location.search + location.hash);</script></head>'
             f'<body><p>This page has moved to <a href="{E(target)}">{E(absu(target))}</a>.</p></body></html>')
