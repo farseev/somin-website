@@ -203,7 +203,7 @@
     },
     {
      "label": "RESEARCH & PAPERS",
-     "href": "/research/",
+     "href": "/science-press/",
      "gtm_id": "nav_research"
     },
     {
@@ -356,7 +356,7 @@
      },
      {
       "label": "Research & papers",
-      "href": "/research/"
+      "href": "/science-press/"
      },
      {
       "label": "Strategic partners",
@@ -474,13 +474,13 @@
   ]
  },
  "redirects": {
-    "/science-press/": "/research/",
-    "/science-press/index/": "/research/",
-    "/science/": "/research/",
-    "/science/c3r/": "/research/",
-    "/science/i-know-aaai/": "/research/",
-    "/sigir-demo-soinspire/": "/research/",
-    "/press/": "/research/",
+    "/research/": "/science-press/",
+    "/science-press/index/": "/science-press/",
+    "/science/": "/science-press/",
+    "/science/c3r/": "/science-press/",
+    "/science/i-know-aaai/": "/science-press/",
+    "/sigir-demo-soinspire/": "/science-press/",
+    "/press/": "/science-press/",
     "/newsroom/": "/blog/",
     "/news/": "/blog/",
     "/press/roadmapping-tools-and-techniques/": "/blog/",
