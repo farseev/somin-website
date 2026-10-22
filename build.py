@@ -2548,6 +2548,10 @@ def main():
     save_dates()
     # every indexable page (legal pages excepted) gets its own static copy in 16 languages, with hreflang everywhere
     rows, localized = i18n.build(OUT, BASE, [(p, PAGE_DATES.get(p) or lm, pr) for p, lm, pr in SITEMAP])
+    # Insight Chain game content (loaded at run time): one translated copy of every case file per language
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    import game_i18n
+    game_i18n.build_localized(OUT, sorted(i18n.SEGS))
     n, maps = i18n.write_sitemaps(OUT, BASE, rows, PAGE_DATES)
     build_robots()
     build_llms(pages, post_metas, manifest, localized)
