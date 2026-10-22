@@ -1058,10 +1058,10 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
       var s = SC[i];
       if (s.loaded) return Promise.resolve(s);
       if (loadingCase[s.id]) return loadingCase[s.id];
-      loadingCase[s.id] = fetch(CASE_BASE + s.id + '.json', { credentials: 'same-origin' }).then(function (r) {
-        if (!r.ok) throw new Error('case ' + r.status);
-        return r.json();
-      }).then(function (d) {
+      /* each language page loads its own translated copy (/assets/game/<lang>/cases/<id>.json); English falls back to the base file */
+      var gm = location.pathname.match(/^\/([a-z]{2,3}(?:-[a-z]{4})?)\//), gl = gm && /^(zh-hans|zh-hant|ja|ko|th|vi|id|ms|hi|fil|es|fr|de|pt|ar|ru)$/.test(gm[1]) ? gm[1] : '';
+      var getCase = function (base) { return fetch(base + s.id + '.json', { credentials: 'same-origin' }).then(function (r) { if (!r.ok) throw new Error('case ' + r.status); return r.json(); }); };
+      loadingCase[s.id] = (gl ? getCase('/assets/game/' + gl + '/cases/').catch(function () { return getCase(CASE_BASE); }) : getCase(CASE_BASE)).then(function (d) {
         for (var k in d) if (Object.prototype.hasOwnProperty.call(d, k)) s[k] = d[k];
         s.loaded = true;
         return s;
