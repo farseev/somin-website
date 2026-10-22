@@ -9,12 +9,14 @@
     var a = d.querySelector('.lang-switch a[lang="' + code + '"]') || d.querySelector('.locale-nav a[lang="' + code + '"]');
     if (!a) return false;
     if (a.getAttribute('aria-current')) return true;
+    try { localStorage.setItem('somin_hero_lang', code); } catch (x) {}
     track('language_switch', { language: code, from_language: d.documentElement.getAttribute('lang') || 'en' });
     w.location.href = a.href;
     return true;
   };
   d.addEventListener('click', function (e) {
     var a = e.target.closest ? e.target.closest('.lang-switch a, .locale-nav a') : null;
+    if (a) { try { localStorage.setItem('somin_hero_lang', a.getAttribute('lang') || 'en'); } catch (x) {} }
     if (a && !a.getAttribute('aria-current')) track('language_switch', { language: a.getAttribute('lang'), from_language: d.documentElement.getAttribute('lang') || 'en' });
     d.querySelectorAll('details.lang-switch[open]').forEach(function (x) { if (!x.contains(e.target)) x.removeAttribute('open'); });
   });
