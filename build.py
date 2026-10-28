@@ -1969,7 +1969,7 @@ def build_cases_hub(manifest):
     chips = (f'<button class="chip" type="button" data-cs-filter="all" aria-pressed="true">All ({total})</button>' +
              ''.join(f'<button class="chip" type="button" data-cs-filter="{s}" aria-pressed="false">{label} ({count[s]})</button>' for s, label, _ in sections))
     # measured results quoted from the case-study tiles themselves
-    proof = [('12x', 'faster planning', 'agencies-samy-case-study'), ('75%', 'lower pitch cost', 'agencies-kpi-media-case-study'),
+    proof = [('75%', 'lower pitch cost', 'agencies-kpi-media-case-study'),
              ('9h → 1h', 'monthly reporting', 'agencies-click2view-asia-case-study'), ('80%', 'less research time', 'brands-mothercare-sg-case-study')]
     proof_html = ''.join(f'<a href="{E(manifest[k]["page"])}" data-gtm-id="cases_hub_proof_{E(k[:40])}"><strong>{E(n)}</strong><span>{E(txt)} · <em>{E(manifest[k]["title"])}</em></span></a>'
                          for n, txt, k in proof if k in manifest and manifest[k]['page'])
