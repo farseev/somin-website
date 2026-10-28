@@ -280,23 +280,6 @@
    },
    "page": "/agencies-neo360/"
   },
-  "agencies-samy-case-study": {
-   "file": "SAMY.pdf",
-   "drive_id": "1exyMpOMYi1E-pB1KDtQeABaokZ6wlP23",
-   "size_mb": 0.9,
-   "category": "agencies",
-   "hub": {
-    "order": 0,
-    "section": "agencies",
-    "title": "SAMY",
-    "sector": "Creative Agency",
-    "market": "USA",
-    "summary": "How SAMY, an independent creative agency, used SOMIN’s competitive intelligence to win a multi-million-pound retainer: 12x faster planning, 78% CTR accuracy.",
-    "cover": "/assets/img/cases/agencies-samy-case-study.webp",
-    "source_tile": "NtN7boX5sNSPmiZYkMjsrf"
-   },
-   "page": "/agencies-samy-case-study/"
-  },
   "agencies-kpi-media-case-study": {
    "file": "KPI MEDIA.pdf",
    "drive_id": "1ClObXqwY6hLIPym-JLgpKT6qIhRqXV_I",
@@ -704,13 +687,6 @@
     "cover": "/assets/img/cases/timhortons-singapore-briefing-full.webp",
     "source_tile": "fVFScwYjS6W34Qbk5GZwfj"
    }
-  },
-  "loreal-ugc-analysis-sample1-v2": {
-   "file": "loreal_ugc_analysis_sample1_v2.pptx.pdf",
-   "drive_id": "1tQ8GiXAxfw2FSrxjqFXYReL4VK0z4w35",
-   "size_mb": 4.2,
-   "category": "influencers",
-   "page": null
   },
   "fyreflyz-sicci-pitch-full": {
    "file": "Fyreflyz_SICCI_Pitch_full.pdf",
