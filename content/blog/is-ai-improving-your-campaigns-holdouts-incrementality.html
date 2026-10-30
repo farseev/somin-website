@@ -1,0 +1,85 @@
+<!--meta
+{
+ "slug": "blog/is-ai-improving-your-campaigns-holdouts-incrementality",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "How do you know if AI is actually improving your campaigns?",
+ "seo_title": "Is AI improving your campaigns? Holdouts and lift tests",
+ "description": "Prove AI is improving campaigns with a holdout group, an incrementality test, a creative A/B test and guardrail metrics, not platform-reported results.",
+ "published": "2026-10-31T10:00:00Z",
+ "author": "SOMIN Team",
+ "tags": [
+  "Performance Advertising",
+  "Artificial Intelligence",
+  "Digital Advertising"
+ ],
+ "image_prompt": "Isometric dark-teal 3D illustration of two identical glowing audience blocks on a deep ink-green surface, one lit by beams of light and one dark as a control, with a balance scale between them, bright teal highlights, no text and no logos.",
+ "words": 1024,
+ "reading_minutes": 5,
+ "image": "/assets/img/blog/is-ai-improving-your-campaigns-holdouts-incrementality.webp",
+ "image_card": "/assets/img/blog/is-ai-improving-your-campaigns-holdouts-incrementality-card.webp",
+ "og_image": "/assets/img/og/blog-is-ai-improving-your-campaigns-holdouts-incrementality.jpg",
+ "image_generated": true,
+ "robots": "index,follow"
+}
+-->
+<p>You know AI is improving your campaigns when a controlled comparison says so. Hold back a randomly chosen group that does not get the AI-driven change, run both side by side, and compare the business result, not just the platform's own report. If the exposed group does not beat the holdout by more than normal noise, the improvement is not proven.</p>
+<h2>Key takeaways</h2>
+<ul>
+<li>Platform dashboards report results that happened, not results the ads caused.</li>
+<li>A holdout group, where a random slice never sees the change, is the simplest honest test.</li>
+<li>Test the AI change itself — creative, bidding or targeting — one at a time.</li>
+<li>Set guardrail metrics so a gain in one number does not hide a loss in another.</li>
+<li>Decide the success measure, the budget and the stopping rule before the test starts.</li>
+</ul>
+<h2>Why can't you trust the dashboard?</h2>
+<p>Because the dashboard counts conversions that would often have happened anyway. Automated bidding is good at finding people who were already likely to buy, and that makes results look strong without adding sales.</p>
+<p>Three things inflate before-and-after comparisons. Seasonality moves demand on its own. Budgets and offers change at the same time as the AI feature. And an algorithm that targets likely buyers is credited with sales it did not create. A comparison that does not control for these tells you what happened, not why.</p>
+<h2>What is a holdout group?</h2>
+<p>A holdout is a randomly selected group of people, or places, that does not receive the ads or the change you are testing. Its results show what would have happened without it.</p>
+<p>Google describes its <a href="https://support.google.com/google-ads/answer/12003020?hl=en" target="_blank" rel="noopener">Conversion Lift</a> tool in these terms: it splits an audience into a treatment group that sees the ads and a control group that does not, and the difference in conversions between them is the lift. Studies can be split by users or by geography, and Google notes the tool is not available for all accounts. Meta offers lift studies built on the same idea; check its current documentation and your account's access.</p>
+<p>If you cannot run a platform study, a manual version works for many accounts: pause the activity in a few matched regions, keep it live in others, and compare.</p>
+<h2>What is incrementality?</h2>
+<p>Incrementality is the extra result caused by marketing, over and above what would have happened anyway. It is the number a holdout test estimates.</p>
+<p>A hypothetical example: a retailer sees 1,000 sales a month in a region where ads run and 800 in a matched region where they are paused. The incremental effect is about 200 sales, not 1,000. Divide the spend by 200 to get the true cost per extra sale. That cost is usually higher than the dashboard's.</p>
+<h2>How do you test the AI change itself?</h2>
+<p>Change one thing at a time and give each test a clear comparison. Three tests cover most uses of AI in campaigns.</p>
+<table>
+<thead><tr><th>AI change</th><th>Test design</th><th>Primary measure</th></tr></thead>
+<tbody>
+<tr><td>AI-written or AI-generated creative</td><td>A/B test against your current best ad, same audience, same budget, same period</td><td>Cost per result, or conversion rate</td></tr>
+<tr><td>Automated bidding or budget tools</td><td>Split by region or by audience, or use the platform's experiment feature</td><td>Incremental conversions per unit of spend</td></tr>
+<tr><td>New audience targeting</td><td>Holdout of the expanded audience</td><td>Incremental sales, new-customer share</td></tr>
+</tbody>
+</table>
+<p>Before you spend, you can cut weak creatives with pre-scoring, as in our guide to <a href="/blog/predict-ad-performance-before-you-spend-creative-pre-testing/">predicting ad performance</a>. That narrows the field. The live test still decides.</p>
+<h2>What are guardrail metrics?</h2>
+<p>Guardrail metrics are numbers that must not get worse while you chase the main goal. They stop a "win" that quietly damages something else.</p>
+<ul>
+<li><strong>Cost and margin:</strong> cost per acquisition, return on spend after discounts.</li>
+<li><strong>Customer quality:</strong> returns, refunds, repeat purchase and lead-to-sale rate.</li>
+<li><strong>Brand safety and tone:</strong> complaints, hides, negative comments, off-brand outputs.</li>
+<li><strong>Creative variety:</strong> if the AI converges on one look, fatigue arrives sooner.</li>
+</ul>
+<h2>How do you run the test properly?</h2>
+<ol>
+<li><strong>Write the question.</strong> "Does the AI version beat our current approach on cost per qualified lead?"</li>
+<li><strong>Fix the measure, budget and duration</strong> before launch, and do not change them mid-test.</li>
+<li><strong>Randomise.</strong> Assign groups by chance, not by judgement.</li>
+<li><strong>Run long enough</strong> to cover your normal buying cycle and to leave the platform's learning phase.</li>
+<li><strong>Check size.</strong> Tiny groups give noisy answers; if results swing wildly day to day, treat the outcome as unproven.</li>
+<li><strong>Record the result</strong>, including tests where AI made no difference. A no-difference result still saves money.</li>
+</ol>
+<h2>What if the test shows no improvement?</h2>
+<p>Treat that as a useful answer. AI may have saved time without changing results, which can still be worth it, as long as you say so. Our piece on <a href="/blog/why-more-ai-generated-marketing-content-is-not-making-your-campaigns-better/">why more AI content is not making campaigns better</a> explains one common reason: more output is not the same as better output.</p>
+<h2>FAQ</h2>
+<details><summary>What is the difference between A/B testing and incrementality testing?</summary><p>An A/B test compares two versions of something, such as two ads, both shown to people. An incrementality test compares showing against not showing. Use A/B tests to pick a better creative, and holdouts to find out whether the spend adds sales at all.</p></details>
+<details><summary>How big should a holdout be?</summary><p>As small as gives a readable answer, because every held-back person is a missed sale. The right size depends on your volume and the effect you expect to detect. Ask your analyst or the platform's study tool to estimate it.</p></details>
+<details><summary>How long should a lift test run?</summary><p>Long enough to cover your usual buying cycle and any learning period. A few days is rarely enough for considered purchases. Set the duration before you start.</p></details>
+<details><summary>Can I measure AI impact without a holdout?</summary><p>You can estimate it with before-and-after or matched-market comparisons, but these are weaker. Label them as estimates, and confirm important decisions with a proper control when you can.</p></details>
+<details><summary>Do I need to test every AI feature?</summary><p>No. Test the changes that carry real budget or risk first. Small, reversible tweaks can be monitored with guardrail metrics instead.</p></details>
+<h2>Sources</h2>
+<ul>
+<li>Google Ads Help, <a href="https://support.google.com/google-ads/answer/12003020?hl=en" target="_blank" rel="noopener">About Conversion Lift</a>.</li>
+<li>SOMIN posts: <a href="/blog/predict-ad-performance-before-you-spend-creative-pre-testing/">Predict ad performance before you spend</a> and <a href="/blog/why-more-ai-generated-marketing-content-is-not-making-your-campaigns-better/">Why more AI content is not making campaigns better</a>.</li>
+</ul>
