@@ -1,0 +1,102 @@
+<!--meta
+{
+ "slug": "blog/multilingual-and-visual-ai-social-listening",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "How does multilingual and visual AI social listening work, and what should you test?",
+ "seo_title": "Multilingual and visual AI social listening: what to test",
+ "description": "Multilingual social listening detects each post's language, then reads it in context; visual listening finds logos in images. Test plan for 4 languages.",
+ "published": "2026-10-31T10:00:00Z",
+ "author": "SOMIN Team",
+ "tags": [
+  "Insights",
+  "Artificial Intelligence",
+  "Social Media Marketing"
+ ],
+ "image_prompt": "Isometric dark-teal 3D illustration of floating speech bubbles in different scripts and a photo frame with a highlighted logo, all linked by glowing lines on a deep ink-green surface, bright teal highlights, no text and no logos.",
+ "words": 1148,
+ "reading_minutes": 5,
+ "image": "/assets/img/blog/multilingual-and-visual-ai-social-listening.webp",
+ "image_card": "/assets/img/blog/multilingual-and-visual-ai-social-listening-card.webp",
+ "og_image": "/assets/img/og/blog-multilingual-and-visual-ai-social-listening.jpg",
+ "image_generated": true,
+ "robots": "index,follow"
+}
+-->
+<p>Multilingual AI social listening first detects the language of each post, then analyses it in that language, so Arabic, Japanese, Spanish and French posts are not forced through English. Visual social listening adds image analysis, such as logo detection, to find brand mentions that carry no text. Test both with your own posts before you buy.</p>
+<h2>Key takeaways</h2>
+<ul>
+<li>Multilingual listening is a chain: language detection, then language-specific analysis, then reporting in one language you can read.</li>
+<li>Visual listening finds brands in images and video frames, which keyword search cannot see.</li>
+<li>Vendors often say "supports 100 languages" without saying how well each one works, so test the languages you sell in.</li>
+<li>Build a small labelled test set per language, and score detection, sentiment, topics and logos separately.</li>
+<li>Do not trust any single accuracy number you cannot reproduce on your own data.</li>
+</ul>
+<h2>How does multilingual social listening work?</h2>
+<p>It works in four steps: collect posts, detect each post's language, analyse the post in that language, and then group the results for reporting. The weak point is usually the middle two steps.</p>
+<ol>
+<li><strong>Collect</strong> posts using keywords written in each language, not translated copies of one English list.</li>
+<li><strong>Detect</strong> the language of every post. Google's Cloud Translation documentation shows the typical output: a ranked list of language codes, each with a confidence between 0 and 1.</li>
+<li><strong>Analyse</strong> the post for sentiment, topics and entities using a model that handles that language.</li>
+<li><strong>Report</strong> in one working language, ideally with the original text still one click away.</li>
+</ol>
+<p>The same source does not describe how detection copes with short or mixed-language text, so treat that as something to test, not assume.</p>
+<h2>Why is language detection harder than it looks?</h2>
+<p>Social posts are short, informal and often mix languages. A three-word comment, a hashtag or an emoji string gives a detector very little to work with.</p>
+<p>Common trouble spots:</p>
+<ul>
+<li><strong>Dialects.</strong> Arabic posts may be written in Modern Standard Arabic or in a regional dialect. A tool tuned on formal text can misread slang.</li>
+<li><strong>Transliteration.</strong> People type Arabic or Japanese in Latin letters. A detector may label such a post as English.</li>
+<li><strong>Code-switching.</strong> One sentence can contain two languages,.</li>
+<li><strong>Scripts.</strong> Japanese mixes several writing systems in one sentence, so word boundaries are not obvious.</li>
+<li><strong>Brand names.</strong> A brand written in Latin letters inside a Japanese or Arabic sentence must still be matched.</li>
+</ul>
+<h2>What is visual AI social listening?</h2>
+<p>Visual AI social listening analyses the pictures and video in a post, not only the words. Its most common use is finding your logo, or a rival's, in an image where nobody wrote the brand name.</p>
+<p>Google's Cloud Vision documentation describes logo detection as finding popular product logos in an image. Each result has a description of the logo, a confidence score and a bounding box that marks where it appears. That is the pattern to look for in any vendor: what was found, how sure the model is, and where.</p>
+<p>Visual listening also covers scenes, objects and text inside images. Ask which of these a vendor really supports, and whether it works on video frames or only on still images.</p>
+<h2>Which languages should you test, and how?</h2>
+<p>Test the languages that matter to your revenue, and give each one its own labelled sample. The table shows a starting plan for four languages, with the local search term for "social listening tools" for each.</p>
+<table>
+<thead><tr><th>Language</th><th>Local term</th><th>What to stress-test</th></tr></thead>
+<tbody>
+<tr><td>Arabic</td><td>أدوات الاستماع الاجتماعي</td><td>Dialect posts, right-to-left text, Latin-letter Arabic, brand names inside Arabic sentences</td></tr>
+<tr><td>Japanese</td><td>ソーシャルリスニング ツール</td><td>Mixed scripts, no spaces between words, katakana brand spellings, slang and abbreviations</td></tr>
+<tr><td>Spanish</td><td>herramientas de social listening</td><td>Regional vocabulary across Spain and Latin America, sarcasm, hashtags</td></tr>
+<tr><td>French</td><td>outils d'écoute sociale</td><td>Accents dropped in casual typing, English borrowings, regional usage</td></tr>
+</tbody>
+</table>
+<p>Run this process for each language:</p>
+<ol>
+<li>Collect 100 to 200 real posts about your category. These are your own examples, not a vendor demo set.</li>
+<li>Have a native speaker label each post for language, sentiment and topic.</li>
+<li>Run the tool on the same posts and compare. Score each task separately.</li>
+<li>Add 50 posts with images that contain logos, some of them small, rotated or partly hidden.</li>
+<li>Record the misses, not just the hits. A pattern in the errors tells you whether the problem is fixable.</li>
+</ol>
+<p>The sample sizes above are a practical suggestion, not a statistical standard. Larger samples give steadier results.</p>
+<h2>What should you ask a vendor?</h2>
+<p>Ask for evidence per language, not a headline count. A short list of questions covers most of the risk.</p>
+<ul>
+<li>Which languages have native-speaker evaluation, and which are supported only through translation?</li>
+<li>Is analysis done in the original language, or is every post translated to English first?</li>
+<li>How are dialects, transliteration and mixed-language posts handled?</li>
+<li>Can I see the original post behind every insight?</li>
+<li>Which visual features are live: logos, scenes, text in images, video?</li>
+<li>Can I export results so I can check them myself?</li>
+</ul>
+<p>Translation first is not always wrong, but it can flatten tone and slang. If a tool translates before analysing, test the sentiment results with extra care.</p>
+<h2>How do you turn multilingual data into decisions?</h2>
+<p>Compare markets only after you have checked each language's quality. Otherwise a weak language looks like a quiet market.</p>
+<p>Once the data is trustworthy, read it market by market. Our guide to <a href="/blog/share-of-voice-by-market-reading-one-category-four-ways/">reading share of voice by market</a> shows how one category looks different in each country, and <a href="/blog/content-localisation-in-asia-is-not-translation/">content localisation in Asia is not translation</a> explains why the message must change, not just the words. For the wider tool landscape, see <a href="/blog/social-listening-tools-the-essential-guide-for-marketers-in-2024/">the social listening tools guide</a> and the <a href="/marketing-intelligence-glossary/">marketing intelligence glossary</a>.</p>
+<h2>FAQ</h2>
+<details><summary>What is multilingual social listening?</summary><p>It is social listening that collects and analyses posts in several languages, detecting the language of each post and reading it in that language. The goal is one view of a category across markets without losing local meaning.</p></details>
+<details><summary>What is visual social listening?</summary><p>Visual social listening analyses images and video in social posts. A common use is logo detection, which finds brand logos even when the post never names the brand.</p></details>
+<details><summary>How accurate is AI language detection on social posts?</summary><p>It depends on the language, the length of the post and how much mixing there is. Documentation from providers shows confidence scores per result, but not accuracy on your data, so measure it on your own sample.</p></details>
+<details><summary>Do I need a native speaker to test a tool?</summary><p>Yes, for sentiment and topic labels. A native speaker catches slang, sarcasm and dialect that a non-speaker will miss, and a few hours of review per language is usually enough for a first test.</p></details>
+<details><summary>Is it enough that a tool translates everything into English?</summary><p>Sometimes, but not for tone-sensitive work. Translation can flatten slang and humour, so compare translated results with a native speaker's labels before you rely on them.</p></details>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://docs.cloud.google.com/translate/docs/detect-language" target="_blank" rel="noopener">Google Cloud Translation, detect language</a></li>
+<li><a href="https://docs.cloud.google.com/vision/docs/detecting-logos" target="_blank" rel="noopener">Google Cloud Vision, detect logos</a></li>
+</ul>

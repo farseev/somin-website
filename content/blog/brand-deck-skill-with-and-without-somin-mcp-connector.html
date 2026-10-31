@@ -1,0 +1,79 @@
+<!--meta
+{
+ "slug": "blog/brand-deck-skill-with-and-without-somin-mcp-connector",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "What is the difference between running the SOMIN brand deck skill with and without the SOMIN MCP connector?",
+ "seo_title": "Brand deck skill with vs without the SOMIN MCP connector",
+ "description": "Without the SOMIN MCP connector, a brand deck skill has no ads or social data and the model cannot hold thousands of posts. See what changes with it.",
+ "published": "2026-10-31T10:00:00Z",
+ "author": "SOMIN Team",
+ "tags": [
+  "AI Agents",
+  "Large Language Models",
+  "Artificial Intelligence"
+ ],
+ "image_prompt": "Isometric dark-teal 3D illustration of two identical presentation slides side by side on a deep ink-green surface, one fed by a glowing teal data cable from a vault block, the other empty and dim, no text and no logos.",
+ "words": 1127,
+ "reading_minutes": 5,
+ "image": "/assets/img/blog/brand-deck-skill-with-and-without-somin-mcp-connector.webp",
+ "image_card": "/assets/img/blog/brand-deck-skill-with-and-without-somin-mcp-connector-card.webp",
+ "og_image": "/assets/img/og/blog-brand-deck-skill-with-and-without-somin-mcp-connector.jpg",
+ "image_generated": true,
+ "robots": "index,follow"
+}
+-->
+<p>The SOMIN brand deck skill builds a brand briefing deck for Claude users. With the SOMIN MCP connector, it pulls real ads and social posts from SOMIN (SoMin.ai), the AI marketing-intelligence company run by Somin Pte. Ltd. in Singapore. Without the connector, the model has no access to that data, so it can only write from memory and whatever you paste in.</p>
+<h2>Key takeaways</h2>
+<ul>
+<li>Without the connector, the skill has no route to ads or social media data. The model cannot look up what a brand or its competitors actually posted.</li>
+<li>Pasting data into the chat does not fix this at scale. A model can only read what fits in its context window, and large sets of posts do not fit.</li>
+<li>Even when text fits, a model reading many items at once misses some, counts them loosely and gives different answers on each run.</li>
+<li>With the connector, the data is searched and counted outside the model, and the model writes about the result.</li>
+<li>The deck is then traceable to real posts, which a memory-only deck is not.</li>
+</ul>
+<h2>What is the SOMIN brand deck skill?</h2>
+<p>It is one of the skills in the Marketing Mondays plugin for Claude. SOMIN lists brand decks among the plugin's skills, next to Pulse reports, competitor content analysis and landscape reports. The skill is a set of written instructions: what slides to build, in what order, and what to check. It does not contain any marketing data. See <a href="/blog/marketing-mondays-plugin-for-claude-explained/">the Marketing Mondays plugin explained</a>.</p>
+<h2>What does the SOMIN MCP connector add?</h2>
+<p>It connects Claude to your SOMIN workspaces through MCP, the Model Context Protocol. Through it, Claude can search and aggregate posts, list profiles and studies, and read insights. The skill supplies the method; the connector supplies the evidence. Setup is in <a href="/blog/somin-mcp-server-for-claude-chatgpt-manus/">the SOMIN MCP server guide</a>.</p>
+<h2>What happens to the deck without the connector?</h2>
+<p>Three things go wrong, and they compound.</p>
+<h3>1. There is no data to read</h3>
+<p>A language model has no live view of Instagram, TikTok, Facebook or Meta's ad systems. It learned from text up to its training date. Ask it what a competitor ran last month and it can only guess a plausible answer. Plausible is not the same as true, and the model will not always tell you which one you got.</p>
+<h3>2. The data cannot all be held in context</h3>
+<p>Suppose you try to help by exporting posts and pasting them in. A brand briefing may need hundreds or thousands of posts across several brands, platforms and months. A model reads only what fits in its context window, and everything you add pushes other material out or gets cut. Long inputs also cost more and run slower. So the model sees a slice and writes as if it saw everything.</p>
+<h3>3. What it does read is processed unreliably</h3>
+<p>Even inside the window, models are weak at exact work over long lists: counting, ranking, finding every match. They tend to attend to the start and end of a long input more than the middle, skip items without saying so, and round numbers into something that sounds right. The same prompt can give a different "top five" on a second run. A deck that changes every time you build it cannot go to a client.</p>
+<h2>How does the connector change this?</h2>
+<p>It moves the heavy work out of the model. Searching, filtering and counting posts run as tools against stored data, and return a small, exact result. The model then reads a table of a few rows, not a pile of thousands of posts. That brings four gains:</p>
+<ul>
+<li><strong>Coverage:</strong> every matching post is considered, because the database does the sweep.</li>
+<li><strong>Accuracy:</strong> counts and shares come from the tool, not from the model's estimate.</li>
+<li><strong>Stability:</strong> the same question returns the same numbers. Wording may vary; the figures should not.</li>
+<li><strong>Traceability:</strong> each claim can point back to the posts behind it, so a reader can check it.</li>
+</ul>
+<h2>Side by side: the same request, two outcomes</h2>
+<p>The table below is a hypothetical example of asking for a brand briefing deck on a consumer brand and two competitors.</p>
+<table>
+<thead><tr><th>Question</th><th>Without the connector</th><th>With the connector</th></tr></thead>
+<tbody>
+<tr><td>Where do the facts come from?</td><td>Training memory and pasted text</td><td>Posts and ads stored in your SOMIN workspace</td></tr>
+<tr><td>Can it see recent ads and posts?</td><td>No</td><td>Yes, within the data SOMIN holds</td></tr>
+<tr><td>What if there are thousands of posts?</td><td>Only a slice fits; the rest is silently dropped</td><td>Searched and aggregated outside the model</td></tr>
+<tr><td>Are figures repeatable?</td><td>Often not</td><td>Yes, they come from the same query</td></tr>
+<tr><td>Can you check a claim?</td><td>Rarely</td><td>Yes, by opening the posts behind it</td></tr>
+<tr><td>Risk</td><td>Invented examples and numbers</td><td>Much lower, though the narrative still needs review</td></tr>
+</tbody>
+</table>
+<h2>Does the connector remove the need for human review?</h2>
+<p>No. The connector fixes the data problem. It does not make the model's judgement perfect. A person should still read the deck, check the claims that matter and decide what is worth saying to a client. For why models stay variable by design, read <a href="/blog/why-llm-agents-are-unstable-and-keep-producing-the-same-thing/">why AI agents are unstable and still repeat themselves</a>.</p>
+<h2>When is the skill alone enough?</h2>
+<p>If you only need the structure of a brand briefing and you supply a small, clean set of facts yourself, the skill alone can lay out the slides. Once the deck is meant to say what competitors are doing, what content works, or how a brand compares, you need the data behind it.</p>
+<h2>FAQ</h2>
+<details><summary>Can I paste my social media export instead of using the connector?</summary><p>For a handful of posts, yes. For large exports it is unreliable: the file may not fit, and the model may skim or skip items. A tool that counts and filters the data first is safer.</p></details>
+<details><summary>Does the model remember my brand's posts between sessions?</summary><p>No. It starts each conversation without your data unless something supplies it again. The connector re-reads the stored data each time.</p></details>
+<details><summary>Why does the same deck prompt give different results on each run?</summary><p>Language models generate text by sampling likely next words, so wording and choices can vary. Numbers drawn from a tool stay fixed, which is why the connector helps.</p></details>
+<details><summary>Does the connector work with ChatGPT as well as Claude?</summary><p>SOMIN's pages name Claude, Manus and Codex as supported through MCP. Check <a href="/blog/somin-mcp-server-for-claude-chatgpt-manus/">the MCP server guide</a> for the current list.</p></details>
+<details><summary>Do I need a SOMIN account to use the connector?</summary><p>Yes. You sign in to SOMIN when you add the connector, and Claude can see the workspaces your account can see. Plans are on the <a href="/pricing/">pricing page</a>.</p></details>
+<h2>Sources</h2>
+<p>SOMIN facts come from SOMIN's own pages: <a href="/marketing-mondays-plugin/">Marketing Mondays plugin</a>, <a href="/ai-agents/">AI agents</a> and <a href="/blog/connect-claude-to-marketing-data-with-mcp/">connecting Claude to marketing data with MCP</a>. The comparison table is a hypothetical illustration, not a measured result.</p>

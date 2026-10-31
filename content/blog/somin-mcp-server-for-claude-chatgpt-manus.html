@@ -1,0 +1,90 @@
+<!--meta
+{
+ "slug": "blog/somin-mcp-server-for-claude-chatgpt-manus",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "What is the SOMIN MCP server, and how do you use it with Claude, ChatGPT or Manus?",
+ "seo_title": "SOMIN MCP server: connect to Claude, Manus and more",
+ "description": "The SOMIN MCP server lets AI tools such as Claude, Manus and Codex read your SOMIN data. See what it is, the server URL and how to connect and test it.",
+ "published": "2026-10-31T10:00:00Z",
+ "author": "SOMIN Team",
+ "tags": [
+  "AI Agents",
+  "Large Language Models",
+  "Artificial Intelligence"
+ ],
+ "image_prompt": "Isometric dark-teal 3D illustration of a glowing teal cable linking a data-vault block to three different chat-window panels on a deep ink-green surface, no text and no logos.",
+ "words": 1018,
+ "reading_minutes": 5,
+ "image": "/assets/img/blog/somin-mcp-server-for-claude-chatgpt-manus.webp",
+ "image_card": "/assets/img/blog/somin-mcp-server-for-claude-chatgpt-manus-card.webp",
+ "og_image": "/assets/img/og/blog-somin-mcp-server-for-claude-chatgpt-manus.jpg",
+ "image_generated": true,
+ "robots": "index,follow"
+}
+-->
+<p>The SOMIN MCP server is the connector that lets AI tools read your data in SOMIN (SoMin.ai), the AI marketing-intelligence company run by Somin Pte. Ltd. in Singapore. SOMIN lists Claude, Manus and Codex as supported through MCP. In Claude you add it as a connector at https://cloud.somin.ai/_mcp, sign in to SOMIN, and ask which workspaces Claude can see.</p>
+<h2>Key takeaways</h2>
+<ul>
+<li>MCP (Model Context Protocol) is the open standard that SOMIN uses to let AI tools reach your workspaces, posts, studies and insights.</li>
+<li>SOMIN's pages name Claude, Manus and Codex, plus the Claude Agent SDK; they do not name ChatGPT as a supported client.</li>
+<li>The Claude server URL is https://cloud.somin.ai/_mcp, with an underscore, not /mcp.</li>
+<li>You need a SOMIN account, and you sign in to SOMIN before you click Connect in Claude.</li>
+<li>The first test is a read-only question: which SOMIN workspaces can you see?</li>
+</ul>
+<h2>What is the SOMIN MCP server?</h2>
+<p>It is the remote server through which an AI assistant reads your SOMIN data, so you do not paste exports into a chat. SOMIN's company data lists "Connects to Claude, Manus and Codex (MCP) and Zapier" among its features.</p>
+<p>The data is whatever your SOMIN account already tracks: competitor posts and ads, studies and audience insights. According to SOMIN's plugin page, every number in the outputs traces back to a SOMIN post, study or ID. For the general idea of MCP, read <a href="/blog/connect-claude-to-marketing-data-with-mcp/">how to connect Claude to marketing data with MCP</a> and <a href="/blog/mcp-for-marketing-agencies-what-changes-in-2026/">what MCP changes for agencies</a>.</p>
+<h2>Which AI tools work with it?</h2>
+<p>SOMIN's own pages describe three clients and one toolkit. Check the vendor for anything else.</p>
+<table>
+<thead><tr><th>Tool</th><th>What SOMIN's site says</th></tr></thead>
+<tbody>
+<tr><td>Claude</td><td>Connects through MCP; a step-by-step route is on the <a href="/marketing-mondays-plugin/">Marketing Mondays plugin</a> page, and a Claude manual is linked from the site</td></tr>
+<tr><td>Manus</td><td>Listed as an MCP integration, with a Manus manual and quickstart linked from the site</td></tr>
+<tr><td>Codex</td><td>Listed as an MCP integration, with a quickstart linked from the site</td></tr>
+<tr><td>Claude Agent SDK</td><td>Linked as an orchestrator route for agencies</td></tr>
+<tr><td>ChatGPT</td><td>Not named as a supported client on SOMIN's pages</td></tr>
+</tbody>
+</table>
+<p>The manuals live under cloud.somin.ai/manuals and are linked from the SOMIN home page and the pages <a href="/somin-for-agencies/">for agencies</a>, <a href="/somin-for-brands/">for brands</a> and <a href="/somin-for-creators/">for creators</a>. We have kept this article to the steps SOMIN publishes for Claude, and do not describe the Manus or Codex steps here.</p>
+<h2>How do you connect the SOMIN MCP server to Claude?</h2>
+<p>Sign in to SOMIN first, then add the connector in Claude. There are two routes: through the Marketing Mondays plugin, or as a custom connector.</p>
+<h3>Route 1: through the plugin</h3>
+<ol>
+<li>Sign in at cloud.somin.ai with the account whose workspaces Claude should see.</li>
+<li>Open Claude (the desktop app or claude.ai) and go to Customize › Plugins. Add › Upload plugin, and choose marketing-mondays.plugin.</li>
+<li>Open Marketing Mondays in Customize › Plugins and select its Connectors tab.</li>
+<li>If SOMIN shows "Not added", click Add, then Connect. If it shows "Not connected", click Connect.</li>
+</ol>
+<h3>Route 2: a custom connector</h3>
+<p>If the plugin has no Connectors tab, go to Customize › Connectors › Add custom connector and enter:</p>
+<ul>
+<li><strong>Name</strong>: SOMIN</li>
+<li><strong>Server URL</strong>: https://cloud.somin.ai/_mcp</li>
+</ul>
+<p>Keep the underscore. Use this route instead of the plugin's Connectors tab, not as well. On a Team or Enterprise plan, ask your Claude Owner to add the SOMIN connector, then connect it with your own account.</p>
+<h2>How do you test that it works?</h2>
+<p>Ask Claude which SOMIN workspaces it can see. A list of workspace names within a few seconds means you are connected. It also shows exactly which client data Claude can reach.</p>
+<p>SOMIN's suggested next prompt asks Claude to list your workspaces, then your brands, and then to build a 12-month strategy deck for the brand you choose. It uses the brand-deck skill for the analysis and starts with scope elicitation.</p>
+<h2>Does it work in Claude Code?</h2>
+<p>Yes, per the plugin page. A plugin added in the Claude app syncs to Claude Code when you are signed in to the same account; run /reload-plugins. Then run /mcp, pick SOMIN and sign in. Skills appear as /marketing-mondays:&lt;skill&gt;.</p>
+<h2>What can you do once connected?</h2>
+<p>With the plugin, the connected data feeds 26 skills: weekly Pulse reports, competitor content analysis, Insight Engine dashboards, landscape reports, a content diversity score, brand decks and scheduling in Postly. The full list is in <a href="/blog/marketing-mondays-plugin-for-claude-explained/">the Marketing Mondays plugin explained</a>. The engine behind the data is <a href="/blog/somonitor-ai-marketing-intelligence-platform/">SOMONITOR</a>, and the agents that use it are on the <a href="/ai-agents/">AI agents</a> page.</p>
+<h2>What should you check before you connect?</h2>
+<p>Treat any MCP connection as access to client data. SOMIN's server reads whatever the signed-in SOMIN account can see, so the account you use decides the scope.</p>
+<ul>
+<li>Use an account whose workspaces match the job. Claude links to whichever SOMIN account is signed in.</li>
+<li>On Team and Enterprise plans, ask your Claude Owner to add the connector, then connect with your own account.</li>
+<li>Start with a read-only question before you chain skills together.</li>
+<li>Review which tools Claude asks to run, and approve only what the task needs.</li>
+</ul>
+<p>The <a href="/blog/connect-claude-to-marketing-data-with-mcp/">MCP guide for agencies</a> covers these checks in more depth.</p>
+<h2>FAQ</h2>
+<details><summary>What is the SOMIN MCP server URL?</summary><p>For Claude, SOMIN gives https://cloud.somin.ai/_mcp. Keep the underscore: it is /_mcp, not /mcp.</p></details>
+<details><summary>Does the SOMIN MCP server work with ChatGPT?</summary><p>SOMIN's pages do not list ChatGPT as a supported client; they name Claude, Manus and Codex. Ask SOMIN at ask@somin.ai before planning around it.</p></details>
+<details><summary>Do I need a SOMIN account?</summary><p>Yes. The server reads your SOMIN workspaces, so you sign in to SOMIN first. You can <a href="/try-somin/">request access</a> if you do not have one.</p></details>
+<details><summary>Why does SOMIN need to be signed in before Claude?</summary><p>Claude links to whichever SOMIN account is signed in when you click Connect, so SOMIN always comes first.</p></details>
+<details><summary>Is the MCP server free?</summary><p>SOMIN's pages do not give a separate MCP price. It reads data from your SOMIN account, so check the <a href="/pricing/">pricing page</a> for plans.</p></details>
+<h2>Sources</h2>
+<p>Facts come from SOMIN's <a href="/marketing-mondays-plugin/">Marketing Mondays plugin</a>, <a href="/somin-for-agencies/">SOMIN for agencies</a> and <a href="/ai-agents/">AI agents</a> pages, and the integrations listed on <a href="/about/">About SOMIN</a>.</p>

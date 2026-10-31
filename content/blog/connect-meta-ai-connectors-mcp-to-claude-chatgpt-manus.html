@@ -1,0 +1,106 @@
+<!--meta
+{
+ "slug": "blog/connect-meta-ai-connectors-mcp-to-claude-chatgpt-manus",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "How do you connect Meta's AI connectors (MCP) to Claude, ChatGPT or Manus?",
+ "seo_title": "Connect Meta ads MCP to Claude, ChatGPT, Manus",
+ "description": "Connect Meta's ads MCP server (mcp.facebook.com/ads) to Claude Code, ChatGPT developer mode or Manus: URL, permissions, OAuth steps and safety checks.",
+ "published": "2026-10-31T10:00:00Z",
+ "author": "SOMIN Team",
+ "tags": [
+  "AI Agents",
+  "Meta Advertising",
+  "Large Language Models"
+ ],
+ "image_prompt": "Isometric dark-teal 3D illustration of a glowing plug-shaped connector joining three floating cube-shaped AI clients to a central ad-account platform on a deep ink-green surface, bright teal highlights, no text and no logos.",
+ "words": 1346,
+ "reading_minutes": 6,
+ "image": "/assets/img/blog/connect-meta-ai-connectors-mcp-to-claude-chatgpt-manus.webp",
+ "image_card": "/assets/img/blog/connect-meta-ai-connectors-mcp-to-claude-chatgpt-manus-card.webp",
+ "og_image": "/assets/img/og/blog-connect-meta-ai-connectors-mcp-to-claude-chatgpt-manus.jpg",
+ "image_generated": true,
+ "robots": "index,follow"
+}
+-->
+<p>You connect Meta's AI connectors by pointing an MCP-compatible AI client at Meta's ads MCP server, https://mcp.facebook.com/ads, and signing in with Facebook through OAuth. Meta's documentation gives exact steps for Claude Code and ChatGPT developer mode. It gives none for Manus, so that route needs a token and a test.</p>
+<h2>Key takeaways</h2>
+<ul>
+<li>Meta's ads MCP server is hosted at https://mcp.facebook.com/ads and works with any MCP-compatible AI agent, according to Meta's developer documentation.</li>
+<li>Meta documents setup for Claude Code (a single command) and ChatGPT (developer mode with OAuth); it does not document Manus.</li>
+<li>The minimum permissions are ads_mcp_management plus either ads_read or ads_management.</li>
+<li>Start with read-only reporting, and keep a person at the approval step for anything that changes campaigns.</li>
+<li>Check Meta's current pages before you start, because setup details can change.</li>
+</ul>
+<h2>What are Meta's AI connectors?</h2>
+<p>Meta's AI connectors let an outside AI agent work with your ads account. The ads MCP server is Meta-hosted and uses the Model Context Protocol, which the <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">MCP site</a> describes as an open-source standard for connecting AI applications to external systems.</p>
+<p>According to <a href="https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-overview" target="_blank" rel="noopener">Meta's Ads MCP Server overview</a>, the tools fall into seven groups:</p>
+<ul>
+<li>Performance reporting and insights</li>
+<li>Creating and editing ads, ad sets and campaigns</li>
+<li>Catalogue creation, product data and feed troubleshooting</li>
+<li>Signal health and quality</li>
+<li>Searching Meta Business Help Center articles</li>
+<li>A/B tests and conversion lift studies</li>
+<li>Ad account activity logs</li>
+</ul>
+<p>Meta also lists an Ads CLI for command-line use. This guide covers the MCP server. For the strategic background, read <a href="/blog/breaking-the-walls-metas-strategic-shift-toward-open-ai-connectors/">Meta's shift toward open AI connectors</a>.</p>
+<h2>What do you need before you connect?</h2>
+<p>You need an ads account, a Meta app with the right use case, and a clear scope. Meta's <a href="https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-get-started" target="_blank" rel="noopener">get-started page</a> lists three requirements:</p>
+<ol>
+<li>Create or open an app at developers.facebook.com/apps.</li>
+<li>Add the "Create &amp; manage ads with ads MCP server" use case.</li>
+<li>Set the app's redirect URL in the Facebook Login for Business settings to match your MCP client.</li>
+</ol>
+<p>The same page notes you do not need your own Meta app if you follow Meta's separate help-centre guide on setting up ads AI connectors. Check which route applies to you.</p>
+<p>Permissions: the minimum is <code>ads_mcp_management</code> plus <code>ads_read</code> or <code>ads_management</code>. Optional extras include <code>catalog_management</code>, <code>business_management</code>, <code>pages_show_list</code> and <code>instagram_basic</code>. Ask for the smallest set that does the job.</p>
+<h2>How do you connect it to Claude?</h2>
+<p>For Claude Code, run one command with your Meta app ID. For other Claude apps, add the URL as a custom connector.</p>
+<p>Meta's page gives this Claude Code command:</p>
+<p><code>claude mcp add &#45;&#45;transport http &#45;&#45;client-id &lt;META_APP_ID&gt; meta-ads https://mcp.facebook.com/ads</code></p>
+<p>Replace the placeholder with your app ID and make sure the app's redirect URL matches Claude Code. Meta's page has no steps for Claude Desktop or claude.ai. Anthropic's <a href="https://support.claude.com/en/articles/11175166-getting-started-with-custom-connectors-using-remote-mcp" target="_blank" rel="noopener">custom connectors guide</a> covers those. On Pro and Max plans you go to Customize, then Connectors, then Add custom connector, enter the server URL and choose an authentication option. On Team and Enterprise plans an Owner adds the connector once and each member then signs in individually.</p>
+<p>Anthropic's guide also warns that it has not verified custom connectors, that you should connect only to servers from organisations you trust, and that "Allow always" should be used with care. Our <a href="/blog/connect-claude-to-marketing-data-with-mcp/">guide to connecting Claude to marketing data with MCP</a> covers account scoping in more depth.</p>
+<h2>How do you connect it to ChatGPT?</h2>
+<p>Use ChatGPT's developer mode, choose OAuth and enter Meta's server URL. Meta's page gives five steps:</p>
+<ol>
+<li>Set your Meta app's redirect URL according to ChatGPT's authentication specification.</li>
+<li>Open developer mode, following OpenAI's guide.</li>
+<li>Select OAuth as the authentication method.</li>
+<li>Enter https://mcp.facebook.com/ads as the server URL.</li>
+<li>Under Advanced OAuth Settings, enter your Meta app ID as the OAuth Client ID.</li>
+</ol>
+<p>According to <a href="https://developers.openai.com/api/docs/guides/developer-mode" target="_blank" rel="noopener">OpenAI's developer mode guide</a>, it is available on the web for Pro, Plus, Business, Enterprise and Education accounts, and you enable it under Settings, then Apps, then Advanced settings. OpenAI calls it powerful but dangerous. Write actions need confirmation by default, and you should review each tool input before approving.</p>
+<h2>How do you connect it to Manus?</h2>
+<p>Meta does not document Manus, so treat this route as untested until you try it. Manus supports custom MCP servers, and Meta's page says a bearer token works for direct calls, so a token-based connection is the likely path.</p>
+<p>The <a href="https://www.manus.im/docs/integrations/custom-mcp" target="_blank" rel="noopener">Manus custom MCP page</a> says to go to Settings, then Integrations, then Custom MCP Servers, and click Add Server. You enter a server name, an HTTPS server URL and authentication such as an API key or bearer token. Manus then runs a connection test that retrieves the tool list.</p>
+<p>Meta's get-started page says that for programmatic access you can send a user access token in an Authorization header, and that a system user token can be used server to server. It adds that only Employee-role system user tokens work; Admin-role tokens cannot access the server. We could not confirm from either vendor that this exact combination works in Manus, so run the connection test, then a read-only question.</p>
+<p>The Manus page also says never to expose credentials in URLs or logs and to rotate credentials regularly. We found no official documentation for a command-line route (<code>manus-mcp-cli</code>), so we leave it out.</p>
+<h2>How do you check the connection works?</h2>
+<p>Ask a read-only question. Meta's own suggested test is "List my ad accounts." If the right accounts come back, the connection and the permissions are working.</p>
+<p>Then compare one reported number with Ads Manager before you trust any summary. If the figures differ, find out why before you build a workflow on top.</p>
+<h2>What should stay under human control?</h2>
+<p>Anything that spends money or changes live campaigns. The connectors can create and edit campaigns, so approval settings matter more than the connection itself.</p>
+<ul>
+<li>Start with reporting and insights only.</li>
+<li>Use a narrow account and the smallest permission set.</li>
+<li>Leave tool approval on for write actions in every client.</li>
+<li>Treat anything a tool returns as data, not instructions.</li>
+<li>Know how to revoke access before you grant it.</li>
+</ul>
+<p>For a framework on which jobs to automate and which to keep, see <a href="/blog/agentic-workflows-for-agencies-what-to-automate/">agentic workflows for agencies</a>. For how this changes agency work, read <a href="/blog/mcp-for-marketing-agencies-what-changes-in-2026/">MCP for marketing agencies</a>.</p>
+<h2>Where does SOMIN fit?</h2>
+<p>SOMIN (SoMin.ai), the AI marketing-intelligence company run by Somin Pte. Ltd. in Singapore, covers the step before the ad account: what competitors run and which angle to test. According to SOMIN's profile, the platform connects to Claude, Manus and Codex through MCP. Meta's connector manages the account; SOMIN's data informs the strategy. See <a href="/somin-strategy/">SOMIN Strategy</a> and <a href="/ai-agents/">SOMIN's AI agents</a>.</p>
+<h2>FAQ</h2>
+<details><summary>What is Meta's MCP server URL?</summary><p>According to Meta's developer documentation, the ads MCP server is hosted at https://mcp.facebook.com/ads.</p></details>
+<details><summary>Which AI clients work with Meta's ads MCP server?</summary><p>Meta says any MCP-compatible AI agent. Its get-started page gives steps for Claude Code and ChatGPT. It gives none for Manus or Claude Desktop.</p></details>
+<details><summary>How do I manage ads from an AI agent with Meta's connectors? (Como gerenciar anúncios de um agente de IA com os conectores de IA de anúncios da Meta?)</summary><p>Connect a client to the ads MCP server, then ask for reports first and changes later, with approval on. Readers searching for "Meta広告 MCP" (Japanese for Meta ads MCP) will find the same server and the same steps; the connector itself is not region-specific in Meta's documentation.</p></details>
+<details><summary>Do I need to write code?</summary><p>Not for the OAuth routes: you add a server URL and sign in. Claude Code needs one terminal command. A token-based route, such as one for Manus, needs a system user token.</p></details>
+<details><summary>Is it safe to give an AI agent access to my ad account?</summary><p>It can be if you use the narrowest permissions, keep approval on for write actions and check results against Ads Manager. Both Anthropic and OpenAI warn about prompt injection and untrusted servers.</p></details>
+<h2>Sources</h2>
+<ul>
+<li>Meta for Developers, <a href="https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-get-started" target="_blank" rel="noopener">Ads MCP Server: get started</a> and <a href="https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-overview" target="_blank" rel="noopener">overview</a>.</li>
+<li>Anthropic, <a href="https://support.claude.com/en/articles/11175166-getting-started-with-custom-connectors-using-remote-mcp" target="_blank" rel="noopener">Getting started with custom connectors using remote MCP</a>.</li>
+<li>OpenAI, <a href="https://developers.openai.com/api/docs/guides/developer-mode" target="_blank" rel="noopener">Developer mode</a>.</li>
+<li>Manus, <a href="https://www.manus.im/docs/integrations/custom-mcp" target="_blank" rel="noopener">Custom MCP servers</a>.</li>
+<li>Model Context Protocol, <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">What is MCP?</a></li>
+</ul>

@@ -1,0 +1,79 @@
+<!--meta
+{
+ "slug": "blog/marketing-mondays-plugin-for-claude-explained",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "What is the Marketing Mondays plugin for Claude, and what does it do?",
+ "seo_title": "Marketing Mondays plugin for Claude explained",
+ "description": "The Marketing Mondays plugin is a free Claude plugin from SOMIN (SoMin.ai) with 26 skills that turn your SOMIN data into reports, decks and content calendars.",
+ "published": "2026-10-31T10:00:00Z",
+ "author": "SOMIN Team",
+ "tags": [
+  "AI Agents",
+  "Large Language Models",
+  "Social Media Marketing"
+ ],
+ "image_prompt": "Isometric dark-teal 3D illustration of a glowing teal plug-in module clicking into a chat window panel on a deep ink-green surface, with five small tiles in a loop around it, no text and no logos.",
+ "words": 1025,
+ "reading_minutes": 5,
+ "image": "/assets/img/blog/marketing-mondays-plugin-for-claude-explained.webp",
+ "image_card": "/assets/img/blog/marketing-mondays-plugin-for-claude-explained-card.webp",
+ "og_image": "/assets/img/og/blog-marketing-mondays-plugin-for-claude-explained.jpg",
+ "image_generated": true,
+ "robots": "index,follow"
+}
+-->
+<p>The Marketing Mondays plugin is a free plugin for Claude from SOMIN (SoMin.ai), the AI marketing-intelligence company run by Somin Pte. Ltd. in Singapore. It packs 26 skills, eight of them main skills, that listen to your market, decode competitors, find whitespace, make on-brand creative and plan a content calendar. All of it runs on your own SOMIN data.</p>
+<h2>Key takeaways</h2>
+<ul>
+<li>The plugin is free to download, but its skills read data through SOMIN, so you need a SOMIN account.</li>
+<li>It holds 26 skills: eight main skills and 18 helpers the main ones call for you.</li>
+<li>The workflow is one loop of five steps: listen, decode, decide, make and ship.</li>
+<li>Setup takes about three minutes in four steps, in Claude on the desktop app or claude.ai.</li>
+<li>Figma and Postly are optional and only needed for the make and ship steps.</li>
+</ul>
+<h2>What is the Marketing Mondays plugin?</h2>
+<p>It is the workflow SOMIN showed live at a Marketing Mondays session, packed into one plugin file called marketing-mondays.plugin. Marketing Mondays is, according to SOMIN's plugin page, a Singapore community of marketers that decodes one real market signal every Monday, with SOMIN as its technology partner.</p>
+<p>The plugin packs the workflow shown at the session "The 2027 marketing team: smaller, faster, or obsolete?" on 12 October 2026. You ask for a finished output in plain English, and the matching skill does the work. See the full page at <a href="/marketing-mondays-plugin/">Marketing Mondays plugin</a>.</p>
+<h2>What are the eight main skills?</h2>
+<p>Each skill sits in one step of the loop and can run on its own or feed the next. The list below follows the plugin page.</p>
+<table>
+<thead><tr><th>Step</th><th>Skill</th><th>What it makes</th></tr></thead>
+<tbody>
+<tr><td>Listen</td><td>Pulse</td><td>A weekly social performance report with editions, a timeline and SOMIN insight chains</td></tr>
+<tr><td>Decode</td><td>Audience and content analysis</td><td>Keywords, share of voice, audiences, pain points and the competitor content that performs best</td></tr>
+<tr><td>Decode</td><td>Insight Engine dashboard</td><td>Persona, tension, angle and story chains, each backed by real posts</td></tr>
+<tr><td>Decide</td><td>Landscape report</td><td>One clickable landscape page: findings, brands, a recommendation and what to make</td></tr>
+<tr><td>Decide</td><td>Competitor product and market insights</td><td>A multi-market dashboard of competitors' offers, discounts and product launches</td></tr>
+<tr><td>Decide</td><td>Content diversity score</td><td>A 0 to 100 score for how varied a brand's creative is against its competitors</td></tr>
+<tr><td>Make</td><td>Brand deck</td><td>A strategy briefing deck: whitespace, trends, insights, calendar and creatives</td></tr>
+<tr><td>Ship</td><td>Strategy to Postly</td><td>From strategy to scored creatives in your Figma file, a calendar, Postly scheduling and PDFs</td></tr>
+</tbody>
+</table>
+<p>The other 18 skills are helpers, from persona and tension discovery to whitespace analysis, content calendars and deck QA. For the idea behind the whitespace step, read <a href="/blog/what-is-marketing-whitespace/">what marketing whitespace is</a>.</p>
+<h2>Why a five-step loop?</h2>
+<p>The plugin asks the same four questions every time, on your brand: who are we talking to, what is bugging them, why does it happen, and what is the one line that says it? Every answer comes from data. Each step is a skill you can run on its own or chain into the next.</p>
+<p>SOMIN also shows a real run on its site: a Grab Singapore example from a Marketing Mondays session, with one agent skill per step and a strategist choosing what ships. It is a demonstration of the workflow, not a promise of the same result for your brand.</p>
+<h2>What do you need before you install it?</h2>
+<p>You need Claude (the desktop app or claude.ai) on a plan that lets you add plugins, and a SOMIN account. Figma and Postly are optional. Without a SOMIN account the skills have no data to read; you can <a href="/try-somin/">request SOMIN access</a> on the site.</p>
+<h2>How do you install the Marketing Mondays plugin?</h2>
+<p>Install it in four steps, which SOMIN says take about three minutes.</p>
+<ol>
+<li><strong>Sign in to SOMIN first.</strong> Use cloud.somin.ai with the account whose workspaces Claude should see, then open Claude. Claude links to whichever SOMIN account is signed in when you click Connect.</li>
+<li><strong>Upload the plugin.</strong> In Claude, open Customize › Plugins, click Add › Upload plugin and choose marketing-mondays.plugin.</li>
+<li><strong>Connect SOMIN.</strong> Open Marketing Mondays in Customize › Plugins and select the Connectors tab. Click Add, then Connect. On a Team or Enterprise plan, ask your Claude Owner to add the SOMIN connector.</li>
+<li><strong>Check it works.</strong> Ask Claude which SOMIN workspaces it can see. A list of workspace names within a few seconds means you are connected.</li>
+</ol>
+<p>If there is no Connectors tab, add SOMIN as a custom connector instead, with the server URL https://cloud.somin.ai/_mcp. Keep the underscore. The wider picture is in <a href="/blog/somin-mcp-server-for-claude-chatgpt-manus/">the SOMIN MCP server guide</a>.</p>
+<h2>Does it work in Claude Code?</h2>
+<p>Yes, according to the plugin page. A plugin added in the Claude app syncs to Claude Code when you are signed in to the same account; run /reload-plugins. Or start Claude Code with its plugin-directory option pointed at marketing-mondays.zip for one session. Then run /mcp, pick SOMIN and sign in. Skills appear as /marketing-mondays:&lt;skill&gt;.</p>
+<h2>Where does the data come from?</h2>
+<p>From your SOMIN workspaces: the competitor posts, ads, studies and audience insights SOMIN already tracks for you. SOMIN says every number in the outputs traces back to a SOMIN post, study or ID. The plugin does not replace the data layer; it makes that layer easy to use from Claude. See <a href="/ai-agents/">SOMIN's AI agents</a> for the engine behind it.</p>
+<h2>FAQ</h2>
+<details><summary>Is the Marketing Mondays plugin free?</summary><p>Yes, the plugin is free to download. Its skills read your data through SOMIN, so they need a SOMIN account to work on your own brand and competitors.</p></details>
+<details><summary>How many skills does it have?</summary><p>26 in all: eight main skills and 18 helper skills that the main ones call.</p></details>
+<details><summary>Do I need Figma or Postly?</summary><p>No. Both are optional and only needed for the make and ship steps.</p></details>
+<details><summary>What is Marketing Mondays?</summary><p>A Singapore community of marketers that decodes one real market signal every Monday. SOMIN is its technology partner.</p></details>
+<details><summary>What is a good first prompt?</summary><p>Ask Claude for the SOMIN workspaces it can see. Then ask for a 12-month strategy deck for a brand you choose, using the brand-deck skill, as the plugin page suggests.</p></details>
+<h2>Sources</h2>
+<p>Facts come from SOMIN's <a href="/marketing-mondays-plugin/">Marketing Mondays plugin</a> page and its <a href="/ai-agents/">AI agents</a> page.</p>

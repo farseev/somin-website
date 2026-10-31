@@ -1,0 +1,72 @@
+<!--meta
+{
+ "slug": "blog/why-llm-agents-are-unstable-and-keep-producing-the-same-thing",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "Why are AI agents and large language models unstable, and why do they keep producing the same thing?",
+ "seo_title": "Why AI agents are unstable and repeat the same output",
+ "description": "Large language models are statistical, so agents vary run to run yet drift to the same safe, average output. Learn why and how marketers can manage both.",
+ "published": "2026-10-31T10:00:00Z",
+ "author": "SOMIN Team",
+ "tags": [
+  "AI Agents",
+  "Large Language Models",
+  "Artificial Intelligence"
+ ],
+ "image_prompt": "Isometric dark-teal 3D illustration of many identical teal cubes funnelling into one glowing centre while a few cubes wobble off to the sides on a deep ink-green surface, no text and no logos.",
+ "words": 940,
+ "reading_minutes": 5,
+ "image": "/assets/img/blog/why-llm-agents-are-unstable-and-keep-producing-the-same-thing.webp",
+ "image_card": "/assets/img/blog/why-llm-agents-are-unstable-and-keep-producing-the-same-thing-card.webp",
+ "og_image": "/assets/img/og/blog-why-llm-agents-are-unstable-and-keep-producing-the-same-thing.jpg",
+ "image_generated": true,
+ "robots": "index,follow"
+}
+-->
+<p>Large language models are statistical systems: they predict likely next words. That makes them unstable in one way and repetitive in another. The same prompt can give different answers from run to run, and yet the answers drift toward the most typical wording. AI agents stack many such steps, so both effects grow. Marketers can manage this, but not wish it away.</p>
+<h2>Key takeaways</h2>
+<ul>
+<li>Instability and sameness have one root cause: the model samples from probabilities learned from huge amounts of text.</li>
+<li>Variation is mostly in wording and small choices. The centre of the output stays close to the average of what the model has seen.</li>
+<li>Agents multiply the problem, because each step builds on the last and small errors compound.</li>
+<li>Marketing suffers twice: unreliable facts, and generic copy that sounds like every competitor.</li>
+<li>The fix is design, not hope: ground the model in real data, test repeatedly, add human review and brief for what makes your brand different.</li>
+</ul>
+<h2>Why are language models unstable?</h2>
+<p>A language model does not look up an answer. It scores possible next words and picks one, often with a deliberate dose of randomness. Change the randomness setting, a few words of the prompt or the surrounding context, and the path can change. Models also differ between versions, and providers update them. A workflow that behaved well last month may behave differently now.</p>
+<p>Even with the randomness turned down, outputs can still vary a little between runs, and long tasks magnify that. Treat any one run as a sample, not a fact.</p>
+<h2>Why do agents make it worse?</h2>
+<p>An agent is a model that plans, calls tools, reads results and acts again. Each step depends on the previous one. If step three is slightly off, step four builds on the error. Over a long task the odds that everything goes right fall, much as a ten-step recipe fails more often than a two-step one. Agents can also loop, forget earlier instructions as the context fills up, or pick the wrong tool.</p>
+<h2>Why do models keep producing the same thing?</h2>
+<p>A model trained on a very large body of text learns what is common. When it has to choose, the most probable choice is also the most typical one. The result is smooth, safe, average writing: the same openings, the same structures, the same "unlock the power of" phrases. Ask for ten taglines and several will be near-twins. Ask a hundred marketers to use the same model with similar prompts and their output converges.</p>
+<p>This is not a bug someone forgot to fix. It is what a system built to predict the likely does. Variation and sameness can sit together: the wording shifts while the ideas stay the same.</p>
+<h2>What does this mean for marketing?</h2>
+<h3>Facts drift</h3>
+<p>A model may state a figure, date or claim that sounds right and is not. OpenAI has published its own explanation of why language models hallucinate. Our guide to <a href="/blog/ai-hallucinations-in-marketing-check-ai-copy-before-it-ships/">checking AI copy before it ships</a> covers the practical checks.</p>
+<h3>Brands blur together</h3>
+<p>If every competitor asks a model for "a fun, authentic campaign idea", the ideas converge. Positioning is about being different. A statistical average cannot be different by definition.</p>
+<h3>Reports change when you rerun them</h3>
+<p>If an agent builds a report from memory or from too much pasted text, a second run may rank things differently. See <a href="/blog/brand-deck-skill-with-and-without-somin-mcp-connector/">the brand deck skill with and without the SOMIN MCP connector</a> for a worked example.</p>
+<h2>How can teams reduce instability and sameness?</h2>
+<ul>
+<li><strong>Ground the model in real data.</strong> Let tools search and count, and have the model write about the result. This is the idea behind <a href="/blog/context-engineering-for-marketing/">context engineering for marketing</a>.</li>
+<li><strong>Keep numbers out of the model's head.</strong> Calculations and rankings belong in code or databases.</li>
+<li><strong>Test more than once.</strong> Run important tasks several times and compare. Large differences show where to add checks.</li>
+<li><strong>Break long jobs into small steps</strong> with a check after each.</li>
+<li><strong>Feed it what is yours.</strong> Real customer language, your tone and your evidence give it something other than the average to work from.</li>
+<li><strong>Ask for options, then choose.</strong> Treat the model as a source of drafts. A person decides.</li>
+<li><strong>Keep a human in the loop</strong> for claims, legal risk and anything a client will see.</li>
+</ul>
+<h2>Will newer models fix this?</h2>
+<p>They may reduce errors and improve consistency. They are unlikely to remove the underlying behaviour, because prediction from probabilities is how the technology works. Plan for it rather than waiting for it to go away.</p>
+<h2>FAQ</h2>
+<details><summary>What does it mean that an LLM is a statistical model?</summary><p>It means the model predicts the most likely next piece of text from patterns in its training data. It does not reason from first principles or look facts up unless it is given tools to do so.</p></details>
+<details><summary>Why does the same prompt give a different answer?</summary><p>Because the model samples from a probability distribution. Small differences in settings, context or model version change which words it picks.</p></details>
+<details><summary>Why does AI writing all sound the same?</summary><p>The most likely wording is the most common wording. Without specific input about your brand, the model falls back on the average.</p></details>
+<details><summary>Are AI agents safe to run unattended?</summary><p>Only for low-risk, checkable tasks. Anything that touches spend, claims or client work needs checks or a person's sign-off.</p></details>
+<details><summary>How does SOMIN deal with this?</summary><p>SOMIN's approach is to keep the data and the counting in the platform and let AI tools such as Claude read the results through MCP. See <a href="/ai-agents/">SOMIN AI agents</a>.</p></details>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://openai.com/index/why-language-models-hallucinate/" target="_blank" rel="noopener">OpenAI: Why language models hallucinate</a></li>
+<li>SOMIN pages: <a href="/ai-agents/">AI agents</a>, <a href="/blog/context-engineering-for-marketing/">context engineering for marketing</a> and <a href="/blog/somin-mcp-server-for-claude-chatgpt-manus/">the SOMIN MCP server</a>.</li>
+</ul>
