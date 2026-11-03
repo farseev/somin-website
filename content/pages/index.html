@@ -902,6 +902,171 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
 .ic .ic-duo{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);}
 .ic .ic-win{align-content:center;}
 .ic .ic-tmiss{line-height:1.4;}
+/* ==== Insight builder v4: one tree for persona → pain point → angle ==== */
+.ic .ic-qhint{margin:6px 0 0;font-size:12.5px;color:var(--ic-w4);}
+.ic .ic-tree{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(44px,5vw,84px);align-items:start;}
+.ic .ic-tcol{position:relative;z-index:2;display:flex;flex-direction:column;gap:10px;min-width:0;}
+.ic .ic-tcol .ic-col-h{justify-content:flex-start;margin:0 0 2px;}
+.ic .ic-tcl{display:flex;flex-direction:column;gap:10px;}
+.ic .ic-tcol-t,.ic .ic-tcol-a{transition:opacity .35s;}
+.ic .ic-tree:not(.has-p) .ic-tcol-t .ic-col-h,.ic .ic-tree:not(.has-t) .ic-tcol-a .ic-col-h{color:var(--ic-w4);}
+@keyframes ic-tin{from{opacity:0;transform:translateX(-18px);}to{opacity:1;transform:none;}}
+.ic .ic-in{animation:ic-tin .45s cubic-bezier(.16,1,.3,1) backwards;animation-delay:calc(var(--i,0) * .07s);}
+/* placeholders until the branch reaches the column */
+.ic .ic-tghost{position:relative;display:flex;flex-direction:column;gap:10px;}
+.ic .ic-tghost i{display:block;height:74px;border-radius:16px;border:1px dashed rgba(255,255,255,.1);background:rgba(255,255,255,.015);}
+.ic .ic-tghost span{position:absolute;inset:0;display:grid;place-items:center;padding:0 16px;text-align:center;font-size:12.5px;font-weight:600;color:var(--ic-w4);}
+/* personas: compact rows with a port on the outgoing side */
+.ic .ic-tree .ic-persona{grid-template-columns:52px minmax(0,1fr);gap:12px;min-height:76px;padding:10px 18px 10px 10px;}
+.ic .ic-tree .ic-ava{width:52px;height:52px;border-radius:14px;}
+.ic .ic-tree .ic-persona:hover{transform:translateX(3px);}
+.ic .ic-tree .ic-persona.is-active{transform:none;}
+.ic .ic-tree .ic-persona.is-dim{opacity:.5;}
+.ic .ic-tree .ic-persona.is-done{opacity:.55;}
+.ic .ic-tree .ic-persona .ic-check{top:7px;}
+.ic .ic-tree .ic-persona.is-hint,.ic .ic-tree .ic-pain.is-hint,.ic .ic-tree .ic-anode.is-hint{opacity:1;animation:ic-glowpulse 1.2s ease-in-out infinite;border-color:var(--ic-mint);}
+/* pain points: port in (left) and out (right) */
+.ic .ic-tree .ic-pain{min-height:76px;padding:12px 22px;cursor:pointer;}
+.ic .ic-tree .ic-pain .ic-port{inset-inline-start:-10px;}
+.ic .ic-tree .ic-pain .ic-port-out{inset-inline-start:auto;inset-inline-end:-10px;opacity:0;transition:opacity .25s;}
+.ic .ic-tree .ic-pain.is-linked .ic-port-out{opacity:1;cursor:crosshair;}
+.ic .ic-tree .ic-pain:hover{border-color:rgba(var(--ic-mint-rgb),.55);}
+.ic .ic-tree .ic-pain.is-linked{border-color:var(--ic-mint);background:linear-gradient(90deg,rgba(var(--ic-mint-rgb),.16),rgba(22,32,31,.92) 70%);cursor:grab;}
+.ic .ic-tree .ic-pain.is-linked .ic-port{background:var(--ic-mint);border-color:var(--ic-mint);}
+.ic .ic-tree .ic-pain.is-dim{opacity:.32;}
+.ic .ic-tree .ic-pain.is-no,.ic .ic-tree .ic-anode.is-no{border-color:rgba(224,122,95,.55);opacity:.6;cursor:default;}
+.ic .ic-tree .ic-pain.is-miss,.ic .ic-tree .ic-anode.is-miss{animation:ic-shake .45s ease;}
+.ic .ic-tree .ic-tmiss,.ic .ic-tree .ic-amiss{display:block;font-size:11.5px;font-weight:700;line-height:1.35;color:#E07A5F;}
+.ic .ic-tree .is-hover{border-color:var(--ic-mint) !important;box-shadow:0 0 0 1px rgba(var(--ic-mint-rgb),.4),0 14px 36px -16px var(--ic-glow);}
+/* angles */
+.ic .ic-anode{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-height:76px;padding:12px 16px 12px 22px;border:1px solid var(--ic-line);border-radius:16px;background:linear-gradient(165deg,rgba(30,51,47,.9),rgba(16,25,24,.94));text-align:start;transition:border-color .2s,opacity .3s,transform .25s,box-shadow .25s;}
+.ic .ic-anode .ic-port{inset-inline-start:-10px;border-color:rgba(255,255,255,.35);}
+.ic .ic-anode:hover{border-color:rgba(var(--ic-mint-rgb),.6);transform:translateX(3px);}
+.ic .ic-anode .ic-type{font-size:8.5px;padding:3px 8px;}
+.ic .ic-anode .ic-an{font-family:var(--ic-d);font-weight:800;font-size:14.5px;line-height:1.25;letter-spacing:-.01em;color:#fff;margin:0;}
+.ic .ic-anode .ic-ad{font-size:12.5px;line-height:1.4;color:var(--ic-w3);}
+.ic .ic-anode.is-pick{border-color:var(--ic-mint);box-shadow:0 0 0 2px rgba(var(--ic-mint-rgb),.45),0 20px 44px -24px var(--ic-glow);}
+.ic .ic-anode.is-pick .ic-port{background:var(--ic-mint);border-color:var(--ic-mint);}
+.ic .ic-anode.is-out{opacity:.3;}
+.ic .ic-tree.is-dragging{cursor:grabbing;user-select:none;-webkit-user-select:none;}
+.ic .ic-tree-view .ic-allbuilt{position:static;transform:none;display:table;margin:16px auto 0;}
+/* step 4 keeps the branch visible as a trail */
+.ic .ic-trail2{flex-wrap:nowrap;margin:0 auto 12px;max-width:100%;}
+.ic .ic-trail2 .ic-chip.is-pain{max-width:300px;}
+.ic .ic-trail2 .ic-chip.is-angle{border-color:rgba(var(--ic-mint-rgb),.7);}
+.ic .ic-make-view .ic-qh{margin-bottom:10px;}
+/* results fit one screen */
+.ic .ic-res{gap:12px;}
+.ic .ic-sim{padding:14px 18px 10px;}
+.ic .ic-res-h{font-size:clamp(19px,1.8vw,24px);margin:0 0 10px;}
+.ic .ic-sim-board{gap:12px 22px;}
+.ic .ic-sim-src{gap:6px;}
+.ic .ic-src{grid-template-columns:34px minmax(0,1fr);padding:4px 8px 4px 4px;}
+.ic .ic-src-th{width:34px;height:38px;}
+.ic .ic-fun{gap:5px;}
+.ic .ic-band{min-height:56px;padding:6px 7%;}
+.ic .ic-band-i{width:30px;height:30px;}
+.ic .ic-band-tx b{font-size:15px;}
+.ic .ic-seo-card{padding:10px 12px;}
+.ic .ic-seo-chart{min-height:60px;}
+.ic .ic-sim-note{margin:6px 0 0;}
+.ic .ic-win{padding:16px 18px;gap:2px 14px;}
+.ic .ic-win-badge{width:48px;height:48px;box-shadow:0 0 0 6px rgba(var(--ic-mint-rgb),.18),0 0 30px var(--ic-glow);}
+.ic .ic-win-badge svg{width:26px;height:26px;}
+.ic .ic-win-h{font-size:clamp(20px,2vw,26px);margin:0 0 4px;}
+.ic .ic-win-t{font-size:13px;}
+.ic .ic-real{padding:16px 18px;}
+.ic .ic-real-h{font-size:clamp(17px,1.6vw,21px);margin:0 0 10px;}
+.ic .ic-dl{margin:0;gap:6px;}
+.ic .ic-dl li{padding:8px 9px;border-radius:12px;}
+.ic .ic-dl b{font-size:clamp(19px,1.8vw,24px);}
+.ic .ic-dl span{font-size:11px;margin-top:4px;}
+.ic .ic-next{padding:12px 18px;}
+.ic .ic-next-txt h3{font-size:clamp(18px,1.7vw,22px);margin:0;}
+.ic .ic-next-cta .ic-cta,.ic .ic-next-cta .ic-ghost{padding:11px 18px;}
+.ic .ic-readfull svg,.ic .ic-call svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+.ic .ic-call{text-decoration:none;}
+.ic.ic--intro .ic-stage:has(.ic-res){padding-block:12px;}
+@media (max-width:900px){
+  .ic .ic-tree{gap:0 40px;}
+}
+@media (max-width:700px){
+  .ic .ic-tree{grid-template-columns:1fr;gap:18px;}
+  .ic .ic-tree .ic-wires,.ic .ic-tree .ic-port{display:none;}
+  .ic .ic-tcol-t,.ic .ic-tcol-a{padding-top:16px;border-top:1px dashed rgba(var(--ic-mint-rgb),.3);}
+  .ic .ic-tree:not(.has-p) .ic-tcol-t .ic-tghost i:nth-child(n+2),.ic .ic-tree:not(.has-t) .ic-tcol-a .ic-tghost i:nth-child(n+2){display:none;}
+  .ic .ic-trail2{flex-wrap:wrap;gap:6px;}
+  .ic .ic-trail2 .ic-link{display:none;}
+}
+/* results: funnel on the left, outcome and next steps on the right (one screen on laptops) */
+@media (min-width:901px){
+  .ic .ic-res{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);grid-template-areas:"sim duo" "sim next";grid-template-rows:auto 1fr;gap:12px;align-items:start;}
+  .ic .ic-sim{grid-area:sim;align-self:stretch;display:flex;flex-direction:column;}
+  .ic .ic-sim-board{grid-template-columns:minmax(120px,.5fr) minmax(0,1.5fr);flex:1;}
+  .ic .ic-seo-card{grid-column:1 / -1;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px;}
+  .ic .ic-seo-chart{min-height:0;height:52px;}
+  .ic .ic-duo{grid-area:duo;grid-template-columns:1fr;gap:12px;}
+  .ic .ic-dl{grid-template-columns:repeat(auto-fit,minmax(84px,1fr));}
+  .ic .ic-next{grid-area:next;align-self:end;flex-direction:column;align-items:stretch;gap:12px;}
+  .ic .ic-next-txt{flex:none;}
+  .ic .ic-next-cta{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .ic .ic-next-cta .ic-readfull{grid-column:1 / -1;justify-content:center;}
+  .ic .ic-next-cta .ic-ghost{justify-content:center;padding:10px 12px;}
+}
+/* the right answer glows after a wrong pick */
+@keyframes ic-hintpulse{0%,100%{box-shadow:0 0 0 0 rgba(var(--ic-mint-rgb),0),0 0 0 1px var(--ic-mint);}50%{box-shadow:0 0 0 7px rgba(var(--ic-mint-rgb),.3),0 0 28px rgba(var(--ic-mint-rgb),.6);}}
+.ic .ic-tree .ic-persona.is-hint,.ic .ic-tree .ic-pain.is-hint,.ic .ic-tree .ic-anode.is-hint{opacity:1;border-color:var(--ic-mint);animation:ic-hintpulse 1.15s ease-in-out infinite;}
+@media (prefers-reduced-motion:reduce){.ic .ic-tree .is-hint{animation:none !important;box-shadow:0 0 0 2px var(--ic-mint);}}
+/* short laptop screens: tighter chrome so the results still fit */
+@media (min-width:901px) and (max-height:820px){
+  .ic.ic--intro .ic-introbar{margin-bottom:6px;}
+  .ic .ic-steps{margin-bottom:10px;}
+  .ic .ic-steps li{gap:4px;font-size:9.5px;}
+  .ic .ic-steps li::before{width:26px;height:26px;font-size:11px;}
+  .ic .ic-steps li::after,.ic .ic-steps li.is-done::after{top:12px;}
+  .ic.ic--intro .ic-stage:has(.ic-res){padding:10px 12px;}
+  .ic .ic-sim{padding:10px 14px 8px;}
+  .ic .ic-res-h{font-size:19px;margin-bottom:6px;}
+  .ic .ic-band{min-height:46px;}
+  .ic .ic-src-th{height:32px;}
+  .ic .ic-seo-card{padding:6px 12px;}
+  .ic .ic-seo-chart{height:40px;}
+  .ic .ic-win,.ic .ic-real{padding:12px 16px;}
+  .ic .ic-win-badge{width:40px;height:40px;}
+  .ic .ic-next{padding:10px 14px;gap:8px;}
+  .ic .ic-qh{margin-bottom:12px;}
+  .ic .ic-qt{font-size:clamp(20px,2vw,26px);}
+}
+@media (max-width:1100px){
+  .ic .ic-case > span{display:none;}
+  .ic .ic-skip{white-space:nowrap;}
+}
+@media (min-width:901px){
+  .ic .ic-sim-board{grid-template-columns:minmax(128px,.55fr) minmax(0,1.5fr);grid-template-rows:1fr auto;align-items:center;}
+  .ic .ic-seo-card{align-self:end;}
+  .ic .ic-seo-chart{height:46px;}
+  .ic .ic-dl{grid-template-columns:repeat(auto-fit,minmax(68px,1fr));}
+}
+@media (min-width:901px) and (max-width:1180px){
+  .ic .ic-next-cta .ic-ghost{font-size:11px;padding:9px 10px;letter-spacing:.03em;}
+  .ic .ic-dl span{font-size:10.5px;}
+  .ic .ic-win-h{font-size:20px;}
+}
+@media (min-width:901px){
+  .ic .ic-res .ic-lead{width:16px;height:16px;}
+  .ic .ic-res .ic-lead svg{width:11px;height:11px;}
+  .ic .ic-res .ic-lead:nth-child(n+4){display:none;}
+}
+@media (min-width:901px) and (max-height:720px){
+  .ic .ic-steps li{font-size:0;gap:0;}
+  .ic .ic-steps li.is-on{font-size:9px;gap:3px;}
+  .ic .ic-sim-note{font-size:9.5px;margin-top:4px;}
+  .ic .ic-res{gap:8px;}
+  .ic .ic-duo{gap:8px;}
+}
+@media (min-width:901px) and (max-height:720px){
+  .ic.ic--intro .ic-shell{padding-top:10px;padding-bottom:10px;}
+}
 </style>
 <div class="somin-embed">
   
@@ -1024,6 +1189,11 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
           <span data-i18n="ic_q4">Put one ad in each channel</span>
           <span data-i18n="ic_change">Change</span>
           <span data-i18n="ic_autofill">Fill for me</span>
+          <span data-i18n="ic_angles">Angles</span>
+          <span data-i18n="ic_ph_angle">Connect a pain point first.</span>
+          <span data-i18n="ic_hint_tree">Tap a card, or drag a line to connect.</span>
+          <span data-i18n="ic_read_full">Read the full case study</span>
+          <span data-i18n="ic_bot_almost">Almost! The glowing card is the better fit.</span>
           <span data-i18n="ic_personas">Personas</span>
           <span data-i18n="ic_pains">Pain points</span>
           <span data-i18n="ic_hint_connect">Drag a persona onto a pain point, or tap one and then the other.</span>
@@ -1165,14 +1335,14 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
           <span data-i18n="ic_bot_case">In the {client} case study</span>
           <span data-i18n="ic_bot_src">Source: case study, p. {n}</span>
           <span data-i18n="ic_bot_why">Why this step matters</span>
-          <span data-i18n="ic_bot_hi">Hi, I'm the SOMIN bot. Every chain here comes from a real SOMIN case study. Build it step by step and I'll show you why each move works.</span>
-          <span data-i18n="ic_bot_persona">Step one is the persona: who the conversation is really about. SOMIN clusters thousands of real posts and ads into personas, then turns each into a named character enriched with traits from those posts.</span>
-          <span data-i18n="ic_bot_pain">Next, the pain point (SOMIN calls it a tension): the conflict people keep posting about. SOMIN measures how much of the conversation each one holds for the brand, its competitors and creators, so you can see where to claim, differentiate or stay out.</span>
-          <span data-i18n="ic_bot_angle">Now pick the angle: the lens that makes this pain point worth listening to. SOMIN generates candidates grounded in validated theory (psychological, sociological, economic or behavioural-economic) and the strategist picks the one that fits.</span>
-          <span data-i18n="ic_bot_wrong">Not this one: that angle was built for another pain point in the same study. Ask which lens explains why this person feels this pain.</span>
-          <span data-i18n="ic_bot_insight">Here is the insight, which SOMIN calls a story. It fuses the character, the pain point and the angle into one human truth: the big idea every proposition, ad and post is built from.</span>
-          <span data-i18n="ic_bot_ship">Time to ship. Propositions pair the insight with the product's features, reasons to believe, USP and offers; expressions turn them into creatives for each funnel stage. TOFU builds awareness, MOFU earns consideration, BOFU converts, and the SEO article meets people already searching.</span>
-          <span data-i18n="ic_bot_results">Before launch, SOMIN can score each creative's predicted clickability and plan a dated calendar from real moments, so the chain you just built becomes a plan you can run.</span>
+          <span data-i18n="ic_bot_hi">Hi! I'm your SOMIN assistant. I'll drop quick hints as you go.</span>
+          <span data-i18n="ic_bot_persona">Start with a person: pick who you want to reach.</span>
+          <span data-i18n="ic_bot_pain">Nice pick! Now link the pain point that's really theirs.</span>
+          <span data-i18n="ic_bot_angle">Great match! Now pick the lens that explains why it hurts.</span>
+          <span data-i18n="ic_bot_wrong">Close! Try the glowing one.</span>
+          <span data-i18n="ic_bot_insight">Here's your insight: one human truth to build every ad on.</span>
+          <span data-i18n="ic_bot_ship">Now drop one ad into each channel, or tap Fill for me.</span>
+          <span data-i18n="ic_bot_results">Launched! Grab the full case study to see the whole plan.</span>
           <span data-i18n="ic_not_in_study">Not in this case study</span>
           <span data-i18n="ic_not_best">Not the best angle here</span>
           <span data-i18n="ic_bot_why_not">Why this angle doesn't fit</span>
@@ -1221,7 +1391,7 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
        insights (SOMIN stories), propositions and the creative library. Portraits are SOMIN image-generate renders. */
     /* The index (industry, kind, chain count, faces) is embedded; each case study's full chain set, creative library,
        SOMIN-bot tips and SEO drafts load from /assets/game/cases/<id>.json when its industry is opened. */
-    var SC = [{"id":"reassured","ind":"insurance","kind":"brand","n":3,"faces":["clara-wren","jordan-ellis","liam-foster"],"client":"Reassured"},{"id":"pepsi","ind":"softdrinks","kind":"brand","n":3,"faces":["aria-santosh","vikram-joshi","reva-desai"],"client":"Pepsi India"},{"id":"ballroom","ind":"dance","kind":"brand","n":3,"faces":["bda-rhythm-seeker","bda-family-builder","bda-vibrant-trailblazer"],"client":"Ballroom Dance Academy"},{"id":"fujifilm","ind":"cameras","kind":"agency","n":3,"faces":["fuji-creative-connector","fuji-nature-visionary","fuji-creative-explorer"],"client":"Fujifilm"},{"id":"sm-universe","ind":"kpop","kind":"brand","n":3,"faces":["jin-min-ji","aria-lim","jasmine-tan-smu"],"client":"SM Universe"},{"id":"caltex","ind":"fuel","kind":"agency","n":3,"faces":["caltex-automotive-innovator","caltex-savvy-navigator","caltex-adventurous-soul"],"client":"Caltex"},{"id":"indrive","ind":"ridehail","kind":"agency","n":3,"faces":["isaiah-corpuz","karla-limon","alonzo-cruz"],"client":"inDrive"},{"id":"thomson","ind":"healthcare","kind":"brand","n":3,"faces":["lina-tan","lian-tan","mei-lin-tan"],"client":"Thomson Medical","top":["p1","p2","p3"]},{"id":"tim-hortons","ind":"coffee","kind":"brand","n":3,"faces":["theo-savory","janice-tan","ayla-chen"],"client":"Tim Hortons"}];
+    var SC = [{"id":"reassured","ind":"insurance","kind":"brand","n":3,"faces":["clara-wren","jordan-ellis","liam-foster"],"client":"Reassured","cs":"brands-reassured-case-study","csLabel":"Reassured"},{"id":"pepsi","ind":"softdrinks","kind":"brand","n":3,"faces":["aria-santosh","vikram-joshi","reva-desai"],"client":"Pepsi India","cs":"brands-pepsi-india-case-study","csLabel":"Pepsi India"},{"id":"ballroom","ind":"dance","kind":"brand","n":3,"faces":["bda-rhythm-seeker","bda-family-builder","bda-vibrant-trailblazer"],"client":"Ballroom Dance Academy","cs":"ballroom-dance-academy","csLabel":"Ballroom Dance Academy"},{"id":"fujifilm","ind":"cameras","kind":"agency","n":3,"faces":["fuji-creative-connector","fuji-nature-visionary","fuji-creative-explorer"],"client":"Fujifilm","cs":"brands-fujifilm-case-study","csLabel":"Fujifilm UK"},{"id":"sm-universe","ind":"kpop","kind":"brand","n":3,"faces":["jin-min-ji","aria-lim","jasmine-tan-smu"],"client":"SM Universe","cs":"brands-sm-universe-case-study","csLabel":"SM Universe"},{"id":"caltex","ind":"fuel","kind":"agency","n":3,"faces":["caltex-automotive-innovator","caltex-savvy-navigator","caltex-adventurous-soul"],"client":"Caltex","cs":"caltex-agency","csLabel":"Caltex Malaysia"},{"id":"indrive","ind":"ridehail","kind":"agency","n":3,"faces":["isaiah-corpuz","karla-limon","alonzo-cruz"],"client":"inDrive","cs":"indrive-ph-google-paid-media-brief-final","csLabel":"inDrive Philippines"},{"id":"thomson","ind":"healthcare","kind":"brand","n":3,"faces":["lina-tan","lian-tan","mei-lin-tan"],"client":"Thomson Medical","top":["p1","p2","p3"],"cs":"thomson-medical-singapore-crossmarket-briefing","csLabel":"Thomson Medical"},{"id":"tim-hortons","ind":"coffee","kind":"brand","n":3,"faces":["theo-savory","janice-tan","ayla-chen"],"client":"Tim Hortons","cs":"timhortons-singapore-briefing-full","csLabel":"Tim Hortons Singapore"}];
     var ICON = {
       fb: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v11H3V10z"/><path d="M7 10l4-7c1.7 0 3 1.3 3 3v3h5.2c1.3 0 2.2 1.2 1.9 2.4l-1.8 7.2c-.2.9-1 1.4-1.9 1.4H7"/></svg>',
       ig: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6"/></svg>',
@@ -1429,7 +1599,7 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
           var tp = el('p', 'ic-bot-t'); tp.setAttribute('translate', 'no');
           cs.appendChild(tp);
           if (m.tip.pg) cs.appendChild(el('small', '', T('ic_bot_src').replace('{n}', m.tip.pg)));
-          if (m.tip.fit) {
+          if (m.tip.fit && !m.tip.short) {
             var ft = el('p', 'ic-bot-fit');
             ft.appendChild(el('em', '', m.tip.fitLab || T('ic_bot_fits')));
             var fx = el('span', '', m.tip.fit); fx.setAttribute('translate', 'no');
@@ -1438,9 +1608,9 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
           }
           bub.appendChild(cs);
           talk(m.pose);
-          typeInto(tp, m.tip.t);
+          typeInto(tp, firstSentence(m.tip.t));
         } else { pose(m.pose); }
-        if (old.length) {
+        if (old.length && !m.tip) {
           var more = el('button', 'ic-bot-more', T('ic_bot_why'));
           more.type = 'button';
           more.addEventListener('click', function () {
@@ -1481,7 +1651,7 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
       return {
         say: function (m) {
           if (!live) return;
-          if (muted || !m.force) {
+          if (muted || (m.key && !m.force && seen['k:' + m.key])) {
             /* already explained on an earlier pass (or tips are hidden): flag it, never cover the board */
             inbox = m.queue ? inbox.concat(m).slice(-2) : [m];
             cur = inbox[0];
@@ -1553,205 +1723,308 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
       return h;
     }
 
-    /* ---------- 1. pick a persona ---------- */
-    var justDragged = false;
-    function drawWires() {}
-    function viewPersona() {
-      setStep(1);
+    /* ---------- steps 1-3: one tree, persona → pain point → angle ---------- */
+    var justDragged = false, tree = null;
+    function drawWires() { if (tree && tree.board.isConnected) tree.draw(); }
+    /* bot hints stay short: the first sentence of a case-study note */
+    function firstSentence(t) {
+      t = String(t || '').trim();
+      var m = t.match(/^[\s\S]{24,}?(?:[.!?\u061f\u0964](?=\s|$)|[\u3002\uff01\uff1f])/);
+      return m ? m[0] : t;
+    }
+    function curve(a, b) {
+      var dx = Math.max(36, Math.abs(b.x - a.x) * 0.5) * (b.x >= a.x ? 1 : -1);
+      return 'M' + a.x + ' ' + a.y + ' C' + (a.x + dx) + ' ' + a.y + ' ' + (b.x - dx) + ' ' + b.y + ' ' + b.x + ' ' + b.y;
+    }
+    function svgEl(tag, attrs) {
+      var n = document.createElementNS(NS, tag);
+      for (var k in attrs) n.setAttribute(k, attrs[k]);
+      return n;
+    }
+    function tip(x) { return x && x.t ? { t: x.t, pg: x.pg, short: true } : null; }
+    /* case data: chains[i].why.miss[angleId] = { s: card line, t: the bot's explanation } for every angle that is not the chain's own */
+    function missFor(c, aid) { return (c && c.why && c.why.miss && c.why.miss[aid]) || null; }
+    function chainTrail(c) {
+      var pair = el('div', 'ic-pair ic-trail2');
+      var p = persona(c.p), t = pain(c.t), a = angle(c.a);
+      var ca = el('span', 'ic-chip');
+      ca.appendChild(img(IMG + 'game/personas/' + p.img + '.webp'));
+      var nb = el('b', '', p.name); nb.setAttribute('translate', 'no'); ca.appendChild(nb);
+      pair.appendChild(ca);
+      pair.appendChild(el('span', 'ic-link'));
+      var cb = el('span', 'ic-chip is-pain'); cb.appendChild(el('span', '', t.text)); pair.appendChild(cb);
+      pair.appendChild(el('span', 'ic-link'));
+      var cc = el('span', 'ic-chip is-pain is-angle'); cc.appendChild(el('span', '', a.name)); pair.appendChild(cc);
+      return pair;
+    }
+    function openChain(pid) {
+      var out = -1;
+      sc().chains.some(function (c, ci) { if (c.p === pid && !isDone(ci)) { out = ci; return true; } return false; });
+      return out;
+    }
+    function viewTree() {
+      var s = sc();
       if (!S.t0) S.t0 = Date.now();
-      var s = sc(), wrap = el('div', 'ic-pick');
-      stepHead(1, 'ic_q1', wrap);
-      var grid = el('div', 'ic-pgrid');
+      S.active = null; S.chain = -1;
+      var picked = null, fresh = '';
+      var wrap = el('div', 'ic-tree-view');
+      var qh = el('div', 'ic-qh'), qk = el('p', 'ic-qk'), qt = el('h3', 'ic-qt');
+      qh.appendChild(qk); qh.appendChild(qt);
+      qh.appendChild(el('p', 'ic-qhint', T('ic_hint_tree')));
+      wrap.appendChild(qh);
+      var board = el('div', 'ic-tree');
+      function col(cls, title) {
+        var c = el('div', 'ic-tcol ' + cls);
+        c.appendChild(el('h4', 'ic-col-h', title));
+        var l = el('div', 'ic-tcl');
+        c.appendChild(l);
+        board.appendChild(c);
+        return l;
+      }
+      var lp = col('ic-tcol-p', T('ic_personas')), lt = col('ic-tcol-t', T('ic_pains')), la = col('ic-tcol-a', T('ic_angles'));
+      var wires = document.createElementNS(NS, 'svg');
+      wires.setAttribute('class', 'ic-wires');
+      wires.setAttribute('aria-hidden', 'true');
+      board.appendChild(wires);
+      wrap.appendChild(board);
+      if (s.chains.every(function (c, ci) { return isDone(ci); })) wrap.appendChild(el('p', 'ic-allbuilt', T('ic_all_built')));
+
+      function stage(n) {
+        setStep(n);
+        qk.textContent = T('ic_step_of').replace('{n}', n).replace('{m}', 5);
+        qt.textContent = T('ic_q' + n);
+        board.setAttribute('data-stage', n);
+      }
+      function ghost(list, text) {
+        list.innerHTML = '';
+        var g = el('div', 'ic-tghost');
+        for (var k = 0; k < 3; k++) g.appendChild(el('i'));
+        g.appendChild(el('span', '', text));
+        list.appendChild(g);
+      }
+      function port(node, out) {
+        var p = el('span', 'ic-port' + (out ? ' ic-port-out' : ''));
+        p.setAttribute('aria-hidden', 'true');
+        node.appendChild(p);
+      }
       s.personas.forEach(function (p, i) {
-        var b = el('button', 'ic-pcard');
+        var b = el('button', 'ic-persona ic-in');
         b.type = 'button';
         b.setAttribute('data-p', p.id);
         b.style.setProperty('--i', i);
-        b.appendChild(img(IMG + 'game/personas/' + p.img + '.webp', 'ic-pimg'));
-        var tx = el('span', 'ic-ptx');
+        b.appendChild(img(IMG + 'game/personas/' + p.img + '.webp', 'ic-ava'));
+        var pt = el('span', 'ic-pt');
         var nm = el('b', '', p.name); nm.setAttribute('translate', 'no');
-        tx.appendChild(nm);
-        if (p.arch && p.arch !== p.name) tx.appendChild(el('i', '', p.arch));
-        else if (p.desc) tx.appendChild(el('small', '', p.desc));
-        b.appendChild(tx);
+        pt.appendChild(nm);
+        if (p.arch && p.arch !== p.name) pt.appendChild(el('i', '', p.arch));
+        else if (p.desc) pt.appendChild(el('small', '', p.desc));
+        b.appendChild(pt);
+        port(b, true);
         if (personaDone(p.id)) { b.classList.add('is-done'); b.appendChild(el('span', 'ic-check', T('ic_built'))); }
-        b.addEventListener('click', function () { pickPersona(p.id); });
-        grid.appendChild(b);
+        lp.appendChild(b);
       });
-      wrap.appendChild(grid);
-      if (s.chains.every(function (c, ci) { return isDone(ci); })) wrap.appendChild(el('p', 'ic-allbuilt', T('ic_all_built')));
+      ghost(lt, T('ic_pick_first'));
+      ghost(la, T('ic_ph_angle'));
+      stage(1);
+
+      /* ---- wires ---- */
+      function xy(node, out) {
+        var box = board.getBoundingClientRect();
+        var r = (node.querySelector(out ? '.ic-port-out' : '.ic-port:not(.ic-port-out)') || node).getBoundingClientRect();
+        return { x: r.left + r.width / 2 - box.left, y: r.top + r.height / 2 - box.top };
+      }
+      function seg(a, b, cls) {
+        var d = curve(a, b);
+        wires.appendChild(svgEl('path', { d: d, 'class': 'ic-wire' + (cls ? ' ' + cls : '') }));
+        if (!cls || cls === 'is-new') wires.appendChild(svgEl('path', { d: d, 'class': 'ic-wire-flow' }));
+      }
+      function draw(temp) {
+        var w = board.clientWidth, h = board.clientHeight;
+        wires.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        wires.innerHTML = '<defs><linearGradient id="ic-grad" gradientUnits="userSpaceOnUse" x1="0" x2="' + w + '" y1="0" y2="0"><stop offset="0" stop-color="#68B1A0"/><stop offset=".5" stop-color="#B2DCCF"/><stop offset="1" stop-color="#68B1A0"/></linearGradient></defs>';
+        var pe = S.active && lp.querySelector('[data-p="' + S.active + '"]');
+        var te = S.chain > -1 && lt.querySelector('[data-t="' + s.chains[S.chain].t + '"]');
+        var ae = picked && la.querySelector('[data-a="' + picked + '"]');
+        if (pe && te) seg(xy(pe, true), xy(te), fresh === 'pt' && !REDUCE ? 'is-new' : '');
+        if (te && ae) seg(xy(te, true), xy(ae), fresh === 'ta' && !REDUCE ? 'is-new' : '');
+        fresh = '';
+        if (temp) seg(temp.a, temp.b, 'is-temp' + (temp.bad ? ' is-bad' : ''));
+      }
+      tree = { board: board, draw: draw };
+
+      /* ---- step 1 → 2: a persona reveals its pain points ---- */
+      function choosePersona(pid) {
+        if (S.active === pid) return true;
+        if (openChain(pid) < 0) { toast(T('ic_built'), 'good'); return false; }
+        S.active = pid; S.chain = -1; picked = null;
+        lp.querySelectorAll('.ic-persona').forEach(function (n) {
+          var me = n.getAttribute('data-p') === pid;
+          n.classList.toggle('is-active', me);
+          n.classList.toggle('is-dim', !me);
+        });
+        lt.innerHTML = '';
+        s.painOrder.forEach(function (idx, i) {
+          var t = s.pains[idx];
+          if (!t) return;
+          var b = el('button', 'ic-pain ic-in');
+          b.type = 'button';
+          b.setAttribute('data-t', t.id);
+          b.style.setProperty('--i', i);
+          port(b, false);
+          b.appendChild(el('span', 'ic-ptxt', t.text));
+          port(b, true);
+          lt.appendChild(b);
+        });
+        ghost(la, T('ic_ph_angle'));
+        board.classList.add('has-p');
+        board.classList.remove('has-t', 'has-a');
+        stage(2);
+        draw();
+        var p = persona(pid), ci = openChain(pid);
+        if (ci > -1) bot.say({ key: 'persona', step: T('ic_persona') + ' · ' + p.name, gen: 'ic_bot_pain', tip: tip(s.chains[ci].why.persona), pose: 'point' });
+        if (window.matchMedia && window.matchMedia('(max-width: 700px)').matches) setTimeout(function () { lt.parentNode.scrollIntoView({ block: 'start', behavior: REDUCE ? 'auto' : 'smooth' }); }, 60);
+        return true;
+      }
+      function glow(list, sel) {
+        list.querySelectorAll('.is-hint').forEach(function (n) { n.classList.remove('is-hint'); });
+        var n = list.querySelector(sel);
+        if (n) n.classList.add('is-hint');
+      }
+      /* ---- step 2 → 3: the right pain point reveals the angles ---- */
+      function choosePain(tid, b) {
+        if (!S.active) { toast(T('ic_pick_first')); glow(lp, '.ic-persona:not(.is-done)'); return; }
+        if (S.chain > -1 || b.classList.contains('is-no')) return;
+        var pid = S.active, ci = chainFor(pid, tid), want = openChain(pid);
+        if (ci < 0 || isDone(ci)) {
+          b.classList.remove('is-miss'); void b.offsetWidth;
+          b.classList.add('is-miss', 'is-no');
+          b.appendChild(el('small', 'ic-tmiss', T('ic_not_fit')));
+          if (want > -1) glow(lt, '[data-t="' + s.chains[want].t + '"]');
+          var why = s.pmiss && s.pmiss[pid] && s.pmiss[pid][tid];
+          bot.say({ key: 'nofit', force: true, step: T('ic_not_fit'), gen: 'ic_bot_almost', always: true,
+            tip: why ? { t: why, lab: T('ic_bot_why_not_pain'), miss: true, short: true } : null, pose: 'point' });
+          return;
+        }
+        S.chain = ci; S.tries = 0; S.ship = {}; S.sel = -1;
+        lt.querySelectorAll('.ic-pain').forEach(function (n) { n.classList.remove('is-hint'); n.classList.toggle('is-linked', n === b); n.classList.toggle('is-dim', n !== b); });
+        var c = s.chains[ci];
+        /* the chain's own angle plus two from the study's other chains */
+        var mine = angle(c.a), others = s.angles.filter(function (x) { return x.id !== c.a; });
+        var k0 = ci % Math.max(1, others.length);
+        others = others.slice(k0).concat(others.slice(0, k0)).slice(0, 2);
+        var order = others.concat([mine]), shift = (ci + 1) % order.length;
+        order = order.slice(shift).concat(order.slice(0, shift));
+        la.innerHTML = '';
+        order.forEach(function (a, i) {
+          var n = el('button', 'ic-anode ic-in');
+          n.type = 'button';
+          n.setAttribute('data-a', a.id);
+          n.style.setProperty('--i', i);
+          port(n, false);
+          n.appendChild(el('span', 'ic-type t-' + (a.type || 'angle'), T('ic_type_' + (a.type || 'angle'))));
+          n.appendChild(el('span', 'ic-an', a.name));
+          var ad = T('ic_ad_' + s.id + '_' + a.id);
+          if (ad) n.appendChild(el('span', 'ic-ad', ad));
+          la.appendChild(n);
+        });
+        board.classList.add('has-t');
+        fresh = 'pt';
+        stage(3);
+        draw();
+        var r = b.getBoundingClientRect(); sparks(r.left + 20, r.top + r.height / 2);
+        toast(T('ic_got_it'), 'good');
+        track('ic_connect', { cta_text: persona(c.p).name + ' → ' + pain(c.t).text.slice(0, 80) });
+        bot.say({ key: 'pain', step: T('ic_pain'), gen: 'ic_bot_angle', tip: tip(c.why.pain), pose: 'talk' });
+        if (window.matchMedia && window.matchMedia('(max-width: 700px)').matches) setTimeout(function () { la.parentNode.scrollIntoView({ block: 'start', behavior: REDUCE ? 'auto' : 'smooth' }); }, 60);
+      }
+      /* ---- step 3 → 4: the right angle writes the insight ---- */
+      function chooseAngle(aid, n) {
+        if (S.chain < 0 || picked || n.classList.contains('is-no')) return;
+        var c = s.chains[S.chain], a = angle(aid);
+        S.tries++;
+        if (aid === c.a) {
+          picked = aid;
+          n.classList.add('is-pick');
+          la.querySelectorAll('.ic-anode').forEach(function (x) { x.classList.remove('is-hint'); if (x !== n) x.classList.add('is-out'); });
+          board.classList.add('has-a');
+          fresh = 'ta';
+          draw();
+          var first = S.tries === 1;
+          toast(first ? T('ic_first_try') : T('ic_got_it'), 'good');
+          var r = n.getBoundingClientRect(); sparks(r.left + r.width / 2, r.top + 20);
+          track('ic_angle_pick', { cta_text: a.name, first_try: first ? 'yes' : 'no' });
+          bot.say({ key: 'angle', step: T('ic_angle') + ' · ' + a.name, tip: tip(c.why.angle), pose: 'cheer' });
+          setTimeout(function () { if (tree && tree.board === board) { S.view = 'make'; render(); scrollStageIntoView(); } }, REDUCE ? 200 : 1300);
+          return;
+        }
+        n.classList.remove('is-miss'); void n.offsetWidth;
+        n.classList.add('is-miss', 'is-no');
+        var miss = missFor(c, aid);
+        n.appendChild(el('small', 'ic-amiss', miss ? firstSentence(miss.s) : T('ic_not_best')));
+        glow(la, '[data-a="' + c.a + '"]');
+        track('ic_angle_pick', { cta_text: a.name, first_try: 'miss' });
+        bot.say({ key: 'wrong', force: true, step: T('ic_not_best'), gen: 'ic_bot_almost', always: true,
+          tip: miss ? { t: miss.t, lab: T('ic_bot_why_not'), miss: true, short: true } : null, pose: 'point' });
+      }
+
+      /* ---- tap or drag a line: persona → pain point, linked pain point → angle ---- */
+      var drag = null;
+      board.addEventListener('pointerdown', function (e) {
+        if (e.button > 0) return;
+        var pc = e.target.closest('.ic-persona'), tc = e.target.closest('.ic-pain.is-linked');
+        var src = pc || tc;
+        if (!src || (tc && picked)) return;
+        var onPort = !!e.target.closest('.ic-port');
+        if (e.pointerType !== 'mouse' && !onPort) return;
+        if (onPort) e.preventDefault();
+        drag = { from: pc ? 'p' : 't', id: pc ? pc.getAttribute('data-p') : null, node: src, x0: e.clientX, y0: e.clientY, moved: false, pid: e.pointerId };
+      });
+      board.addEventListener('pointermove', function (e) {
+        if (!drag) return;
+        if (!drag.moved) {
+          if (Math.abs(e.clientX - drag.x0) + Math.abs(e.clientY - drag.y0) < 7) return;
+          if (drag.from === 'p' && !choosePersona(drag.id)) { drag = null; return; }
+          if (drag.from === 'p' && S.chain > -1) { drag = null; return; }
+          drag.moved = true;
+          try { board.setPointerCapture(drag.pid); } catch (err) {}
+          board.classList.add('is-dragging');
+        }
+        var box = board.getBoundingClientRect();
+        var hit = document.elementFromPoint(e.clientX, e.clientY);
+        var over = hit && hit.closest ? hit.closest(drag.from === 'p' ? '.ic-pain' : '.ic-anode') : null;
+        board.querySelectorAll('.is-hover').forEach(function (n) { if (n !== over) n.classList.remove('is-hover'); });
+        if (over) over.classList.add('is-hover');
+        drag.over = over;
+        draw({ a: xy(drag.node, true), b: over ? xy(over) : { x: e.clientX - box.left, y: e.clientY - box.top } });
+      });
+      function endDrag(e) {
+        if (!drag) return;
+        var d = drag; drag = null;
+        board.classList.remove('is-dragging');
+        board.querySelectorAll('.is-hover').forEach(function (n) { n.classList.remove('is-hover'); });
+        if (!d.moved) return;
+        justDragged = true; setTimeout(function () { justDragged = false; }, 60);
+        if (d.over) { if (d.from === 'p') choosePain(d.over.getAttribute('data-t'), d.over); else chooseAngle(d.over.getAttribute('data-a'), d.over); }
+        draw();
+      }
+      board.addEventListener('pointerup', endDrag);
+      board.addEventListener('pointercancel', function () { drag = null; board.classList.remove('is-dragging'); draw(); });
+      board.addEventListener('click', function (e) {
+        if (justDragged) return;
+        var p = e.target.closest('.ic-persona');
+        if (p) { choosePersona(p.getAttribute('data-p')); return; }
+        var t = e.target.closest('.ic-pain');
+        if (t) { choosePain(t.getAttribute('data-t'), t); return; }
+        var a = e.target.closest('.ic-anode');
+        if (a) chooseAngle(a.getAttribute('data-a'), a);
+      });
+
       swap(wrap);
+      requestAnimationFrame(function () { draw(); });
       if (!S.botCase[s.id]) {
         S.botCase[s.id] = 1;
-        bot.say({ key: 'connect', step: T('ic_persona'), gen: S.botHi ? 'ic_bot_persona' : ['ic_bot_hi', 'ic_bot_persona'], tip: s.why, pose: 'talk' });
+        bot.say({ key: 'connect', step: T('ic_persona'), gen: S.botHi ? 'ic_bot_persona' : ['ic_bot_hi', 'ic_bot_persona'], pose: 'talk' });
         S.botHi = 1;
-      }
-    }
-    function pickPersona(pid) {
-      var open = sc().chains.filter(function (c, ci) { return c.p === pid && !isDone(ci); });
-      if (!open.length) { toast(T('ic_built'), 'good'); return; }
-      S.active = pid; S.view = 'pain'; S.chain = -1;
-      render(); scrollStageIntoView();
-    }
-
-    /* ---------- 2. pick that persona's pain point ---------- */
-    function viewPain() {
-      setStep(2);
-      var s = sc(), p = persona(S.active);
-      var wrap = el('div', 'ic-pick');
-      stepHead(2, 'ic_q2', wrap);
-      var who = el('div', 'ic-who');
-      who.appendChild(img(IMG + 'game/personas/' + p.img + '.webp'));
-      var wt = el('span');
-      var nm = el('b', '', p.name); nm.setAttribute('translate', 'no');
-      wt.appendChild(nm);
-      if (p.arch && p.arch !== p.name) wt.appendChild(el('i', '', p.arch));
-      who.appendChild(wt);
-      var chg = el('button', 'ic-text-link ic-who-x', T('ic_change'));
-      chg.type = 'button';
-      chg.addEventListener('click', function () { S.active = null; S.view = 'connect'; render(); });
-      who.appendChild(chg);
-      wrap.appendChild(who);
-      var list = el('div', 'ic-tlist');
-      s.painOrder.forEach(function (idx, i) {
-        var t = s.pains[idx];
-        if (!t) return;
-        var b = el('button', 'ic-tcard');
-        b.type = 'button';
-        b.setAttribute('data-t', t.id);
-        b.style.setProperty('--i', i);
-        b.appendChild(el('span', 'ic-tnum', String.fromCharCode(65 + i)));
-        b.appendChild(el('span', 'ic-ttx', t.text));
-        b.addEventListener('click', function () { pickPain(t.id, b, list); });
-        list.appendChild(b);
-      });
-      wrap.appendChild(list);
-      swap(wrap);
-      var ci0 = -1;
-      s.chains.some(function (c, ci) { if (c.p === p.id && !isDone(ci)) { ci0 = ci; return true; } return false; });
-      if (ci0 > -1) bot.say({ key: 'persona', step: T('ic_persona') + ' · ' + p.name, gen: 'ic_bot_pain', tip: s.chains[ci0].why.persona, pose: 'point' });
-    }
-    function pickPain(tid, b, list) {
-      if (list.classList.contains('is-locked') || b.classList.contains('is-no')) return;
-      var s0 = sc(), pid = S.active, ci = chainFor(pid, tid);
-      if (ci < 0 || isDone(ci)) {
-        b.classList.add('is-miss', 'is-no');
-        var who = persona(pid), why = s0.pmiss && s0.pmiss[pid] && s0.pmiss[pid][tid];
-        var owners = s0.chains.filter(function (x) { return x.t === tid; }).map(function (x) { var o = persona(x.p); return o ? o.name : ''; }).filter(Boolean);
-        b.appendChild(el('small', 'ic-tmiss', T('ic_not_fit') + (owners.length ? ' · ' + T('ic_bot_pain_owner') + ': ' + owners.join(', ') : '')));
-        if (why && who) {
-          bot.say({ key: 'nofit', step: T('ic_not_fit') + ' · ' + who.name,
-            tip: { t: why, lab: T('ic_bot_why_not_pain'), miss: true, fit: owners.join(', '), fitLab: T('ic_bot_pain_owner') }, pose: 'point' });
-        }
-        var left = list.querySelectorAll('.ic-tcard:not(.is-no)');
-        if (left.length === 1) left[0].classList.add('is-hint');
-        return;
-      }
-      list.classList.add('is-locked');
-      b.classList.add('is-pick');
-      S.chain = ci; S.tries = 0; S.ship = {}; S.sel = -1;
-      var r = b.getBoundingClientRect(); sparks(r.left + 26, r.top + r.height / 2);
-      toast(T('ic_got_it'), 'good');
-      var c = s0.chains[ci];
-      track('ic_connect', { cta_text: persona(c.p).name + ' → ' + pain(c.t).text.slice(0, 80) });
-      setTimeout(function () { S.view = 'angle'; render(); scrollStageIntoView(); }, REDUCE ? 120 : 800);
-    }
-
-    /* ---------- 2. pick the angle ---------- */
-    function chainPair(c) {
-      var pair = el('div', 'ic-pair');
-      var p = persona(c.p), t = pain(c.t);
-      var a = el('span', 'ic-chip');
-      a.appendChild(img(IMG + 'game/personas/' + p.img + '.webp'));
-      a.appendChild(el('b', '', p.name));
-      pair.appendChild(a);
-      pair.appendChild(el('span', 'ic-link'));
-      var b = el('span', 'ic-chip is-pain');
-      b.appendChild(el('span', '', t.text));
-      pair.appendChild(b);
-      return pair;
-    }
-    function logLine(tool, out) {
-      var l = el('div', 'ic-log');
-      l.appendChild(el('span', 'ic-ld'));
-      l.appendChild(el('code', '', tool));
-      if (out) l.appendChild(el('span', '', out));
-      return l;
-    }
-    function viewAngle() {
-      setStep(3);
-      var s = sc(), c = s.chains[S.chain];
-      var wrap = el('div', 'ic-angle-view');
-      stepHead(3, 'ic_q3', wrap);
-      wrap.appendChild(chainPair(c));
-      var grid = el('div', 'ic-angles');
-      /* the chain's own angle plus two from the study's other chains (cases with more than three chains) */
-      var mine = angle(c.a), others = s.angles.filter(function (x) { return x.id !== c.a; });
-      var k0 = S.chain % Math.max(1, others.length);
-      others = others.slice(k0).concat(others.slice(0, k0)).slice(0, 2);
-      var order = others.concat([mine]);
-      var shift = (S.chain + 1) % order.length;
-      order = order.slice(shift).concat(order.slice(0, shift));
-      order.forEach(function (a) {
-        var b = el('button', 'ic-angle');
-        b.type = 'button';
-        b.setAttribute('data-a', a.id);
-        var f = el('span', 'ic-af');
-        f.appendChild(el('span', 'ic-type t-' + (a.type || 'angle'), T('ic_type_' + (a.type || 'angle'))));
-        f.appendChild(el('span', 'ic-an', a.name));
-        var ad = T('ic_ad_' + s.id + '_' + a.id);
-        if (ad) f.appendChild(el('span', 'ic-ad', ad));
-        var back = el('span', 'ic-ab');
-        var miss = missFor(c, a.id);
-        if (miss) {
-          /* the flip side teaches: why this lens is not the best fit for this persona's pain point */
-          back.appendChild(el('small', '', T('ic_not_best')));
-          var why = el('p', '', miss.s); why.setAttribute('translate', 'no');
-          back.appendChild(why);
-        } else {
-          back.appendChild(el('small', '', T('ic_built_for')));
-          var owner = s.chains.filter(function (x) { return x.a === a.id; })[0];
-          back.appendChild(el('p', '', owner ? pain(owner.t).text : ''));
-        }
-        b.appendChild(f); b.appendChild(back);
-        b.addEventListener('click', function () { pickAngle(a, b, grid); });
-        grid.appendChild(b);
-      });
-      wrap.appendChild(grid);
-      swap(wrap);
-      bot.say({ key: 'pain', step: T('ic_pain'), gen: 'ic_bot_angle', tip: c.why.pain, pose: 'talk' });
-    }
-    /* case data: chains[i].why.miss[angleId] = { s: card line, t: the bot's explanation } for every angle that is not the chain's own */
-    function missFor(c, aid) { return (c && c.why && c.why.miss && c.why.miss[aid]) || null; }
-    function pickAngle(a, btn, grid) {
-      if (btn.classList.contains('is-flip') || grid.classList.contains('is-locked')) return;
-      var c = sc().chains[S.chain];
-      S.tries++;
-      if (a.id === c.a) {
-        grid.classList.add('is-locked');
-        btn.classList.add('is-pick');
-        grid.querySelectorAll('.ic-angle').forEach(function (n) { if (n !== btn) n.classList.add('is-out'); });
-        var first = S.tries === 1;
-        toast(first ? T('ic_first_try') : T('ic_got_it'), 'good');
-        var r = btn.getBoundingClientRect(); sparks(r.left + r.width / 2, r.top + 20);
-        track('ic_angle_pick', { cta_text: a.name, first_try: first ? 'yes' : 'no' });
-        bot.say({ key: 'angle', step: T('ic_angle') + ' · ' + a.name, tip: c.why.angle, pose: 'cheer' });
-        setTimeout(function () { S.view = 'make'; render(); scrollStageIntoView(); }, REDUCE ? 150 : 1000);
-      } else {
-        btn.classList.add('is-flip');
-        btn.setAttribute('aria-disabled', 'true');
-        track('ic_angle_pick', { cta_text: a.name, first_try: 'miss' });
-        var miss = missFor(c, a.id);
-        if (miss) {
-          /* every miss gets its own explanation, so the bot always opens (unless tips are hidden) */
-          var owner = sc().chains.filter(function (x) { return x.a === a.id; })[0];
-          bot.say({ key: 'wrong', step: T('ic_not_best') + ' · ' + a.name,
-            tip: { t: miss.t, lab: T('ic_bot_why_not'), miss: true, fit: owner && owner !== c ? pain(owner.t).text : '' }, pose: 'point' });
-        } else {
-          bot.say({ key: 'wrong', step: T('ic_angle'), gen: 'ic_bot_wrong', always: true, pose: 'point' });
-        }
-        var left = grid.querySelectorAll('.ic-angle:not(.is-flip)');
-        if (left.length === 1) left[0].classList.add('is-hint');
       }
     }
 
@@ -1762,6 +2035,7 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
       var s = sc(), c = s.chains[S.chain], p = persona(c.p), t = pain(c.t), a = angle(c.a);
       var wrap = el('div', 'ic-make-view');
       stepHead(4, 'ic_q4', wrap);
+      wrap.appendChild(chainTrail(c));
       var ins = el('div', 'ic-insight is-gen');
       var left = el('div');
       var k = el('p', 'ic-ik', T('ic_insight'));
@@ -2269,12 +2543,6 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
         dl.appendChild(li);
       });
       real.appendChild(dl);
-      var go = el('a', 'ic-text-link ic-real-go');
-      go.href = s.href;
-      go.setAttribute('data-track', 'ic_case_click');
-      go.innerHTML = '<span></span>' + ARROW;
-      go.firstChild.textContent = T('ic_read_case');
-      real.appendChild(go);
 
       var duo = el('div', 'ic-duo');
       duo.appendChild(win); duo.appendChild(real);
@@ -2287,13 +2555,24 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
       nt.appendChild(el('p', '', T('ic_cta_s')));
       next.appendChild(nt);
       var btns = el('div', 'ic-next-cta');
-      var book = el('a', 'ic-cta ic-book');
-      book.href = callUrl();
-      book.target = '_blank'; book.rel = 'noopener';
-      book.setAttribute('data-gtm-id', 'home_game_book_call');
-      book.innerHTML = SVG_CAL + '<span></span>';
-      book.lastChild.textContent = T('ic_book');
+      /* the same gated download as the cases page: tracking.js opens the case-study form for data-lead-form links */
+      var book = el('a', 'ic-cta ic-book ic-readfull');
+      book.href = s.cs ? '/get-case-study/?cs=' + encodeURIComponent(s.cs) : s.href;
+      if (s.cs) {
+        book.setAttribute('data-lead-form', 'case_study');
+        book.setAttribute('data-case-study', s.cs);
+        book.setAttribute('data-case-study-label', s.csLabel || s.client);
+      }
+      book.setAttribute('data-gtm-id', 'home_game_read_case');
+      book.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M12 12v6M9 15l3 3 3-3"/></svg><span></span>';
+      book.lastChild.textContent = T('ic_read_full');
       btns.appendChild(book);
+      var call = el('a', 'ic-ghost ic-call');
+      call.href = callUrl();
+      call.target = '_blank'; call.rel = 'noopener';
+      call.setAttribute('data-gtm-id', 'home_game_book_call');
+      call.innerHTML = SVG_CAL + '<span></span>';
+      call.lastChild.textContent = T('ic_book');
       var left = s.chains.filter(function (x, ci) { return !dm[ci]; }).length;
       var again = el('button', 'ic-ghost', left ? T('ic_next') : T('ic_other_ind'));
       again.type = 'button';
@@ -2304,12 +2583,7 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
         render(); scrollStageIntoView();
       });
       btns.appendChild(again);
-      if (root.classList.contains('ic--intro')) {
-        var cont = el('button', 'ic-ghost', T(root.classList.contains('ic--first') ? 'ic_continue' : 'ic_back'));
-        cont.type = 'button';
-        cont.addEventListener('click', function () { exitIntro('continue'); });
-        btns.appendChild(cont);
-      }
+      btns.appendChild(call);
       next.appendChild(btns);
       wrap.appendChild(next);
 
@@ -2507,11 +2781,9 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
         });
         return;
       }
-      if (S.view === 'pain' && S.active && persona(S.active)) viewPain();
-      else if (S.view === 'angle' && S.chain > -1) viewAngle();
-      else if (S.view === 'make' && S.chain > -1) viewMake();
+      if (S.view === 'make' && S.chain > -1) viewMake();
       else if (S.view === 'chain' && S.chain > -1) viewChain();
-      else { S.view = 'connect'; viewPersona(); }
+      else { S.view = 'connect'; viewTree(); }
     }
 
     /* ---------- first-visit intro: the game is the first screen, then it collapses under the hero ---------- */
@@ -2531,7 +2803,9 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
         return true;
       } catch (e) { return false; }
     }
-    function onKey(e) { if (e.key === 'Escape' && !layer.querySelector('.ic-modal')) exitIntro('escape'); }
+    var escInPopup = false, POPUPS = '.tf-v1-popup, .tf-v1-slider, .calendly-overlay, .calendly-popup';
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') escInPopup = !!document.querySelector(POPUPS); }, true);
+    function onKey(e) { if (e.key === 'Escape' && !escInPopup && !document.querySelector(POPUPS) && !layer.querySelector('.ic-modal')) exitIntro('escape'); }
     function setInert(on) {
       if (on) {
         [].slice.call(document.body.children).forEach(function (n) {
@@ -3640,7 +3914,7 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
   loadDict().then(function (d) {
     if (d) { DICT = d; }
     /* Insight-builder copy (choice screen, renamed CTA, step-by-step flow, angle explanations) layered over the base dictionary. */
-    var DICT_X = {"en":{"ic_play_k":"Insight builder · 60 seconds","ic_play_t":"Build your first insight","ic_kicker":"Insight builder · try it","ic_article_note":"Written for this demo from the {client} insight chain. Not published by {client}.","ic_bot_hi":"Hi, I'm the SOMIN bot. Every chain here comes from a real SOMIN case study. Build it step by step and I'll show you why each move works.","ic_choose_h":"How would you like to start?","ic_choose_a_cta":"Start building","ic_choose_b_t":"Visit the website","ic_choose_b_s":"Explore pricing, case studies and how SOMIN works, at your own pace.","ic_choose_b_cta":"Go to the website","ic_case":"Case study","ic_step_of":"Step {n} of {m}","ic_q1":"Who are you talking to?","ic_q2":"Which pain point is theirs?","ic_q3":"Which angle fits best?","ic_q4":"Put one ad in each channel","ic_content":"Content","ic_change":"Change","ic_autofill":"Fill for me","ic_hint_ship":"Tap an ad, then a channel.","ic_ad_reassured_a1":"People value rewards today far more than protection later.","ic_ad_reassured_a2":"People weigh what cover costs now against what it gives back.","ic_ad_reassured_a3":"Unfamiliar jargon makes people feel insurance isn't meant for them.","ic_ad_pepsi_a1":"We pick up habits by watching family and the people around us.","ic_ad_pepsi_a2":"Wanting a treat while trying to eat well creates inner tension.","ic_ad_pepsi_a3":"Familiar tastes bring back warm memories, so they feel right.","ic_ad_ballroom_a1":"People gain status and belonging when others see them perform.","ic_ad_ballroom_a2":"Skills grow in small, visible steps, which keeps people going.","ic_ad_ballroom_a3":"Fear of looking foolish stops people more than lack of talent.","ic_ad_fujifilm_a1":"Sell how photography feels, not the camera's technical specs.","ic_ad_fujifilm_a2":"Focus content on spring and autumn, when people shoot most.","ic_ad_fujifilm_a3":"Step out of spec comparisons and compete on creativity instead.","ic_ad_sm-universe_a1":"Belief in your own ability decides whether you try at all.","ic_ad_sm-universe_a2":"When one side knows more, the other hesitates to commit.","ic_ad_sm-universe_a3":"Supportive networks give people the confidence to keep going.","ic_ad_caltex_a1":"Drivers want to feel in charge of their car and its care.","ic_ad_caltex_a2":"Losing money hurts more than saving the same amount feels good.","ic_ad_caltex_a3":"People want others to notice their choices and know-how.","ic_ad_indrive_a1":"Customers, not companies, should decide what a fair price is.","ic_ad_indrive_a2":"People feel safer when they believe they control what happens.","ic_ad_indrive_a3":"Wasted time or overpaying hurts more than an equal gain pleases.","ic_ad_thomson_a1":"Close family bonds shape how safe and supported we feel.","ic_ad_thomson_a2":"The gap between ideal parenting and real life creates stress.","ic_ad_thomson_a3":"Parents judge themselves by comparing with other families.","ic_ad_tim-hortons_a1":"Places and food gain meaning through how we experience and share them.","ic_ad_tim-hortons_a2":"People choose places that reflect the groups they belong to.","ic_ad_tim-hortons_a3":"We trust choices that we see many other people making."},"zh-Hans":{"ic_play_k":"洞察构建器 · 60 秒","ic_play_t":"构建你的第一个洞察","ic_kicker":"洞察构建器 · 来试试","ic_article_note":"为本演示根据 {client} 的洞察链撰写。并非由 {client} 发布。","ic_bot_hi":"你好，我是 SOMIN 机器人。这里的每条链都来自真实的 SOMIN 案例。一步步构建，我会告诉你每一步为何奏效。","ic_choose_h":"你想如何开始？","ic_choose_a_cta":"开始构建","ic_choose_b_t":"访问网站","ic_choose_b_s":"按自己的节奏了解价格、案例和 SOMIN 的工作方式。","ic_choose_b_cta":"前往网站","ic_case":"案例研究","ic_step_of":"第 {n} 步，共 {m} 步","ic_q1":"你在和谁对话？","ic_q2":"哪个痛点属于他们？","ic_q3":"哪个角度最合适？","ic_q4":"每个渠道放一条广告","ic_content":"内容","ic_change":"更换","ic_autofill":"帮我填好","ic_hint_ship":"先点一条广告，再点一个渠道。","ic_ad_reassured_a1":"人们更看重眼前的回报，而不是将来的保障。","ic_ad_reassured_a2":"人们会权衡保障现在的花费与它带来的回报。","ic_ad_reassured_a3":"陌生的术语让人觉得保险不是为自己准备的。","ic_ad_pepsi_a1":"我们通过观察家人和身边的人养成习惯。","ic_ad_pepsi_a2":"想犒劳自己又想吃得健康，会带来内心的矛盾。","ic_ad_pepsi_a3":"熟悉的味道唤起温暖的回忆，所以感觉对味。","ic_ad_ballroom_a1":"被别人看到自己的表演，人们就获得地位和归属感。","ic_ad_ballroom_a2":"技能在一个个看得见的小进步中成长，让人坚持下去。","ic_ad_ballroom_a3":"阻碍人们的不是天赋不足，而是怕出丑。","ic_ad_fujifilm_a1":"卖的是摄影带来的感受，而不是相机的技术参数。","ic_ad_fujifilm_a2":"把内容集中在春秋两季，人们拍照最多的时候。","ic_ad_fujifilm_a3":"跳出参数比拼，转而在创意上竞争。","ic_ad_sm-universe_a1":"是否相信自己的能力，决定了你会不会去尝试。","ic_ad_sm-universe_a2":"当一方知道得更多，另一方就会犹豫不决。","ic_ad_sm-universe_a3":"支持性的圈子给人坚持下去的信心。","ic_ad_caltex_a1":"车主希望对自己的车和保养有掌控感。","ic_ad_caltex_a2":"损失金钱的痛，大于省下同样金额的快乐。","ic_ad_caltex_a3":"人们希望自己的选择和专业被别人看见。","ic_ad_indrive_a1":"公平的价格应由顾客决定，而不是公司。","ic_ad_indrive_a2":"当人们相信事情由自己掌控时，会感到更安心。","ic_ad_indrive_a3":"浪费时间或多付钱的痛，大于同等收获的快乐。","ic_ad_thomson_a1":"紧密的家庭纽带决定了我们感到多安全、多受支持。","ic_ad_thomson_a2":"理想育儿与现实生活之间的落差会带来压力。","ic_ad_thomson_a3":"父母会通过和其他家庭比较来评判自己。","ic_ad_tim-hortons_a1":"地方和食物的意义，来自我们如何体验和分享它们。","ic_ad_tim-hortons_a2":"人们会选择能体现自己所属群体的地方。","ic_ad_tim-hortons_a3":"我们信任看到很多人都在做的选择。"},"zh-Hant":{"ic_play_k":"洞察建構器 · 60 秒","ic_play_t":"建構你的第一個洞察","ic_kicker":"洞察建構器 · 來試試","ic_article_note":"為此示範根據 {client} 的洞察鏈撰寫。並非由 {client} 發布。","ic_bot_hi":"你好，我是 SOMIN 機器人。這裡的每條鏈都來自真實的 SOMIN 案例。一步步建構，我會告訴你每一步為何有效。","ic_choose_h":"你想如何開始？","ic_choose_a_cta":"開始建構","ic_choose_b_t":"造訪網站","ic_choose_b_s":"依自己的步調了解價格、案例與 SOMIN 的運作方式。","ic_choose_b_cta":"前往網站","ic_case":"案例研究","ic_step_of":"第 {n} 步，共 {m} 步","ic_q1":"你在和誰對話？","ic_q2":"哪個痛點屬於他們？","ic_q3":"哪個角度最合適？","ic_q4":"每個渠道放一則廣告","ic_content":"內容","ic_change":"更換","ic_autofill":"幫我填好","ic_hint_ship":"先點一則廣告，再點一個渠道。","ic_ad_reassured_a1":"人們更看重眼前的回報，而不是將來的保障。","ic_ad_reassured_a2":"人們會權衡保障現在的花費與它帶來的回報。","ic_ad_reassured_a3":"陌生的術語讓人覺得保險不是為自己準備的。","ic_ad_pepsi_a1":"我們透過觀察家人和身邊的人養成習慣。","ic_ad_pepsi_a2":"想犒賞自己又想吃得健康，會帶來內心的矛盾。","ic_ad_pepsi_a3":"熟悉的味道喚起溫暖的回憶，所以感覺對味。","ic_ad_ballroom_a1":"被別人看到自己的表演，人們就獲得地位和歸屬感。","ic_ad_ballroom_a2":"技能在一個個看得見的小進步中成長，讓人堅持下去。","ic_ad_ballroom_a3":"阻礙人們的不是天賦不足，而是怕出糗。","ic_ad_fujifilm_a1":"賣的是攝影帶來的感受，而不是相機的技術規格。","ic_ad_fujifilm_a2":"把內容集中在春秋兩季，人們拍照最多的時候。","ic_ad_fujifilm_a3":"跳出規格比拼，轉而在創意上競爭。","ic_ad_sm-universe_a1":"是否相信自己的能力，決定了你會不會去嘗試。","ic_ad_sm-universe_a2":"當一方知道得更多，另一方就會猶豫不決。","ic_ad_sm-universe_a3":"支持性的圈子給人堅持下去的信心。","ic_ad_caltex_a1":"車主希望對自己的車和保養有掌控感。","ic_ad_caltex_a2":"損失金錢的痛，大於省下同樣金額的快樂。","ic_ad_caltex_a3":"人們希望自己的選擇和專業被別人看見。","ic_ad_indrive_a1":"公平的價格應由顧客決定，而不是公司。","ic_ad_indrive_a2":"當人們相信事情由自己掌控時，會感到更安心。","ic_ad_indrive_a3":"浪費時間或多付錢的痛，大於同等收穫的快樂。","ic_ad_thomson_a1":"緊密的家庭紐帶決定了我們感到多安全、多受支持。","ic_ad_thomson_a2":"理想育兒與現實生活之間的落差會帶來壓力。","ic_ad_thomson_a3":"父母會透過和其他家庭比較來評判自己。","ic_ad_tim-hortons_a1":"地方和食物的意義，來自我們如何體驗和分享它們。","ic_ad_tim-hortons_a2":"人們會選擇能體現自己所屬群體的地方。","ic_ad_tim-hortons_a3":"我們信任看到很多人都在做的選擇。"},"ja":{"ic_play_k":"インサイトビルダー · 60 秒","ic_play_t":"最初のインサイトを作ってみる","ic_kicker":"インサイトビルダー · 試してみる","ic_article_note":"このデモのために、{client} のインサイトの連鎖から作成しました。{client} が公開したものではありません。","ic_bot_hi":"こんにちは、SOMIN ボットです。ここにあるすべての連鎖は、SOMIN の実際の事例に基づいています。ひとつずつ組み立てれば、各ステップが効く理由をお見せします。","ic_choose_h":"どちらから始めますか？","ic_choose_a_cta":"作り始める","ic_choose_b_t":"サイトを見る","ic_choose_b_s":"料金、事例、SOMIN の仕組みを、ご自分のペースでご覧ください。","ic_choose_b_cta":"サイトへ進む","ic_case":"事例","ic_step_of":"ステップ {n} / {m}","ic_q1":"誰に語りかけますか？","ic_q2":"この人の課題はどれ？","ic_q3":"最も合う切り口は？","ic_q4":"各チャネルに広告を1つずつ","ic_content":"コンテンツ","ic_change":"変更","ic_autofill":"おまかせで配置","ic_hint_ship":"広告をタップし、次にチャネルをタップ。","ic_ad_reassured_a1":"人は将来の備えより、今すぐ得られるものを重視します。","ic_ad_reassured_a2":"保険の今の負担と、得られる見返りを天秤にかけます。","ic_ad_reassured_a3":"なじみのない専門用語が、保険を自分とは無縁に感じさせます。","ic_ad_pepsi_a1":"人は家族や周りの人を見て習慣を身につけます。","ic_ad_pepsi_a2":"ご褒美が欲しい気持ちと健康志向がぶつかり、葛藤が生まれます。","ic_ad_pepsi_a3":"なじみの味は温かい記憶を呼び起こし、しっくりきます。","ic_ad_ballroom_a1":"人に見てもらうことで、地位と居場所が生まれます。","ic_ad_ballroom_a2":"技術は目に見える小さな一歩で伸び、続ける力になります。","ic_ad_ballroom_a3":"才能のなさより、恥をかく不安が人を止めます。","ic_ad_fujifilm_a1":"カメラのスペックではなく、写真を撮る喜びを伝えます。","ic_ad_fujifilm_a2":"人が最も撮影する春と秋にコンテンツを集中させます。","ic_ad_fujifilm_a3":"スペック比較から離れ、創造性で勝負します。","ic_ad_sm-universe_a1":"自分の力を信じられるかどうかで、挑戦するかが決まります。","ic_ad_sm-universe_a2":"片方だけが多くを知っていると、もう片方はためらいます。","ic_ad_sm-universe_a3":"支え合う仲間が、続ける自信をくれます。","ic_ad_caltex_a1":"ドライバーは愛車とその手入れを自分で管理したいと考えます。","ic_ad_caltex_a2":"お金を失う痛みは、同じ額を節約する喜びより大きいものです。","ic_ad_caltex_a3":"人は自分の選択や知識を周りに認めてほしいと思います。","ic_ad_indrive_a1":"公正な価格を決めるのは会社ではなく、利用者です。","ic_ad_indrive_a2":"物事を自分でコントロールできると感じると、人は安心します。","ic_ad_indrive_a3":"時間の無駄や払いすぎの痛みは、同じだけの得より大きく感じます。","ic_ad_thomson_a1":"家族との強い絆が、安心感と支えられている実感を形づくります。","ic_ad_thomson_a2":"理想の子育てと現実のギャップがストレスを生みます。","ic_ad_thomson_a3":"親は他の家庭と比べて自分を評価しがちです。","ic_ad_tim-hortons_a1":"場所や食べ物の意味は、体験し共有することで生まれます。","ic_ad_tim-hortons_a2":"人は自分が属する集団を映す場所を選びます。","ic_ad_tim-hortons_a3":"多くの人が選んでいるものを、人は信頼します。"},"ko":{"ic_play_k":"인사이트 빌더 · 60초","ic_play_t":"첫 인사이트 만들기","ic_kicker":"인사이트 빌더 · 직접 해보기","ic_article_note":"이 데모를 위해 {client}의 인사이트 체인을 바탕으로 작성했습니다. {client}가 게시한 것이 아닙니다.","ic_bot_hi":"안녕하세요, SOMIN 봇입니다. 여기 있는 모든 체인은 실제 SOMIN 사례에서 가져왔습니다. 한 단계씩 만들어 보면 각 선택이 왜 효과적인지 알려 드릴게요.","ic_choose_h":"어떻게 시작하시겠어요?","ic_choose_a_cta":"만들기 시작","ic_choose_b_t":"웹사이트 둘러보기","ic_choose_b_s":"요금, 사례, SOMIN의 작동 방식을 원하는 속도로 살펴보세요.","ic_choose_b_cta":"웹사이트로 이동","ic_case":"사례 연구","ic_step_of":"{m}단계 중 {n}단계","ic_q1":"누구에게 말하고 있나요?","ic_q2":"이 사람의 페인 포인트는?","ic_q3":"가장 잘 맞는 앵글은?","ic_q4":"채널마다 광고를 하나씩 넣으세요","ic_content":"콘텐츠","ic_change":"변경","ic_autofill":"자동으로 채우기","ic_hint_ship":"광고를 탭한 다음 채널을 탭하세요.","ic_ad_reassured_a1":"사람들은 나중의 보장보다 지금의 보상을 훨씬 중시합니다.","ic_ad_reassured_a2":"보험의 지금 비용과 돌아오는 가치를 저울질합니다.","ic_ad_reassured_a3":"낯선 용어는 보험이 나와는 상관없다고 느끼게 합니다.","ic_ad_pepsi_a1":"우리는 가족과 주변 사람을 보며 습관을 익힙니다.","ic_ad_pepsi_a2":"즐기고 싶은 마음과 건강하게 먹으려는 마음이 갈등을 만듭니다.","ic_ad_pepsi_a3":"익숙한 맛은 따뜻한 기억을 불러와 더 끌립니다.","ic_ad_ballroom_a1":"남들 앞에서 보여 줄 때 지위와 소속감이 생깁니다.","ic_ad_ballroom_a2":"실력은 눈에 보이는 작은 단계로 늘고, 그것이 계속하게 만듭니다.","ic_ad_ballroom_a3":"재능 부족보다 바보처럼 보일까 하는 두려움이 사람을 막습니다.","ic_ad_fujifilm_a1":"카메라 사양이 아니라 사진이 주는 느낌을 파세요.","ic_ad_fujifilm_a2":"사람들이 가장 많이 찍는 봄과 가을에 콘텐츠를 집중하세요.","ic_ad_fujifilm_a3":"사양 경쟁에서 벗어나 창의성으로 승부하세요.","ic_ad_sm-universe_a1":"자신의 능력을 믿는지가 시도할지 말지를 결정합니다.","ic_ad_sm-universe_a2":"한쪽이 더 많이 알면 다른 쪽은 결정을 망설입니다.","ic_ad_sm-universe_a3":"서로 지지하는 네트워크가 계속할 자신감을 줍니다.","ic_ad_caltex_a1":"운전자는 자기 차와 관리를 직접 통제하고 싶어 합니다.","ic_ad_caltex_a2":"돈을 잃는 아픔은 같은 금액을 아끼는 기쁨보다 큽니다.","ic_ad_caltex_a3":"사람들은 자신의 선택과 노하우를 인정받고 싶어 합니다.","ic_ad_indrive_a1":"공정한 가격은 회사가 아니라 고객이 정해야 합니다.","ic_ad_indrive_a2":"상황을 통제한다고 믿을 때 사람들은 더 안전하다고 느낍니다.","ic_ad_indrive_a3":"시간 낭비나 과지불의 아픔은 같은 이득의 기쁨보다 큽니다.","ic_ad_thomson_a1":"가족과의 깊은 유대가 안정감과 지지받는 느낌을 만듭니다.","ic_ad_thomson_a2":"이상적인 육아와 현실 사이의 차이가 스트레스를 만듭니다.","ic_ad_thomson_a3":"부모는 다른 가족과 비교하며 자신을 평가합니다.","ic_ad_tim-hortons_a1":"장소와 음식은 우리가 경험하고 나누는 방식으로 의미를 얻습니다.","ic_ad_tim-hortons_a2":"사람들은 자신이 속한 집단을 반영하는 장소를 고릅니다.","ic_ad_tim-hortons_a3":"우리는 많은 사람이 하는 선택을 신뢰합니다."},"th":{"ic_play_k":"ตัวสร้างอินไซต์ · 60 วินาที","ic_play_t":"สร้างอินไซต์แรกของคุณ","ic_kicker":"ตัวสร้างอินไซต์ · ลองเลย","ic_article_note":"เขียนขึ้นสำหรับเดโมนี้จากห่วงโซ่อินไซต์ของ {client} ไม่ได้เผยแพร่โดย {client}","ic_bot_hi":"สวัสดี ฉันคือบอทของ SOMIN ทุกห่วงโซ่ที่นี่มาจากกรณีศึกษาจริงของ SOMIN ลองสร้างทีละขั้น แล้วฉันจะอธิบายว่าทำไมแต่ละก้าวจึงได้ผล","ic_choose_h":"คุณอยากเริ่มต้นแบบไหน","ic_choose_a_cta":"เริ่มสร้าง","ic_choose_b_t":"เข้าชมเว็บไซต์","ic_choose_b_s":"ดูราคา กรณีศึกษา และวิธีการทำงานของ SOMIN ตามจังหวะของคุณ","ic_choose_b_cta":"ไปที่เว็บไซต์","ic_case":"กรณีศึกษา","ic_step_of":"ขั้นที่ {n} จาก {m}","ic_q1":"คุณกำลังคุยกับใคร?","ic_q2":"ปัญหาข้อไหนเป็นของเขา?","ic_q3":"มุมมองไหนเหมาะที่สุด?","ic_q4":"ใส่โฆษณาหนึ่งชิ้นในแต่ละช่องทาง","ic_content":"คอนเทนต์","ic_change":"เปลี่ยน","ic_autofill":"เติมให้ฉัน","ic_hint_ship":"แตะโฆษณา แล้วแตะช่องทาง","ic_ad_reassured_a1":"คนให้ค่ากับสิ่งที่ได้วันนี้มากกว่าความคุ้มครองในอนาคต","ic_ad_reassured_a2":"คนชั่งน้ำหนักค่าเบี้ยวันนี้กับสิ่งที่จะได้กลับมา","ic_ad_reassured_a3":"ศัพท์ที่ไม่คุ้นทำให้รู้สึกว่าประกันไม่ใช่เรื่องของตัวเอง","ic_ad_pepsi_a1":"เราเรียนรู้นิสัยจากการดูครอบครัวและคนรอบตัว","ic_ad_pepsi_a2":"อยากให้รางวัลตัวเองแต่ก็อยากกินดี ทำให้เกิดความขัดแย้งในใจ","ic_ad_pepsi_a3":"รสชาติที่คุ้นเคยพาความทรงจำอบอุ่นกลับมา จึงรู้สึกใช่","ic_ad_ballroom_a1":"คนได้ทั้งสถานะและความรู้สึกเป็นส่วนหนึ่งเมื่อมีคนดูเขาแสดง","ic_ad_ballroom_a2":"ทักษะเติบโตทีละก้าวที่มองเห็นได้ ทำให้อยากไปต่อ","ic_ad_ballroom_a3":"ความกลัวว่าจะดูเปิ่นหยุดคนได้มากกว่าการขาดพรสวรรค์","ic_ad_fujifilm_a1":"ขายความรู้สึกของการถ่ายภาพ ไม่ใช่สเปกกล้อง","ic_ad_fujifilm_a2":"เน้นคอนเทนต์ช่วงใบไม้ผลิและใบไม้ร่วง ที่คนถ่ายภาพมากที่สุด","ic_ad_fujifilm_a3":"ออกจากการเทียบสเปก แล้วแข่งกันที่ความคิดสร้างสรรค์","ic_ad_sm-universe_a1":"ความเชื่อในความสามารถของตัวเองตัดสินว่าจะลองหรือไม่","ic_ad_sm-universe_a2":"เมื่อฝ่ายหนึ่งรู้มากกว่า อีกฝ่ายจะลังเลที่จะตัดสินใจ","ic_ad_sm-universe_a3":"เครือข่ายที่คอยสนับสนุนให้ความมั่นใจที่จะไปต่อ","ic_ad_caltex_a1":"ผู้ขับขี่อยากรู้สึกว่าควบคุมรถและการดูแลรถได้เอง","ic_ad_caltex_a2":"การเสียเงินเจ็บกว่าความสุขจากการประหยัดเงินจำนวนเท่ากัน","ic_ad_caltex_a3":"คนอยากให้ผู้อื่นเห็นทางเลือกและความรู้ของตน","ic_ad_indrive_a1":"ลูกค้า ไม่ใช่บริษัท ควรเป็นคนตัดสินว่าราคาไหนยุติธรรม","ic_ad_indrive_a2":"คนรู้สึกปลอดภัยขึ้นเมื่อเชื่อว่าตนควบคุมสิ่งที่เกิดขึ้นได้","ic_ad_indrive_a3":"การเสียเวลาหรือจ่ายเกินเจ็บกว่าความสุขจากสิ่งที่ได้เท่ากัน","ic_ad_thomson_a1":"สายใยครอบครัวที่แน่นแฟ้นกำหนดว่าเรารู้สึกปลอดภัยแค่ไหน","ic_ad_thomson_a2":"ช่องว่างระหว่างการเลี้ยงลูกในอุดมคติกับชีวิตจริงสร้างความเครียด","ic_ad_thomson_a3":"พ่อแม่ตัดสินตัวเองด้วยการเทียบกับครอบครัวอื่น","ic_ad_tim-hortons_a1":"สถานที่และอาหารมีความหมายจากการที่เราได้สัมผัสและแบ่งปัน","ic_ad_tim-hortons_a2":"คนเลือกสถานที่ที่สะท้อนกลุ่มที่ตนเป็นสมาชิก","ic_ad_tim-hortons_a3":"เราเชื่อในทางเลือกที่เห็นคนจำนวนมากเลือก"},"vi":{"ic_play_k":"Trình tạo insight · 60 giây","ic_play_t":"Tạo insight đầu tiên của bạn","ic_kicker":"Trình tạo insight · thử ngay","ic_article_note":"Được viết cho bản demo này từ chuỗi insight của {client}. Không do {client} xuất bản.","ic_bot_hi":"Xin chào, mình là bot SOMIN. Mọi chuỗi ở đây đều đến từ một case study thật của SOMIN. Hãy xây từng bước, mình sẽ chỉ cho bạn vì sao mỗi nước đi lại hiệu quả.","ic_choose_h":"Bạn muốn bắt đầu thế nào?","ic_choose_a_cta":"Bắt đầu tạo","ic_choose_b_t":"Xem website","ic_choose_b_s":"Khám phá bảng giá, case study và cách SOMIN hoạt động theo nhịp của bạn.","ic_choose_b_cta":"Đến website","ic_case":"Case study","ic_step_of":"Bước {n}/{m}","ic_q1":"Bạn đang nói với ai?","ic_q2":"Nỗi đau nào là của họ?","ic_q3":"Góc tiếp cận nào hợp nhất?","ic_q4":"Đặt một quảng cáo vào mỗi kênh","ic_content":"Nội dung","ic_change":"Đổi","ic_autofill":"Điền giúp tôi","ic_hint_ship":"Chạm vào một quảng cáo, rồi chọn kênh.","ic_ad_reassured_a1":"Người ta coi trọng phần thưởng hôm nay hơn sự bảo vệ về sau.","ic_ad_reassured_a2":"Người ta cân nhắc chi phí bảo hiểm hôm nay với những gì nhận lại.","ic_ad_reassured_a3":"Thuật ngữ xa lạ khiến người ta nghĩ bảo hiểm không dành cho mình.","ic_ad_pepsi_a1":"Chúng ta học thói quen bằng cách quan sát gia đình và người xung quanh.","ic_ad_pepsi_a2":"Muốn tự thưởng mà vẫn muốn ăn lành mạnh tạo ra giằng co nội tâm.","ic_ad_pepsi_a3":"Hương vị quen thuộc gợi lại kỷ niệm ấm áp nên thấy hợp.","ic_ad_ballroom_a1":"Người ta có địa vị và cảm giác thuộc về khi được người khác xem biểu diễn.","ic_ad_ballroom_a2":"Kỹ năng tiến bộ qua từng bước nhỏ thấy rõ, giúp người ta theo đuổi.","ic_ad_ballroom_a3":"Nỗi sợ bị trông ngớ ngẩn cản bước nhiều hơn là thiếu năng khiếu.","ic_ad_fujifilm_a1":"Bán cảm xúc khi chụp ảnh, không phải thông số máy ảnh.","ic_ad_fujifilm_a2":"Tập trung nội dung vào mùa xuân và thu, khi người ta chụp nhiều nhất.","ic_ad_fujifilm_a3":"Thoát khỏi cuộc đua thông số và cạnh tranh bằng sáng tạo.","ic_ad_sm-universe_a1":"Niềm tin vào khả năng của bản thân quyết định bạn có thử hay không.","ic_ad_sm-universe_a2":"Khi một bên biết nhiều hơn, bên kia sẽ ngần ngại cam kết.","ic_ad_sm-universe_a3":"Cộng đồng hỗ trợ cho người ta tự tin để tiếp tục.","ic_ad_caltex_a1":"Tài xế muốn tự làm chủ chiếc xe và việc chăm sóc nó.","ic_ad_caltex_a2":"Mất tiền đau hơn niềm vui khi tiết kiệm được cùng số tiền.","ic_ad_caltex_a3":"Người ta muốn lựa chọn và hiểu biết của mình được ghi nhận.","ic_ad_indrive_a1":"Khách hàng, không phải công ty, nên quyết định giá thế nào là công bằng.","ic_ad_indrive_a2":"Người ta thấy an toàn hơn khi tin mình kiểm soát được tình huống.","ic_ad_indrive_a3":"Mất thời gian hay trả quá nhiều đau hơn niềm vui từ khoản lợi tương đương.","ic_ad_thomson_a1":"Sự gắn bó gia đình định hình cảm giác an toàn và được che chở.","ic_ad_thomson_a2":"Khoảng cách giữa nuôi dạy con lý tưởng và đời thực gây căng thẳng.","ic_ad_thomson_a3":"Cha mẹ tự đánh giá mình bằng cách so với gia đình khác.","ic_ad_tim-hortons_a1":"Nơi chốn và món ăn có ý nghĩa qua cách ta trải nghiệm và chia sẻ.","ic_ad_tim-hortons_a2":"Người ta chọn nơi phản ánh nhóm mà mình thuộc về.","ic_ad_tim-hortons_a3":"Chúng ta tin những lựa chọn mà thấy nhiều người cùng chọn."},"id":{"ic_play_k":"Pembuat insight · 60 detik","ic_play_t":"Bangun insight pertama Anda","ic_kicker":"Pembuat insight · coba sekarang","ic_article_note":"Ditulis untuk demo ini dari rantai insight {client}. Tidak diterbitkan oleh {client}.","ic_bot_hi":"Halo, saya bot SOMIN. Setiap rantai di sini berasal dari studi kasus SOMIN yang nyata. Bangun langkah demi langkah, dan saya akan tunjukkan mengapa setiap langkah berhasil.","ic_choose_h":"Bagaimana Anda ingin memulai?","ic_choose_a_cta":"Mulai membangun","ic_choose_b_t":"Kunjungi situs web","ic_choose_b_s":"Jelajahi harga, studi kasus, dan cara kerja SOMIN dengan kecepatan Anda sendiri.","ic_choose_b_cta":"Buka situs web","ic_case":"Studi kasus","ic_step_of":"Langkah {n} dari {m}","ic_q1":"Anda bicara dengan siapa?","ic_q2":"Pain point mana yang milik mereka?","ic_q3":"Angle mana yang paling cocok?","ic_q4":"Taruh satu iklan di tiap kanal","ic_content":"Konten","ic_change":"Ganti","ic_autofill":"Isikan untuk saya","ic_hint_ship":"Ketuk iklan, lalu ketuk kanal.","ic_ad_reassured_a1":"Orang lebih menghargai imbalan hari ini daripada perlindungan nanti.","ic_ad_reassured_a2":"Orang menimbang biaya asuransi sekarang dengan manfaat yang didapat.","ic_ad_reassured_a3":"Istilah asing membuat orang merasa asuransi bukan untuk mereka.","ic_ad_pepsi_a1":"Kita meniru kebiasaan dari keluarga dan orang di sekitar.","ic_ad_pepsi_a2":"Ingin memanjakan diri sambil berusaha makan sehat memicu konflik batin.","ic_ad_pepsi_a3":"Rasa yang akrab membangkitkan kenangan hangat, jadi terasa pas.","ic_ad_ballroom_a1":"Orang mendapat status dan rasa memiliki saat ditonton orang lain.","ic_ad_ballroom_a2":"Keterampilan tumbuh lewat langkah kecil yang terlihat, sehingga orang bertahan.","ic_ad_ballroom_a3":"Takut terlihat konyol lebih menghambat daripada kurang bakat.","ic_ad_fujifilm_a1":"Jual rasanya memotret, bukan spesifikasi teknis kamera.","ic_ad_fujifilm_a2":"Fokuskan konten di musim semi dan gugur, saat orang paling banyak memotret.","ic_ad_fujifilm_a3":"Keluar dari adu spesifikasi dan bersaing lewat kreativitas.","ic_ad_sm-universe_a1":"Keyakinan pada kemampuan diri menentukan apakah Anda mau mencoba.","ic_ad_sm-universe_a2":"Saat satu pihak tahu lebih banyak, pihak lain ragu mengambil keputusan.","ic_ad_sm-universe_a3":"Komunitas yang mendukung memberi percaya diri untuk terus maju.","ic_ad_caltex_a1":"Pengemudi ingin memegang kendali atas mobil dan perawatannya.","ic_ad_caltex_a2":"Kehilangan uang terasa lebih sakit daripada senangnya menghemat jumlah sama.","ic_ad_caltex_a3":"Orang ingin pilihan dan keahliannya diakui orang lain.","ic_ad_indrive_a1":"Pelanggan, bukan perusahaan, yang menentukan harga yang adil.","ic_ad_indrive_a2":"Orang merasa lebih aman saat yakin dirinya memegang kendali.","ic_ad_indrive_a3":"Waktu terbuang atau bayar kemahalan terasa lebih sakit dari untung yang setara.","ic_ad_thomson_a1":"Ikatan keluarga yang erat membentuk rasa aman dan didukung.","ic_ad_thomson_a2":"Jarak antara pola asuh ideal dan kenyataan menimbulkan stres.","ic_ad_thomson_a3":"Orang tua menilai diri dengan membandingkan keluarga lain.","ic_ad_tim-hortons_a1":"Tempat dan makanan bermakna lewat cara kita mengalami dan berbagi.","ic_ad_tim-hortons_a2":"Orang memilih tempat yang mencerminkan kelompoknya.","ic_ad_tim-hortons_a3":"Kita percaya pada pilihan yang dibuat banyak orang."},"ms":{"ic_play_k":"Pembina insight · 60 saat","ic_play_t":"Bina insight pertama anda","ic_kicker":"Pembina insight · cuba sekarang","ic_article_note":"Ditulis untuk demo ini daripada rantaian insight {client}. Tidak diterbitkan oleh {client}.","ic_bot_hi":"Hai, saya bot SOMIN. Setiap rantaian di sini datang daripada kajian kes SOMIN yang sebenar. Bina langkah demi langkah dan saya akan tunjukkan mengapa setiap langkah berkesan.","ic_choose_h":"Bagaimana anda mahu bermula?","ic_choose_a_cta":"Mula membina","ic_choose_b_t":"Layari laman web","ic_choose_b_s":"Terokai harga, kajian kes dan cara SOMIN berfungsi mengikut rentak anda.","ic_choose_b_cta":"Pergi ke laman web","ic_case":"Kajian kes","ic_step_of":"Langkah {n} daripada {m}","ic_q1":"Anda bercakap dengan siapa?","ic_q2":"Pain point mana milik mereka?","ic_q3":"Sudut mana paling sesuai?","ic_q4":"Letak satu iklan dalam setiap saluran","ic_content":"Kandungan","ic_change":"Tukar","ic_autofill":"Isikan untuk saya","ic_hint_ship":"Ketik iklan, kemudian saluran.","ic_ad_reassured_a1":"Orang lebih menghargai ganjaran hari ini daripada perlindungan kemudian.","ic_ad_reassured_a2":"Orang menimbang kos perlindungan sekarang dengan apa yang diperoleh.","ic_ad_reassured_a3":"Istilah asing membuat orang rasa insurans bukan untuk mereka.","ic_ad_pepsi_a1":"Kita mengikut tabiat dengan melihat keluarga dan orang sekeliling.","ic_ad_pepsi_a2":"Mahu menikmati sesuatu sambil cuba makan sihat mencetuskan konflik dalaman.","ic_ad_pepsi_a3":"Rasa yang biasa membawa kenangan manis, jadi terasa kena.","ic_ad_ballroom_a1":"Orang mendapat status dan rasa dimiliki apabila dilihat membuat persembahan.","ic_ad_ballroom_a2":"Kemahiran berkembang langkah demi langkah yang nampak, jadi orang terus mencuba.","ic_ad_ballroom_a3":"Takut nampak bodoh menghalang lebih daripada kurang bakat.","ic_ad_fujifilm_a1":"Jual perasaan bergambar, bukan spesifikasi teknikal kamera.","ic_ad_fujifilm_a2":"Fokuskan kandungan pada musim bunga dan luruh, ketika orang paling banyak bergambar.","ic_ad_fujifilm_a3":"Keluar daripada perbandingan spesifikasi dan bersaing dengan kreativiti.","ic_ad_sm-universe_a1":"Keyakinan pada kebolehan diri menentukan sama ada anda mencuba.","ic_ad_sm-universe_a2":"Apabila satu pihak tahu lebih, pihak lain teragak-agak untuk komited.","ic_ad_sm-universe_a3":"Rangkaian yang menyokong memberi keyakinan untuk terus maju.","ic_ad_caltex_a1":"Pemandu mahu rasa mengawal kereta dan penjagaannya.","ic_ad_caltex_a2":"Kehilangan wang lebih menyakitkan daripada gembira menjimatkan jumlah sama.","ic_ad_caltex_a3":"Orang mahu pilihan dan kepakaran mereka disedari orang lain.","ic_ad_indrive_a1":"Pelanggan, bukan syarikat, patut menentukan harga yang adil.","ic_ad_indrive_a2":"Orang rasa lebih selamat apabila yakin mereka mengawal keadaan.","ic_ad_indrive_a3":"Masa terbuang atau terlebih bayar lebih menyakitkan daripada untung yang sama.","ic_ad_thomson_a1":"Ikatan keluarga yang rapat membentuk rasa selamat dan disokong.","ic_ad_thomson_a2":"Jurang antara keibubapaan ideal dan realiti menimbulkan tekanan.","ic_ad_thomson_a3":"Ibu bapa menilai diri dengan membandingkan keluarga lain.","ic_ad_tim-hortons_a1":"Tempat dan makanan bermakna melalui cara kita mengalami dan berkongsinya.","ic_ad_tim-hortons_a2":"Orang memilih tempat yang mencerminkan kumpulan mereka.","ic_ad_tim-hortons_a3":"Kita mempercayai pilihan yang dibuat ramai orang."},"hi":{"ic_play_k":"इनसाइट बिल्डर · 60 सेकंड","ic_play_t":"अपनी पहली इनसाइट बनाएं","ic_kicker":"इनसाइट बिल्डर · आज़माएं","ic_article_note":"यह डेमो {client} की इनसाइट चेन से लिखा गया है। {client} द्वारा प्रकाशित नहीं।","ic_bot_hi":"नमस्ते, मैं SOMIN बॉट हूँ। यहाँ की हर चेन SOMIN के असली केस स्टडी से आती है। कदम-दर-कदम बनाइए, और मैं बताऊँगा कि हर चाल क्यों काम करती है।","ic_choose_h":"आप कैसे शुरू करना चाहेंगे?","ic_choose_a_cta":"बनाना शुरू करें","ic_choose_b_t":"वेबसाइट देखें","ic_choose_b_s":"कीमतें, केस स्टडी और SOMIN कैसे काम करता है, अपनी गति से देखें।","ic_choose_b_cta":"वेबसाइट पर जाएं","ic_case":"केस स्टडी","ic_step_of":"चरण {n} / {m}","ic_q1":"आप किससे बात कर रहे हैं?","ic_q2":"उनका पेन पॉइंट कौन-सा है?","ic_q3":"कौन-सा एंगल सबसे सही है?","ic_q4":"हर चैनल में एक विज्ञापन रखें","ic_content":"कंटेंट","ic_change":"बदलें","ic_autofill":"मेरे लिए भरें","ic_hint_ship":"एक विज्ञापन पर टैप करें, फिर चैनल पर।","ic_ad_reassured_a1":"लोग बाद की सुरक्षा से ज़्यादा आज के फ़ायदे को महत्व देते हैं।","ic_ad_reassured_a2":"लोग कवर की आज की लागत को उससे मिलने वाले लाभ से तौलते हैं।","ic_ad_reassured_a3":"अनजान शब्दावली लोगों को लगने देती है कि बीमा उनके लिए नहीं है।","ic_ad_pepsi_a1":"हम परिवार और आसपास के लोगों को देखकर आदतें सीखते हैं।","ic_ad_pepsi_a2":"मज़े की चाह और सेहतमंद खाने की कोशिश भीतर खिंचाव पैदा करती है।","ic_ad_pepsi_a3":"जाने-पहचाने स्वाद गर्म यादें लौटाते हैं, इसलिए सही लगते हैं।","ic_ad_ballroom_a1":"जब दूसरे उन्हें परफ़ॉर्म करते देखते हैं, तो लोगों को रुतबा और अपनापन मिलता है।","ic_ad_ballroom_a2":"कौशल छोटे, दिखने वाले कदमों में बढ़ता है, जिससे लोग टिके रहते हैं।","ic_ad_ballroom_a3":"प्रतिभा की कमी से ज़्यादा, बेवकूफ़ दिखने का डर लोगों को रोकता है।","ic_ad_fujifilm_a1":"कैमरे के तकनीकी स्पेक्स नहीं, फ़ोटोग्राफ़ी का एहसास बेचें।","ic_ad_fujifilm_a2":"कंटेंट वसंत और पतझड़ पर केंद्रित करें, जब लोग सबसे ज़्यादा फ़ोटो लेते हैं।","ic_ad_fujifilm_a3":"स्पेक्स की तुलना छोड़ें और रचनात्मकता पर मुकाबला करें।","ic_ad_sm-universe_a1":"अपनी क्षमता पर भरोसा तय करता है कि आप कोशिश करेंगे या नहीं।","ic_ad_sm-universe_a2":"जब एक पक्ष ज़्यादा जानता है, तो दूसरा फ़ैसला लेने में हिचकता है।","ic_ad_sm-universe_a3":"साथ देने वाले समूह लोगों को आगे बढ़ते रहने का भरोसा देते हैं।","ic_ad_caltex_a1":"ड्राइवर अपनी कार और उसकी देखभाल पर नियंत्रण महसूस करना चाहते हैं।","ic_ad_caltex_a2":"पैसा खोने का दुख, उतना ही बचाने की खुशी से ज़्यादा होता है।","ic_ad_caltex_a3":"लोग चाहते हैं कि दूसरे उनकी पसंद और जानकारी को पहचानें।","ic_ad_indrive_a1":"उचित कीमत कंपनियाँ नहीं, ग्राहक तय करें।","ic_ad_indrive_a2":"जब लोगों को लगता है कि हालात उनके नियंत्रण में हैं, वे ज़्यादा सुरक्षित महसूस करते हैं।","ic_ad_indrive_a3":"समय की बर्बादी या ज़्यादा भुगतान का दुख, बराबर फ़ायदे की खुशी से बड़ा होता है।","ic_ad_thomson_a1":"परिवार के गहरे रिश्ते तय करते हैं कि हम कितना सुरक्षित और सहारा महसूस करते हैं।","ic_ad_thomson_a2":"आदर्श परवरिश और असल ज़िंदगी के बीच का फ़ासला तनाव पैदा करता है।","ic_ad_thomson_a3":"माता-पिता दूसरे परिवारों से तुलना करके खुद को आँकते हैं।","ic_ad_tim-hortons_a1":"जगहें और खाना हमारे अनुभव और साझा करने से अर्थ पाते हैं।","ic_ad_tim-hortons_a2":"लोग वे जगहें चुनते हैं जो उनके समूह को दर्शाती हैं।","ic_ad_tim-hortons_a3":"हम उन विकल्पों पर भरोसा करते हैं जिन्हें बहुत से लोग चुनते हैं।"},"fil":{"ic_play_k":"Insight builder · 60 segundo","ic_play_t":"Buuin ang una mong insight","ic_kicker":"Insight builder · subukan","ic_article_note":"Isinulat para sa demo na ito mula sa insight chain ng {client}. Hindi inilathala ng {client}.","ic_bot_hi":"Kumusta, ako ang SOMIN bot. Ang bawat chain dito ay galing sa totoong case study ng SOMIN. Buuin ito nang hakbang-hakbang at ipapakita ko kung bakit gumagana ang bawat galaw.","ic_choose_h":"Paano mo gustong magsimula?","ic_choose_a_cta":"Simulang bumuo","ic_choose_b_t":"Bisitahin ang website","ic_choose_b_s":"Tuklasin ang presyo, mga case study, at kung paano gumagana ang SOMIN sa sarili mong bilis.","ic_choose_b_cta":"Pumunta sa website","ic_case":"Case study","ic_step_of":"Hakbang {n} sa {m}","ic_q1":"Sino ang kausap mo?","ic_q2":"Aling pain point ang sa kanila?","ic_q3":"Aling angle ang pinakaangkop?","ic_q4":"Maglagay ng isang ad sa bawat channel","ic_content":"Content","ic_change":"Palitan","ic_autofill":"Punan para sa akin","ic_hint_ship":"I-tap ang isang ad, tapos ang channel.","ic_ad_reassured_a1":"Mas pinahahalagahan ng tao ang gantimpala ngayon kaysa proteksyon sa hinaharap.","ic_ad_reassured_a2":"Tinitimbang ng tao ang gastos ngayon laban sa makukuha nila.","ic_ad_reassured_a3":"Ang di-pamilyar na jargon ay nagpaparamdam na hindi para sa kanila ang insurance.","ic_ad_pepsi_a1":"Natututo tayo ng gawi sa panonood sa pamilya at mga nasa paligid.","ic_ad_pepsi_a2":"Ang paghahangad ng treat habang sinusubukang kumain nang tama ay lumilikha ng tensyon.","ic_ad_pepsi_a3":"Ibinabalik ng pamilyar na lasa ang masasayang alaala, kaya tama ang pakiramdam.","ic_ad_ballroom_a1":"Nagkakaroon ng status at pakiramdam ng pagiging kabilang kapag nakikita silang nagtatanghal.","ic_ad_ballroom_a2":"Lumalago ang galing sa maliliit at kitang hakbang, kaya nagpapatuloy ang tao.","ic_ad_ballroom_a3":"Mas pumipigil ang takot na magmukhang katawa-tawa kaysa kakulangan sa talento.","ic_ad_fujifilm_a1":"Ibenta ang pakiramdam ng pagkuha ng litrato, hindi ang specs ng camera.","ic_ad_fujifilm_a2":"Ituon ang content sa tagsibol at taglagas, kung kailan pinakamaraming kumukuha ng litrato.","ic_ad_fujifilm_a3":"Umalis sa labanan ng specs at makipagkumpitensya sa pagkamalikhain.","ic_ad_sm-universe_a1":"Ang paniniwala sa sariling kakayahan ang nagpapasya kung susubok ka.","ic_ad_sm-universe_a2":"Kapag mas maraming alam ang isang panig, nag-aalangan ang kabila.","ic_ad_sm-universe_a3":"Binibigyan ng sumusuportang komunidad ang tao ng kumpiyansang magpatuloy.","ic_ad_caltex_a1":"Gusto ng mga driver na sila ang may kontrol sa kotse at sa pag-aalaga nito.","ic_ad_caltex_a2":"Mas masakit ang mawalan ng pera kaysa sa saya ng makatipid ng ganoon din.","ic_ad_caltex_a3":"Gusto ng tao na mapansin ang kanilang mga pinili at kaalaman.","ic_ad_indrive_a1":"Ang customer, hindi ang kumpanya, ang dapat magpasya ng patas na presyo.","ic_ad_indrive_a2":"Mas panatag ang tao kapag naniniwala silang sila ang may kontrol.","ic_ad_indrive_a3":"Mas masakit ang nasayang na oras o sobrang bayad kaysa sa katumbas na pakinabang.","ic_ad_thomson_a1":"Hinuhubog ng malapit na ugnayan sa pamilya kung gaano tayo kapanatag.","ic_ad_thomson_a2":"Ang agwat ng ideal na pagpapalaki at totoong buhay ay nagdudulot ng stress.","ic_ad_thomson_a3":"Hinuhusgahan ng magulang ang sarili sa paghahambing sa ibang pamilya.","ic_ad_tim-hortons_a1":"Nagkakaroon ng kahulugan ang lugar at pagkain sa paraan ng pagdanas at pagbabahagi natin.","ic_ad_tim-hortons_a2":"Pumipili ang tao ng lugar na sumasalamin sa grupong kinabibilangan nila.","ic_ad_tim-hortons_a3":"Nagtitiwala tayo sa mga piling nakikita nating ginagawa ng marami."},"es":{"ic_play_k":"Constructor de insights · 60 segundos","ic_play_t":"Crea tu primer insight","ic_kicker":"Constructor de insights · pruébalo","ic_article_note":"Escrito para esta demo a partir de la cadena de insights de {client}. No publicado por {client}.","ic_bot_hi":"Hola, soy el bot de SOMIN. Cada cadena de aquí viene de un caso de estudio real de SOMIN. Constrúyela paso a paso y te mostraré por qué funciona cada movimiento.","ic_choose_h":"¿Cómo quieres empezar?","ic_choose_a_cta":"Empezar a crear","ic_choose_b_t":"Visitar el sitio web","ic_choose_b_s":"Explora precios, casos de estudio y cómo funciona SOMIN, a tu ritmo.","ic_choose_b_cta":"Ir al sitio web","ic_case":"Caso de estudio","ic_step_of":"Paso {n} de {m}","ic_q1":"¿A quién le hablas?","ic_q2":"¿Cuál es su punto de dolor?","ic_q3":"¿Qué ángulo encaja mejor?","ic_q4":"Pon un anuncio en cada canal","ic_content":"Contenido","ic_change":"Cambiar","ic_autofill":"Rellénalo por mí","ic_hint_ship":"Toca un anuncio y luego un canal.","ic_ad_reassured_a1":"La gente valora mucho más la recompensa de hoy que la protección futura.","ic_ad_reassured_a2":"La gente compara lo que cuesta el seguro hoy con lo que devuelve.","ic_ad_reassured_a3":"La jerga desconocida hace sentir que el seguro no es para ellos.","ic_ad_pepsi_a1":"Adoptamos hábitos observando a la familia y a quienes nos rodean.","ic_ad_pepsi_a2":"Querer un capricho mientras intentas comer bien crea tensión interna.","ic_ad_pepsi_a3":"Los sabores familiares traen recuerdos cálidos, por eso se sienten bien.","ic_ad_ballroom_a1":"La gente gana estatus y pertenencia cuando otros la ven actuar.","ic_ad_ballroom_a2":"La habilidad crece en pasos pequeños y visibles, y eso motiva a seguir.","ic_ad_ballroom_a3":"El miedo a hacer el ridículo frena más que la falta de talento.","ic_ad_fujifilm_a1":"Vende lo que se siente al fotografiar, no las especificaciones de la cámara.","ic_ad_fujifilm_a2":"Concentra el contenido en primavera y otoño, cuando más se fotografía.","ic_ad_fujifilm_a3":"Sal de la guerra de especificaciones y compite con creatividad.","ic_ad_sm-universe_a1":"Creer en tu propia capacidad decide si lo intentas o no.","ic_ad_sm-universe_a2":"Cuando una parte sabe más, la otra duda en comprometerse.","ic_ad_sm-universe_a3":"Las redes de apoyo dan la confianza para seguir adelante.","ic_ad_caltex_a1":"Los conductores quieren sentir que controlan su coche y su cuidado.","ic_ad_caltex_a2":"Perder dinero duele más de lo que alegra ahorrar la misma cantidad.","ic_ad_caltex_a3":"La gente quiere que otros noten sus decisiones y su conocimiento.","ic_ad_indrive_a1":"Son los clientes, no las empresas, quienes deben decidir un precio justo.","ic_ad_indrive_a2":"La gente se siente más segura cuando cree que controla lo que pasa.","ic_ad_indrive_a3":"Perder tiempo o pagar de más duele más de lo que alegra una ganancia igual.","ic_ad_thomson_a1":"Los lazos familiares cercanos marcan lo seguros y apoyados que nos sentimos.","ic_ad_thomson_a2":"La distancia entre la crianza ideal y la vida real genera estrés.","ic_ad_thomson_a3":"Los padres se juzgan comparándose con otras familias.","ic_ad_tim-hortons_a1":"Los lugares y la comida cobran sentido en cómo los vivimos y compartimos.","ic_ad_tim-hortons_a2":"La gente elige lugares que reflejan los grupos a los que pertenece.","ic_ad_tim-hortons_a3":"Confiamos en las elecciones que vemos hacer a mucha gente."},"fr":{"ic_play_k":"Constructeur d'insights · 60 secondes","ic_play_t":"Créez votre premier insight","ic_kicker":"Constructeur d'insights · à essayer","ic_article_note":"Rédigé pour cette démo à partir de la chaîne d'insights de {client}. Non publié par {client}.","ic_bot_hi":"Bonjour, je suis le bot SOMIN. Chaque chaîne ici provient d'une vraie étude de cas SOMIN. Construisez-la étape par étape et je vous montrerai pourquoi chaque mouvement fonctionne.","ic_choose_h":"Comment souhaitez-vous commencer ?","ic_choose_a_cta":"Commencer","ic_choose_b_t":"Visiter le site web","ic_choose_b_s":"Découvrez les tarifs, les études de cas et le fonctionnement de SOMIN, à votre rythme.","ic_choose_b_cta":"Aller sur le site","ic_case":"Étude de cas","ic_step_of":"Étape {n} sur {m}","ic_q1":"À qui parlez-vous ?","ic_q2":"Quel point de douleur est le sien ?","ic_q3":"Quel angle convient le mieux ?","ic_q4":"Placez une pub dans chaque canal","ic_content":"Contenu","ic_change":"Changer","ic_autofill":"Remplir pour moi","ic_hint_ship":"Touchez une pub, puis un canal.","ic_ad_reassured_a1":"On valorise bien plus la récompense immédiate que la protection future.","ic_ad_reassured_a2":"On compare le coût de la couverture aujourd'hui à ce qu'elle rapporte.","ic_ad_reassured_a3":"Le jargon inconnu donne l'impression que l'assurance n'est pas pour soi.","ic_ad_pepsi_a1":"On adopte des habitudes en observant sa famille et son entourage.","ic_ad_pepsi_a2":"Vouloir se faire plaisir tout en mangeant sainement crée une tension intérieure.","ic_ad_pepsi_a3":"Les saveurs familières ravivent de bons souvenirs, d'où leur évidence.","ic_ad_ballroom_a1":"On gagne statut et appartenance quand les autres nous voient danser.","ic_ad_ballroom_a2":"Les compétences progressent par petites étapes visibles, ce qui motive.","ic_ad_ballroom_a3":"La peur du ridicule freine davantage que le manque de talent.","ic_ad_fujifilm_a1":"Vendez l'émotion de la photo, pas la fiche technique de l'appareil.","ic_ad_fujifilm_a2":"Concentrez le contenu au printemps et en automne, quand on photographie le plus.","ic_ad_fujifilm_a3":"Sortez de la guerre des fiches techniques et jouez la créativité.","ic_ad_sm-universe_a1":"Croire en ses capacités décide si l'on essaie ou non.","ic_ad_sm-universe_a2":"Quand une partie en sait plus, l'autre hésite à s'engager.","ic_ad_sm-universe_a3":"Un réseau bienveillant donne la confiance de continuer.","ic_ad_caltex_a1":"Les conducteurs veulent garder la main sur leur voiture et son entretien.","ic_ad_caltex_a2":"Perdre de l'argent fait plus mal qu'économiser la même somme ne réjouit.","ic_ad_caltex_a3":"On veut que les autres remarquent nos choix et notre savoir-faire.","ic_ad_indrive_a1":"C'est au client, pas à l'entreprise, de décider d'un prix juste.","ic_ad_indrive_a2":"On se sent plus en sécurité quand on croit maîtriser la situation.","ic_ad_indrive_a3":"Perdre du temps ou payer trop fait plus mal qu'un gain égal ne réjouit.","ic_ad_thomson_a1":"Des liens familiaux forts façonnent notre sentiment de sécurité et de soutien.","ic_ad_thomson_a2":"L'écart entre la parentalité idéale et la réalité crée du stress.","ic_ad_thomson_a3":"Les parents se jugent en se comparant aux autres familles.","ic_ad_tim-hortons_a1":"Les lieux et les plats prennent sens dans la façon de les vivre et de les partager.","ic_ad_tim-hortons_a2":"On choisit des lieux qui reflètent les groupes auxquels on appartient.","ic_ad_tim-hortons_a3":"On fait confiance aux choix que beaucoup d'autres font."},"de":{"ic_play_k":"Insight-Builder · 60 Sekunden","ic_play_t":"Bauen Sie Ihren ersten Insight","ic_kicker":"Insight-Builder · ausprobieren","ic_article_note":"Für diese Demo aus der Insight-Kette von {client} geschrieben. Nicht von {client} veröffentlicht.","ic_bot_hi":"Hallo, ich bin der SOMIN-Bot. Jede Kette hier stammt aus einer echten SOMIN-Fallstudie. Bauen Sie sie Schritt für Schritt auf, und ich zeige Ihnen, warum jeder Zug funktioniert.","ic_choose_h":"Wie möchten Sie starten?","ic_choose_a_cta":"Jetzt bauen","ic_choose_b_t":"Website besuchen","ic_choose_b_s":"Entdecken Sie Preise, Fallstudien und die Funktionsweise von SOMIN in Ihrem eigenen Tempo.","ic_choose_b_cta":"Zur Website","ic_case":"Fallstudie","ic_step_of":"Schritt {n} von {m}","ic_q1":"Mit wem sprechen Sie?","ic_q2":"Welcher Pain Point gehört zu ihnen?","ic_q3":"Welcher Ansatz passt am besten?","ic_q4":"Pro Kanal eine Anzeige","ic_content":"Content","ic_change":"Ändern","ic_autofill":"Für mich ausfüllen","ic_hint_ship":"Anzeige antippen, dann einen Kanal.","ic_ad_reassured_a1":"Menschen schätzen Belohnungen heute weit mehr als Schutz später.","ic_ad_reassured_a2":"Menschen wägen die heutigen Kosten gegen den späteren Nutzen ab.","ic_ad_reassured_a3":"Fremder Fachjargon gibt das Gefühl, Versicherung sei nichts für sie.","ic_ad_pepsi_a1":"Wir übernehmen Gewohnheiten von Familie und Umfeld.","ic_ad_pepsi_a2":"Genuss wollen und gesund essen wollen erzeugt inneren Konflikt.","ic_ad_pepsi_a3":"Vertraute Geschmäcker wecken warme Erinnerungen und fühlen sich richtig an.","ic_ad_ballroom_a1":"Wer vor Publikum auftritt, gewinnt Status und Zugehörigkeit.","ic_ad_ballroom_a2":"Können wächst in kleinen, sichtbaren Schritten – das hält Menschen dabei.","ic_ad_ballroom_a3":"Die Angst, sich zu blamieren, bremst mehr als fehlendes Talent.","ic_ad_fujifilm_a1":"Verkaufen Sie das Gefühl des Fotografierens, nicht technische Daten.","ic_ad_fujifilm_a2":"Content auf Frühling und Herbst bündeln, wenn am meisten fotografiert wird.","ic_ad_fujifilm_a3":"Raus aus dem Datenblatt-Vergleich, rein in den Wettbewerb um Kreativität.","ic_ad_sm-universe_a1":"Der Glaube an die eigenen Fähigkeiten entscheidet, ob man es versucht.","ic_ad_sm-universe_a2":"Weiß eine Seite mehr, zögert die andere, sich festzulegen.","ic_ad_sm-universe_a3":"Unterstützende Netzwerke geben das Selbstvertrauen, dranzubleiben.","ic_ad_caltex_a1":"Fahrer wollen die Kontrolle über ihr Auto und dessen Pflege behalten.","ic_ad_caltex_a2":"Geld zu verlieren schmerzt mehr, als denselben Betrag zu sparen freut.","ic_ad_caltex_a3":"Menschen wollen, dass andere ihre Wahl und ihr Know-how bemerken.","ic_ad_indrive_a1":"Kunden, nicht Unternehmen, sollten über einen fairen Preis entscheiden.","ic_ad_indrive_a2":"Menschen fühlen sich sicherer, wenn sie glauben, die Kontrolle zu haben.","ic_ad_indrive_a3":"Verlorene Zeit oder zu viel bezahlt schmerzt mehr, als ein gleicher Gewinn freut.","ic_ad_thomson_a1":"Enge Familienbande prägen, wie sicher und gestützt wir uns fühlen.","ic_ad_thomson_a2":"Die Lücke zwischen idealer Erziehung und Alltag erzeugt Stress.","ic_ad_thomson_a3":"Eltern bewerten sich im Vergleich mit anderen Familien.","ic_ad_tim-hortons_a1":"Orte und Essen bekommen Bedeutung dadurch, wie wir sie erleben und teilen.","ic_ad_tim-hortons_a2":"Menschen wählen Orte, die ihre Gruppe widerspiegeln.","ic_ad_tim-hortons_a3":"Wir vertrauen Entscheidungen, die wir viele andere treffen sehen."},"pt":{"ic_play_k":"Construtor de insights · 60 segundos","ic_play_t":"Crie o seu primeiro insight","ic_kicker":"Construtor de insights · experimente","ic_article_note":"Escrito para esta demonstração a partir da cadeia de insights de {client}. Não publicado por {client}.","ic_bot_hi":"Olá, sou o bot da SOMIN. Cada cadeia aqui vem de um estudo de caso real da SOMIN. Construa passo a passo e eu mostro por que cada movimento funciona.","ic_choose_h":"Como quer começar?","ic_choose_a_cta":"Começar a criar","ic_choose_b_t":"Visitar o site","ic_choose_b_s":"Explore preços, estudos de caso e como a SOMIN funciona, ao seu ritmo.","ic_choose_b_cta":"Ir para o site","ic_case":"Estudo de caso","ic_step_of":"Passo {n} de {m}","ic_q1":"Com quem está a falar?","ic_q2":"Qual é o ponto de dor desta persona?","ic_q3":"Que ângulo encaixa melhor?","ic_q4":"Coloque um anúncio em cada canal","ic_content":"Conteúdo","ic_change":"Mudar","ic_autofill":"Preencher por mim","ic_hint_ship":"Toque num anúncio e depois num canal.","ic_ad_reassured_a1":"As pessoas valorizam muito mais a recompensa hoje do que a proteção futura.","ic_ad_reassured_a2":"As pessoas pesam o custo do seguro hoje contra o que ele devolve.","ic_ad_reassured_a3":"O jargão desconhecido faz sentir que o seguro não é para elas.","ic_ad_pepsi_a1":"Ganhamos hábitos ao observar a família e quem nos rodeia.","ic_ad_pepsi_a2":"Querer um mimo enquanto se tenta comer bem cria tensão interior.","ic_ad_pepsi_a3":"Sabores familiares trazem memórias calorosas, por isso parecem certos.","ic_ad_ballroom_a1":"As pessoas ganham estatuto e pertença quando os outros as veem atuar.","ic_ad_ballroom_a2":"A competência cresce em pequenos passos visíveis, o que motiva a continuar.","ic_ad_ballroom_a3":"O medo de parecer ridículo trava mais do que a falta de talento.","ic_ad_fujifilm_a1":"Venda a sensação de fotografar, não as especificações da câmara.","ic_ad_fujifilm_a2":"Concentre o conteúdo na primavera e no outono, quando mais se fotografa.","ic_ad_fujifilm_a3":"Saia da guerra de especificações e compita pela criatividade.","ic_ad_sm-universe_a1":"Acreditar na própria capacidade decide se tenta ou não.","ic_ad_sm-universe_a2":"Quando um lado sabe mais, o outro hesita em comprometer-se.","ic_ad_sm-universe_a3":"Redes de apoio dão confiança para continuar.","ic_ad_caltex_a1":"Os condutores querem sentir que controlam o carro e a sua manutenção.","ic_ad_caltex_a2":"Perder dinheiro dói mais do que poupar o mesmo valor alegra.","ic_ad_caltex_a3":"As pessoas querem que os outros reparem nas suas escolhas e saber.","ic_ad_indrive_a1":"São os clientes, não as empresas, que devem decidir o preço justo.","ic_ad_indrive_a2":"As pessoas sentem-se mais seguras quando acreditam que controlam a situação.","ic_ad_indrive_a3":"Perder tempo ou pagar a mais dói mais do que um ganho igual alegra.","ic_ad_thomson_a1":"Laços familiares fortes moldam o quanto nos sentimos seguros e apoiados.","ic_ad_thomson_a2":"A distância entre a parentalidade ideal e a vida real gera stress.","ic_ad_thomson_a3":"Os pais avaliam-se comparando-se com outras famílias.","ic_ad_tim-hortons_a1":"Lugares e comida ganham sentido na forma como os vivemos e partilhamos.","ic_ad_tim-hortons_a2":"As pessoas escolhem lugares que refletem os grupos a que pertencem.","ic_ad_tim-hortons_a3":"Confiamos nas escolhas que vemos muitas pessoas fazer."},"ar":{"ic_play_k":"منشئ الرؤى · 60 ثانية","ic_play_t":"أنشئ أول رؤية لك","ic_kicker":"منشئ الرؤى · جرّبه","ic_article_note":"كُتب لهذا العرض التجريبي من سلسلة رؤى {client}. لم تنشره {client}.","ic_bot_hi":"مرحبًا، أنا روبوت SOMIN. كل سلسلة هنا مأخوذة من دراسة حالة حقيقية لدى SOMIN. ابنِها خطوة بخطوة وسأوضح لك سبب نجاح كل خطوة.","ic_choose_h":"كيف تودّ أن تبدأ؟","ic_choose_a_cta":"ابدأ البناء","ic_choose_b_t":"زيارة الموقع","ic_choose_b_s":"استكشف الأسعار ودراسات الحالة وطريقة عمل SOMIN وفق وتيرتك.","ic_choose_b_cta":"انتقل إلى الموقع","ic_case":"دراسة الحالة","ic_step_of":"الخطوة {n} من {m}","ic_q1":"مع من تتحدث؟","ic_q2":"ما نقطة الألم التي تخصّه؟","ic_q3":"أي زاوية هي الأنسب؟","ic_q4":"ضع إعلانًا واحدًا في كل قناة","ic_content":"المحتوى","ic_change":"تغيير","ic_autofill":"املأها عني","ic_hint_ship":"اضغط على إعلان، ثم على قناة.","ic_ad_reassured_a1":"يقدّر الناس مكاسب اليوم أكثر بكثير من الحماية لاحقًا.","ic_ad_reassured_a2":"يوازن الناس بين تكلفة التغطية الآن وما تعيده لهم.","ic_ad_reassured_a3":"المصطلحات غير المألوفة تُشعر الناس بأن التأمين ليس لهم.","ic_ad_pepsi_a1":"نكتسب العادات بمراقبة العائلة ومن حولنا.","ic_ad_pepsi_a2":"الرغبة في الدلال مع محاولة الأكل الصحي تخلق توترًا داخليًا.","ic_ad_pepsi_a3":"النكهات المألوفة تعيد ذكريات دافئة، فتبدو مناسبة.","ic_ad_ballroom_a1":"يكسب الناس المكانة والانتماء عندما يراهم الآخرون يؤدون.","ic_ad_ballroom_a2":"تنمو المهارة بخطوات صغيرة مرئية، وهذا ما يدفع للاستمرار.","ic_ad_ballroom_a3":"الخوف من الظهور بمظهر سخيف يعيق أكثر من قلة الموهبة.","ic_ad_fujifilm_a1":"بِع إحساس التصوير، لا المواصفات التقنية للكاميرا.","ic_ad_fujifilm_a2":"ركّز المحتوى على الربيع والخريف، حين يصوّر الناس أكثر.","ic_ad_fujifilm_a3":"اخرج من حرب المواصفات وتنافس بالإبداع.","ic_ad_sm-universe_a1":"الإيمان بقدرتك يحدد إن كنت ستحاول أصلًا.","ic_ad_sm-universe_a2":"عندما يعرف طرف أكثر، يتردد الطرف الآخر في الالتزام.","ic_ad_sm-universe_a3":"الشبكات الداعمة تمنح الناس الثقة للاستمرار.","ic_ad_caltex_a1":"يريد السائقون الشعور بالتحكم في سيارتهم وصيانتها.","ic_ad_caltex_a2":"خسارة المال تؤلم أكثر مما يُفرح توفير المبلغ نفسه.","ic_ad_caltex_a3":"يريد الناس أن يلاحظ الآخرون اختياراتهم وخبرتهم.","ic_ad_indrive_a1":"العملاء، لا الشركات، من يجب أن يحدد السعر العادل.","ic_ad_indrive_a2":"يشعر الناس بأمان أكبر حين يعتقدون أنهم يتحكمون بما يحدث.","ic_ad_indrive_a3":"إضاعة الوقت أو الدفع الزائد يؤلم أكثر مما يُفرح مكسب مماثل.","ic_ad_thomson_a1":"الروابط العائلية القوية تشكّل شعورنا بالأمان والدعم.","ic_ad_thomson_a2":"الفجوة بين التربية المثالية والواقع تخلق ضغطًا.","ic_ad_thomson_a3":"يحكم الآباء على أنفسهم بمقارنة أسرهم بغيرها.","ic_ad_tim-hortons_a1":"تكتسب الأماكن والأطعمة معناها من طريقة عيشنا لها ومشاركتها.","ic_ad_tim-hortons_a2":"يختار الناس أماكن تعكس الجماعات التي ينتمون إليها.","ic_ad_tim-hortons_a3":"نثق بالخيارات التي نرى كثيرين يتخذونها."},"ru":{"ic_play_k":"Конструктор инсайтов · 60 секунд","ic_play_t":"Создайте свой первый инсайт","ic_kicker":"Конструктор инсайтов · попробуйте","ic_article_note":"Написано для этого демо по цепочке инсайтов {client}. Не опубликовано {client}.","ic_bot_hi":"Привет, я бот SOMIN. Каждая цепочка здесь взята из реального кейса SOMIN. Собирайте её шаг за шагом, и я покажу, почему каждый ход работает.","ic_choose_h":"С чего хотите начать?","ic_choose_a_cta":"Начать создавать","ic_choose_b_t":"Перейти на сайт","ic_choose_b_s":"Изучите цены, кейсы и принцип работы SOMIN в своём темпе.","ic_choose_b_cta":"На сайт","ic_case":"Кейс","ic_step_of":"Шаг {n} из {m}","ic_q1":"С кем вы говорите?","ic_q2":"Какая боль — их?","ic_q3":"Какой угол подходит лучше?","ic_q4":"Поставьте по одной рекламе в каждый канал","ic_content":"Контент","ic_change":"Сменить","ic_autofill":"Заполнить за меня","ic_hint_ship":"Нажмите на рекламу, затем на канал.","ic_ad_reassured_a1":"Люди ценят выгоду сегодня гораздо больше, чем защиту в будущем.","ic_ad_reassured_a2":"Люди сравнивают цену страховки сейчас с тем, что она даёт взамен.","ic_ad_reassured_a3":"Незнакомые термины создают ощущение, что страховка не для них.","ic_ad_pepsi_a1":"Мы перенимаем привычки, наблюдая за семьёй и окружением.","ic_ad_pepsi_a2":"Желание побаловать себя и стремление есть правильно создают внутренний конфликт.","ic_ad_pepsi_a3":"Знакомый вкус возвращает тёплые воспоминания, поэтому кажется правильным.","ic_ad_ballroom_a1":"Люди получают статус и чувство принадлежности, когда их видят на сцене.","ic_ad_ballroom_a2":"Навык растёт маленькими заметными шагами, и это мотивирует продолжать.","ic_ad_ballroom_a3":"Страх выглядеть глупо останавливает сильнее, чем нехватка таланта.","ic_ad_fujifilm_a1":"Продавайте ощущение от съёмки, а не технические характеристики камеры.","ic_ad_fujifilm_a2":"Сосредоточьте контент на весне и осени, когда снимают больше всего.","ic_ad_fujifilm_a3":"Выйдите из гонки характеристик и конкурируйте креативом.","ic_ad_sm-universe_a1":"Вера в свои силы решает, попробуете ли вы вообще.","ic_ad_sm-universe_a2":"Когда одна сторона знает больше, другая не решается.","ic_ad_sm-universe_a3":"Поддерживающее сообщество даёт уверенность продолжать.","ic_ad_caltex_a1":"Водители хотят сами контролировать машину и уход за ней.","ic_ad_caltex_a2":"Потерять деньги больнее, чем радостно сэкономить ту же сумму.","ic_ad_caltex_a3":"Людям важно, чтобы другие замечали их выбор и знания.","ic_ad_indrive_a1":"Справедливую цену должны определять клиенты, а не компании.","ic_ad_indrive_a2":"Люди чувствуют себя увереннее, когда верят, что всё под контролем.","ic_ad_indrive_a3":"Потерянное время или переплата огорчают сильнее, чем радует такая же выгода.","ic_ad_thomson_a1":"Крепкие семейные связи определяют, насколько защищёнными мы себя чувствуем.","ic_ad_thomson_a2":"Разрыв между идеальным родительством и реальной жизнью создаёт стресс.","ic_ad_thomson_a3":"Родители оценивают себя, сравнивая с другими семьями.","ic_ad_tim-hortons_a1":"Места и еда обретают смысл через то, как мы их проживаем и делимся ими.","ic_ad_tim-hortons_a2":"Люди выбирают места, отражающие их группу.","ic_ad_tim-hortons_a3":"Мы доверяем выбору, который делают многие."}};
+    var DICT_X = {"en":{"ic_play_k":"Insight builder · 60 seconds","ic_play_t":"Build your first insight","ic_kicker":"Insight builder · try it","ic_article_note":"Written for this demo from the {client} insight chain. Not published by {client}.","ic_bot_hi":"Hi! I'm your SOMIN assistant. I'll drop quick hints as you go.","ic_choose_h":"How would you like to start?","ic_choose_a_cta":"Start building","ic_choose_b_t":"Visit the website","ic_choose_b_s":"Explore pricing, case studies and how SOMIN works, at your own pace.","ic_choose_b_cta":"Go to the website","ic_case":"Case study","ic_step_of":"Step {n} of {m}","ic_q1":"Who are you talking to?","ic_q2":"Which pain point is theirs?","ic_q3":"Which angle fits best?","ic_q4":"Put one ad in each channel","ic_content":"Content","ic_change":"Change","ic_autofill":"Fill for me","ic_hint_ship":"Tap an ad, then a channel.","ic_ad_reassured_a1":"People value rewards today far more than protection later.","ic_ad_reassured_a2":"People weigh what cover costs now against what it gives back.","ic_ad_reassured_a3":"Unfamiliar jargon makes people feel insurance isn't meant for them.","ic_ad_pepsi_a1":"We pick up habits by watching family and the people around us.","ic_ad_pepsi_a2":"Wanting a treat while trying to eat well creates inner tension.","ic_ad_pepsi_a3":"Familiar tastes bring back warm memories, so they feel right.","ic_ad_ballroom_a1":"People gain status and belonging when others see them perform.","ic_ad_ballroom_a2":"Skills grow in small, visible steps, which keeps people going.","ic_ad_ballroom_a3":"Fear of looking foolish stops people more than lack of talent.","ic_ad_fujifilm_a1":"Sell how photography feels, not the camera's technical specs.","ic_ad_fujifilm_a2":"Focus content on spring and autumn, when people shoot most.","ic_ad_fujifilm_a3":"Step out of spec comparisons and compete on creativity instead.","ic_ad_sm-universe_a1":"Belief in your own ability decides whether you try at all.","ic_ad_sm-universe_a2":"When one side knows more, the other hesitates to commit.","ic_ad_sm-universe_a3":"Supportive networks give people the confidence to keep going.","ic_ad_caltex_a1":"Drivers want to feel in charge of their car and its care.","ic_ad_caltex_a2":"Losing money hurts more than saving the same amount feels good.","ic_ad_caltex_a3":"People want others to notice their choices and know-how.","ic_ad_indrive_a1":"Customers, not companies, should decide what a fair price is.","ic_ad_indrive_a2":"People feel safer when they believe they control what happens.","ic_ad_indrive_a3":"Wasted time or overpaying hurts more than an equal gain pleases.","ic_ad_thomson_a1":"Close family bonds shape how safe and supported we feel.","ic_ad_thomson_a2":"The gap between ideal parenting and real life creates stress.","ic_ad_thomson_a3":"Parents judge themselves by comparing with other families.","ic_ad_tim-hortons_a1":"Places and food gain meaning through how we experience and share them.","ic_ad_tim-hortons_a2":"People choose places that reflect the groups they belong to.","ic_ad_tim-hortons_a3":"We trust choices that we see many other people making.","ic_bot_persona":"Start with a person: pick who you want to reach.","ic_bot_pain":"Nice pick! Now link the pain point that's really theirs.","ic_bot_angle":"Great match! Now pick the lens that explains why it hurts.","ic_bot_wrong":"Close! Try the glowing one.","ic_bot_insight":"Here's your insight: one human truth to build every ad on.","ic_bot_ship":"Now drop one ad into each channel, or tap Fill for me.","ic_bot_results":"Launched! Grab the full case study to see the whole plan.","ic_bot_almost":"Almost! The glowing card is the better fit.","ic_angles":"Angles","ic_ph_angle":"Connect a pain point first.","ic_hint_tree":"Tap a card, or drag a line to connect.","ic_read_full":"Read the full case study"},"zh-Hans":{"ic_play_k":"洞察构建器 · 60 秒","ic_play_t":"构建你的第一个洞察","ic_kicker":"洞察构建器 · 来试试","ic_article_note":"为本演示根据 {client} 的洞察链撰写。并非由 {client} 发布。","ic_bot_hi":"你好！我是你的 SOMIN 助手，会一路给你小提示。","ic_choose_h":"你想如何开始？","ic_choose_a_cta":"开始构建","ic_choose_b_t":"访问网站","ic_choose_b_s":"按自己的节奏了解价格、案例和 SOMIN 的工作方式。","ic_choose_b_cta":"前往网站","ic_case":"案例研究","ic_step_of":"第 {n} 步，共 {m} 步","ic_q1":"你在和谁对话？","ic_q2":"哪个痛点属于他们？","ic_q3":"哪个角度最合适？","ic_q4":"每个渠道放一条广告","ic_content":"内容","ic_change":"更换","ic_autofill":"帮我填好","ic_hint_ship":"先点一条广告，再点一个渠道。","ic_ad_reassured_a1":"人们更看重眼前的回报，而不是将来的保障。","ic_ad_reassured_a2":"人们会权衡保障现在的花费与它带来的回报。","ic_ad_reassured_a3":"陌生的术语让人觉得保险不是为自己准备的。","ic_ad_pepsi_a1":"我们通过观察家人和身边的人养成习惯。","ic_ad_pepsi_a2":"想犒劳自己又想吃得健康，会带来内心的矛盾。","ic_ad_pepsi_a3":"熟悉的味道唤起温暖的回忆，所以感觉对味。","ic_ad_ballroom_a1":"被别人看到自己的表演，人们就获得地位和归属感。","ic_ad_ballroom_a2":"技能在一个个看得见的小进步中成长，让人坚持下去。","ic_ad_ballroom_a3":"阻碍人们的不是天赋不足，而是怕出丑。","ic_ad_fujifilm_a1":"卖的是摄影带来的感受，而不是相机的技术参数。","ic_ad_fujifilm_a2":"把内容集中在春秋两季，人们拍照最多的时候。","ic_ad_fujifilm_a3":"跳出参数比拼，转而在创意上竞争。","ic_ad_sm-universe_a1":"是否相信自己的能力，决定了你会不会去尝试。","ic_ad_sm-universe_a2":"当一方知道得更多，另一方就会犹豫不决。","ic_ad_sm-universe_a3":"支持性的圈子给人坚持下去的信心。","ic_ad_caltex_a1":"车主希望对自己的车和保养有掌控感。","ic_ad_caltex_a2":"损失金钱的痛，大于省下同样金额的快乐。","ic_ad_caltex_a3":"人们希望自己的选择和专业被别人看见。","ic_ad_indrive_a1":"公平的价格应由顾客决定，而不是公司。","ic_ad_indrive_a2":"当人们相信事情由自己掌控时，会感到更安心。","ic_ad_indrive_a3":"浪费时间或多付钱的痛，大于同等收获的快乐。","ic_ad_thomson_a1":"紧密的家庭纽带决定了我们感到多安全、多受支持。","ic_ad_thomson_a2":"理想育儿与现实生活之间的落差会带来压力。","ic_ad_thomson_a3":"父母会通过和其他家庭比较来评判自己。","ic_ad_tim-hortons_a1":"地方和食物的意义，来自我们如何体验和分享它们。","ic_ad_tim-hortons_a2":"人们会选择能体现自己所属群体的地方。","ic_ad_tim-hortons_a3":"我们信任看到很多人都在做的选择。","ic_bot_persona":"先从人开始：选出你想触达的人。","ic_bot_pain":"选得好！现在连上真正属于他们的痛点。","ic_bot_angle":"很匹配！现在选出能解释痛点原因的视角。","ic_bot_wrong":"差一点！试试发光的那个。","ic_bot_insight":"这就是你的洞察：一条支撑每条广告的人性真相。","ic_bot_ship":"现在每个渠道放一条广告，或点“帮我填好”。","ic_bot_results":"已上线！获取完整案例，看看整套方案。","ic_bot_almost":"差一点！发光的卡片更合适。","ic_angles":"视角","ic_ph_angle":"先连上一个痛点。","ic_hint_tree":"点一张卡片，或拖一条线来连接。","ic_read_full":"阅读完整案例"},"zh-Hant":{"ic_play_k":"洞察建構器 · 60 秒","ic_play_t":"建構你的第一個洞察","ic_kicker":"洞察建構器 · 來試試","ic_article_note":"為此示範根據 {client} 的洞察鏈撰寫。並非由 {client} 發布。","ic_bot_hi":"你好！我是你的 SOMIN 助手，會一路給你小提示。","ic_choose_h":"你想如何開始？","ic_choose_a_cta":"開始建構","ic_choose_b_t":"造訪網站","ic_choose_b_s":"依自己的步調了解價格、案例與 SOMIN 的運作方式。","ic_choose_b_cta":"前往網站","ic_case":"案例研究","ic_step_of":"第 {n} 步，共 {m} 步","ic_q1":"你在和誰對話？","ic_q2":"哪個痛點屬於他們？","ic_q3":"哪個角度最合適？","ic_q4":"每個渠道放一則廣告","ic_content":"內容","ic_change":"更換","ic_autofill":"幫我填好","ic_hint_ship":"先點一則廣告，再點一個渠道。","ic_ad_reassured_a1":"人們更看重眼前的回報，而不是將來的保障。","ic_ad_reassured_a2":"人們會權衡保障現在的花費與它帶來的回報。","ic_ad_reassured_a3":"陌生的術語讓人覺得保險不是為自己準備的。","ic_ad_pepsi_a1":"我們透過觀察家人和身邊的人養成習慣。","ic_ad_pepsi_a2":"想犒賞自己又想吃得健康，會帶來內心的矛盾。","ic_ad_pepsi_a3":"熟悉的味道喚起溫暖的回憶，所以感覺對味。","ic_ad_ballroom_a1":"被別人看到自己的表演，人們就獲得地位和歸屬感。","ic_ad_ballroom_a2":"技能在一個個看得見的小進步中成長，讓人堅持下去。","ic_ad_ballroom_a3":"阻礙人們的不是天賦不足，而是怕出糗。","ic_ad_fujifilm_a1":"賣的是攝影帶來的感受，而不是相機的技術規格。","ic_ad_fujifilm_a2":"把內容集中在春秋兩季，人們拍照最多的時候。","ic_ad_fujifilm_a3":"跳出規格比拼，轉而在創意上競爭。","ic_ad_sm-universe_a1":"是否相信自己的能力，決定了你會不會去嘗試。","ic_ad_sm-universe_a2":"當一方知道得更多，另一方就會猶豫不決。","ic_ad_sm-universe_a3":"支持性的圈子給人堅持下去的信心。","ic_ad_caltex_a1":"車主希望對自己的車和保養有掌控感。","ic_ad_caltex_a2":"損失金錢的痛，大於省下同樣金額的快樂。","ic_ad_caltex_a3":"人們希望自己的選擇和專業被別人看見。","ic_ad_indrive_a1":"公平的價格應由顧客決定，而不是公司。","ic_ad_indrive_a2":"當人們相信事情由自己掌控時，會感到更安心。","ic_ad_indrive_a3":"浪費時間或多付錢的痛，大於同等收穫的快樂。","ic_ad_thomson_a1":"緊密的家庭紐帶決定了我們感到多安全、多受支持。","ic_ad_thomson_a2":"理想育兒與現實生活之間的落差會帶來壓力。","ic_ad_thomson_a3":"父母會透過和其他家庭比較來評判自己。","ic_ad_tim-hortons_a1":"地方和食物的意義，來自我們如何體驗和分享它們。","ic_ad_tim-hortons_a2":"人們會選擇能體現自己所屬群體的地方。","ic_ad_tim-hortons_a3":"我們信任看到很多人都在做的選擇。","ic_bot_persona":"先從人開始：選出你想觸及的人。","ic_bot_pain":"選得好！現在連上真正屬於他們的痛點。","ic_bot_angle":"很匹配！現在選出能解釋痛點原因的角度。","ic_bot_wrong":"差一點！試試發光的那個。","ic_bot_insight":"這就是你的洞察：一個支撐每則廣告的人性真相。","ic_bot_ship":"現在每個渠道放一則廣告，或點「幫我填好」。","ic_bot_results":"已上線！取得完整案例，看看整套方案。","ic_bot_almost":"差一點！發光的卡片更合適。","ic_angles":"角度","ic_ph_angle":"先連上一個痛點。","ic_hint_tree":"點一張卡片，或拖一條線來連接。","ic_read_full":"閱讀完整案例"},"ja":{"ic_play_k":"インサイトビルダー · 60 秒","ic_play_t":"最初のインサイトを作ってみる","ic_kicker":"インサイトビルダー · 試してみる","ic_article_note":"このデモのために、{client} のインサイトの連鎖から作成しました。{client} が公開したものではありません。","ic_bot_hi":"こんにちは！SOMIN アシスタントです。進めながら短いヒントを出しますね。","ic_choose_h":"どちらから始めますか？","ic_choose_a_cta":"作り始める","ic_choose_b_t":"サイトを見る","ic_choose_b_s":"料金、事例、SOMIN の仕組みを、ご自分のペースでご覧ください。","ic_choose_b_cta":"サイトへ進む","ic_case":"事例","ic_step_of":"ステップ {n} / {m}","ic_q1":"誰に語りかけますか？","ic_q2":"この人の課題はどれ？","ic_q3":"最も合う切り口は？","ic_q4":"各チャネルに広告を1つずつ","ic_content":"コンテンツ","ic_change":"変更","ic_autofill":"おまかせで配置","ic_hint_ship":"広告をタップし、次にチャネルをタップ。","ic_ad_reassured_a1":"人は将来の備えより、今すぐ得られるものを重視します。","ic_ad_reassured_a2":"保険の今の負担と、得られる見返りを天秤にかけます。","ic_ad_reassured_a3":"なじみのない専門用語が、保険を自分とは無縁に感じさせます。","ic_ad_pepsi_a1":"人は家族や周りの人を見て習慣を身につけます。","ic_ad_pepsi_a2":"ご褒美が欲しい気持ちと健康志向がぶつかり、葛藤が生まれます。","ic_ad_pepsi_a3":"なじみの味は温かい記憶を呼び起こし、しっくりきます。","ic_ad_ballroom_a1":"人に見てもらうことで、地位と居場所が生まれます。","ic_ad_ballroom_a2":"技術は目に見える小さな一歩で伸び、続ける力になります。","ic_ad_ballroom_a3":"才能のなさより、恥をかく不安が人を止めます。","ic_ad_fujifilm_a1":"カメラのスペックではなく、写真を撮る喜びを伝えます。","ic_ad_fujifilm_a2":"人が最も撮影する春と秋にコンテンツを集中させます。","ic_ad_fujifilm_a3":"スペック比較から離れ、創造性で勝負します。","ic_ad_sm-universe_a1":"自分の力を信じられるかどうかで、挑戦するかが決まります。","ic_ad_sm-universe_a2":"片方だけが多くを知っていると、もう片方はためらいます。","ic_ad_sm-universe_a3":"支え合う仲間が、続ける自信をくれます。","ic_ad_caltex_a1":"ドライバーは愛車とその手入れを自分で管理したいと考えます。","ic_ad_caltex_a2":"お金を失う痛みは、同じ額を節約する喜びより大きいものです。","ic_ad_caltex_a3":"人は自分の選択や知識を周りに認めてほしいと思います。","ic_ad_indrive_a1":"公正な価格を決めるのは会社ではなく、利用者です。","ic_ad_indrive_a2":"物事を自分でコントロールできると感じると、人は安心します。","ic_ad_indrive_a3":"時間の無駄や払いすぎの痛みは、同じだけの得より大きく感じます。","ic_ad_thomson_a1":"家族との強い絆が、安心感と支えられている実感を形づくります。","ic_ad_thomson_a2":"理想の子育てと現実のギャップがストレスを生みます。","ic_ad_thomson_a3":"親は他の家庭と比べて自分を評価しがちです。","ic_ad_tim-hortons_a1":"場所や食べ物の意味は、体験し共有することで生まれます。","ic_ad_tim-hortons_a2":"人は自分が属する集団を映す場所を選びます。","ic_ad_tim-hortons_a3":"多くの人が選んでいるものを、人は信頼します。","ic_bot_persona":"まずは人から。届けたい相手を選びましょう。","ic_bot_pain":"いい選択です！次はその人の本当の課題をつなげましょう。","ic_bot_angle":"ぴったりです！その悩みを説明できる切り口を選びましょう。","ic_bot_wrong":"惜しい！光っているカードを試してみて。","ic_bot_insight":"これがインサイト。すべての広告の土台になる、人の本音です。","ic_bot_ship":"各チャネルに広告を1つずつ。「おまかせで配置」でもOKです。","ic_bot_results":"公開完了！事例の全文でプラン全体をご覧ください。","ic_bot_almost":"惜しい！光っているカードの方が合っています。","ic_angles":"切り口","ic_ph_angle":"まず課題をつなげてください。","ic_hint_tree":"カードをタップするか、線をドラッグしてつなげます。","ic_read_full":"事例の全文を読む"},"ko":{"ic_play_k":"인사이트 빌더 · 60초","ic_play_t":"첫 인사이트 만들기","ic_kicker":"인사이트 빌더 · 직접 해보기","ic_article_note":"이 데모를 위해 {client}의 인사이트 체인을 바탕으로 작성했습니다. {client}가 게시한 것이 아닙니다.","ic_bot_hi":"안녕하세요! SOMIN 어시스턴트예요. 진행하면서 짧은 힌트를 드릴게요.","ic_choose_h":"어떻게 시작하시겠어요?","ic_choose_a_cta":"만들기 시작","ic_choose_b_t":"웹사이트 둘러보기","ic_choose_b_s":"요금, 사례, SOMIN의 작동 방식을 원하는 속도로 살펴보세요.","ic_choose_b_cta":"웹사이트로 이동","ic_case":"사례 연구","ic_step_of":"{m}단계 중 {n}단계","ic_q1":"누구에게 말하고 있나요?","ic_q2":"이 사람의 페인 포인트는?","ic_q3":"가장 잘 맞는 앵글은?","ic_q4":"채널마다 광고를 하나씩 넣으세요","ic_content":"콘텐츠","ic_change":"변경","ic_autofill":"자동으로 채우기","ic_hint_ship":"광고를 탭한 다음 채널을 탭하세요.","ic_ad_reassured_a1":"사람들은 나중의 보장보다 지금의 보상을 훨씬 중시합니다.","ic_ad_reassured_a2":"보험의 지금 비용과 돌아오는 가치를 저울질합니다.","ic_ad_reassured_a3":"낯선 용어는 보험이 나와는 상관없다고 느끼게 합니다.","ic_ad_pepsi_a1":"우리는 가족과 주변 사람을 보며 습관을 익힙니다.","ic_ad_pepsi_a2":"즐기고 싶은 마음과 건강하게 먹으려는 마음이 갈등을 만듭니다.","ic_ad_pepsi_a3":"익숙한 맛은 따뜻한 기억을 불러와 더 끌립니다.","ic_ad_ballroom_a1":"남들 앞에서 보여 줄 때 지위와 소속감이 생깁니다.","ic_ad_ballroom_a2":"실력은 눈에 보이는 작은 단계로 늘고, 그것이 계속하게 만듭니다.","ic_ad_ballroom_a3":"재능 부족보다 바보처럼 보일까 하는 두려움이 사람을 막습니다.","ic_ad_fujifilm_a1":"카메라 사양이 아니라 사진이 주는 느낌을 파세요.","ic_ad_fujifilm_a2":"사람들이 가장 많이 찍는 봄과 가을에 콘텐츠를 집중하세요.","ic_ad_fujifilm_a3":"사양 경쟁에서 벗어나 창의성으로 승부하세요.","ic_ad_sm-universe_a1":"자신의 능력을 믿는지가 시도할지 말지를 결정합니다.","ic_ad_sm-universe_a2":"한쪽이 더 많이 알면 다른 쪽은 결정을 망설입니다.","ic_ad_sm-universe_a3":"서로 지지하는 네트워크가 계속할 자신감을 줍니다.","ic_ad_caltex_a1":"운전자는 자기 차와 관리를 직접 통제하고 싶어 합니다.","ic_ad_caltex_a2":"돈을 잃는 아픔은 같은 금액을 아끼는 기쁨보다 큽니다.","ic_ad_caltex_a3":"사람들은 자신의 선택과 노하우를 인정받고 싶어 합니다.","ic_ad_indrive_a1":"공정한 가격은 회사가 아니라 고객이 정해야 합니다.","ic_ad_indrive_a2":"상황을 통제한다고 믿을 때 사람들은 더 안전하다고 느낍니다.","ic_ad_indrive_a3":"시간 낭비나 과지불의 아픔은 같은 이득의 기쁨보다 큽니다.","ic_ad_thomson_a1":"가족과의 깊은 유대가 안정감과 지지받는 느낌을 만듭니다.","ic_ad_thomson_a2":"이상적인 육아와 현실 사이의 차이가 스트레스를 만듭니다.","ic_ad_thomson_a3":"부모는 다른 가족과 비교하며 자신을 평가합니다.","ic_ad_tim-hortons_a1":"장소와 음식은 우리가 경험하고 나누는 방식으로 의미를 얻습니다.","ic_ad_tim-hortons_a2":"사람들은 자신이 속한 집단을 반영하는 장소를 고릅니다.","ic_ad_tim-hortons_a3":"우리는 많은 사람이 하는 선택을 신뢰합니다.","ic_bot_persona":"사람부터 시작해요. 다가가고 싶은 사람을 고르세요.","ic_bot_pain":"좋은 선택이에요! 이제 그 사람의 진짜 페인 포인트를 연결하세요.","ic_bot_angle":"잘 맞아요! 왜 아픈지 설명하는 앵글을 고르세요.","ic_bot_wrong":"아깝네요! 빛나는 카드를 골라 보세요.","ic_bot_insight":"이게 인사이트예요. 모든 광고의 바탕이 되는 하나의 진실이죠.","ic_bot_ship":"이제 채널마다 광고를 하나씩 넣거나 '자동으로 채우기'를 누르세요.","ic_bot_results":"런칭 완료! 전체 사례 연구에서 전체 계획을 확인하세요.","ic_bot_almost":"아깝네요! 빛나는 카드가 더 잘 맞아요.","ic_angles":"앵글","ic_ph_angle":"먼저 페인 포인트를 연결하세요.","ic_hint_tree":"카드를 탭하거나 선을 끌어 연결하세요.","ic_read_full":"전체 사례 연구 읽기"},"th":{"ic_play_k":"ตัวสร้างอินไซต์ · 60 วินาที","ic_play_t":"สร้างอินไซต์แรกของคุณ","ic_kicker":"ตัวสร้างอินไซต์ · ลองเลย","ic_article_note":"เขียนขึ้นสำหรับเดโมนี้จากห่วงโซ่อินไซต์ของ {client} ไม่ได้เผยแพร่โดย {client}","ic_bot_hi":"สวัสดี! ฉันคือผู้ช่วย SOMIN จะคอยให้คำใบ้สั้นๆ ระหว่างทาง","ic_choose_h":"คุณอยากเริ่มต้นแบบไหน","ic_choose_a_cta":"เริ่มสร้าง","ic_choose_b_t":"เข้าชมเว็บไซต์","ic_choose_b_s":"ดูราคา กรณีศึกษา และวิธีการทำงานของ SOMIN ตามจังหวะของคุณ","ic_choose_b_cta":"ไปที่เว็บไซต์","ic_case":"กรณีศึกษา","ic_step_of":"ขั้นที่ {n} จาก {m}","ic_q1":"คุณกำลังคุยกับใคร?","ic_q2":"ปัญหาข้อไหนเป็นของเขา?","ic_q3":"มุมมองไหนเหมาะที่สุด?","ic_q4":"ใส่โฆษณาหนึ่งชิ้นในแต่ละช่องทาง","ic_content":"คอนเทนต์","ic_change":"เปลี่ยน","ic_autofill":"เติมให้ฉัน","ic_hint_ship":"แตะโฆษณา แล้วแตะช่องทาง","ic_ad_reassured_a1":"คนให้ค่ากับสิ่งที่ได้วันนี้มากกว่าความคุ้มครองในอนาคต","ic_ad_reassured_a2":"คนชั่งน้ำหนักค่าเบี้ยวันนี้กับสิ่งที่จะได้กลับมา","ic_ad_reassured_a3":"ศัพท์ที่ไม่คุ้นทำให้รู้สึกว่าประกันไม่ใช่เรื่องของตัวเอง","ic_ad_pepsi_a1":"เราเรียนรู้นิสัยจากการดูครอบครัวและคนรอบตัว","ic_ad_pepsi_a2":"อยากให้รางวัลตัวเองแต่ก็อยากกินดี ทำให้เกิดความขัดแย้งในใจ","ic_ad_pepsi_a3":"รสชาติที่คุ้นเคยพาความทรงจำอบอุ่นกลับมา จึงรู้สึกใช่","ic_ad_ballroom_a1":"คนได้ทั้งสถานะและความรู้สึกเป็นส่วนหนึ่งเมื่อมีคนดูเขาแสดง","ic_ad_ballroom_a2":"ทักษะเติบโตทีละก้าวที่มองเห็นได้ ทำให้อยากไปต่อ","ic_ad_ballroom_a3":"ความกลัวว่าจะดูเปิ่นหยุดคนได้มากกว่าการขาดพรสวรรค์","ic_ad_fujifilm_a1":"ขายความรู้สึกของการถ่ายภาพ ไม่ใช่สเปกกล้อง","ic_ad_fujifilm_a2":"เน้นคอนเทนต์ช่วงใบไม้ผลิและใบไม้ร่วง ที่คนถ่ายภาพมากที่สุด","ic_ad_fujifilm_a3":"ออกจากการเทียบสเปก แล้วแข่งกันที่ความคิดสร้างสรรค์","ic_ad_sm-universe_a1":"ความเชื่อในความสามารถของตัวเองตัดสินว่าจะลองหรือไม่","ic_ad_sm-universe_a2":"เมื่อฝ่ายหนึ่งรู้มากกว่า อีกฝ่ายจะลังเลที่จะตัดสินใจ","ic_ad_sm-universe_a3":"เครือข่ายที่คอยสนับสนุนให้ความมั่นใจที่จะไปต่อ","ic_ad_caltex_a1":"ผู้ขับขี่อยากรู้สึกว่าควบคุมรถและการดูแลรถได้เอง","ic_ad_caltex_a2":"การเสียเงินเจ็บกว่าความสุขจากการประหยัดเงินจำนวนเท่ากัน","ic_ad_caltex_a3":"คนอยากให้ผู้อื่นเห็นทางเลือกและความรู้ของตน","ic_ad_indrive_a1":"ลูกค้า ไม่ใช่บริษัท ควรเป็นคนตัดสินว่าราคาไหนยุติธรรม","ic_ad_indrive_a2":"คนรู้สึกปลอดภัยขึ้นเมื่อเชื่อว่าตนควบคุมสิ่งที่เกิดขึ้นได้","ic_ad_indrive_a3":"การเสียเวลาหรือจ่ายเกินเจ็บกว่าความสุขจากสิ่งที่ได้เท่ากัน","ic_ad_thomson_a1":"สายใยครอบครัวที่แน่นแฟ้นกำหนดว่าเรารู้สึกปลอดภัยแค่ไหน","ic_ad_thomson_a2":"ช่องว่างระหว่างการเลี้ยงลูกในอุดมคติกับชีวิตจริงสร้างความเครียด","ic_ad_thomson_a3":"พ่อแม่ตัดสินตัวเองด้วยการเทียบกับครอบครัวอื่น","ic_ad_tim-hortons_a1":"สถานที่และอาหารมีความหมายจากการที่เราได้สัมผัสและแบ่งปัน","ic_ad_tim-hortons_a2":"คนเลือกสถานที่ที่สะท้อนกลุ่มที่ตนเป็นสมาชิก","ic_ad_tim-hortons_a3":"เราเชื่อในทางเลือกที่เห็นคนจำนวนมากเลือก","ic_bot_persona":"เริ่มจากคน: เลือกคนที่คุณอยากเข้าถึง","ic_bot_pain":"เลือกดีมาก! ต่อไปเชื่อมปัญหาที่เป็นของเขาจริงๆ","ic_bot_angle":"เข้ากันดี! เลือกมุมมองที่อธิบายว่าทำไมมันถึงเจ็บ","ic_bot_wrong":"เกือบแล้ว! ลองการ์ดที่เรืองแสงดู","ic_bot_insight":"นี่คืออินไซต์ของคุณ: ความจริงหนึ่งข้อที่ทุกโฆษณาสร้างขึ้นมา","ic_bot_ship":"ใส่โฆษณาหนึ่งชิ้นในแต่ละช่องทาง หรือแตะ เติมให้ฉัน","ic_bot_results":"เปิดตัวแล้ว! ดาวน์โหลดกรณีศึกษาฉบับเต็มเพื่อดูแผนทั้งหมด","ic_bot_almost":"เกือบแล้ว! การ์ดที่เรืองแสงเหมาะกว่า","ic_angles":"มุมมอง","ic_ph_angle":"เชื่อมปัญหาก่อน","ic_hint_tree":"แตะการ์ด หรือลากเส้นเพื่อเชื่อม","ic_read_full":"อ่านกรณีศึกษาฉบับเต็ม"},"vi":{"ic_play_k":"Trình tạo insight · 60 giây","ic_play_t":"Tạo insight đầu tiên của bạn","ic_kicker":"Trình tạo insight · thử ngay","ic_article_note":"Được viết cho bản demo này từ chuỗi insight của {client}. Không do {client} xuất bản.","ic_bot_hi":"Xin chào! Mình là trợ lý SOMIN, sẽ gợi ý ngắn cho bạn trên đường đi.","ic_choose_h":"Bạn muốn bắt đầu thế nào?","ic_choose_a_cta":"Bắt đầu tạo","ic_choose_b_t":"Xem website","ic_choose_b_s":"Khám phá bảng giá, case study và cách SOMIN hoạt động theo nhịp của bạn.","ic_choose_b_cta":"Đến website","ic_case":"Case study","ic_step_of":"Bước {n}/{m}","ic_q1":"Bạn đang nói với ai?","ic_q2":"Nỗi đau nào là của họ?","ic_q3":"Góc tiếp cận nào hợp nhất?","ic_q4":"Đặt một quảng cáo vào mỗi kênh","ic_content":"Nội dung","ic_change":"Đổi","ic_autofill":"Điền giúp tôi","ic_hint_ship":"Chạm vào một quảng cáo, rồi chọn kênh.","ic_ad_reassured_a1":"Người ta coi trọng phần thưởng hôm nay hơn sự bảo vệ về sau.","ic_ad_reassured_a2":"Người ta cân nhắc chi phí bảo hiểm hôm nay với những gì nhận lại.","ic_ad_reassured_a3":"Thuật ngữ xa lạ khiến người ta nghĩ bảo hiểm không dành cho mình.","ic_ad_pepsi_a1":"Chúng ta học thói quen bằng cách quan sát gia đình và người xung quanh.","ic_ad_pepsi_a2":"Muốn tự thưởng mà vẫn muốn ăn lành mạnh tạo ra giằng co nội tâm.","ic_ad_pepsi_a3":"Hương vị quen thuộc gợi lại kỷ niệm ấm áp nên thấy hợp.","ic_ad_ballroom_a1":"Người ta có địa vị và cảm giác thuộc về khi được người khác xem biểu diễn.","ic_ad_ballroom_a2":"Kỹ năng tiến bộ qua từng bước nhỏ thấy rõ, giúp người ta theo đuổi.","ic_ad_ballroom_a3":"Nỗi sợ bị trông ngớ ngẩn cản bước nhiều hơn là thiếu năng khiếu.","ic_ad_fujifilm_a1":"Bán cảm xúc khi chụp ảnh, không phải thông số máy ảnh.","ic_ad_fujifilm_a2":"Tập trung nội dung vào mùa xuân và thu, khi người ta chụp nhiều nhất.","ic_ad_fujifilm_a3":"Thoát khỏi cuộc đua thông số và cạnh tranh bằng sáng tạo.","ic_ad_sm-universe_a1":"Niềm tin vào khả năng của bản thân quyết định bạn có thử hay không.","ic_ad_sm-universe_a2":"Khi một bên biết nhiều hơn, bên kia sẽ ngần ngại cam kết.","ic_ad_sm-universe_a3":"Cộng đồng hỗ trợ cho người ta tự tin để tiếp tục.","ic_ad_caltex_a1":"Tài xế muốn tự làm chủ chiếc xe và việc chăm sóc nó.","ic_ad_caltex_a2":"Mất tiền đau hơn niềm vui khi tiết kiệm được cùng số tiền.","ic_ad_caltex_a3":"Người ta muốn lựa chọn và hiểu biết của mình được ghi nhận.","ic_ad_indrive_a1":"Khách hàng, không phải công ty, nên quyết định giá thế nào là công bằng.","ic_ad_indrive_a2":"Người ta thấy an toàn hơn khi tin mình kiểm soát được tình huống.","ic_ad_indrive_a3":"Mất thời gian hay trả quá nhiều đau hơn niềm vui từ khoản lợi tương đương.","ic_ad_thomson_a1":"Sự gắn bó gia đình định hình cảm giác an toàn và được che chở.","ic_ad_thomson_a2":"Khoảng cách giữa nuôi dạy con lý tưởng và đời thực gây căng thẳng.","ic_ad_thomson_a3":"Cha mẹ tự đánh giá mình bằng cách so với gia đình khác.","ic_ad_tim-hortons_a1":"Nơi chốn và món ăn có ý nghĩa qua cách ta trải nghiệm và chia sẻ.","ic_ad_tim-hortons_a2":"Người ta chọn nơi phản ánh nhóm mà mình thuộc về.","ic_ad_tim-hortons_a3":"Chúng ta tin những lựa chọn mà thấy nhiều người cùng chọn.","ic_bot_persona":"Bắt đầu từ con người: chọn người bạn muốn tiếp cận.","ic_bot_pain":"Chọn hay lắm! Giờ hãy nối với nỗi đau thật sự của họ.","ic_bot_angle":"Rất khớp! Giờ chọn góc nhìn giải thích vì sao họ đau.","ic_bot_wrong":"Gần đúng rồi! Thử thẻ đang sáng nhé.","ic_bot_insight":"Đây là insight: một sự thật để mọi quảng cáo dựa vào.","ic_bot_ship":"Giờ đặt một quảng cáo vào mỗi kênh, hoặc chạm Điền giúp tôi.","ic_bot_results":"Đã ra mắt! Tải case study đầy đủ để xem toàn bộ kế hoạch.","ic_bot_almost":"Gần đúng rồi! Thẻ đang sáng hợp hơn.","ic_angles":"Góc tiếp cận","ic_ph_angle":"Hãy nối một nỗi đau trước.","ic_hint_tree":"Chạm vào thẻ, hoặc kéo một đường để nối.","ic_read_full":"Đọc toàn bộ case study"},"id":{"ic_play_k":"Pembuat insight · 60 detik","ic_play_t":"Bangun insight pertama Anda","ic_kicker":"Pembuat insight · coba sekarang","ic_article_note":"Ditulis untuk demo ini dari rantai insight {client}. Tidak diterbitkan oleh {client}.","ic_bot_hi":"Halo! Saya asisten SOMIN Anda. Saya akan memberi petunjuk singkat.","ic_choose_h":"Bagaimana Anda ingin memulai?","ic_choose_a_cta":"Mulai membangun","ic_choose_b_t":"Kunjungi situs web","ic_choose_b_s":"Jelajahi harga, studi kasus, dan cara kerja SOMIN dengan kecepatan Anda sendiri.","ic_choose_b_cta":"Buka situs web","ic_case":"Studi kasus","ic_step_of":"Langkah {n} dari {m}","ic_q1":"Anda bicara dengan siapa?","ic_q2":"Pain point mana yang milik mereka?","ic_q3":"Angle mana yang paling cocok?","ic_q4":"Taruh satu iklan di tiap kanal","ic_content":"Konten","ic_change":"Ganti","ic_autofill":"Isikan untuk saya","ic_hint_ship":"Ketuk iklan, lalu ketuk kanal.","ic_ad_reassured_a1":"Orang lebih menghargai imbalan hari ini daripada perlindungan nanti.","ic_ad_reassured_a2":"Orang menimbang biaya asuransi sekarang dengan manfaat yang didapat.","ic_ad_reassured_a3":"Istilah asing membuat orang merasa asuransi bukan untuk mereka.","ic_ad_pepsi_a1":"Kita meniru kebiasaan dari keluarga dan orang di sekitar.","ic_ad_pepsi_a2":"Ingin memanjakan diri sambil berusaha makan sehat memicu konflik batin.","ic_ad_pepsi_a3":"Rasa yang akrab membangkitkan kenangan hangat, jadi terasa pas.","ic_ad_ballroom_a1":"Orang mendapat status dan rasa memiliki saat ditonton orang lain.","ic_ad_ballroom_a2":"Keterampilan tumbuh lewat langkah kecil yang terlihat, sehingga orang bertahan.","ic_ad_ballroom_a3":"Takut terlihat konyol lebih menghambat daripada kurang bakat.","ic_ad_fujifilm_a1":"Jual rasanya memotret, bukan spesifikasi teknis kamera.","ic_ad_fujifilm_a2":"Fokuskan konten di musim semi dan gugur, saat orang paling banyak memotret.","ic_ad_fujifilm_a3":"Keluar dari adu spesifikasi dan bersaing lewat kreativitas.","ic_ad_sm-universe_a1":"Keyakinan pada kemampuan diri menentukan apakah Anda mau mencoba.","ic_ad_sm-universe_a2":"Saat satu pihak tahu lebih banyak, pihak lain ragu mengambil keputusan.","ic_ad_sm-universe_a3":"Komunitas yang mendukung memberi percaya diri untuk terus maju.","ic_ad_caltex_a1":"Pengemudi ingin memegang kendali atas mobil dan perawatannya.","ic_ad_caltex_a2":"Kehilangan uang terasa lebih sakit daripada senangnya menghemat jumlah sama.","ic_ad_caltex_a3":"Orang ingin pilihan dan keahliannya diakui orang lain.","ic_ad_indrive_a1":"Pelanggan, bukan perusahaan, yang menentukan harga yang adil.","ic_ad_indrive_a2":"Orang merasa lebih aman saat yakin dirinya memegang kendali.","ic_ad_indrive_a3":"Waktu terbuang atau bayar kemahalan terasa lebih sakit dari untung yang setara.","ic_ad_thomson_a1":"Ikatan keluarga yang erat membentuk rasa aman dan didukung.","ic_ad_thomson_a2":"Jarak antara pola asuh ideal dan kenyataan menimbulkan stres.","ic_ad_thomson_a3":"Orang tua menilai diri dengan membandingkan keluarga lain.","ic_ad_tim-hortons_a1":"Tempat dan makanan bermakna lewat cara kita mengalami dan berbagi.","ic_ad_tim-hortons_a2":"Orang memilih tempat yang mencerminkan kelompoknya.","ic_ad_tim-hortons_a3":"Kita percaya pada pilihan yang dibuat banyak orang.","ic_bot_persona":"Mulai dari orangnya: pilih siapa yang ingin Anda jangkau.","ic_bot_pain":"Pilihan bagus! Sekarang hubungkan pain point yang benar-benar milik mereka.","ic_bot_angle":"Cocok! Sekarang pilih sudut pandang yang menjelaskan kenapa itu menyakitkan.","ic_bot_wrong":"Hampir! Coba kartu yang menyala.","ic_bot_insight":"Ini insight Anda: satu kebenaran manusiawi untuk setiap iklan.","ic_bot_ship":"Sekarang taruh satu iklan di tiap kanal, atau ketuk Isikan untuk saya.","ic_bot_results":"Diluncurkan! Dapatkan studi kasus lengkap untuk melihat rencananya.","ic_bot_almost":"Hampir! Kartu yang menyala lebih cocok.","ic_angles":"Angle","ic_ph_angle":"Hubungkan pain point dulu.","ic_hint_tree":"Ketuk kartu, atau tarik garis untuk menghubungkan.","ic_read_full":"Baca studi kasus lengkap"},"ms":{"ic_play_k":"Pembina insight · 60 saat","ic_play_t":"Bina insight pertama anda","ic_kicker":"Pembina insight · cuba sekarang","ic_article_note":"Ditulis untuk demo ini daripada rantaian insight {client}. Tidak diterbitkan oleh {client}.","ic_bot_hi":"Hai! Saya pembantu SOMIN anda. Saya akan beri petunjuk ringkas.","ic_choose_h":"Bagaimana anda mahu bermula?","ic_choose_a_cta":"Mula membina","ic_choose_b_t":"Layari laman web","ic_choose_b_s":"Terokai harga, kajian kes dan cara SOMIN berfungsi mengikut rentak anda.","ic_choose_b_cta":"Pergi ke laman web","ic_case":"Kajian kes","ic_step_of":"Langkah {n} daripada {m}","ic_q1":"Anda bercakap dengan siapa?","ic_q2":"Pain point mana milik mereka?","ic_q3":"Sudut mana paling sesuai?","ic_q4":"Letak satu iklan dalam setiap saluran","ic_content":"Kandungan","ic_change":"Tukar","ic_autofill":"Isikan untuk saya","ic_hint_ship":"Ketik iklan, kemudian saluran.","ic_ad_reassured_a1":"Orang lebih menghargai ganjaran hari ini daripada perlindungan kemudian.","ic_ad_reassured_a2":"Orang menimbang kos perlindungan sekarang dengan apa yang diperoleh.","ic_ad_reassured_a3":"Istilah asing membuat orang rasa insurans bukan untuk mereka.","ic_ad_pepsi_a1":"Kita mengikut tabiat dengan melihat keluarga dan orang sekeliling.","ic_ad_pepsi_a2":"Mahu menikmati sesuatu sambil cuba makan sihat mencetuskan konflik dalaman.","ic_ad_pepsi_a3":"Rasa yang biasa membawa kenangan manis, jadi terasa kena.","ic_ad_ballroom_a1":"Orang mendapat status dan rasa dimiliki apabila dilihat membuat persembahan.","ic_ad_ballroom_a2":"Kemahiran berkembang langkah demi langkah yang nampak, jadi orang terus mencuba.","ic_ad_ballroom_a3":"Takut nampak bodoh menghalang lebih daripada kurang bakat.","ic_ad_fujifilm_a1":"Jual perasaan bergambar, bukan spesifikasi teknikal kamera.","ic_ad_fujifilm_a2":"Fokuskan kandungan pada musim bunga dan luruh, ketika orang paling banyak bergambar.","ic_ad_fujifilm_a3":"Keluar daripada perbandingan spesifikasi dan bersaing dengan kreativiti.","ic_ad_sm-universe_a1":"Keyakinan pada kebolehan diri menentukan sama ada anda mencuba.","ic_ad_sm-universe_a2":"Apabila satu pihak tahu lebih, pihak lain teragak-agak untuk komited.","ic_ad_sm-universe_a3":"Rangkaian yang menyokong memberi keyakinan untuk terus maju.","ic_ad_caltex_a1":"Pemandu mahu rasa mengawal kereta dan penjagaannya.","ic_ad_caltex_a2":"Kehilangan wang lebih menyakitkan daripada gembira menjimatkan jumlah sama.","ic_ad_caltex_a3":"Orang mahu pilihan dan kepakaran mereka disedari orang lain.","ic_ad_indrive_a1":"Pelanggan, bukan syarikat, patut menentukan harga yang adil.","ic_ad_indrive_a2":"Orang rasa lebih selamat apabila yakin mereka mengawal keadaan.","ic_ad_indrive_a3":"Masa terbuang atau terlebih bayar lebih menyakitkan daripada untung yang sama.","ic_ad_thomson_a1":"Ikatan keluarga yang rapat membentuk rasa selamat dan disokong.","ic_ad_thomson_a2":"Jurang antara keibubapaan ideal dan realiti menimbulkan tekanan.","ic_ad_thomson_a3":"Ibu bapa menilai diri dengan membandingkan keluarga lain.","ic_ad_tim-hortons_a1":"Tempat dan makanan bermakna melalui cara kita mengalami dan berkongsinya.","ic_ad_tim-hortons_a2":"Orang memilih tempat yang mencerminkan kumpulan mereka.","ic_ad_tim-hortons_a3":"Kita mempercayai pilihan yang dibuat ramai orang.","ic_bot_persona":"Mula dengan orang: pilih siapa yang anda mahu capai.","ic_bot_pain":"Pilihan bagus! Sekarang sambungkan pain point yang benar-benar milik mereka.","ic_bot_angle":"Padan! Sekarang pilih sudut yang menerangkan kenapa ia menyakitkan.","ic_bot_wrong":"Hampir! Cuba kad yang bercahaya.","ic_bot_insight":"Inilah insight anda: satu kebenaran untuk setiap iklan.","ic_bot_ship":"Sekarang letak satu iklan dalam setiap saluran, atau ketik Isikan untuk saya.","ic_bot_results":"Dilancarkan! Dapatkan kajian kes penuh untuk melihat keseluruhan pelan.","ic_bot_almost":"Hampir! Kad yang bercahaya lebih sesuai.","ic_angles":"Sudut","ic_ph_angle":"Sambungkan pain point dahulu.","ic_hint_tree":"Ketik kad, atau seret garisan untuk menyambung.","ic_read_full":"Baca kajian kes penuh"},"hi":{"ic_play_k":"इनसाइट बिल्डर · 60 सेकंड","ic_play_t":"अपनी पहली इनसाइट बनाएं","ic_kicker":"इनसाइट बिल्डर · आज़माएं","ic_article_note":"यह डेमो {client} की इनसाइट चेन से लिखा गया है। {client} द्वारा प्रकाशित नहीं।","ic_bot_hi":"नमस्ते! मैं आपका SOMIN असिस्टेंट हूँ। रास्ते में छोटे-छोटे संकेत दूँगा।","ic_choose_h":"आप कैसे शुरू करना चाहेंगे?","ic_choose_a_cta":"बनाना शुरू करें","ic_choose_b_t":"वेबसाइट देखें","ic_choose_b_s":"कीमतें, केस स्टडी और SOMIN कैसे काम करता है, अपनी गति से देखें।","ic_choose_b_cta":"वेबसाइट पर जाएं","ic_case":"केस स्टडी","ic_step_of":"चरण {n} / {m}","ic_q1":"आप किससे बात कर रहे हैं?","ic_q2":"उनका पेन पॉइंट कौन-सा है?","ic_q3":"कौन-सा एंगल सबसे सही है?","ic_q4":"हर चैनल में एक विज्ञापन रखें","ic_content":"कंटेंट","ic_change":"बदलें","ic_autofill":"मेरे लिए भरें","ic_hint_ship":"एक विज्ञापन पर टैप करें, फिर चैनल पर।","ic_ad_reassured_a1":"लोग बाद की सुरक्षा से ज़्यादा आज के फ़ायदे को महत्व देते हैं।","ic_ad_reassured_a2":"लोग कवर की आज की लागत को उससे मिलने वाले लाभ से तौलते हैं।","ic_ad_reassured_a3":"अनजान शब्दावली लोगों को लगने देती है कि बीमा उनके लिए नहीं है।","ic_ad_pepsi_a1":"हम परिवार और आसपास के लोगों को देखकर आदतें सीखते हैं।","ic_ad_pepsi_a2":"मज़े की चाह और सेहतमंद खाने की कोशिश भीतर खिंचाव पैदा करती है।","ic_ad_pepsi_a3":"जाने-पहचाने स्वाद गर्म यादें लौटाते हैं, इसलिए सही लगते हैं।","ic_ad_ballroom_a1":"जब दूसरे उन्हें परफ़ॉर्म करते देखते हैं, तो लोगों को रुतबा और अपनापन मिलता है।","ic_ad_ballroom_a2":"कौशल छोटे, दिखने वाले कदमों में बढ़ता है, जिससे लोग टिके रहते हैं।","ic_ad_ballroom_a3":"प्रतिभा की कमी से ज़्यादा, बेवकूफ़ दिखने का डर लोगों को रोकता है।","ic_ad_fujifilm_a1":"कैमरे के तकनीकी स्पेक्स नहीं, फ़ोटोग्राफ़ी का एहसास बेचें।","ic_ad_fujifilm_a2":"कंटेंट वसंत और पतझड़ पर केंद्रित करें, जब लोग सबसे ज़्यादा फ़ोटो लेते हैं।","ic_ad_fujifilm_a3":"स्पेक्स की तुलना छोड़ें और रचनात्मकता पर मुकाबला करें।","ic_ad_sm-universe_a1":"अपनी क्षमता पर भरोसा तय करता है कि आप कोशिश करेंगे या नहीं।","ic_ad_sm-universe_a2":"जब एक पक्ष ज़्यादा जानता है, तो दूसरा फ़ैसला लेने में हिचकता है।","ic_ad_sm-universe_a3":"साथ देने वाले समूह लोगों को आगे बढ़ते रहने का भरोसा देते हैं।","ic_ad_caltex_a1":"ड्राइवर अपनी कार और उसकी देखभाल पर नियंत्रण महसूस करना चाहते हैं।","ic_ad_caltex_a2":"पैसा खोने का दुख, उतना ही बचाने की खुशी से ज़्यादा होता है।","ic_ad_caltex_a3":"लोग चाहते हैं कि दूसरे उनकी पसंद और जानकारी को पहचानें।","ic_ad_indrive_a1":"उचित कीमत कंपनियाँ नहीं, ग्राहक तय करें।","ic_ad_indrive_a2":"जब लोगों को लगता है कि हालात उनके नियंत्रण में हैं, वे ज़्यादा सुरक्षित महसूस करते हैं।","ic_ad_indrive_a3":"समय की बर्बादी या ज़्यादा भुगतान का दुख, बराबर फ़ायदे की खुशी से बड़ा होता है।","ic_ad_thomson_a1":"परिवार के गहरे रिश्ते तय करते हैं कि हम कितना सुरक्षित और सहारा महसूस करते हैं।","ic_ad_thomson_a2":"आदर्श परवरिश और असल ज़िंदगी के बीच का फ़ासला तनाव पैदा करता है।","ic_ad_thomson_a3":"माता-पिता दूसरे परिवारों से तुलना करके खुद को आँकते हैं।","ic_ad_tim-hortons_a1":"जगहें और खाना हमारे अनुभव और साझा करने से अर्थ पाते हैं।","ic_ad_tim-hortons_a2":"लोग वे जगहें चुनते हैं जो उनके समूह को दर्शाती हैं।","ic_ad_tim-hortons_a3":"हम उन विकल्पों पर भरोसा करते हैं जिन्हें बहुत से लोग चुनते हैं।","ic_bot_persona":"इंसान से शुरू करें: चुनें कि आप किस तक पहुँचना चाहते हैं।","ic_bot_pain":"बढ़िया चुनाव! अब उनका असली पेन पॉइंट जोड़ें।","ic_bot_angle":"सही जोड़ी! अब वह एंगल चुनें जो बताए कि दर्द क्यों है।","ic_bot_wrong":"करीब थे! चमकता कार्ड आज़माएँ।","ic_bot_insight":"यह आपकी इनसाइट है: हर विज्ञापन की नींव एक सच्चाई।","ic_bot_ship":"अब हर चैनल में एक विज्ञापन रखें, या 'मेरे लिए भरें' दबाएँ।","ic_bot_results":"लॉन्च हो गया! पूरी योजना के लिए पूरी केस स्टडी देखें।","ic_bot_almost":"करीब थे! चमकता कार्ड बेहतर फिट है।","ic_angles":"एंगल","ic_ph_angle":"पहले एक पेन पॉइंट जोड़ें।","ic_hint_tree":"कार्ड पर टैप करें, या जोड़ने के लिए लाइन खींचें।","ic_read_full":"पूरी केस स्टडी पढ़ें"},"fil":{"ic_play_k":"Insight builder · 60 segundo","ic_play_t":"Buuin ang una mong insight","ic_kicker":"Insight builder · subukan","ic_article_note":"Isinulat para sa demo na ito mula sa insight chain ng {client}. Hindi inilathala ng {client}.","ic_bot_hi":"Kumusta! Ako ang SOMIN assistant mo. Magbibigay ako ng maiikling hint.","ic_choose_h":"Paano mo gustong magsimula?","ic_choose_a_cta":"Simulang bumuo","ic_choose_b_t":"Bisitahin ang website","ic_choose_b_s":"Tuklasin ang presyo, mga case study, at kung paano gumagana ang SOMIN sa sarili mong bilis.","ic_choose_b_cta":"Pumunta sa website","ic_case":"Case study","ic_step_of":"Hakbang {n} sa {m}","ic_q1":"Sino ang kausap mo?","ic_q2":"Aling pain point ang sa kanila?","ic_q3":"Aling angle ang pinakaangkop?","ic_q4":"Maglagay ng isang ad sa bawat channel","ic_content":"Content","ic_change":"Palitan","ic_autofill":"Punan para sa akin","ic_hint_ship":"I-tap ang isang ad, tapos ang channel.","ic_ad_reassured_a1":"Mas pinahahalagahan ng tao ang gantimpala ngayon kaysa proteksyon sa hinaharap.","ic_ad_reassured_a2":"Tinitimbang ng tao ang gastos ngayon laban sa makukuha nila.","ic_ad_reassured_a3":"Ang di-pamilyar na jargon ay nagpaparamdam na hindi para sa kanila ang insurance.","ic_ad_pepsi_a1":"Natututo tayo ng gawi sa panonood sa pamilya at mga nasa paligid.","ic_ad_pepsi_a2":"Ang paghahangad ng treat habang sinusubukang kumain nang tama ay lumilikha ng tensyon.","ic_ad_pepsi_a3":"Ibinabalik ng pamilyar na lasa ang masasayang alaala, kaya tama ang pakiramdam.","ic_ad_ballroom_a1":"Nagkakaroon ng status at pakiramdam ng pagiging kabilang kapag nakikita silang nagtatanghal.","ic_ad_ballroom_a2":"Lumalago ang galing sa maliliit at kitang hakbang, kaya nagpapatuloy ang tao.","ic_ad_ballroom_a3":"Mas pumipigil ang takot na magmukhang katawa-tawa kaysa kakulangan sa talento.","ic_ad_fujifilm_a1":"Ibenta ang pakiramdam ng pagkuha ng litrato, hindi ang specs ng camera.","ic_ad_fujifilm_a2":"Ituon ang content sa tagsibol at taglagas, kung kailan pinakamaraming kumukuha ng litrato.","ic_ad_fujifilm_a3":"Umalis sa labanan ng specs at makipagkumpitensya sa pagkamalikhain.","ic_ad_sm-universe_a1":"Ang paniniwala sa sariling kakayahan ang nagpapasya kung susubok ka.","ic_ad_sm-universe_a2":"Kapag mas maraming alam ang isang panig, nag-aalangan ang kabila.","ic_ad_sm-universe_a3":"Binibigyan ng sumusuportang komunidad ang tao ng kumpiyansang magpatuloy.","ic_ad_caltex_a1":"Gusto ng mga driver na sila ang may kontrol sa kotse at sa pag-aalaga nito.","ic_ad_caltex_a2":"Mas masakit ang mawalan ng pera kaysa sa saya ng makatipid ng ganoon din.","ic_ad_caltex_a3":"Gusto ng tao na mapansin ang kanilang mga pinili at kaalaman.","ic_ad_indrive_a1":"Ang customer, hindi ang kumpanya, ang dapat magpasya ng patas na presyo.","ic_ad_indrive_a2":"Mas panatag ang tao kapag naniniwala silang sila ang may kontrol.","ic_ad_indrive_a3":"Mas masakit ang nasayang na oras o sobrang bayad kaysa sa katumbas na pakinabang.","ic_ad_thomson_a1":"Hinuhubog ng malapit na ugnayan sa pamilya kung gaano tayo kapanatag.","ic_ad_thomson_a2":"Ang agwat ng ideal na pagpapalaki at totoong buhay ay nagdudulot ng stress.","ic_ad_thomson_a3":"Hinuhusgahan ng magulang ang sarili sa paghahambing sa ibang pamilya.","ic_ad_tim-hortons_a1":"Nagkakaroon ng kahulugan ang lugar at pagkain sa paraan ng pagdanas at pagbabahagi natin.","ic_ad_tim-hortons_a2":"Pumipili ang tao ng lugar na sumasalamin sa grupong kinabibilangan nila.","ic_ad_tim-hortons_a3":"Nagtitiwala tayo sa mga piling nakikita nating ginagawa ng marami.","ic_bot_persona":"Magsimula sa tao: piliin kung sino ang gusto mong maabot.","ic_bot_pain":"Magandang pili! Ngayon, ikonekta ang pain point na talagang sa kanila.","ic_bot_angle":"Swak! Ngayon, piliin ang lens na nagpapaliwanag kung bakit masakit ito.","ic_bot_wrong":"Malapit na! Subukan ang kumikinang na card.","ic_bot_insight":"Ito ang insight mo: isang katotohanang pagbabatayan ng bawat ad.","ic_bot_ship":"Maglagay ng isang ad sa bawat channel, o i-tap ang Punan para sa akin.","ic_bot_results":"Live na! Kunin ang buong case study para makita ang buong plano.","ic_bot_almost":"Malapit na! Mas bagay ang kumikinang na card.","ic_angles":"Mga angle","ic_ph_angle":"Ikonekta muna ang isang pain point.","ic_hint_tree":"I-tap ang card, o mag-drag ng linya para ikonekta.","ic_read_full":"Basahin ang buong case study"},"es":{"ic_play_k":"Constructor de insights · 60 segundos","ic_play_t":"Crea tu primer insight","ic_kicker":"Constructor de insights · pruébalo","ic_article_note":"Escrito para esta demo a partir de la cadena de insights de {client}. No publicado por {client}.","ic_bot_hi":"¡Hola! Soy tu asistente de SOMIN. Te daré pistas cortas por el camino.","ic_choose_h":"¿Cómo quieres empezar?","ic_choose_a_cta":"Empezar a crear","ic_choose_b_t":"Visitar el sitio web","ic_choose_b_s":"Explora precios, casos de estudio y cómo funciona SOMIN, a tu ritmo.","ic_choose_b_cta":"Ir al sitio web","ic_case":"Caso de estudio","ic_step_of":"Paso {n} de {m}","ic_q1":"¿A quién le hablas?","ic_q2":"¿Cuál es su punto de dolor?","ic_q3":"¿Qué ángulo encaja mejor?","ic_q4":"Pon un anuncio en cada canal","ic_content":"Contenido","ic_change":"Cambiar","ic_autofill":"Rellénalo por mí","ic_hint_ship":"Toca un anuncio y luego un canal.","ic_ad_reassured_a1":"La gente valora mucho más la recompensa de hoy que la protección futura.","ic_ad_reassured_a2":"La gente compara lo que cuesta el seguro hoy con lo que devuelve.","ic_ad_reassured_a3":"La jerga desconocida hace sentir que el seguro no es para ellos.","ic_ad_pepsi_a1":"Adoptamos hábitos observando a la familia y a quienes nos rodean.","ic_ad_pepsi_a2":"Querer un capricho mientras intentas comer bien crea tensión interna.","ic_ad_pepsi_a3":"Los sabores familiares traen recuerdos cálidos, por eso se sienten bien.","ic_ad_ballroom_a1":"La gente gana estatus y pertenencia cuando otros la ven actuar.","ic_ad_ballroom_a2":"La habilidad crece en pasos pequeños y visibles, y eso motiva a seguir.","ic_ad_ballroom_a3":"El miedo a hacer el ridículo frena más que la falta de talento.","ic_ad_fujifilm_a1":"Vende lo que se siente al fotografiar, no las especificaciones de la cámara.","ic_ad_fujifilm_a2":"Concentra el contenido en primavera y otoño, cuando más se fotografía.","ic_ad_fujifilm_a3":"Sal de la guerra de especificaciones y compite con creatividad.","ic_ad_sm-universe_a1":"Creer en tu propia capacidad decide si lo intentas o no.","ic_ad_sm-universe_a2":"Cuando una parte sabe más, la otra duda en comprometerse.","ic_ad_sm-universe_a3":"Las redes de apoyo dan la confianza para seguir adelante.","ic_ad_caltex_a1":"Los conductores quieren sentir que controlan su coche y su cuidado.","ic_ad_caltex_a2":"Perder dinero duele más de lo que alegra ahorrar la misma cantidad.","ic_ad_caltex_a3":"La gente quiere que otros noten sus decisiones y su conocimiento.","ic_ad_indrive_a1":"Son los clientes, no las empresas, quienes deben decidir un precio justo.","ic_ad_indrive_a2":"La gente se siente más segura cuando cree que controla lo que pasa.","ic_ad_indrive_a3":"Perder tiempo o pagar de más duele más de lo que alegra una ganancia igual.","ic_ad_thomson_a1":"Los lazos familiares cercanos marcan lo seguros y apoyados que nos sentimos.","ic_ad_thomson_a2":"La distancia entre la crianza ideal y la vida real genera estrés.","ic_ad_thomson_a3":"Los padres se juzgan comparándose con otras familias.","ic_ad_tim-hortons_a1":"Los lugares y la comida cobran sentido en cómo los vivimos y compartimos.","ic_ad_tim-hortons_a2":"La gente elige lugares que reflejan los grupos a los que pertenece.","ic_ad_tim-hortons_a3":"Confiamos en las elecciones que vemos hacer a mucha gente.","ic_bot_persona":"Empieza por una persona: elige a quién quieres llegar.","ic_bot_pain":"¡Buena elección! Ahora conecta el punto de dolor que de verdad es suyo.","ic_bot_angle":"¡Encaja! Ahora elige la mirada que explica por qué duele.","ic_bot_wrong":"¡Casi! Prueba la tarjeta que brilla.","ic_bot_insight":"Este es tu insight: una verdad humana para construir cada anuncio.","ic_bot_ship":"Ahora pon un anuncio en cada canal, o toca Rellénalo por mí.","ic_bot_results":"¡Lanzado! Descarga el caso completo para ver todo el plan.","ic_bot_almost":"¡Casi! La tarjeta que brilla encaja mejor.","ic_angles":"Ángulos","ic_ph_angle":"Primero conecta un punto de dolor.","ic_hint_tree":"Toca una tarjeta o arrastra una línea para conectar.","ic_read_full":"Leer el caso completo"},"fr":{"ic_play_k":"Constructeur d'insights · 60 secondes","ic_play_t":"Créez votre premier insight","ic_kicker":"Constructeur d'insights · à essayer","ic_article_note":"Rédigé pour cette démo à partir de la chaîne d'insights de {client}. Non publié par {client}.","ic_bot_hi":"Bonjour ! Je suis votre assistant SOMIN. Je vous glisserai de petits indices.","ic_choose_h":"Comment souhaitez-vous commencer ?","ic_choose_a_cta":"Commencer","ic_choose_b_t":"Visiter le site web","ic_choose_b_s":"Découvrez les tarifs, les études de cas et le fonctionnement de SOMIN, à votre rythme.","ic_choose_b_cta":"Aller sur le site","ic_case":"Étude de cas","ic_step_of":"Étape {n} sur {m}","ic_q1":"À qui parlez-vous ?","ic_q2":"Quel point de douleur est le sien ?","ic_q3":"Quel angle convient le mieux ?","ic_q4":"Placez une pub dans chaque canal","ic_content":"Contenu","ic_change":"Changer","ic_autofill":"Remplir pour moi","ic_hint_ship":"Touchez une pub, puis un canal.","ic_ad_reassured_a1":"On valorise bien plus la récompense immédiate que la protection future.","ic_ad_reassured_a2":"On compare le coût de la couverture aujourd'hui à ce qu'elle rapporte.","ic_ad_reassured_a3":"Le jargon inconnu donne l'impression que l'assurance n'est pas pour soi.","ic_ad_pepsi_a1":"On adopte des habitudes en observant sa famille et son entourage.","ic_ad_pepsi_a2":"Vouloir se faire plaisir tout en mangeant sainement crée une tension intérieure.","ic_ad_pepsi_a3":"Les saveurs familières ravivent de bons souvenirs, d'où leur évidence.","ic_ad_ballroom_a1":"On gagne statut et appartenance quand les autres nous voient danser.","ic_ad_ballroom_a2":"Les compétences progressent par petites étapes visibles, ce qui motive.","ic_ad_ballroom_a3":"La peur du ridicule freine davantage que le manque de talent.","ic_ad_fujifilm_a1":"Vendez l'émotion de la photo, pas la fiche technique de l'appareil.","ic_ad_fujifilm_a2":"Concentrez le contenu au printemps et en automne, quand on photographie le plus.","ic_ad_fujifilm_a3":"Sortez de la guerre des fiches techniques et jouez la créativité.","ic_ad_sm-universe_a1":"Croire en ses capacités décide si l'on essaie ou non.","ic_ad_sm-universe_a2":"Quand une partie en sait plus, l'autre hésite à s'engager.","ic_ad_sm-universe_a3":"Un réseau bienveillant donne la confiance de continuer.","ic_ad_caltex_a1":"Les conducteurs veulent garder la main sur leur voiture et son entretien.","ic_ad_caltex_a2":"Perdre de l'argent fait plus mal qu'économiser la même somme ne réjouit.","ic_ad_caltex_a3":"On veut que les autres remarquent nos choix et notre savoir-faire.","ic_ad_indrive_a1":"C'est au client, pas à l'entreprise, de décider d'un prix juste.","ic_ad_indrive_a2":"On se sent plus en sécurité quand on croit maîtriser la situation.","ic_ad_indrive_a3":"Perdre du temps ou payer trop fait plus mal qu'un gain égal ne réjouit.","ic_ad_thomson_a1":"Des liens familiaux forts façonnent notre sentiment de sécurité et de soutien.","ic_ad_thomson_a2":"L'écart entre la parentalité idéale et la réalité crée du stress.","ic_ad_thomson_a3":"Les parents se jugent en se comparant aux autres familles.","ic_ad_tim-hortons_a1":"Les lieux et les plats prennent sens dans la façon de les vivre et de les partager.","ic_ad_tim-hortons_a2":"On choisit des lieux qui reflètent les groupes auxquels on appartient.","ic_ad_tim-hortons_a3":"On fait confiance aux choix que beaucoup d'autres font.","ic_bot_persona":"Commencez par une personne : choisissez qui vous voulez toucher.","ic_bot_pain":"Bon choix ! Reliez maintenant le point de douleur qui est vraiment le sien.","ic_bot_angle":"Bien vu ! Choisissez l'angle qui explique pourquoi ça fait mal.","ic_bot_wrong":"Presque ! Essayez la carte qui brille.","ic_bot_insight":"Voici votre insight : une vérité humaine sur laquelle bâtir chaque pub.","ic_bot_ship":"Placez une pub dans chaque canal, ou touchez Remplir pour moi.","ic_bot_results":"C'est lancé ! Téléchargez l'étude complète pour voir tout le plan.","ic_bot_almost":"Presque ! La carte qui brille convient mieux.","ic_angles":"Angles","ic_ph_angle":"Reliez d'abord un point de douleur.","ic_hint_tree":"Touchez une carte, ou tracez une ligne pour relier.","ic_read_full":"Lire l'étude de cas complète"},"de":{"ic_play_k":"Insight-Builder · 60 Sekunden","ic_play_t":"Bauen Sie Ihren ersten Insight","ic_kicker":"Insight-Builder · ausprobieren","ic_article_note":"Für diese Demo aus der Insight-Kette von {client} geschrieben. Nicht von {client} veröffentlicht.","ic_bot_hi":"Hallo! Ich bin Ihr SOMIN-Assistent und gebe unterwegs kurze Tipps.","ic_choose_h":"Wie möchten Sie starten?","ic_choose_a_cta":"Jetzt bauen","ic_choose_b_t":"Website besuchen","ic_choose_b_s":"Entdecken Sie Preise, Fallstudien und die Funktionsweise von SOMIN in Ihrem eigenen Tempo.","ic_choose_b_cta":"Zur Website","ic_case":"Fallstudie","ic_step_of":"Schritt {n} von {m}","ic_q1":"Mit wem sprechen Sie?","ic_q2":"Welcher Pain Point gehört zu ihnen?","ic_q3":"Welcher Ansatz passt am besten?","ic_q4":"Pro Kanal eine Anzeige","ic_content":"Content","ic_change":"Ändern","ic_autofill":"Für mich ausfüllen","ic_hint_ship":"Anzeige antippen, dann einen Kanal.","ic_ad_reassured_a1":"Menschen schätzen Belohnungen heute weit mehr als Schutz später.","ic_ad_reassured_a2":"Menschen wägen die heutigen Kosten gegen den späteren Nutzen ab.","ic_ad_reassured_a3":"Fremder Fachjargon gibt das Gefühl, Versicherung sei nichts für sie.","ic_ad_pepsi_a1":"Wir übernehmen Gewohnheiten von Familie und Umfeld.","ic_ad_pepsi_a2":"Genuss wollen und gesund essen wollen erzeugt inneren Konflikt.","ic_ad_pepsi_a3":"Vertraute Geschmäcker wecken warme Erinnerungen und fühlen sich richtig an.","ic_ad_ballroom_a1":"Wer vor Publikum auftritt, gewinnt Status und Zugehörigkeit.","ic_ad_ballroom_a2":"Können wächst in kleinen, sichtbaren Schritten – das hält Menschen dabei.","ic_ad_ballroom_a3":"Die Angst, sich zu blamieren, bremst mehr als fehlendes Talent.","ic_ad_fujifilm_a1":"Verkaufen Sie das Gefühl des Fotografierens, nicht technische Daten.","ic_ad_fujifilm_a2":"Content auf Frühling und Herbst bündeln, wenn am meisten fotografiert wird.","ic_ad_fujifilm_a3":"Raus aus dem Datenblatt-Vergleich, rein in den Wettbewerb um Kreativität.","ic_ad_sm-universe_a1":"Der Glaube an die eigenen Fähigkeiten entscheidet, ob man es versucht.","ic_ad_sm-universe_a2":"Weiß eine Seite mehr, zögert die andere, sich festzulegen.","ic_ad_sm-universe_a3":"Unterstützende Netzwerke geben das Selbstvertrauen, dranzubleiben.","ic_ad_caltex_a1":"Fahrer wollen die Kontrolle über ihr Auto und dessen Pflege behalten.","ic_ad_caltex_a2":"Geld zu verlieren schmerzt mehr, als denselben Betrag zu sparen freut.","ic_ad_caltex_a3":"Menschen wollen, dass andere ihre Wahl und ihr Know-how bemerken.","ic_ad_indrive_a1":"Kunden, nicht Unternehmen, sollten über einen fairen Preis entscheiden.","ic_ad_indrive_a2":"Menschen fühlen sich sicherer, wenn sie glauben, die Kontrolle zu haben.","ic_ad_indrive_a3":"Verlorene Zeit oder zu viel bezahlt schmerzt mehr, als ein gleicher Gewinn freut.","ic_ad_thomson_a1":"Enge Familienbande prägen, wie sicher und gestützt wir uns fühlen.","ic_ad_thomson_a2":"Die Lücke zwischen idealer Erziehung und Alltag erzeugt Stress.","ic_ad_thomson_a3":"Eltern bewerten sich im Vergleich mit anderen Familien.","ic_ad_tim-hortons_a1":"Orte und Essen bekommen Bedeutung dadurch, wie wir sie erleben und teilen.","ic_ad_tim-hortons_a2":"Menschen wählen Orte, die ihre Gruppe widerspiegeln.","ic_ad_tim-hortons_a3":"Wir vertrauen Entscheidungen, die wir viele andere treffen sehen.","ic_bot_persona":"Fangen Sie beim Menschen an: Wen wollen Sie erreichen?","ic_bot_pain":"Gute Wahl! Verbinden Sie jetzt den Pain Point, der wirklich zu ihr gehört.","ic_bot_angle":"Passt! Wählen Sie jetzt den Ansatz, der erklärt, warum es schmerzt.","ic_bot_wrong":"Fast! Probieren Sie die leuchtende Karte.","ic_bot_insight":"Das ist Ihr Insight: eine menschliche Wahrheit für jede Anzeige.","ic_bot_ship":"Jetzt pro Kanal eine Anzeige platzieren oder „Für mich ausfüllen“ tippen.","ic_bot_results":"Live! Holen Sie sich die ganze Fallstudie für den kompletten Plan.","ic_bot_almost":"Fast! Die leuchtende Karte passt besser.","ic_angles":"Ansätze","ic_ph_angle":"Verbinden Sie zuerst einen Pain Point.","ic_hint_tree":"Karte antippen oder eine Linie ziehen, um zu verbinden.","ic_read_full":"Ganze Fallstudie lesen"},"pt":{"ic_play_k":"Construtor de insights · 60 segundos","ic_play_t":"Crie o seu primeiro insight","ic_kicker":"Construtor de insights · experimente","ic_article_note":"Escrito para esta demonstração a partir da cadeia de insights de {client}. Não publicado por {client}.","ic_bot_hi":"Olá! Sou o seu assistente SOMIN. Vou dar pequenas dicas pelo caminho.","ic_choose_h":"Como quer começar?","ic_choose_a_cta":"Começar a criar","ic_choose_b_t":"Visitar o site","ic_choose_b_s":"Explore preços, estudos de caso e como a SOMIN funciona, ao seu ritmo.","ic_choose_b_cta":"Ir para o site","ic_case":"Estudo de caso","ic_step_of":"Passo {n} de {m}","ic_q1":"Com quem está a falar?","ic_q2":"Qual é o ponto de dor desta persona?","ic_q3":"Que ângulo encaixa melhor?","ic_q4":"Coloque um anúncio em cada canal","ic_content":"Conteúdo","ic_change":"Mudar","ic_autofill":"Preencher por mim","ic_hint_ship":"Toque num anúncio e depois num canal.","ic_ad_reassured_a1":"As pessoas valorizam muito mais a recompensa hoje do que a proteção futura.","ic_ad_reassured_a2":"As pessoas pesam o custo do seguro hoje contra o que ele devolve.","ic_ad_reassured_a3":"O jargão desconhecido faz sentir que o seguro não é para elas.","ic_ad_pepsi_a1":"Ganhamos hábitos ao observar a família e quem nos rodeia.","ic_ad_pepsi_a2":"Querer um mimo enquanto se tenta comer bem cria tensão interior.","ic_ad_pepsi_a3":"Sabores familiares trazem memórias calorosas, por isso parecem certos.","ic_ad_ballroom_a1":"As pessoas ganham estatuto e pertença quando os outros as veem atuar.","ic_ad_ballroom_a2":"A competência cresce em pequenos passos visíveis, o que motiva a continuar.","ic_ad_ballroom_a3":"O medo de parecer ridículo trava mais do que a falta de talento.","ic_ad_fujifilm_a1":"Venda a sensação de fotografar, não as especificações da câmara.","ic_ad_fujifilm_a2":"Concentre o conteúdo na primavera e no outono, quando mais se fotografa.","ic_ad_fujifilm_a3":"Saia da guerra de especificações e compita pela criatividade.","ic_ad_sm-universe_a1":"Acreditar na própria capacidade decide se tenta ou não.","ic_ad_sm-universe_a2":"Quando um lado sabe mais, o outro hesita em comprometer-se.","ic_ad_sm-universe_a3":"Redes de apoio dão confiança para continuar.","ic_ad_caltex_a1":"Os condutores querem sentir que controlam o carro e a sua manutenção.","ic_ad_caltex_a2":"Perder dinheiro dói mais do que poupar o mesmo valor alegra.","ic_ad_caltex_a3":"As pessoas querem que os outros reparem nas suas escolhas e saber.","ic_ad_indrive_a1":"São os clientes, não as empresas, que devem decidir o preço justo.","ic_ad_indrive_a2":"As pessoas sentem-se mais seguras quando acreditam que controlam a situação.","ic_ad_indrive_a3":"Perder tempo ou pagar a mais dói mais do que um ganho igual alegra.","ic_ad_thomson_a1":"Laços familiares fortes moldam o quanto nos sentimos seguros e apoiados.","ic_ad_thomson_a2":"A distância entre a parentalidade ideal e a vida real gera stress.","ic_ad_thomson_a3":"Os pais avaliam-se comparando-se com outras famílias.","ic_ad_tim-hortons_a1":"Lugares e comida ganham sentido na forma como os vivemos e partilhamos.","ic_ad_tim-hortons_a2":"As pessoas escolhem lugares que refletem os grupos a que pertencem.","ic_ad_tim-hortons_a3":"Confiamos nas escolhas que vemos muitas pessoas fazer.","ic_bot_persona":"Comece por uma pessoa: escolha quem quer alcançar.","ic_bot_pain":"Boa escolha! Agora ligue o ponto de dor que é mesmo dela.","ic_bot_angle":"Encaixa! Agora escolha o ângulo que explica porque dói.","ic_bot_wrong":"Quase! Experimente o cartão que brilha.","ic_bot_insight":"Este é o seu insight: uma verdade humana para cada anúncio.","ic_bot_ship":"Agora coloque um anúncio em cada canal, ou toque em Preencher por mim.","ic_bot_results":"Lançado! Obtenha o estudo de caso completo para ver todo o plano.","ic_bot_almost":"Quase! O cartão que brilha encaixa melhor.","ic_angles":"Ângulos","ic_ph_angle":"Primeiro ligue um ponto de dor.","ic_hint_tree":"Toque num cartão ou arraste uma linha para ligar.","ic_read_full":"Ler o estudo de caso completo"},"ar":{"ic_play_k":"منشئ الرؤى · 60 ثانية","ic_play_t":"أنشئ أول رؤية لك","ic_kicker":"منشئ الرؤى · جرّبه","ic_article_note":"كُتب لهذا العرض التجريبي من سلسلة رؤى {client}. لم تنشره {client}.","ic_bot_hi":"مرحبًا! أنا مساعدك في SOMIN، وسأعطيك تلميحات قصيرة على الطريق.","ic_choose_h":"كيف تودّ أن تبدأ؟","ic_choose_a_cta":"ابدأ البناء","ic_choose_b_t":"زيارة الموقع","ic_choose_b_s":"استكشف الأسعار ودراسات الحالة وطريقة عمل SOMIN وفق وتيرتك.","ic_choose_b_cta":"انتقل إلى الموقع","ic_case":"دراسة الحالة","ic_step_of":"الخطوة {n} من {m}","ic_q1":"مع من تتحدث؟","ic_q2":"ما نقطة الألم التي تخصّه؟","ic_q3":"أي زاوية هي الأنسب؟","ic_q4":"ضع إعلانًا واحدًا في كل قناة","ic_content":"المحتوى","ic_change":"تغيير","ic_autofill":"املأها عني","ic_hint_ship":"اضغط على إعلان، ثم على قناة.","ic_ad_reassured_a1":"يقدّر الناس مكاسب اليوم أكثر بكثير من الحماية لاحقًا.","ic_ad_reassured_a2":"يوازن الناس بين تكلفة التغطية الآن وما تعيده لهم.","ic_ad_reassured_a3":"المصطلحات غير المألوفة تُشعر الناس بأن التأمين ليس لهم.","ic_ad_pepsi_a1":"نكتسب العادات بمراقبة العائلة ومن حولنا.","ic_ad_pepsi_a2":"الرغبة في الدلال مع محاولة الأكل الصحي تخلق توترًا داخليًا.","ic_ad_pepsi_a3":"النكهات المألوفة تعيد ذكريات دافئة، فتبدو مناسبة.","ic_ad_ballroom_a1":"يكسب الناس المكانة والانتماء عندما يراهم الآخرون يؤدون.","ic_ad_ballroom_a2":"تنمو المهارة بخطوات صغيرة مرئية، وهذا ما يدفع للاستمرار.","ic_ad_ballroom_a3":"الخوف من الظهور بمظهر سخيف يعيق أكثر من قلة الموهبة.","ic_ad_fujifilm_a1":"بِع إحساس التصوير، لا المواصفات التقنية للكاميرا.","ic_ad_fujifilm_a2":"ركّز المحتوى على الربيع والخريف، حين يصوّر الناس أكثر.","ic_ad_fujifilm_a3":"اخرج من حرب المواصفات وتنافس بالإبداع.","ic_ad_sm-universe_a1":"الإيمان بقدرتك يحدد إن كنت ستحاول أصلًا.","ic_ad_sm-universe_a2":"عندما يعرف طرف أكثر، يتردد الطرف الآخر في الالتزام.","ic_ad_sm-universe_a3":"الشبكات الداعمة تمنح الناس الثقة للاستمرار.","ic_ad_caltex_a1":"يريد السائقون الشعور بالتحكم في سيارتهم وصيانتها.","ic_ad_caltex_a2":"خسارة المال تؤلم أكثر مما يُفرح توفير المبلغ نفسه.","ic_ad_caltex_a3":"يريد الناس أن يلاحظ الآخرون اختياراتهم وخبرتهم.","ic_ad_indrive_a1":"العملاء، لا الشركات، من يجب أن يحدد السعر العادل.","ic_ad_indrive_a2":"يشعر الناس بأمان أكبر حين يعتقدون أنهم يتحكمون بما يحدث.","ic_ad_indrive_a3":"إضاعة الوقت أو الدفع الزائد يؤلم أكثر مما يُفرح مكسب مماثل.","ic_ad_thomson_a1":"الروابط العائلية القوية تشكّل شعورنا بالأمان والدعم.","ic_ad_thomson_a2":"الفجوة بين التربية المثالية والواقع تخلق ضغطًا.","ic_ad_thomson_a3":"يحكم الآباء على أنفسهم بمقارنة أسرهم بغيرها.","ic_ad_tim-hortons_a1":"تكتسب الأماكن والأطعمة معناها من طريقة عيشنا لها ومشاركتها.","ic_ad_tim-hortons_a2":"يختار الناس أماكن تعكس الجماعات التي ينتمون إليها.","ic_ad_tim-hortons_a3":"نثق بالخيارات التي نرى كثيرين يتخذونها.","ic_bot_persona":"ابدأ بشخص: اختر من تريد الوصول إليه.","ic_bot_pain":"اختيار رائع! الآن اربط نقطة الألم التي تخصّه فعلًا.","ic_bot_angle":"تطابق ممتاز! الآن اختر الزاوية التي تشرح سبب الألم.","ic_bot_wrong":"اقتربت! جرّب البطاقة المضيئة.","ic_bot_insight":"هذه رؤيتك: حقيقة إنسانية واحدة يُبنى عليها كل إعلان.","ic_bot_ship":"الآن ضع إعلانًا في كل قناة، أو اضغط \"املأها عني\".","ic_bot_results":"انطلقت! احصل على دراسة الحالة كاملة لترى الخطة بأكملها.","ic_bot_almost":"اقتربت! البطاقة المضيئة أنسب.","ic_angles":"الزوايا","ic_ph_angle":"اربط نقطة ألم أولًا.","ic_hint_tree":"اضغط على بطاقة، أو اسحب خطًا للربط.","ic_read_full":"اقرأ دراسة الحالة كاملة"},"ru":{"ic_play_k":"Конструктор инсайтов · 60 секунд","ic_play_t":"Создайте свой первый инсайт","ic_kicker":"Конструктор инсайтов · попробуйте","ic_article_note":"Написано для этого демо по цепочке инсайтов {client}. Не опубликовано {client}.","ic_bot_hi":"Привет! Я ваш ассистент SOMIN и буду подсказывать по ходу.","ic_choose_h":"С чего хотите начать?","ic_choose_a_cta":"Начать создавать","ic_choose_b_t":"Перейти на сайт","ic_choose_b_s":"Изучите цены, кейсы и принцип работы SOMIN в своём темпе.","ic_choose_b_cta":"На сайт","ic_case":"Кейс","ic_step_of":"Шаг {n} из {m}","ic_q1":"С кем вы говорите?","ic_q2":"Какая боль — их?","ic_q3":"Какой угол подходит лучше?","ic_q4":"Поставьте по одной рекламе в каждый канал","ic_content":"Контент","ic_change":"Сменить","ic_autofill":"Заполнить за меня","ic_hint_ship":"Нажмите на рекламу, затем на канал.","ic_ad_reassured_a1":"Люди ценят выгоду сегодня гораздо больше, чем защиту в будущем.","ic_ad_reassured_a2":"Люди сравнивают цену страховки сейчас с тем, что она даёт взамен.","ic_ad_reassured_a3":"Незнакомые термины создают ощущение, что страховка не для них.","ic_ad_pepsi_a1":"Мы перенимаем привычки, наблюдая за семьёй и окружением.","ic_ad_pepsi_a2":"Желание побаловать себя и стремление есть правильно создают внутренний конфликт.","ic_ad_pepsi_a3":"Знакомый вкус возвращает тёплые воспоминания, поэтому кажется правильным.","ic_ad_ballroom_a1":"Люди получают статус и чувство принадлежности, когда их видят на сцене.","ic_ad_ballroom_a2":"Навык растёт маленькими заметными шагами, и это мотивирует продолжать.","ic_ad_ballroom_a3":"Страх выглядеть глупо останавливает сильнее, чем нехватка таланта.","ic_ad_fujifilm_a1":"Продавайте ощущение от съёмки, а не технические характеристики камеры.","ic_ad_fujifilm_a2":"Сосредоточьте контент на весне и осени, когда снимают больше всего.","ic_ad_fujifilm_a3":"Выйдите из гонки характеристик и конкурируйте креативом.","ic_ad_sm-universe_a1":"Вера в свои силы решает, попробуете ли вы вообще.","ic_ad_sm-universe_a2":"Когда одна сторона знает больше, другая не решается.","ic_ad_sm-universe_a3":"Поддерживающее сообщество даёт уверенность продолжать.","ic_ad_caltex_a1":"Водители хотят сами контролировать машину и уход за ней.","ic_ad_caltex_a2":"Потерять деньги больнее, чем радостно сэкономить ту же сумму.","ic_ad_caltex_a3":"Людям важно, чтобы другие замечали их выбор и знания.","ic_ad_indrive_a1":"Справедливую цену должны определять клиенты, а не компании.","ic_ad_indrive_a2":"Люди чувствуют себя увереннее, когда верят, что всё под контролем.","ic_ad_indrive_a3":"Потерянное время или переплата огорчают сильнее, чем радует такая же выгода.","ic_ad_thomson_a1":"Крепкие семейные связи определяют, насколько защищёнными мы себя чувствуем.","ic_ad_thomson_a2":"Разрыв между идеальным родительством и реальной жизнью создаёт стресс.","ic_ad_thomson_a3":"Родители оценивают себя, сравнивая с другими семьями.","ic_ad_tim-hortons_a1":"Места и еда обретают смысл через то, как мы их проживаем и делимся ими.","ic_ad_tim-hortons_a2":"Люди выбирают места, отражающие их группу.","ic_ad_tim-hortons_a3":"Мы доверяем выбору, который делают многие.","ic_bot_persona":"Начните с человека: выберите, к кому хотите обратиться.","ic_bot_pain":"Отличный выбор! Теперь свяжите боль, которая действительно его.","ic_bot_angle":"Подходит! Теперь выберите угол, который объясняет, почему это болит.","ic_bot_wrong":"Почти! Попробуйте светящуюся карточку.","ic_bot_insight":"Это ваш инсайт: одна человеческая правда для каждой рекламы.","ic_bot_ship":"Теперь поставьте по рекламе в каждый канал или нажмите «Заполнить за меня».","ic_bot_results":"Запущено! Скачайте полный кейс, чтобы увидеть весь план.","ic_bot_almost":"Почти! Светящаяся карточка подходит лучше.","ic_angles":"Углы","ic_ph_angle":"Сначала свяжите боль.","ic_hint_tree":"Нажмите на карточку или протяните линию, чтобы связать.","ic_read_full":"Читать кейс целиком"}};
     Object.keys(DICT_X).forEach(function (l) { DICT[l] = Object.assign({}, DICT[l] || {}, DICT_X[l]); });
     document.querySelectorAll('.se-hero').forEach(initHeroI18n);
   });
