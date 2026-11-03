@@ -122,6 +122,7 @@ html.nav-locked { overflow: hidden; }
 .f-badges { max-width: 1320px; margin: 0 auto; padding: 8px var(--pad) 28px; display: flex; flex-wrap: wrap; gap: 28px; align-items: center; }
 .f-badge { display: flex; align-items: center; gap: 14px; }
 .f-badge img { width: 64px; height: auto; border-radius: 6px; }
+.f-badge img[src$=".svg"] { border-radius: 0; }
 .f-badge span { max-width: 150px; line-height: 1.4; color: var(--on-ink-2); }
 .f-reviews { margin-left: auto; display: flex; gap: 10px; align-items: center; color: var(--on-ink-3); }
 .f-reviews a { border: 1px solid var(--ink-line); border-radius: 999px; padding: 6px 12px; font-size: 12px; }
