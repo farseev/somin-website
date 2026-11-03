@@ -416,7 +416,40 @@ html.ic-locked,html.ic-locked body{overflow:hidden;}
 .ic.ic--intro .ic-shell{view-transition-name:ic-play;}
 ::view-transition-group(ic-play){animation-duration:.55s;animation-timing-function:cubic-bezier(.2,.8,.2,1);}
 ::view-transition-old(ic-play),::view-transition-new(ic-play){height:100%;object-fit:cover;overflow:clip;}
-/* Play the game: the button under the hero video (returning visitors and everyone after the first-visit intro) */
+/* First-visit choice: "Build your first insight" or "Visit the website" (desktop only; shown once) */
+.ic-choice[hidden]{display:none !important;}
+.ic-choice{--ic-mint-rgb:104,177,160;--ic-mint:rgb(var(--ic-mint-rgb));--ic-line:var(--se-line,#243832);--ic-d:var(--se-display,'Montserrat',system-ui,sans-serif);position:fixed;inset:0;z-index:2100;display:flex;flex-direction:column;align-items:center;overflow-y:auto;padding:clamp(18px,3vw,36px) clamp(18px,4vw,56px);color:#fff;font-family:var(--se-body,'Montserrat',system-ui,sans-serif);line-height:1.5;-webkit-font-smoothing:antialiased;background:radial-gradient(120% 90% at 85% -10%,rgba(104,177,160,.18),transparent 55%),radial-gradient(90% 70% at -10% 110%,rgba(104,177,160,.1),transparent 60%),#0E1615;isolation:isolate;}
+.ic-choice::before{content:"";position:fixed;inset:0;z-index:-1;background:url("/assets/img/game/bg-chain.webp") center/cover no-repeat;opacity:.5;filter:saturate(.4) brightness(.85);pointer-events:none;}
+.ic-choice *,.ic-choice *::before,.ic-choice *::after{box-sizing:border-box;}
+.ic-choice-bar{width:100%;max-width:1100px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.ic-choice-wm{font-family:var(--ic-d);font-weight:900;font-size:22px;letter-spacing:-.02em;color:#fff;}
+.ic-choice-wm b{color:var(--se-mint,#2DBF9C);font-weight:900;}
+.ic-choice-lang{font:700 12px var(--ic-d);color:rgba(255,255,255,.86);background:rgba(255,255,255,.06);border:1px solid var(--ic-line);border-radius:999px;padding:10px 12px;max-width:150px;}
+.ic-choice-lang option{color:#111;background:#fff;}
+.ic-choice-in{width:100%;max-width:1100px;margin:auto 0;padding:clamp(24px,5vh,56px) 0;text-align:center;}
+.ic-choice-k{display:inline-flex;margin:0 0 14px;font-family:var(--ic-d);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ic-mint);}
+.ic-choice-h{margin:0 auto clamp(26px,4vh,44px);max-width:18ch;font-family:var(--ic-d);font-weight:900;font-size:clamp(30px,4.2vw,56px);line-height:1.08;letter-spacing:-.025em;color:#fff;}
+.ic-choice-cards{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px);text-align:start;}
+.ic-choice-card{position:relative;display:flex;flex-direction:column;gap:10px;min-height:clamp(250px,34vh,320px);padding:clamp(24px,2.6vw,36px);border:1px solid var(--ic-line);border-radius:24px;background:linear-gradient(160deg,rgba(26,42,40,.92),rgba(14,22,21,.92));color:#fff;font:inherit;cursor:pointer;text-align:start;transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .2s,box-shadow .25s;-webkit-appearance:none;appearance:none;}
+.ic-choice-card--a{border-color:rgba(var(--ic-mint-rgb),.55);background:linear-gradient(115deg,rgba(var(--ic-mint-rgb),.22),rgba(26,42,40,.94) 60%),#0F1816;box-shadow:0 18px 44px -22px rgba(var(--ic-mint-rgb),.6);}
+.ic-choice-card:hover,.ic-choice-card:focus-visible{transform:translateY(-3px);border-color:var(--ic-mint);box-shadow:0 26px 60px -24px rgba(var(--ic-mint-rgb),.75);}
+.ic-choice-card:focus-visible{outline:2px solid var(--ic-mint);outline-offset:3px;}
+.ic-choice-top{display:flex;align-items:center;height:44px;}
+.ic-choice-faces{display:flex;}
+.ic-choice-faces i{width:44px;height:44px;border-radius:50%;background:#1E332F center/cover no-repeat;border:2px solid #142220;margin-inline-start:-14px;box-shadow:0 4px 10px rgba(0,0,0,.35);}
+.ic-choice-faces i:first-child{margin-inline-start:0;}
+.ic-choice-ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;border:1px solid rgba(var(--ic-mint-rgb),.3);background:rgba(var(--ic-mint-rgb),.12);}
+.ic-choice-ico svg{width:22px;height:22px;stroke:var(--ic-mint);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.ic-choice-card b{margin-top:6px;font-family:var(--ic-d);font-weight:900;font-size:clamp(22px,2.2vw,30px);letter-spacing:-.02em;line-height:1.12;}
+.ic-choice-s{max-width:42ch;font-size:clamp(14px,1.15vw,16px);line-height:1.5;color:rgba(255,255,255,.7);}
+.ic-choice-go{margin-top:auto;display:inline-flex;align-items:center;gap:10px;font-family:var(--ic-d);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ic-mint);}
+.ic-choice-go svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s;}
+.ic-choice-card:hover .ic-choice-go svg{transform:translateX(4px);}
+.ic-choice[dir="rtl"] .ic-choice-go svg{transform:scaleX(-1);}
+.ic-choice[dir="rtl"] .ic-choice-card:hover .ic-choice-go svg{transform:scaleX(-1) translateX(4px);}
+@media (max-width:760px){.ic-choice-cards{grid-template-columns:1fr;}.ic-choice-card{min-height:0;}}
+@media (prefers-reduced-motion:reduce){.ic-choice-card,.ic-choice-go svg{transition:none !important;}}
+/* Build your first insight: the button under the hero video (returning visitors and everyone after the first-visit choice) */
 .somin-embed .ic-play{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;width:100%;margin-top:14px;padding:14px 16px 14px 14px;text-align:start;border:1px solid rgba(var(--ic-mint-rgb),.55);border-radius:18px;background:linear-gradient(115deg,rgba(var(--ic-mint-rgb),.22),rgba(26,42,40,.94) 58%),#0F1816;box-shadow:0 18px 44px -22px rgba(var(--ic-mint-rgb),.6),inset 0 1px 0 rgba(255,255,255,.05);color:#fff;cursor:pointer;overflow:hidden;isolation:isolate;transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .2s,box-shadow .25s;view-transition-name:ic-play;}
 .somin-embed .ic-play::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,transparent 35%,rgba(var(--ic-hi-rgb),.16) 50%,transparent 65%);background-size:250% 100%;animation:ic-sheen 3.4s ease-in-out infinite;pointer-events:none;}
 .somin-embed .ic-play:hover,.somin-embed .ic-play:focus-visible{transform:translateY(-2px);border-color:var(--ic-mint);box-shadow:0 24px 54px -22px rgba(var(--ic-mint-rgb),.8);}
@@ -830,9 +863,30 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
         </div>
 <button type="button" class="ic-play" id="ic-play" aria-haspopup="dialog" aria-controls="insight-chain">
           <span class="ic-play-faces" aria-hidden="true"><i style="background-image:url(/assets/img/game/personas/clara-wren.webp)"></i><i style="background-image:url(/assets/img/game/personas/theo-savory.webp)"></i><i style="background-image:url(/assets/img/game/personas/jin-min-ji.webp)"></i><i style="background-image:url(/assets/img/game/personas/isaiah-corpuz.webp)"></i><i style="background-image:url(/assets/img/game/personas/avery-chen.webp)"></i></span>
-          <span class="ic-play-txt"><span class="ic-play-k" data-i18n="ic_play_k">Insight Chain · a 60-second game</span><b data-i18n="ic_play_t">Play the game</b><span class="ic-play-s" data-i18n="ic_play_s">Wire a persona to a pain point, pick the angle and ship the ads. Real SOMIN case studies.</span></span>
+          <span class="ic-play-txt"><span class="ic-play-k" data-i18n="ic_play_k">Insight builder · 60 seconds</span><b data-i18n="ic_play_t">Build your first insight</b><span class="ic-play-s" data-i18n="ic_play_s">Wire a persona to a pain point, pick the angle and ship the ads. Real SOMIN case studies.</span></span>
           <span class="ic-play-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         </button>
+      </div>
+    </div>
+    <div class="ic-choice" id="ic-choice" role="dialog" aria-modal="true" aria-labelledby="ic-choice-h" hidden data-nosnippet="">
+      <div class="ic-choice-bar"><span class="ic-choice-wm" translate="no"><b>SO</b>MIN</span></div>
+      <div class="ic-choice-in">
+        <p class="ic-choice-k" data-i18n="ic_intro_kicker">Welcome to SOMIN</p>
+        <h2 class="ic-choice-h" id="ic-choice-h" data-i18n="ic_choose_h">How would you like to start?</h2>
+        <div class="ic-choice-cards">
+          <button type="button" class="ic-choice-card ic-choice-card--a" id="ic-choice-flow" data-gtm-id="home_choice_build_insight">
+            <span class="ic-choice-top"><span class="ic-choice-faces" aria-hidden="true"><i style="background-image:url(/assets/img/game/personas/clara-wren.webp)"></i><i style="background-image:url(/assets/img/game/personas/theo-savory.webp)"></i><i style="background-image:url(/assets/img/game/personas/jin-min-ji.webp)"></i><i style="background-image:url(/assets/img/game/personas/isaiah-corpuz.webp)"></i><i style="background-image:url(/assets/img/game/personas/avery-chen.webp)"></i></span></span>
+            <b data-i18n="ic_play_t">Build your first insight</b>
+            <span class="ic-choice-s" data-i18n="ic_intro_sub">60 seconds. Real personas, pain points and ads from SOMIN case studies.</span>
+            <span class="ic-choice-go"><span data-i18n="ic_choose_a_cta">Start building</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </button>
+          <button type="button" class="ic-choice-card ic-choice-card--b" id="ic-choice-site" data-gtm-id="home_choice_visit_website">
+            <span class="ic-choice-top"><span class="ic-choice-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg></span></span>
+            <b data-i18n="ic_choose_b_t">Visit the website</b>
+            <span class="ic-choice-s" data-i18n="ic_choose_b_s">Explore pricing, case studies and how SOMIN works, at your own pace.</span>
+            <span class="ic-choice-go"><span data-i18n="ic_choose_b_cta">Go to the website</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </button>
+        </div>
       </div>
     </div>
     <section class="ic" id="insight-chain" aria-labelledby="ic-h2" data-nosnippet="">
@@ -843,7 +897,7 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
         </div>
         <div class="ic-head">
           <div class="ic-head-copy">
-            <p class="ic-kicker ic-only-inline" data-i18n="ic_kicker">Insight Chain · play it</p>
+            <p class="ic-kicker ic-only-inline" data-i18n="ic_kicker">Insight builder · try it</p>
             <p class="ic-kicker ic-only-intro" data-i18n="ic_intro_kicker">Welcome to SOMIN</p>
             <h2 class="ic-h2 ic-only-inline" id="ic-h2"><span data-i18n="ic_h2a">Build the insight.</span> <span class="ic-it" data-i18n="ic_h2b">Ship the content.</span></h2>
             <p class="ic-h2 ic-only-intro" id="ic-intro-title" data-i18n="ic_intro_h">Before the website, build one insight chain.</p>
@@ -890,7 +944,7 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
           <span data-i18n="ic_learn">Learn more</span>
           <span data-i18n="ic_read_article">Read the article</span>
           <span data-i18n="ic_article_draft">SEO article draft</span>
-          <span data-i18n="ic_article_note">Written for this game from the {client} insight chain. Not published by {client}.</span>
+          <span data-i18n="ic_article_note">Written for this demo from the {client} insight chain. Not published by {client}.</span>
           <span data-i18n="ic_kw">Target keyword</span>
           <span data-i18n="ic_min_read">{n} min read</span>
           <span data-i18n="ic_built_from">Built from</span>
@@ -979,7 +1033,7 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
           <span data-i18n="ic_bot_case">In the {client} case study</span>
           <span data-i18n="ic_bot_src">Source: case study, p. {n}</span>
           <span data-i18n="ic_bot_why">Why this step matters</span>
-          <span data-i18n="ic_bot_hi">Hi, I'm the SOMIN bot. Every chain in this game comes from a real SOMIN case study. Build it step by step and I'll show you why each move works.</span>
+          <span data-i18n="ic_bot_hi">Hi, I'm the SOMIN bot. Every chain here comes from a real SOMIN case study. Build it step by step and I'll show you why each move works.</span>
           <span data-i18n="ic_bot_persona">Step one is the persona: who the conversation is really about. SOMIN clusters thousands of real posts and ads into personas, then turns each into a named character enriched with traits from those posts.</span>
           <span data-i18n="ic_bot_pain">Next, the pain point (SOMIN calls it a tension): the conflict people keep posting about. SOMIN measures how much of the conversation each one holds for the brand, its competitors and creators, so you can see where to claim, differentiate or stay out.</span>
           <span data-i18n="ic_bot_angle">Now pick the angle: the lens that makes this pain point worth listening to. SOMIN generates candidates grounded in validated theory (psychological, sociological, economic or behavioural-economic) and the strategist picks the one that fits.</span>
@@ -2480,7 +2534,7 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
     }
 
     /* ---------- first-visit intro: the game is the first screen, then it collapses under the hero ---------- */
-    var home = document.createComment('insight-chain'), inerted = [];
+    var home = document.createComment('insight-chain'), inerted = [], choice = document.getElementById('ic-choice'), introMode = '';
     function markSeen() { try { localStorage.setItem('somin_ic_seen', '1'); } catch (e) {} }
     function wantIntro() {
       try {
@@ -2500,16 +2554,17 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
     function setInert(on) {
       if (on) {
         [].slice.call(document.body.children).forEach(function (n) {
-          if (n !== root && n !== layer && !n.inert && n.tagName !== 'SCRIPT' && inerted.indexOf(n) < 0) { n.inert = true; inerted.push(n); }
+          if (n !== root && n !== layer && n !== choice && !n.inert && n.tagName !== 'SCRIPT' && inerted.indexOf(n) < 0) { n.inert = true; inerted.push(n); }
         });
       } else {
         inerted.forEach(function (n) { n.inert = false; });
         inerted = [];
       }
     }
-    /* mode 'first': the first screen of a first visit (desktop only). mode 'play': opened from the Play the game button. */
+    /* mode 'first': the old first-visit screen (kept as a fallback). mode 'play': opened from the Build your first insight button. mode 'flow': chosen on the first-visit choice screen. */
     function enterIntro(mode) {
       if (root.classList.contains('ic--intro')) return;
+      introMode = mode;
       bot.show();
       loadCase(S.sc).catch(function () {});
       var first = mode === 'first';
@@ -2528,7 +2583,7 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
         try { shell.focus({ preventScroll: true }); } catch (e) {}
       };
       document.addEventListener('keydown', onKey);
-      if (!first && !REDUCE && document.startViewTransition) { try { document.startViewTransition(open); } catch (e) { open(); } }
+      if (!first && mode !== 'flow' && !REDUCE && document.startViewTransition) { try { document.startViewTransition(open); } catch (e) { open(); } }
       else open();
       if (first) track('ic_intro_view', { cta_location: 'home_intro' });
     }
@@ -2537,7 +2592,7 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
       var first = root.classList.contains('ic--first');
       markSeen();
       bot.hide();
-      track('ic_intro_exit', { cta_text: how, step: S.view, mode: first ? 'first_visit' : 'play_button' });
+      track('ic_intro_exit', { cta_text: how, step: S.view, mode: first ? 'first_visit' : (introMode === 'flow' ? 'choice_flow' : 'play_button') });
       document.removeEventListener('keydown', onKey);
       var finish = function () {
         setInert(false);
@@ -2570,27 +2625,76 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
         sel.appendChild(o); seen[k] = 1;
       });
       if (sel.options.length < 2) return;
-      sel.addEventListener('change', function () {
-        var k = sel.options[sel.selectedIndex].getAttribute('data-k');
+      var onLang = function (ev) {
+        var el = ev.target, k = el.options[el.selectedIndex].getAttribute('data-k');
         try { localStorage.setItem('somin_hero_lang', k === 'tl' ? 'fil' : k); } catch (e) {}
-        location.href = sel.value + location.search;
-      });
+        location.href = el.value + location.search;
+      };
+      sel.addEventListener('change', onLang);
       bar.insertBefore(sel, skip);
+      var cbar = choice && choice.querySelector('.ic-choice-bar');
+      if (cbar) {  /* same picker on the first-visit choice screen */
+        var csel = sel.cloneNode(true);
+        csel.className = 'ic-choice-lang notranslate'; csel.selectedIndex = sel.selectedIndex;
+        csel.addEventListener('change', onLang);
+        cbar.appendChild(csel);
+      }
     })();
     document.getElementById('ic-skip').addEventListener('click', function () { exitIntro(root.classList.contains('ic--first') ? 'skip' : 'back'); });
     var playBtn = document.getElementById('ic-play');
     if (playBtn) playBtn.addEventListener('click', function () {
-      track('ic_play_click', { funnel_stage: 'engagement', cta_text: 'Play the game', cta_id: 'home_hero_play_game', cta_location: 'home_hero' });
+      track('ic_play_click', { funnel_stage: 'engagement', cta_text: 'Build your first insight', cta_id: 'home_hero_play_game', cta_location: 'home_hero' });
       enterIntro('play');
     });
 
     var rz = 0;
     window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { if (S.view === 'connect' && root.classList.contains('ic--intro')) drawWires(); }, 80); });
+    /* ---------- first-visit choice: build your first insight, or go straight to the website ---------- */
+    function onChoiceKey(e) {
+      if (e.key === 'Escape') { hideChoice('escape'); return; }
+      if (e.key !== 'Tab') return;
+      var f = [].slice.call(choice.querySelectorAll('button, select')).filter(function (n) { return !n.disabled; });
+      if (!f.length) return;
+      var i = f.indexOf(document.activeElement);
+      if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+    }
+    function showChoice() {
+      if (!choice) { enterIntro('first'); return; }
+      document.body.appendChild(choice);
+      if ((document.documentElement.getAttribute('data-locale') || 'en') === 'ar') choice.setAttribute('dir', 'rtl');
+      choice.hidden = false;
+      setInert(true);
+      document.documentElement.classList.add('ic-locked');
+      document.addEventListener('keydown', onChoiceKey);
+      loadCase(S.sc).catch(function () {});   /* warm the case data so the flow opens instantly */
+      track('ic_intro_view', { cta_location: 'home_intro' });
+      var b = document.getElementById('ic-choice-flow');
+      if (b) { try { b.focus({ preventScroll: true }); } catch (e) {} }
+    }
+    function hideChoice(how) {
+      if (!choice || choice.hidden) return;
+      choice.hidden = true;
+      document.removeEventListener('keydown', onChoiceKey);
+      if (how === 'flow') { enterIntro('flow'); return; }   /* page stays locked; the flow takes over */
+      markSeen();
+      setInert(false);
+      document.documentElement.classList.remove('ic-locked');
+      track('ic_intro_exit', { cta_text: how, step: 'choice', mode: 'first_visit' });
+      window.scrollTo(0, 0);
+    }
+    var cFlow = document.getElementById('ic-choice-flow'), cSite = document.getElementById('ic-choice-site');
+    if (cFlow) cFlow.addEventListener('click', function () {
+      track('ic_play_click', { funnel_stage: 'engagement', cta_text: 'Build your first insight', cta_id: 'home_intro_build_insight', cta_location: 'home_intro' });
+      hideChoice('flow');
+    });
+    if (cSite) cSite.addEventListener('click', function () { hideChoice('visit_website'); });
+
     function boot() {
       S.sc = Math.floor(Math.random() * SC.length);
-      if (wantIntro()) enterIntro('first');
+      if (wantIntro()) showChoice();
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (S.view === 'connect') drawWires(); });
-      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { if (root.classList.contains('ic--intro')) setInert(true); });
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { if (root.classList.contains('ic--intro') || (choice && !choice.hidden)) setInert(true); });
     }
     boot();
   })();
@@ -3554,6 +3658,9 @@ html.ic-locked .somin-embed .ic-play{view-transition-name:none;}
   }
   loadDict().then(function (d) {
     if (d) { DICT = d; }
+    /* Insight-builder copy (choice screen + renamed CTA) layered over the base dictionary. */
+    var DICT_X = {"en":{"ic_play_k":"Insight builder · 60 seconds","ic_play_t":"Build your first insight","ic_kicker":"Insight builder · try it","ic_article_note":"Written for this demo from the {client} insight chain. Not published by {client}.","ic_bot_hi":"Hi, I'm the SOMIN bot. Every chain here comes from a real SOMIN case study. Build it step by step and I'll show you why each move works.","ic_choose_h":"How would you like to start?","ic_choose_a_cta":"Start building","ic_choose_b_t":"Visit the website","ic_choose_b_s":"Explore pricing, case studies and how SOMIN works, at your own pace.","ic_choose_b_cta":"Go to the website"},"zh-Hans":{"ic_play_k":"洞察构建器 · 60 秒","ic_play_t":"构建你的第一个洞察","ic_kicker":"洞察构建器 · 来试试","ic_article_note":"为本演示根据 {client} 的洞察链撰写。并非由 {client} 发布。","ic_bot_hi":"你好，我是 SOMIN 机器人。这里的每条链都来自真实的 SOMIN 案例。一步步构建，我会告诉你每一步为何奏效。","ic_choose_h":"你想如何开始？","ic_choose_a_cta":"开始构建","ic_choose_b_t":"访问网站","ic_choose_b_s":"按自己的节奏了解价格、案例和 SOMIN 的工作方式。","ic_choose_b_cta":"前往网站"},"zh-Hant":{"ic_play_k":"洞察建構器 · 60 秒","ic_play_t":"建構你的第一個洞察","ic_kicker":"洞察建構器 · 來試試","ic_article_note":"為此示範根據 {client} 的洞察鏈撰寫。並非由 {client} 發布。","ic_bot_hi":"你好，我是 SOMIN 機器人。這裡的每條鏈都來自真實的 SOMIN 案例。一步步建構，我會告訴你每一步為何有效。","ic_choose_h":"你想如何開始？","ic_choose_a_cta":"開始建構","ic_choose_b_t":"造訪網站","ic_choose_b_s":"依自己的步調了解價格、案例與 SOMIN 的運作方式。","ic_choose_b_cta":"前往網站"},"ja":{"ic_play_k":"インサイトビルダー · 60 秒","ic_play_t":"最初のインサイトを作ってみる","ic_kicker":"インサイトビルダー · 試してみる","ic_article_note":"このデモのために、{client} のインサイトの連鎖から作成しました。{client} が公開したものではありません。","ic_bot_hi":"こんにちは、SOMIN ボットです。ここにあるすべての連鎖は、SOMIN の実際の事例に基づいています。ひとつずつ組み立てれば、各ステップが効く理由をお見せします。","ic_choose_h":"どちらから始めますか？","ic_choose_a_cta":"作り始める","ic_choose_b_t":"サイトを見る","ic_choose_b_s":"料金、事例、SOMIN の仕組みを、ご自分のペースでご覧ください。","ic_choose_b_cta":"サイトへ進む"},"ko":{"ic_play_k":"인사이트 빌더 · 60초","ic_play_t":"첫 인사이트 만들기","ic_kicker":"인사이트 빌더 · 직접 해보기","ic_article_note":"이 데모를 위해 {client}의 인사이트 체인을 바탕으로 작성했습니다. {client}가 게시한 것이 아닙니다.","ic_bot_hi":"안녕하세요, SOMIN 봇입니다. 여기 있는 모든 체인은 실제 SOMIN 사례에서 가져왔습니다. 한 단계씩 만들어 보면 각 선택이 왜 효과적인지 알려 드릴게요.","ic_choose_h":"어떻게 시작하시겠어요?","ic_choose_a_cta":"만들기 시작","ic_choose_b_t":"웹사이트 둘러보기","ic_choose_b_s":"요금, 사례, SOMIN의 작동 방식을 원하는 속도로 살펴보세요.","ic_choose_b_cta":"웹사이트로 이동"},"th":{"ic_play_k":"ตัวสร้างอินไซต์ · 60 วินาที","ic_play_t":"สร้างอินไซต์แรกของคุณ","ic_kicker":"ตัวสร้างอินไซต์ · ลองเลย","ic_article_note":"เขียนขึ้นสำหรับเดโมนี้จากห่วงโซ่อินไซต์ของ {client} ไม่ได้เผยแพร่โดย {client}","ic_bot_hi":"สวัสดี ฉันคือบอทของ SOMIN ทุกห่วงโซ่ที่นี่มาจากกรณีศึกษาจริงของ SOMIN ลองสร้างทีละขั้น แล้วฉันจะอธิบายว่าทำไมแต่ละก้าวจึงได้ผล","ic_choose_h":"คุณอยากเริ่มต้นแบบไหน","ic_choose_a_cta":"เริ่มสร้าง","ic_choose_b_t":"เข้าชมเว็บไซต์","ic_choose_b_s":"ดูราคา กรณีศึกษา และวิธีการทำงานของ SOMIN ตามจังหวะของคุณ","ic_choose_b_cta":"ไปที่เว็บไซต์"},"vi":{"ic_play_k":"Trình tạo insight · 60 giây","ic_play_t":"Tạo insight đầu tiên của bạn","ic_kicker":"Trình tạo insight · thử ngay","ic_article_note":"Được viết cho bản demo này từ chuỗi insight của {client}. Không do {client} xuất bản.","ic_bot_hi":"Xin chào, mình là bot SOMIN. Mọi chuỗi ở đây đều đến từ một case study thật của SOMIN. Hãy xây từng bước, mình sẽ chỉ cho bạn vì sao mỗi nước đi lại hiệu quả.","ic_choose_h":"Bạn muốn bắt đầu thế nào?","ic_choose_a_cta":"Bắt đầu tạo","ic_choose_b_t":"Xem website","ic_choose_b_s":"Khám phá bảng giá, case study và cách SOMIN hoạt động theo nhịp của bạn.","ic_choose_b_cta":"Đến website"},"id":{"ic_play_k":"Pembuat insight · 60 detik","ic_play_t":"Bangun insight pertama Anda","ic_kicker":"Pembuat insight · coba sekarang","ic_article_note":"Ditulis untuk demo ini dari rantai insight {client}. Tidak diterbitkan oleh {client}.","ic_bot_hi":"Halo, saya bot SOMIN. Setiap rantai di sini berasal dari studi kasus SOMIN yang nyata. Bangun langkah demi langkah, dan saya akan tunjukkan mengapa setiap langkah berhasil.","ic_choose_h":"Bagaimana Anda ingin memulai?","ic_choose_a_cta":"Mulai membangun","ic_choose_b_t":"Kunjungi situs web","ic_choose_b_s":"Jelajahi harga, studi kasus, dan cara kerja SOMIN dengan kecepatan Anda sendiri.","ic_choose_b_cta":"Buka situs web"},"ms":{"ic_play_k":"Pembina insight · 60 saat","ic_play_t":"Bina insight pertama anda","ic_kicker":"Pembina insight · cuba sekarang","ic_article_note":"Ditulis untuk demo ini daripada rantaian insight {client}. Tidak diterbitkan oleh {client}.","ic_bot_hi":"Hai, saya bot SOMIN. Setiap rantaian di sini datang daripada kajian kes SOMIN yang sebenar. Bina langkah demi langkah dan saya akan tunjukkan mengapa setiap langkah berkesan.","ic_choose_h":"Bagaimana anda mahu bermula?","ic_choose_a_cta":"Mula membina","ic_choose_b_t":"Layari laman web","ic_choose_b_s":"Terokai harga, kajian kes dan cara SOMIN berfungsi mengikut rentak anda.","ic_choose_b_cta":"Pergi ke laman web"},"hi":{"ic_play_k":"इनसाइट बिल्डर · 60 सेकंड","ic_play_t":"अपनी पहली इनसाइट बनाएं","ic_kicker":"इनसाइट बिल्डर · आज़माएं","ic_article_note":"यह डेमो {client} की इनसाइट चेन से लिखा गया है। {client} द्वारा प्रकाशित नहीं।","ic_bot_hi":"नमस्ते, मैं SOMIN बॉट हूँ। यहाँ की हर चेन SOMIN के असली केस स्टडी से आती है। कदम-दर-कदम बनाइए, और मैं बताऊँगा कि हर चाल क्यों काम करती है।","ic_choose_h":"आप कैसे शुरू करना चाहेंगे?","ic_choose_a_cta":"बनाना शुरू करें","ic_choose_b_t":"वेबसाइट देखें","ic_choose_b_s":"कीमतें, केस स्टडी और SOMIN कैसे काम करता है, अपनी गति से देखें।","ic_choose_b_cta":"वेबसाइट पर जाएं"},"fil":{"ic_play_k":"Insight builder · 60 segundo","ic_play_t":"Buuin ang una mong insight","ic_kicker":"Insight builder · subukan","ic_article_note":"Isinulat para sa demo na ito mula sa insight chain ng {client}. Hindi inilathala ng {client}.","ic_bot_hi":"Kumusta, ako ang SOMIN bot. Ang bawat chain dito ay galing sa totoong case study ng SOMIN. Buuin ito nang hakbang-hakbang at ipapakita ko kung bakit gumagana ang bawat galaw.","ic_choose_h":"Paano mo gustong magsimula?","ic_choose_a_cta":"Simulang bumuo","ic_choose_b_t":"Bisitahin ang website","ic_choose_b_s":"Tuklasin ang presyo, mga case study, at kung paano gumagana ang SOMIN sa sarili mong bilis.","ic_choose_b_cta":"Pumunta sa website"},"es":{"ic_play_k":"Constructor de insights · 60 segundos","ic_play_t":"Crea tu primer insight","ic_kicker":"Constructor de insights · pruébalo","ic_article_note":"Escrito para esta demo a partir de la cadena de insights de {client}. No publicado por {client}.","ic_bot_hi":"Hola, soy el bot de SOMIN. Cada cadena de aquí viene de un caso de estudio real de SOMIN. Constrúyela paso a paso y te mostraré por qué funciona cada movimiento.","ic_choose_h":"¿Cómo quieres empezar?","ic_choose_a_cta":"Empezar a crear","ic_choose_b_t":"Visitar el sitio web","ic_choose_b_s":"Explora precios, casos de estudio y cómo funciona SOMIN, a tu ritmo.","ic_choose_b_cta":"Ir al sitio web"},"fr":{"ic_play_k":"Constructeur d'insights · 60 secondes","ic_play_t":"Créez votre premier insight","ic_kicker":"Constructeur d'insights · à essayer","ic_article_note":"Rédigé pour cette démo à partir de la chaîne d'insights de {client}. Non publié par {client}.","ic_bot_hi":"Bonjour, je suis le bot SOMIN. Chaque chaîne ici provient d'une vraie étude de cas SOMIN. Construisez-la étape par étape et je vous montrerai pourquoi chaque mouvement fonctionne.","ic_choose_h":"Comment souhaitez-vous commencer ?","ic_choose_a_cta":"Commencer","ic_choose_b_t":"Visiter le site web","ic_choose_b_s":"Découvrez les tarifs, les études de cas et le fonctionnement de SOMIN, à votre rythme.","ic_choose_b_cta":"Aller sur le site"},"de":{"ic_play_k":"Insight-Builder · 60 Sekunden","ic_play_t":"Bauen Sie Ihren ersten Insight","ic_kicker":"Insight-Builder · ausprobieren","ic_article_note":"Für diese Demo aus der Insight-Kette von {client} geschrieben. Nicht von {client} veröffentlicht.","ic_bot_hi":"Hallo, ich bin der SOMIN-Bot. Jede Kette hier stammt aus einer echten SOMIN-Fallstudie. Bauen Sie sie Schritt für Schritt auf, und ich zeige Ihnen, warum jeder Zug funktioniert.","ic_choose_h":"Wie möchten Sie starten?","ic_choose_a_cta":"Jetzt bauen","ic_choose_b_t":"Website besuchen","ic_choose_b_s":"Entdecken Sie Preise, Fallstudien und die Funktionsweise von SOMIN in Ihrem eigenen Tempo.","ic_choose_b_cta":"Zur Website"},"pt":{"ic_play_k":"Construtor de insights · 60 segundos","ic_play_t":"Crie o seu primeiro insight","ic_kicker":"Construtor de insights · experimente","ic_article_note":"Escrito para esta demonstração a partir da cadeia de insights de {client}. Não publicado por {client}.","ic_bot_hi":"Olá, sou o bot da SOMIN. Cada cadeia aqui vem de um estudo de caso real da SOMIN. Construa passo a passo e eu mostro por que cada movimento funciona.","ic_choose_h":"Como quer começar?","ic_choose_a_cta":"Começar a criar","ic_choose_b_t":"Visitar o site","ic_choose_b_s":"Explore preços, estudos de caso e como a SOMIN funciona, ao seu ritmo.","ic_choose_b_cta":"Ir para o site"},"ar":{"ic_play_k":"منشئ الرؤى · 60 ثانية","ic_play_t":"أنشئ أول رؤية لك","ic_kicker":"منشئ الرؤى · جرّبه","ic_article_note":"كُتب لهذا العرض التجريبي من سلسلة رؤى {client}. لم تنشره {client}.","ic_bot_hi":"مرحبًا، أنا روبوت SOMIN. كل سلسلة هنا مأخوذة من دراسة حالة حقيقية لدى SOMIN. ابنِها خطوة بخطوة وسأوضح لك سبب نجاح كل خطوة.","ic_choose_h":"كيف تودّ أن تبدأ؟","ic_choose_a_cta":"ابدأ البناء","ic_choose_b_t":"زيارة الموقع","ic_choose_b_s":"استكشف الأسعار ودراسات الحالة وطريقة عمل SOMIN وفق وتيرتك.","ic_choose_b_cta":"انتقل إلى الموقع"},"ru":{"ic_play_k":"Конструктор инсайтов · 60 секунд","ic_play_t":"Создайте свой первый инсайт","ic_kicker":"Конструктор инсайтов · попробуйте","ic_article_note":"Написано для этого демо по цепочке инсайтов {client}. Не опубликовано {client}.","ic_bot_hi":"Привет, я бот SOMIN. Каждая цепочка здесь взята из реального кейса SOMIN. Собирайте её шаг за шагом, и я покажу, почему каждый ход работает.","ic_choose_h":"С чего хотите начать?","ic_choose_a_cta":"Начать создавать","ic_choose_b_t":"Перейти на сайт","ic_choose_b_s":"Изучите цены, кейсы и принцип работы SOMIN в своём темпе.","ic_choose_b_cta":"На сайт"}};
+    Object.keys(DICT_X).forEach(function (l) { DICT[l] = Object.assign({}, DICT[l] || {}, DICT_X[l]); });
     document.querySelectorAll('.se-hero').forEach(initHeroI18n);
   });
 })();
