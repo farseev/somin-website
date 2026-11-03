@@ -69,14 +69,14 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 | `ic_intro_view` / `ic_intro_exit` | Home first-visit choice screen (Build your first insight / Visit the website; desktop only) shown / the Insight Chain closed or the choice dismissed (`visit_website`, `escape`, back, continue) | `cta_text` = how it was closed, `step` = flow step, `mode` = first_visit / choice_flow / play_button; `step` = `choice` when dismissed from the choice screen |
 | `ic_brand_switch` | Case study switched in the Insight Chain's case dropdown (top bar) | `cta_text` = industry key of the case |
 | `ic_bot` | SOMIN bot tips muted / turned back on in the Insight Chain | `cta_text` = mute / unmute |
-| `ic_connect` | Step 2: the right pain point was picked for the chosen persona | `cta_text` = persona → pain point |
-| `ic_angle_pick` | An angle card was picked | `cta_text` = angle, `first_try` = yes / no / miss |
+| `ic_connect` | Step 2 of the tree: the right pain point was linked to the chosen persona (tap or drag a line) | `cta_text` = persona → pain point |
+| `ic_angle_pick` | Step 3 of the tree: an angle was picked (tap or drag a line from the linked pain point) | `cta_text` = angle, `first_try` = yes / no / miss |
 | `ic_ship` | Step 4: an ad was placed in a channel (Facebook, Instagram, LinkedIn, SEO article draft), by tap, drag or "Fill for me" | `cta_text` = channel (fb/ig/li/seo), `funnel_stage` = TOFU/MOFU/BOFU |
 | `ic_autofill` | Step 4: "Fill for me" placed an ad in every empty channel | `cta_text` = client |
 | `ic_chain_complete` | A full chain reached the results finale (Launch the campaign) | `cta_text` = client · persona, `channels` |
-| `ic_case_click` | "Read the case study" on the Insight Chain results (`data-track`, no `data-gtm-id`) | `cta_text`, `link_url` |
+| `lead_form_open` (game) | **Read the full case study** on the Insight Chain results: the same gated case-study form as the cases page (`data-lead-form="case_study"`, `data-case-study` = the PDF key from `data/case-studies.json`, `data-gtm-id="home_game_read_case"`), so `lead_form_open` / `lead_form_submit` and the cta_click tags fire as on the cases page | `form_type` = case_study, `case_study`, `cta_id` = `home_game_read_case` |
 | `ic_next_chain` | "Build the next chain" / "Try another industry" on the Insight Chain results | `cta_text` = next_chain / next_brand |
-| `book_call_click` (game) | **Book a call** on the game's results finale: a Calendly link with `data-gtm-id="home_game_book_call"`, so the usual `book_call_click` key event and the `[data-gtm-id]` cta_click tags (GA4, Meta, LinkedIn 20526804) fire as for the hero call button | `cta_id` = `home_game_book_call`, `link_url` |
+| `book_call_click` (game) | **Book a call** (secondary button) on the Insight Chain results: a Calendly link with `data-gtm-id="home_game_book_call"`, so the usual `book_call_click` key event and the `[data-gtm-id]` cta_click tags (GA4, Meta, LinkedIn 20526804) fire as for the hero call button | `cta_id` = `home_game_book_call`, `link_url` |
 | `book_call_click` | Any calendly.com link (opens popup) | `link_url` |
 | `login_click` / `platform_click` | Links to cloud.somin.ai | `link_url` |
 | `partner_click` | Strategic-partner logo links (home plate, Vision cards) and the Vision page's redemptive-marketing links (Forbes essay, faithdriven.sg, orthodox.sg) | `link_url`, `cta_text` (partner name on the home plate) |
