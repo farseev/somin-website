@@ -67,14 +67,15 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 | `replay_step_click` | Step tab clicked in the five-step loop player (Listen … Ship) | `cta_text` = step |
 | `ic_play_click` | **Build your first insight** button under the home hero video, or the first card on the first-visit choice screen (opens the Insight Chain full screen). Key event: also in GTM trigger *CE - somin_event - key events* (container v56) → Meta custom event. The button carries no `data-gtm-id`, so the cta_click tags (GA4, LinkedIn 20526804, Meta) do not fire for it | `cta_id` = `home_hero_play_game` (hero button, id kept for continuity) or `home_intro_build_insight` (choice screen), `cta_location` = `home_hero` / `home_intro`, `funnel_stage` = engagement |
 | `ic_intro_view` / `ic_intro_exit` | Home first-visit choice screen (Build your first insight / Visit the website; desktop only) shown / the Insight Chain closed or the choice dismissed (`visit_website`, `escape`, back, continue) | `cta_text` = how it was closed, `step` = flow step, `mode` = first_visit / choice_flow / play_button; `step` = `choice` when dismissed from the choice screen |
-| `ic_brand_switch` | Industry switched in the Insight Chain game menu (or "Surprise me") | `cta_text` = industry key, `shuffle:<industry>` for Surprise me |
-| `ic_bot` | SOMIN bot tips muted / turned back on in the game | `cta_text` = mute / unmute |
-| `ic_connect` | A persona was wired to a pain point in the game | `cta_text` = persona → pain point |
+| `ic_brand_switch` | Case study switched in the Insight Chain's case dropdown (top bar) | `cta_text` = industry key of the case |
+| `ic_bot` | SOMIN bot tips muted / turned back on in the Insight Chain | `cta_text` = mute / unmute |
+| `ic_connect` | Step 2: the right pain point was picked for the chosen persona | `cta_text` = persona → pain point |
 | `ic_angle_pick` | An angle card was picked | `cta_text` = angle, `first_try` = yes / no / miss |
-| `ic_ship` | An expression was dropped into a channel (Facebook, Instagram, LinkedIn, SEO article draft) | `cta_text` = channel (fb/ig/li/seo), `funnel_stage` = TOFU/MOFU/BOFU |
+| `ic_ship` | Step 4: an ad was placed in a channel (Facebook, Instagram, LinkedIn, SEO article draft), by tap, drag or "Fill for me" | `cta_text` = channel (fb/ig/li/seo), `funnel_stage` = TOFU/MOFU/BOFU |
+| `ic_autofill` | Step 4: "Fill for me" placed an ad in every empty channel | `cta_text` = client |
 | `ic_chain_complete` | A full chain reached the results finale (Launch the campaign) | `cta_text` = client · persona, `channels` |
-| `ic_case_click` | "Read the case study" in the game recap (`data-track`, no `data-gtm-id`) | `cta_text`, `link_url` |
-| `ic_next_chain` | "Build the next chain" / "Try another industry" on the game's results finale | `cta_text` = next_chain / next_brand |
+| `ic_case_click` | "Read the case study" on the Insight Chain results (`data-track`, no `data-gtm-id`) | `cta_text`, `link_url` |
+| `ic_next_chain` | "Build the next chain" / "Try another industry" on the Insight Chain results | `cta_text` = next_chain / next_brand |
 | `book_call_click` (game) | **Book a call** on the game's results finale: a Calendly link with `data-gtm-id="home_game_book_call"`, so the usual `book_call_click` key event and the `[data-gtm-id]` cta_click tags (GA4, Meta, LinkedIn 20526804) fire as for the hero call button | `cta_id` = `home_game_book_call`, `link_url` |
 | `book_call_click` | Any calendly.com link (opens popup) | `link_url` |
 | `login_click` / `platform_click` | Links to cloud.somin.ai | `link_url` |
