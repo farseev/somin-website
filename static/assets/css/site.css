@@ -119,11 +119,11 @@ html.nav-locked { overflow: hidden; }
 .f-brand img { width: 84px; }
 .f-col h3 { font-family: var(--display); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); margin: 4px 0 14px; }
 .f-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
-.f-badges { max-width: 1320px; margin: 0 auto; padding: 8px var(--pad) 28px; display: flex; flex-wrap: wrap; gap: 28px; align-items: center; }
-.f-badge { display: flex; align-items: center; gap: 14px; }
-.f-badge img { width: 64px; height: auto; border-radius: 6px; }
+.f-badges { max-width: 1320px; margin: 0 auto; padding: 8px var(--pad) 28px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+.f-badge { display: flex; align-items: center; gap: 12px; }
+.f-badge img { width: auto; height: 52px; border-radius: 6px; }
 .f-badge img[src$=".svg"] { border-radius: 0; }
-.f-badge span { max-width: 150px; line-height: 1.4; color: var(--on-ink-2); }
+.f-badge span { width: 122px; font-size: 14px; line-height: 1.35; text-wrap: balance; color: var(--on-ink-2); }
 .f-reviews { margin-left: auto; display: flex; gap: 10px; align-items: center; color: var(--on-ink-3); }
 .f-reviews a { border: 1px solid var(--ink-line); border-radius: 999px; padding: 6px 12px; font-size: 12px; }
 .f-bottom { border-top: 1px solid var(--ink-line-soft); }
