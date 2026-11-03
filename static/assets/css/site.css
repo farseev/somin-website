@@ -759,6 +759,9 @@ html body .rv-count { color: #4F5E5C; font-weight: 600; }
 .u-dark .rv-score, .u-hero .rv-score, .u-dark .rv-count, .u-hero .rv-count, html body .site-footer .rv-score, html body .site-footer .rv-count, html body .hero .rv-score, html body .hero .rv-count { color: #C9D1D0; }
 .u-dark .rv-score b, .u-hero .rv-score b, html body .site-footer .rv-score b, html body .hero .rv-score b { color: #fff; }
 html body .rv-badges--hero { margin-top: 22px; }
+html body .rv-award { display: inline-flex; align-items: center; flex: none; transition: transform .2s; }
+html body .rv-award:hover { transform: translateY(-1px); }
+html body .rv-award img { display: block; width: 46px; height: auto; }
 html body .rv-badges--footer { display: inline-flex; margin-right: 6px; }
 html body .rv-badges--footer .rv-badge { padding: 5px 10px 5px 5px; font-size: 12px; }
 html body .rv-section { padding: clamp(56px, 7vw, 96px) var(--pad); }
