@@ -3,10 +3,10 @@
  "platforms": {
   "g2": {
    "name": "G2",
-   "rating": 4.5,
-   "count": 9,
-   "url": "https://www.g2.com/products/somin-ai/reviews",
-   "checked": "2026-10-17"
+   "rating": 4.7,
+   "count": 20,
+   "url": "https://www.g2.com/products/somin/reviews",
+   "checked": "2026-11-03"
   },
   "capterra": {
    "name": "Capterra",
