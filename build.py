@@ -112,6 +112,11 @@ def stars(r, cls='rv-stars'):
     return (f'<span class="{cls}" role="img" aria-label="{r:g} out of 5 stars"><span class="rv-stars-on" style="width:{pct}%">★★★★★</span>★★★★★</span>')
 
 
+# G2 "Users Love Us" badge (earned on g2.com/products/somin; local copy of G2's official SVG). Hero placements only.
+G2_AWARD = {'title': 'Users Love Us', 'src': '/assets/img/brand/g2-users-love-us.svg',
+            'url': 'https://www.g2.com/products/somin/reviews', 'alt': 'G2 Users Love Us badge for SOMIN'}
+
+
 def rating_badges(extra=''):
     """G2 / Capterra rating badges (real averages from data/reviews.json, linked to the profiles)."""
     out = []
@@ -124,6 +129,10 @@ def rating_badges(extra=''):
         else:
             out.append(f'<a class="rv-badge" href="{E(pl["url"])}" target="_blank" rel="noopener" data-gtm-id="rating_badge_{key}" data-track="rating_badge_click">'
                        f'<span class="rv-src rv-src--{key}">{E(pl["name"])}</span><span class="rv-count">Read our reviews</span></a>')
+    aw = G2_AWARD
+    if 'rv-badges--hero' in extra:             # official G2 award badge, hero placements only
+        out.insert(0, f'<a class="rv-award" href="{E(aw["url"])}" target="_blank" rel="noopener" data-gtm-id="rating_badge_g2_award" data-track="rating_badge_click" '
+                      f'aria-label="{E(aw["title"])} on G2"><img src="{E(aw["src"])}" alt="{E(aw["alt"])}" width="46" height="54" decoding="async"></a>')
     return f'<div class="rv-badges{(" " + extra) if extra else ""}">{"".join(out)}</div>'
 
 
