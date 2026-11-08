@@ -15323,5 +15323,8 @@
 "fff09cfc5113fa58": "{1} piraso ang na-filter sa B{2}B at in-cluster sa apat na paraan",
 "fff459db9438043f": "Ang takot sa pagpapalit, pagiging perpekto at hindi gaanong pinahahalagahan na mga junior ay umuulit sa data ng pakikinig sa lipunan ng SOMIN, at bawat isa ay nangangailangan ng ibang pag-aayos.",
 "fff69ef45c6144e3": "Naka-score ang mga ad",
-"fffb17bcd2fd925e": "Gumamit ng mga abstraction layer na nagbibigay-daan sa iyong lumipat ng mga provider ng modelo nang magdamag, panatilihin ang mga fallback na modelo, mag-host o mag-fine-tune ng mga alternatibong open-weight at panatilihin ang sapat na bihasang tao upang gumana kung ang isang panlabas na modelo ay dumilim."
+"fffb17bcd2fd925e": "Gumamit ng mga abstraction layer na nagbibigay-daan sa iyong lumipat ng mga provider ng modelo nang magdamag, panatilihin ang mga fallback na modelo, mag-host o mag-fine-tune ng mga alternatibong open-weight at panatilihin ang sapat na bihasang tao upang gumana kung ang isang panlabas na modelo ay dumilim.",
+"86e909e16a5ad7c6": "Subukan ang SOMIN sa Claude",
+"cc2604a23d80fe78": "<g1>Subukan ang SOMIN sa Claude</g1> <g2>Panoorin itong tumakbo</g2>",
+"02042d04f912ded6": "<g1>Subukan ang SOMIN sa Claude</g1><g2>Mag-book ng setup call</g2>"
 }

@@ -1920,7 +1920,7 @@ def build_lead_pages():
     <p class="eyebrow">One step left</p>
     <h2 class="dl-title" style="font-size:clamp(28px,3.6vw,42px);margin-top:12px">Get the free Marketing Mondays plugin</h2>
     <p class="dl-meta">Tell us who you are and the download starts straight away.</p>
-    <a class="btn btn--solid" href="/marketing-mondays-plugin/" data-lead-form="plugin" data-gtm-id="thank_you_plugin_unlock">Get the plugin</a>
+    <a class="btn btn--solid" href="/marketing-mondays-plugin/" data-lead-form="plugin" data-gtm-id="thank_you_plugin_unlock">Try SOMIN in Claude</a>
   </div>
   <div class="ty-card" style="margin-top:20px">
     <p class="eyebrow">Add it to Claude · about three minutes</p>
