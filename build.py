@@ -1349,7 +1349,7 @@ def build_research_page():
     mt = R['metrics']
     meta = {'slug': 'science-press', 'layout': 'native', 'type': 'company', 'group': 'research',
             'title': 'SOMIN Science & Press: Research, Articles and Media | SOMIN',
-            'description': f'Science & Press at SOMIN: {len(peer)} peer-reviewed papers you can download, Forbes articles by Prof. Aleks Farseev, press coverage of SOMIN and its founders, and talks.',
+            'description': f'Science & Press at SOMIN: {len(peer)} peer-reviewed papers you can download, Forbes and e27 columns by Prof. Aleks Farseev, press coverage of SOMIN and its founders, and talks.',
             'og_image': '/assets/img/og/card-research.jpg' if (ROOT / 'static/assets/img/og/card-research.jpg').exists() else SITE['default_og_image'],
             'hero_bg': '/assets/img/brand/hero-science-press.webp',
             'robots': 'index,follow', 'h1': 'Science & Press: the research and coverage behind SOMIN'}
@@ -1388,7 +1388,7 @@ def build_research_page():
     ]
     faq_html = ''.join(f'<details><summary>{E(q)}</summary><p>{E(a)}</p></details>' for q, a in faq)
     arts_html = ''.join(
-        f'<li><a href="{E(a["url"])}" target="_blank" rel="noopener" data-track="research_article_click" data-gtm-id="research_forbes_article"><strong>{E(a["title"])}</strong></a>'
+        f'<li><a href="{E(a["url"])}" target="_blank" rel="noopener" data-track="research_article_click" data-gtm-id="research_{E(a["publisher"].split()[0].lower())}_article"><strong>{E(a["title"])}</strong></a>'
         f'<span class="rs-auth">{E(a["publisher"])} · {E(a["date"][:4])}</span></li>'
         for a in sorted(R.get('articles', []), key=lambda a: a['date'], reverse=True))
     yrs = sorted({p['year'] for p in peer}); cnt = {y: sum(1 for p in peer if p['year'] == y) for y in range(yrs[0], yrs[-1] + 1)}
@@ -1448,8 +1448,8 @@ def build_research_page():
 </div></section>
 
 <section class="sec sec--mist" id="articles"><div class="container">
-  <div class="sec-head"><p class="eyebrow eyebrow--ink">Articles</p><h2>Forbes Technology Council articles by Prof. Aleks Farseev</h2>
-  <p>Plain-language articles on the technology behind SOMIN: large language models, AI agents, explainable AI and ad optimisation for marketers. Each opens on Forbes.</p></div>
+  <div class="sec-head"><p class="eyebrow eyebrow--ink">Articles</p><h2>Forbes Technology Council and e27 columns by Prof. Aleks Farseev</h2>
+  <p>Plain-language articles on the technology behind SOMIN: large language models, AI agents, explainable AI and ad optimisation for marketers, and on marketing measurement and Southeast Asian business for e27. Each opens on the publisher's site.</p></div>
   <img class="rs-band" src="/assets/img/brand/science-articles.webp" alt="Printed articles turning into flowing data lines" width="1536" height="1024" loading="lazy">
   <ol class="rs-list">{arts_html}</ol>
 </div></section>
@@ -2338,8 +2338,8 @@ def build_author_pages(post_metas):
         else:
             bio = f'<p>{E(name)} is {E(role_short)} at SOMIN, the Singapore AI marketing-intelligence company.' + (
                 f' {E(first)} writes on the SOMIN blog about {E(", ".join(topics[:3]).lower())}.</p>' if topics else '</p>')
-        links = ''.join(f'<li><a href="{E(u)}" target="_blank" rel="noopener me">{E("LinkedIn" if "linkedin" in u else "Google Scholar" if "scholar.google" in u else "Semantic Scholar" if "semanticscholar" in u else "ACM Digital Library" if "acm.org" in u else "Forbes Technology Council" if "forbes" in u else "Crunchbase" if "crunchbase" in u else re.sub(r"^https?://(www[.])?", "", u).strip("/"))}</a></li>'
-                        for u in node.get('sameAs', [])[:8])
+        links = ''.join(f'<li><a href="{E(u)}" target="_blank" rel="noopener me">{E("LinkedIn" if "linkedin" in u else "Google Scholar" if "scholar.google" in u else "Semantic Scholar" if "semanticscholar" in u else "ACM Digital Library" if "acm.org" in u else "Forbes Technology Council" if "forbes" in u else "Crunchbase" if "crunchbase" in u else "e27" if "e27.co" in u else re.sub(r"^https?://(www[.])?", "", u).strip("/"))}</a></li>'
+                        for u in node.get('sameAs', [])[:10])
         grid = ''.join(post_card(p) for p in posts)
         body = f'''<section class="hero au-hero"><div class="container">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/authors/">Authors</a></li><li aria-current="page">{E(name)}</li></ol></nav>
@@ -2480,7 +2480,10 @@ def build_llms(pages, posts, manifest=None, localized=()):
         more = sorted([v for v in manifest.values() if v['on_hub'] and not v['page']], key=lambda v: v['order'])
         parts += ['', '### More case studies (PDF on the case-studies page)'] + [f'- {v["title"]} ({", ".join(x for x in (v["category"], v["market"]) if x)}): {v["summary"]}' for v in more]
     peer = [p for p in RESEARCH['papers'] if p['peer_reviewed']]
-    parts += ['', '## Research behind SOMIN', f'- [SOMIN Science & Press: papers, Forbes articles, press and talks]({BASE}/science-press/): SOMIN is built by seasoned marketers and an AI professor. Co-founder Prof. Aleks Farseev and the SOMIN team have published {len(peer)} peer-reviewed papers, demos and abstracts since {min(p["year"] for p in peer)}, at venues including AAAI, ACM Multimedia, SIGIR, WSDM and The Web Conference, and in ACM TOIS and ACM TIST.']
+    parts += ['', '## Research behind SOMIN', f'- [SOMIN Science & Press: papers, Forbes and e27 columns, press and talks]({BASE}/science-press/): SOMIN is built by seasoned marketers and an AI professor. Co-founder Prof. Aleks Farseev and the SOMIN team have published {len(peer)} peer-reviewed papers, demos and abstracts since {min(p["year"] for p in peer)}, at venues including AAAI, ACM Multimedia, SIGIR, WSDM and The Web Conference, and in ACM TOIS and ACM TIST.']
+    _cols = [a for a in sorted(RESEARCH.get('articles', []), key=lambda a: a['date'], reverse=True) if a.get('publisher') == 'e27']
+    if _cols:
+        parts += ['', '## Columns by Prof. Aleks Farseev on e27', '- [Prof. Aleks Farseev on e27](https://e27.co/user/farseev/): contributor profile of SOMIN\'s co-founder and CEO on e27, Southeast Asia\'s startup media platform.'] + [f"- [{a['title']}]({a['url']}): e27, {a['date']}." for a in _cols]
     parts += [f'- {p["venue_short"]} {p["year"]}: [{p["title"]}]({p["url"]}) ({p["authors"]})' for p in sorted(peer, key=lambda p: (p['tier'] != 'top', -p['year']))[:14]]
     parts += ['', '### Talks'] + [f'- {t["kind"]}, {t["event"]} ({t["date"][:4]}): [{t["title"]}]({t["url"]})' for t in sorted(RESEARCH['talks'], key=lambda t: t['date'], reverse=True) if t['language'] == 'English'][:10]
     parts += ['', '## Blog (latest first)'] + [f'- [{p["title"]}]({absu(url_for(p["slug"]))}): {p["description"]}' for p in posts]
