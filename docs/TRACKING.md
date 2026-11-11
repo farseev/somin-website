@@ -10,6 +10,13 @@ conversions) and `?debug_tracking=1` sessions start GTM immediately, and `?gtm=n
 pushed before GTM starts wait in the dataLayer and are processed in order once it loads. Set `gtm_delay_ms` to 0 to go
 back to loading GTM at once.
 
+**Tags run on somin.ai only (Nov 2026).** `CONFIG.production_hosts` lists the hostnames where GTM may start (`somin.ai`,
+`www.somin.ai`). On any other host (`localhost`, `127.0.0.1`, the `<user>.github.io` preview) tracking.js still pushes events
+to the dataLayer and opens the forms, but loads no tag, so development and preview visits stay out of GA4, Meta, LinkedIn
+and Clarity. To load the tags there on purpose, open the page with `?debug_tracking=1` (those hits are real).
+Before this, local builds and the Pages preview wrote into the production GA4 property: in the 28 days to 10 Nov 2026 about
+half of the Insight Chain events came from `localhost`.
+
 ## What loads
 
 ```
@@ -59,11 +66,15 @@ Meta `cta_click`, LinkedIn conversion 20526804) — the builder puts `data-gtm-i
 | `cases_filter` / `cases_search` | Section filter / search on /cases-ai-marketing-strategy/ | `cta_text` = section / query |
 | `plugin_download` | Download buttons on /thank-you-plugin/ (.plugin file or Claude Code .zip) | `cta_text`, `link_url` |
 | `plugin_auto_download` | The plugin download started automatically right after the plugin form | `link_url` |
+| `footer_badge_click` | Recognition badge in the footer (Gartner Cool Vendor, Zapier partner, G2 Users Love Us) | `cta_text` = badge text, `link_url` |
+| `language_switch` | Language chosen in the header or hero language menu (the visitor then lands on the `/<lang>/` copy) | `language`, `from_language` |
 | `rating_badge_click` | G2 / Capterra rating badge clicked (hero, footer, review sections) | `cta_id` = `rating_badge_g2` / `rating_badge_capterra` |
 | `research_paper_click` / `research_pdf_click` | A peer-reviewed paper (publisher page or open-access PDF) opened from /research/, a research strip or a case study | `link_url` |
 | `research_talk_click` | A talk or lecture (YouTube or event page) opened from /research/ or a research strip | `link_url` |
+| `research_article_click` / `research_press_click` | An article by the founder (Forbes, e27) or a press piece opened from /research/ | `link_url` |
 | `research_venue_click` / `research_profile_click` | Venue chip (AAAI, ACM MM, SIGIR…) or a research profile (Google Scholar, Semantic Scholar, ACM DL) clicked | `link_url` |
-| `replay_play` | Visitor presses play on a session replay (they autoplay muted when on screen) | `cta_text` = replay question |
+| `replay_view` | A session replay was watched: 5 seconds of playback on screen, once per recording per page view (they autoplay muted, so this is the reach of the replays) | `cta_text` = replay question |
+| `replay_play` / `replay_pause` | Visitor presses play / pause on a session replay. Replays start by themselves, so `replay_play` only follows a pause | `cta_text` = replay question |
 | `replay_step_click` | Step tab clicked in the five-step loop player (Listen … Ship) | `cta_text` = step |
 | `ic_play_click` | **Build your first insight** button under the home hero video, or the first card on the first-visit choice screen (opens the Insight Chain full screen). Key event: also in GTM trigger *CE - somin_event - key events* (container v56) → Meta custom event. The button carries no `data-gtm-id`, so the cta_click tags (GA4, LinkedIn 20526804, Meta) do not fire for it | `cta_id` = `home_hero_play_game` (hero button, id kept for continuity) or `home_intro_build_insight` (choice screen), `cta_location` = `home_hero` / `home_intro`, `funnel_stage` = engagement |
 | `ic_intro_view` / `ic_intro_exit` | Home first-visit choice screen (Build your first insight / Visit the website; desktop only) shown / the Insight Chain closed or the choice dismissed (`visit_website`, `escape`, back, continue) | `cta_text` = how it was closed, `step` = flow step, `mode` = first_visit / choice_flow / play_button; `step` = `choice` when dismissed from the choice screen |
@@ -216,6 +227,31 @@ login, scroll-depth and blog events · crawl of all 100 pages for JavaScript err
 python3 tests/test_tracking.py                      # local build
 python3 tests/test_tracking.py --live --base https://somin.ai   # production, no interception
 ```
+
+Hits that a page flushes while it unloads (the `*_form_submit` event right before the thank-you redirect, a click that
+navigates away) can slip past Playwright's interception; until Nov 2026 every local run left a few test submits in GA4.
+The test browser now cannot resolve the hosts that collect hits (`HIT_HOSTS` in the test, Chromium
+`--host-resolver-rules`), and the first check stops the run if one of them is reachable. `--live` sends real hits by
+design: expect one test lead per form in GA4, Meta and LinkedIn after it, and say so to whoever reads the reports.
+
+## Open items in GTM and GA4 (audit of 11 Nov 2026; nothing here can be fixed from the repo)
+
+1. **GA4 - Router - somin_event** forwards only `event_id`, `funnel_stage`, `cta_text` and `cta_location`. The other
+   parameters in the table above (`form_type`, `case_study`, `cta_id`, `link_url`, `language`, `term`, `response_id`,
+   `mode`, `step`, `first_try`, `channels`) reach the dataLayer but not GA4. Add them to the tag's event parameters.
+2. GA4 custom dimensions: `cta_location` is not registered (the dimension called "CTA location" reads `cta_url`);
+   `case_name` and `product` are registered but nothing sends them. Register `cta_location`, `form_type`, `case_study`,
+   `link_url` and `language`.
+3. GA4 key events are `generate_lead` and `purchase`. `purchase` comes from Eventbrite (the /event/ page's ticket page
+   reports into this property), not from the site.
+4. The property has no hostname filter: `share.somin.ai`, `s.somin.ai` and Eventbrite also write into it. Break reports
+   down by Hostname, or add a filter.
+5. The `[data-gtm-id]` click trigger fires GA4 `cta_click`, Meta `cta_click` and LinkedIn conversion 20526804 on every
+   element with a `data-gtm-id`, including the research venue chips, rating badges and menu links, so that conversion
+   counts navigation as well as calls to action.
+6. `pricing_checkout_click` (Pay with Stripe) is not in the **CE - somin_event - key events** list for Meta.
+7. Lead conversions on the thank-you page view also count reloads and direct visits (see the trade-off above):
+   22 Oct – 10 Nov 2026 shows 68 `generate_lead` for 55 form submits.
 
 In a browser: `https://somin.ai/?debug_tracking=1` logs each event; GTM Preview / Tag Assistant works as usual.
 Typeform test submissions: add `?tf_sandbox=1` so test responses are not counted in Typeform insights.
