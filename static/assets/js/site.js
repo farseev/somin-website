@@ -274,10 +274,18 @@
     v.__toggle = fig ? fig.querySelector('.mm-toggle') : null;
     var toggle = function () {
       if (v.paused) { v.__userPaused = false; vplay(v); track('replay_play', { cta_text: v.getAttribute('aria-label') || '', funnel_stage: 'awareness' }); }
-      else { v.__userPaused = true; v.pause(); }
+      else { v.__userPaused = true; v.pause(); track('replay_pause', { cta_text: v.getAttribute('aria-label') || '', funnel_stage: 'awareness' }); }
     };
     if (v.__toggle) v.__toggle.addEventListener('click', toggle);
     v.addEventListener('click', toggle);
+    // Replays start by themselves when on screen, so "pressed play" says little: replay_view records that one was actually
+    // watched (5 seconds of playback), once per recording per page view.
+    v.addEventListener('timeupdate', function () {
+      var src = v.getAttribute('data-loaded');
+      if (!src || v.__viewed === src || v.currentTime < 5) return;
+      v.__viewed = src;
+      track('replay_view', { cta_text: v.getAttribute('aria-label') || '', funnel_stage: 'awareness' });
+    });
     v.addEventListener('play', function () { vsync(v); });
     v.addEventListener('pause', function () { vsync(v); });
     vsync(v);

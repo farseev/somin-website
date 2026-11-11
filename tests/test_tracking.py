@@ -10,6 +10,14 @@ Real GTM, GA4, Meta, LinkedIn, Clarity, Typeform and Calendly scripts load, but 
 (GA4 /g/collect, facebook.com/tr, LinkedIn px, Clarity collect, Google Ads) is intercepted, recorded and
 answered locally — nothing reaches your analytics accounts. Typeform submissions are simulated through the
 Typeform embed SDK's own postMessage channel, so no test responses are created in Typeform.
+
+Hits a page flushes while it unloads (the *_form_submit event right before the thank-you redirect, a click that
+navigates away) can slip past Playwright's request interception. The test browser therefore cannot resolve the
+hosts that collect hits at all (HIT_HOSTS, --host-resolver-rules), and the run stops at once if one of them is
+reachable. Only --live sends real hits (that is its purpose): expect test events in GA4, Meta and LinkedIn after it.
+
+tracking.js loads tags only on somin.ai (CONFIG.production_hosts), so with --base http://localhost:8000 open
+pages with ?debug_tracking=1; the default (https://somin.ai served from ./_site) needs nothing.
 """
 import argparse, asyncio, json, re, sys, time, urllib.parse
 from pathlib import Path
@@ -31,7 +39,18 @@ HIT_PATTERNS = {
     'clarity': re.compile(r'clarity\.ms/collect'),
     'gads': re.compile(r'googleads\.g\.doubleclick\.net|google\.com/pagead|google\.com/ccm|googleadservices\.com'),
 }
+# Hosts that only collect hits (the tag *scripts* live on other hosts and still load). The test browser cannot resolve
+# them, so a hit that escapes request interception (unload beacons do) fails instead of reaching the accounts.
+HIT_HOSTS = ['www.google-analytics.com', '*.google-analytics.com', 'analytics.google.com', '*.analytics.google.com',
+             '*.doubleclick.net', 'www.googleadservices.com', 'www.google.*', 'www.facebook.com',   # www.google.<cc>/ads/ga-audiences
+             'px.ads.linkedin.com', 'px4.ads.linkedin.com', 'www.linkedin.com', 'p.adsymptotic.com', '*.clarity.ms']
+HIT_HOST_RULES = ', '.join(f'MAP {h} ~NOTFOUND' for h in HIT_HOSTS) + ', EXCLUDE www.clarity.ms'
+LEAK_PROBES = ['https://www.google-analytics.com/g/collect?v=2', 'https://region1.google-analytics.com/g/collect?v=2',
+               'https://www.facebook.com/tr/', 'https://px.ads.linkedin.com/collect', 'https://k.clarity.ms/collect',
+               'https://www.google.de/ads/ga-audiences', 'https://stats.g.doubleclick.net/g/collect']
 SITE_DIR = Path(__file__).resolve().parent.parent / '_site'
+CASES = json.loads((SITE_DIR.parent / 'data/case-studies.json').read_text(encoding='utf-8'))['items']
+HUB_SECTIONS = [(v.get('hub') or {}).get('section') for v in CASES.values() if v.get('hub')]
 MIME = {'.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'application/javascript', '.json': 'application/json', '.xml': 'application/xml',
         '.txt': 'text/plain', '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.gif': 'image/gif',
         '.ico': 'image/x-icon', '.woff2': 'font/woff2', '.woff': 'font/woff'}
@@ -191,7 +210,18 @@ async def simulate_typeform_submit(page, rid):
 
 async def main():
     async with async_playwright() as p:
-        browser = await p.chromium.launch(args=['--no-sandbox'])
+        browser = await p.chromium.launch(args=['--no-sandbox'] + ([] if args.live else [f'--host-resolver-rules={HIT_HOST_RULES}']))
+        if not args.live:
+            # no route() on this context: what the browser itself can reach is what a leaked hit could reach
+            probe = await (await browser.new_context()).new_page()
+            await probe.goto('about:blank')
+            reached = await probe.evaluate("""(urls) => Promise.all(urls.map(u => fetch(u, {mode: 'no-cors'}).then(() => u, () => null)))""", LEAK_PROBES)
+            await probe.context.close()
+            reached = [u for u in reached if u]
+            record('Analytics hit hosts are unreachable from the test browser (no hit can leak)', not reached, ', '.join(reached))
+            if reached:
+                await browser.close()
+                sys.exit('Stopped: the test browser can reach analytics hit hosts, so test events would land in the real accounts.')
 
         # ---------------------------------------------------------------- 1. page load + base tags
         print('\n[1] Base tags on page load (homepage with UTM + click IDs)')
@@ -227,7 +257,8 @@ async def main():
         record('Calendly opens as popup (not new tab)', ok)
         src = await page.evaluate("(document.querySelector('.calendly-overlay iframe, .calendly-popup iframe')||{}).src||''")
         record('Calendly URL carries UTMs', 'utm_source=test_src' in src and 'utm_campaign=migration_qa' in src, src[:160])
-        await page.wait_for_timeout(5000)
+        await ga4_wait(hits, ['cta_click', 'book_call_click'], t0)   # GA4 batches hits for a few seconds
+        await page.wait_for_timeout(2500)
         names = [e.get('en') for e in hits.ga4_events(t0)]
         record(f'GA4 cta_click (cta_id={gid})', any(e.get('en') == 'cta_click' and e.get('ep.cta_id') == gid for e in hits.ga4_events(t0)), ','.join(n for n in names if n))
         record('GA4 book_call_click (somin_event)', 'book_call_click' in names)
@@ -261,11 +292,12 @@ async def main():
         src = await page.evaluate("([...document.querySelectorAll('iframe')].find(i=>/typeform/.test(i.src))||{}).src||''")
         frag = urllib.parse.unquote(src)
         record('Hidden fields passed (utm_source, li_fat_id, page_path, lead_type)', all(s in frag for s in ['utm_source=linkedin', 'li_fat_id=TEST_LI', 'page_path=' + urllib.parse.urlsplit(BASE).path.rstrip('/') + '/somin-for-brands/', 'lead_type=trial']), frag[frag.find('#'):][:220])
-        ready = await wait_for(lambda: page.evaluate("(window.sominTracking.log||[]).some(x=>x.event_name==='lead_form_ready')"), 15)
+        # the real Typeform form has to render inside the popup; allow for a slow machine or connection
+        ready = await wait_for(lambda: page.evaluate("(window.sominTracking.log||[]).some(x=>x.event_name==='lead_form_ready')"), 30)
         record('Typeform onReady → lead_form_ready', ready)
         await simulate_typeform_submit(page, 'TEST-RID-TRIAL')
         try:
-            await page.wait_for_url(re.compile(r'/thank-you-trial-somin/'), timeout=8000)
+            await page.wait_for_url(re.compile(r'/thank-you-trial-somin/'), timeout=8000, wait_until='commit')
             moved = True
         except Exception:
             moved = False
@@ -303,7 +335,7 @@ async def main():
         await wait_for(lambda: page.evaluate("(window.sominTracking.log||[]).some(x=>x.event_name==='lead_form_ready')"), 15)
         await simulate_typeform_submit(page, 'TEST-RID-CASE')
         try:
-            await page.wait_for_url(re.compile(r'/thank-you-case-study/\?.*cs=brands-fujifilm-case-study'), timeout=8000); moved = True
+            await page.wait_for_url(re.compile(r'/thank-you-case-study/\?.*cs=brands-fujifilm-case-study'), timeout=8000, wait_until='commit'); moved = True
         except Exception:
             moved = False
         record('Redirect to /thank-you-case-study/?cs=…', moved, page.url)
@@ -345,10 +377,11 @@ async def main():
         await page.goto(BASE + '/cases-ai-marketing-strategy/', wait_until='load')
         await page.wait_for_timeout(2500)
         n_cards = await page.locator('[data-cs-card]').count()
-        record('Hub lists all 45 case studies', n_cards == 45, f'{n_cards} cards')
+        record(f'Hub lists all {len(HUB_SECTIONS)} case studies', n_cards == len(HUB_SECTIONS), f'{n_cards} cards')
         await page.click('[data-cs-filter="creators"]'); vis = await page.locator('[data-cs-card]:visible').count()
         await page.click('[data-cs-filter="all"]')
-        record('Section filter works (creators = 6)', vis == 6, f'{vis}')
+        n_creators = HUB_SECTIONS.count('creators')
+        record(f'Section filter works (creators = {n_creators})', vis == n_creators, f'{vis}')
         t0 = time.time()
         await page.locator('[data-case-study="maybank"].btn').click()
         ok = await wait_for(lambda: page.evaluate("!![...document.querySelectorAll('iframe')].find(i=>/form\\.typeform\\.com\\/to\\/lHmWeOX7/.test(i.src))"), 12)
@@ -357,7 +390,7 @@ async def main():
         await wait_for(lambda: page.evaluate("(window.sominTracking.log||[]).some(x=>x.event_name==='lead_form_ready')"), 15)
         await simulate_typeform_submit(page, 'TEST-RID-HUB')
         try:
-            await page.wait_for_url(re.compile(r'/thank-you-case-study/\?.*cs=maybank'), timeout=8000); moved = True
+            await page.wait_for_url(re.compile(r'/thank-you-case-study/\?.*cs=maybank'), timeout=8000, wait_until='commit'); moved = True
         except Exception:
             moved = False
         record('Redirect to /thank-you-case-study/?cs=maybank', moved, page.url)
@@ -390,7 +423,7 @@ async def main():
         await wait_for(lambda: page.evaluate("(window.sominTracking.log||[]).some(x=>x.event_name==='lead_form_ready')"), 15)
         await simulate_typeform_submit(page, 'TEST-RID-PLUGIN')
         try:
-            await page.wait_for_url(re.compile(r'/thank-you-plugin/\?.*rid=TEST-RID-PLUGIN'), timeout=8000); moved = True
+            await page.wait_for_url(re.compile(r'/thank-you-plugin/\?.*rid=TEST-RID-PLUGIN'), timeout=8000, wait_until='commit'); moved = True
         except Exception:
             moved = False
         record('Redirect to /thank-you-plugin/?rid=…', moved, page.url)
@@ -410,7 +443,9 @@ async def main():
         record('Meta key events via GTM (lead_form_open, plugin_form_submit, plugin_auto_download)',
                all(x in mev for x in ['lead_form_open', 'plugin_form_submit', 'plugin_auto_download']), ','.join(sorted(set(str(x) for x in mev))))
         p2 = await ctx.new_page()
-        await p2.goto(BASE + '/thank-you-plugin/?rid=abcdefghijklmnopqrstuvwxyz123456', wait_until='load'); await p2.wait_for_timeout(800)
+        # unlocked page: the auto-download starts 1.2 s after the DOM is ready and, on a slow machine, before the load event,
+        # which Playwright then never reports; DOMContentLoaded is all this check needs
+        await p2.goto(BASE + '/thank-you-plugin/?rid=abcdefghijklmnopqrstuvwxyz123456', wait_until='domcontentloaded'); await p2.wait_for_timeout(800)
         # same browser already submitted → stays unlocked; a fresh browser with a made-up id must stay locked
         ctx2 = await new_context(browser, Hits()); p3 = await ctx2.new_page()
         await p3.goto(BASE + '/thank-you-plugin/?rid=abcdefghijklmnopqrstuvwxyz123456', wait_until='load'); await p3.wait_for_timeout(800)
@@ -457,8 +492,17 @@ async def main():
 
         # ---------------------------------------------------------------- 7. crawl every page for JS errors + single GTM
         print('\n[7] Crawl all pages (JS errors, one GTM container, tracking.js present)')
-        sm = (Path(__file__).resolve().parent.parent / '_site/sitemap.xml').read_text()
-        paths = [u.replace('https://somin.ai', '') for u in re.findall(r'<loc>(.*?)</loc>', sm)] + ['/try-somin/', '/get-case-study/', '/thank-you-trial-somin/', '/thank-you-plugin/', '/c5584ab5-007d-4499-b460-978130fe387b/']
+        # sitemap.xml is an index of one sitemap per language: crawl every English page plus the home page of each language
+        locs = lambda name: [u.replace('https://somin.ai', '') for u in re.findall(r'<loc>(.*?)</loc>', (SITE_DIR / name).read_text(encoding='utf-8'))]
+        paths = []
+        for sm_path in locs('sitemap.xml'):
+            if not sm_path.endswith('.xml'):
+                paths.append(sm_path)                       # plain sitemap (no index)
+            elif sm_path == '/sitemap-en.xml':
+                paths += locs('sitemap-en.xml')
+            else:
+                paths += locs(sm_path.lstrip('/'))[:1]
+        paths += ['/try-somin/', '/get-case-study/', '/thank-you-trial-somin/', '/thank-you-plugin/', '/c5584ab5-007d-4499-b460-978130fe387b/']
         hits = Hits(); ctx = await new_context(browser, hits)
         bad = []
         sem = asyncio.Semaphore(6)
@@ -470,8 +514,10 @@ async def main():
                 try:
                     r = await pg.goto(BASE + path, wait_until='load', timeout=45000)
                     await pg.mouse.wheel(0, 300)          # GTM starts on the first interaction (tracking.js gtm_delay_ms)
-                    await pg.wait_for_timeout(1800)
-                    n = await pg.evaluate("Object.keys(window.google_tag_manager||{}).filter(k=>k.startsWith('GTM-')).length")
+                    count = lambda: pg.evaluate("Object.keys(window.google_tag_manager||{}).filter(k=>k.startsWith('GTM-')).length")
+                    await wait_for(count, 8)              # gtm.js can take a few seconds when many pages load at once
+                    await pg.wait_for_timeout(600)        # a second container would have had time to show up too
+                    n = await count()
                     if not r or r.status != 200 or errs or n != 1:
                         bad.append({'path': path, 'status': r.status if r else None, 'gtm_containers': n, 'errors': errs[:2]})
                 except Exception as e:

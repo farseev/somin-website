@@ -149,7 +149,7 @@ star-rating widget needs a paid G2 plan, so the badges are SOMIN-styled and link
 **Case-study heroes.** Every case-study page has its own topic background generated with SOMIN image-generate
 (`static/assets/img/cases/bg/`).
 
-**Case-study hub.** `/cases-ai-marketing-strategy/` lists all 45 case studies (27 brands, 12 agencies, 6 creators) with
+**Case-study hub.** `/cases-ai-marketing-strategy/` lists all 44 case studies (26 brands, 11 agencies, 7 creators) with
 section filters and search, built from `data/case-studies.json` (`hub` blocks carry the tile title, sector, market and
 summary from the Leadpages hub). Every tile's **Get the PDF** opens the case-study Typeform; tiles with a full story page
 also link to it.
@@ -183,6 +183,9 @@ as an attachment without an interstitial, and replacing a PDF in Drive needs no 
 * Key interactions (call clicks, form opens and submits, downloads, logins, replay plays) also reach the Meta pixel as
   custom events with `event_id` (GTM v51 tag "Facebook - somin key events (custom)").
 * Debug: add `?debug_tracking=1` to any URL to log every event in the console; `?tracking=off` disables all tags.
+* Tags load only on somin.ai (`CONFIG.production_hosts`): `localhost` and the `<user>.github.io` preview send nothing unless the
+  URL carries `?debug_tracking=1`. The tracking test blocks the hit-collecting hosts in its browser, so local runs leave no
+  test events in GA4, Meta or LinkedIn; `--live` does send real hits.
 
 Test result at hand-over: **76 / 76 checks passed** locally (GTM container v51; each lead conversion fires exactly once;
 case-study PDFs and the Claude plugin download automatically after their forms; replays load and switch). Report:

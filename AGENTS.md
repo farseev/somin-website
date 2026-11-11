@@ -20,6 +20,8 @@ Run all three before every commit that changes content, templates, CSS or JS.
    content files or `build.py`. Tracking lives only in `static/assets/js/tracking.js` (IDs in its `CONFIG` block).
    New events: `window.sominTrack('event_name', {...})` in JS, or `data-track="event_name"` on a link.
    Use snake_case event names and add them to the table in `docs/TRACKING.md`.
+   Tags load only on the hostnames in `CONFIG.production_hosts` (somin.ai); on localhost or the Pages preview nothing is
+   sent unless the URL carries `?debug_tracking=1`. Give every lead or call CTA a `data-gtm-id`.
    Lead conversions fire in GTM on the thank-you pages (Page Path triggers); keep `/thank-you-trial-somin/`,
    `/thank-you-case-study/` and `/thank-you-plugin/` at those paths and don't fire Meta/LinkedIn/`generate_lead` from code
    (double counting).

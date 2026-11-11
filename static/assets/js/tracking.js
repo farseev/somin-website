@@ -20,6 +20,7 @@
  *
  * Debug: add ?debug_tracking=1 to any URL (remembered for the session) to log every event to the console.
  * Disable on a page view: ?tracking=off
+ * Tags load only on CONFIG.production_hosts (somin.ai); on localhost or a preview host add ?debug_tracking=1 to load them.
  */
 (function (w, d) {
   'use strict';
@@ -27,6 +28,8 @@
   /* ===================== CONFIG — edit here (single source of truth) ===================== */
   var CONFIG = /*CONFIG_START*/{
     "gtm_id": "GTM-PZG88FPZ",
+    "production_hosts": ["somin.ai", "www.somin.ai"],
+    "_production_hosts_doc": "GTM and every tag in it load only on these hostnames. On any other host (localhost, 127.0.0.1, the <user>.github.io preview, a staging copy) nothing is sent to GA4, Meta, LinkedIn or Clarity, so development and preview visits do not end up in the reports. Lead forms and Calendly still work there, and events are still pushed to the dataLayer. Add ?debug_tracking=1 to load the tags on such a host on purpose (the hits are real).",
     "gtm_delay_ms": 2500,
     "_gtm_delay_doc": "GTM (and every tag inside it) starts on the visitor's first interaction (pointer, key, touch, scroll) or this many ms after the load event, whichever comes first, so ~500 KB of third-party JS does not block the first render. Thank-you pages and ?debug_tracking=1 sessions load it immediately. Events pushed earlier wait in the dataLayer and are processed when GTM starts. Set 0 to load GTM at once again.",
     "clarity_id": "",
@@ -84,7 +87,11 @@
   if (qs.get(CONFIG.debug_param) === '1') store.set('somin_debug', true, true);
   if (qs.get(CONFIG.debug_param) === '0') store.set('somin_debug', false, true);
   var DEBUG = !!store.get('somin_debug', true);
-  var DISABLED = qs.get('tracking') === 'off';
+  // Tags only run on the production hostnames; anywhere else they need ?debug_tracking=1 (see CONFIG.production_hosts).
+  var PROD_HOST = !CONFIG.production_hosts || !CONFIG.production_hosts.length || CONFIG.production_hosts.indexOf(loc.hostname) !== -1;
+  var DISABLED = qs.get('tracking') === 'off' || (!PROD_HOST && !DEBUG);
+  api.productionHost = PROD_HOST;
+  api.disabled = DISABLED;
 
   w.dataLayer = w.dataLayer || [];
   function gtag() { w.dataLayer.push(arguments); }

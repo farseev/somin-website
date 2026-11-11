@@ -513,7 +513,7 @@ def render_footer():
     cols = ''
     for col in f['columns']:
         cols += f'<div class="f-col"><h3>{E(col["title"])}</h3><ul>' + ''.join(f'<li><a {link_attrs(l)}>{E(l["label"])}</a></li>' for l in col['links']) + '</ul></div>'
-    badges = ''.join(f'<a class="f-badge" href="{E(b["href"])}" rel="noopener" target="_blank"><img src="{E(b["img"])}" alt="{E(b["alt"])}" width="64" height="64" loading="lazy"><span>{E(b["text"])}</span></a>' for b in f['badges'])
+    badges = ''.join(f'<a class="f-badge" href="{E(b["href"])}" rel="noopener" target="_blank" data-track="footer_badge_click"><img src="{E(b["img"])}" alt="{E(b["alt"])}" width="64" height="64" loading="lazy"><span>{E(b["text"])}</span></a>' for b in f['badges'])
     reviews = rating_badges('rv-badges--footer') + ''.join(f'<a href="{E(r["href"])}" rel="noopener" target="_blank">{E(r["label"])}</a>' for r in f['reviews'] if r['label'] not in ('G2', 'Capterra'))
     return f'''<footer class="site-footer">
   <nav class="f-compare" aria-label="Comparisons"><ul>{compare}</ul></nav>
@@ -1831,7 +1831,7 @@ def build_lead_pages():
         if v['page']:
             return f'<a class="mini" href="{E(v["page"])}" data-cs-more data-cs-key="{E(k)}"><span>{E(v["category"] or "Case study")}</span><strong>{E(v["title"])}</strong></a>'
         return (f'<a class="mini" href="/get-case-study/?cs={E(k)}" data-lead-form="case_study" data-case-study="{E(k)}" data-case-study-label="{E(v["title"])}" '
-                f'data-cs-more data-cs-key="{E(k)}"><span>{E(v["category"] or "Case study")}</span><strong>{E(v["title"])}</strong></a>')
+                f'data-gtm-id="thank_you_case_more_{E(k[:40])}" data-cs-more data-cs-key="{E(k)}"><span>{E(v["category"] or "Case study")}</span><strong>{E(v["title"])}</strong></a>')
     cards = ''.join(mini(k, v) for k, v in picks)
     body = f'''<section class="hero"><div class="container" style="max-width:980px" data-cs-release>
   <div class="ty-card" data-cs-state="ready" hidden>
@@ -1956,7 +1956,7 @@ def build_cases_hub(manifest):
         kicker = ' · '.join(x for x in (v['category'], v['market']) if x)
         lead = (f'href="/get-case-study/?cs={E(k)}" data-lead-form="case_study" data-case-study="{E(k)}" '
                 f'data-case-study-label="{E(v["title"])}"')
-        media_href = f'href="{E(v["page"])}"' if v['page'] else lead
+        media_href = f'href="{E(v["page"])}"' if v['page'] else lead + f' data-gtm-id="cases_hub_media_{E(k[:40])}"'
         q = ' '.join([v['title'], v['category'] or '', v['market'], v['summary'], v['section']]).lower()
         read = (f'<a class="cs-read" href="{E(v["page"])}" data-gtm-id="cases_hub_read_{E(k[:40])}">Read the story {ICON["arrow"]}</a>'
                 if v['page'] else '')
