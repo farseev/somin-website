@@ -1785,7 +1785,7 @@ def build_lead_pages():
       <li><span><strong>Pre-scored campaign concepts</strong> — propositions and creative directions ranked before you spend.</span></li>
       <li><span><strong>Agents that run the loop</strong> — strategy, paid media, creators, social, CRM and reporting.</span></li>
     </ul>
-    <div class="trust"><span>Trusted by teams at <b>Mastercard</b>, <b>Grab</b>, <b>Publicis</b>, <b>Mars</b> and <b>KARL STORZ</b></span><span>Gartner Cool Vendor in Marketing AI</span></div>
+    <div class="trust"><span>Trusted by teams at <b>Mastercard</b>, <b>Grab</b>, <b>Mars</b> and <b>KARL STORZ</b></span><span>Gartner Cool Vendor in Marketing AI</span></div>
     {rating_badges("rv-badges--hero")}
     {research_strip({'compact': '1'})}
     <p style="margin-top:28px"><a class="btn btn--ghost" href="{CAL_DEFAULT}" data-gtm-id="try_page_book_call">Prefer to talk? Book a call</a></p>
