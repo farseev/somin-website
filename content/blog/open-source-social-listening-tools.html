@@ -1,0 +1,64 @@
+<!--meta
+{
+ "slug": "blog/open-source-social-listening-tools",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "Open-source social listening tools: what they can do, and where they stop",
+ "seo_title": "Open-source social listening tools: what they can do",
+ "description": "Open-source social listening tools can collect and analyse public posts for free. See the building blocks, what limits them, the real costs and when a paid platform pays off.",
+ "published": "2026-12-19T08:00:00Z",
+ "author": "SOMIN Team",
+ "tags": [
+  "Social Listening",
+  "Insights",
+  "Artificial Intelligence"
+ ],
+ "image_prompt": "Isometric dark-teal 3D illustration of glowing building blocks and gears assembling into a listening antenna that collects small social post tiles on a deep ink-green surface, bright teal highlights, no text and no logos.",
+ "words": 720,
+ "reading_minutes": 4,
+ "image": "/assets/img/blog/open-source-social-listening-tools.webp",
+ "image_card": "/assets/img/blog/open-source-social-listening-tools-card.webp",
+ "og_image": "/assets/img/og/blog-open-source-social-listening-tools.jpg",
+ "image_generated": false,
+ "robots": "index,follow"
+}
+-->
+<p>Open-source social listening tools are free building blocks: code to collect public posts, libraries to analyse language, and dashboards to show the results. They suit teams with developers, a narrow question and a few sources. They stop at data access: the big platforms limit what can be collected, so coverage, history and upkeep become the real costs.</p>
+<h2>Key takeaways</h2>
+<ul>
+<li>Open-source listening is a set of parts you assemble, not a ready product.</li>
+<li>Data access, not software, is the hard part: platforms restrict and price their APIs.</li>
+<li>Free software still costs developer time, hosting and maintenance.</li>
+<li>Use open source for focused research; use a platform when you need many sources, markets and languages every week.</li>
+</ul>
+<h2>What does an open-source listening stack look like?</h2>
+<table>
+<thead><tr><th>Layer</th><th>What it does</th><th>Typical open-source options</th></tr></thead>
+<tbody>
+<tr><td>Collection</td><td>Gets posts and comments from sources</td><td>Official API clients, RSS readers, web scrapers where allowed</td></tr>
+<tr><td>Storage</td><td>Keeps the data and its history</td><td>Open-source databases and search engines</td></tr>
+<tr><td>Analysis</td><td>Language detection, sentiment, topics, entities</td><td>Python NLP libraries and open language models</td></tr>
+<tr><td>Dashboards</td><td>Shows trends and alerts</td><td>Open-source BI and charting tools</td></tr>
+</tbody>
+</table>
+<h2>Where do open-source tools stop?</h2>
+<p><strong>Access to data.</strong> The main platforms decide who can collect what. X ended free access to its API in 2023 and moved to paid tiers, Reddit started charging for heavy API use the same year, and Meta shut down CrowdTangle in August 2024, pointing researchers to its Meta Content Library instead. Scraping can break platform terms. Open-source code does not solve these limits.</p>
+<p><strong>History.</strong> Most tools only see what you collect from the day you start. Paid platforms often hold archives.</p>
+<p><strong>Languages and images.</strong> Sentiment models trained mostly on English often miss slang, mixed languages and meaning carried by images or video. Our article on <a href="/blog/multilingual-and-visual-ai-social-listening/">multilingual and visual AI social listening</a> explains why.</p>
+<p><strong>Upkeep.</strong> APIs and page layouts change, and collectors break. Someone has to fix them.</p>
+<h2>What does "free" really cost?</h2>
+<p>Count developer time to build and maintain collectors, hosting and storage, paid API tiers, and the analyst time to check results. For a one-off study, this is often cheaper than a licence. For weekly reporting across several markets, the hidden costs add up. Our look at <a href="/blog/social-listening-pricing-enterprise-value/">social listening pricing</a> compares the cost models.</p>
+<h2>When is open source the right choice?</h2>
+<ul>
+<li>A research project with a clear question and a fixed time frame.</li>
+<li>Sources with open access, such as news sites, forums, blogs or your own channels.</li>
+<li>A team with developers who can maintain the stack.</li>
+<li>Strict data rules that require everything to run on your own servers.</li>
+</ul>
+<h2>When does a platform pay off?</h2>
+<p>When you need many sources and markets, history, images and video, and results every week without maintaining code. Platforms also handle data agreements with the networks. Our list of the <a href="/blog/best-social-listening-tools-for-agencies-2027/">best social listening tools for agencies in 2027</a> compares options. <a href="/somin-strategy/">SOMIN Strategy</a> combines listening with competitor ad tracking and audience insight, so the data turns into briefs, not just charts.</p>
+<h2>FAQ</h2>
+<details><summary>Are there free social listening tools?</summary><p>Yes, as open-source software and free tiers. Open-source tools are free to use but need developers, hosting and data access.</p></details>
+<details><summary>Can open-source tools collect data from Instagram, TikTok or X?</summary><p>Only within what each platform allows. Official APIs are limited or paid, and scraping can break platform terms.</p></details>
+<details><summary>Is open-source sentiment analysis accurate?</summary><p>It can be good in English and on clean text. Accuracy drops with slang, mixed languages, sarcasm and images, so check samples by hand.</p></details>
+<details><summary>What replaced CrowdTangle?</summary><p>Meta shut CrowdTangle down in August 2024 and offers the Meta Content Library to approved researchers.</p></details>

@@ -2,6 +2,16 @@
 f3b7aaa3967dcf6b	<g1><x2/><g3>Cool Vendor in Marketing AI</g3></g1><g4><x5/><g6>Partner in Agentic AI</g6></g4><g7><x8/><g9>Users Love Us badge on G{1}</g9></g7>
 32f07507171ceb83	Work with SOMIN, the Singapore AI marketing-intelligence company behind SOMONITOR. See how to get in touch about roles in AI, engineering, marketing and sales.
 f880d6928726027d	Users Love Us
+6baebdfb29f9a36e	AI community manager: what to automate in comments and DMs, and what to keep human
+360796dbbeb6b93f	An AI community manager can sort, draft and route comments and DMs. See which replies to automate, which to keep human, and how to set rules before you switch it on.
+59ed6754923405fa	How to track social media algorithm changes without chasing rumours
+797b8019182c84e9	Social media algorithm updates spread as rumours. Learn which official sources to follow, how to test changes on your own account and when to change your content plan.
+9882f8cd8add5837	Meta ads MCP: {1} prompts to audit campaigns in Claude or ChatGPT
+4a5defc5b2ca3040	Connected Meta's ads MCP to Claude or ChatGPT? Use these {1} prompts to audit spend, creative fatigue, audiences and account changes, and keep a human check before edits.
+252dc59e5198b2bc	When is Cyber Monday {1}, and how should you plan Cyber Week ads?
+4aec9880fa8dfab0	Cyber Monday {1} is Monday {2} November. See how the date is set, how Cyber Week fits around Black Friday, how local Cyber events differ and how to plan ads.
+6c6c32dc46705230	Biblioteca de anuncios de Meta: how do you analyse competitors in Spain and Latin America?
+db87606a2fc59eda	The Biblioteca de anuncios de Meta shows a rival's active ads. Learn how to search it country by country in Spain and Latin America, what to record and what is missing.
 2f28d7a3c464580d	Science & Press at SOMIN: {1} peer-reviewed papers you can download, Forbes and e{2} columns by Prof. Aleks Farseev, press coverage of SOMIN and its founders, and talks.
 c0eb5099904a6ba8	e{1} columnist
 d3842e9d3bc382da	Forbes Technology Council and e{1} columns by Prof. Aleks Farseev
@@ -26,3 +36,385 @@ bdd13b75dd16f5cb	Phil Lugovoi, Business Development at SOMIN. Read {1} articles 
 a29078e7c080dcaa	Egor Shevelev is Head of Development at SOMIN, the Singapore AI marketing-intelligence company. Egor writes on the SOMIN blog about insights, artificial intelligence, large language models.
 41ac3f9297508af8	Kirill Lepikhin, Co-Founder and CTO at SOMIN. Read {1} articles by Kirill on ai agents, social media marketing and more on the SOMIN blog.
 f3b02f3da34b70fc	Kirill Lepikhin is Co-Founder and CTO at SOMIN, the Singapore AI marketing-intelligence company. Kirill writes on the SOMIN blog about ai agents, social media marketing, artificial intelligence.
+e33b7891821daa96	Generative engine optimisation (GEO): a brand checklist
+ebeaf36f7a715425	Generative engine optimisation (GEO): a…
+796d7767403acd9f	Illustration: Generative engine optimisation (GEO): a practical checklist for brand content
+b61cb039ca98643d	Generative engine optimisation (GEO) is the work of making your brand appear, and appear correctly, in answers from AI assistants such as ChatGPT, Gemini, Claude and Perplexity. It builds on SEO: clear pages, consistent facts and trusted mentions. The difference is that AI systems summarise and cite, so you need content that answers questions directly and facts that agree everywhere.
+8ff4fbda8932305d	Answer real questions in the first lines of a page, in plain language.
+df261a8bbab51a30	Keep company facts identical across your site, profiles and directories.
+46c94b5b6dceb1d3	Use clear structure: headings as questions, short paragraphs, tables, FAQs and structured data.
+9d25fb2ede9acd1e	Earn mentions on sites that AI systems cite, not just links.
+f88c444959ea38c3	Monitor what AI assistants say about you, and correct the sources behind wrong answers.
+795bd6ff241b2c64	How is GEO different from SEO?
+a86411468abebfd7	SEO aims for a ranking on a results page. GEO aims for inclusion in an answer. AI assistants with web search find pages, pull out passages and write a summary, often with citations. Pages that state a clear answer, with facts that are easy to extract and confirmed elsewhere, are easier to use. Our essay on <g1>the end of SEO and the agentic web</g1> explains the wider shift.
+6ab87da7f6c97b38	What is on the GEO checklist?
+39d4ece2eff3a52f	Start each page with a one-paragraph answer to the main question.
+9065eeab782378cc	Write headings as the questions people ask, in their words and languages.
+823341364a79cd54	Give specific facts: numbers, dates, names, prices, with a source.
+fe89b7c007c99a73	Add a short FAQ with complete, standalone answers.
+af946abdee21b971	Facts and entities
+9ee246c21cc8ae36	Use the same company name, description, founders, locations and product names everywhere.
+529b581e4691f303	Keep an "about" page and a press page with the canonical facts.
+d075facfa9812e67	Update profiles on LinkedIn, review sites and directories when facts change.
+fa6470aa7b10d25b	Structure and access
+a8b6d7d38bf0df53	Add structured data (schema.org) for your organisation, products, articles and FAQs.
+5a50129eddb4474e	Make sure pages render as text without scripts, load fast and are not blocked for the crawlers you want.
+821f2896b6771e4d	Consider an llms.txt file that points AI systems to your key pages.
+85e12bc6f2e56024	Mentions
+e03f5c92edf2dee0	Get covered by trusted publications, research, reviews and industry lists in your category.
+1a62932ffcb618c6	Publish original data that others will quote.
+edaae0cc57b5a43e	How do you measure AI visibility?
+59d03d7e0e3ee915	Write a fixed list of prompts that real buyers would ask, such as "best social listening tool for agencies in Southeast Asia". Run them in several assistants every month and record whether your brand appears, how it is described, which competitors appear and which sources are cited. Compare the cited sources with your own pages to find what is missing.
+cea6022db05f3636	What do you do when an AI answer is wrong?
+e6a0978019f242ce	Find where the wrong fact comes from: an old page, a directory or an article. Fix your own pages first, then ask the other sites to update. Make the correct fact easy to find on your site, in text and in structured data. Expect changes to take weeks, because AI systems refresh their sources at different speeds.
+657811713b9b9fa3	Where does competitor research fit?
+a67a1cc7710e117b	AI answers often compare brands. Knowing how competitors describe themselves, and which claims they repeat, shows where your positioning is unclear or crowded. <g1>SOMIN Strategy</g1> maps competitor messages across channels, which helps you choose claims that are both true and distinct.
+91160b9d336d0e55	What is GEO in marketing?
+a51a3434dba07ca1	Generative engine optimisation: making content and facts easy for AI assistants to find, trust and cite, so your brand appears correctly in their answers.
+890ee33e12147a9d	No. AI assistants with web search still rely on pages that search engines can crawl. GEO adds answer-first writing, consistent facts and monitoring of AI answers.
+48295b1ca71da322	How long does GEO take to work?
+08ea71238c83fe5d	Weeks to months. Your pages need to be crawled, and AI systems refresh what they use at different speeds.
+6e3a6158c923d73c	Can AI assistants make mistakes about my brand?
+2fe45a0d0b61350b	Yes. They can repeat outdated or wrong facts. Check regularly and fix the sources behind wrong answers.
+608913ecc0d75fcf	<g1>Artificial Intelligence</g1><g2>Insights</g2><g3>Digital Advertising</g3>
+5ce23ff296075bdf	Open-source social listening tools: what they can do
+5b7abb9a4a87daa1	Open-source social listening tools: what they…
+1b1d611e74c6e9f2	Illustration: Open-source social listening tools: what they can do, and where they stop
+17aad694c6f4f357	Open-source social listening tools are free building blocks: code to collect public posts, libraries to analyse language, and dashboards to show the results. They suit teams with developers, a narrow question and a few sources. They stop at data access: the big platforms limit what can be collected, so coverage, history and upkeep become the real costs.
+eb76fe7e2e552513	Open-source listening is a set of parts you assemble, not a ready product.
+019c63ecc01b18fd	Data access, not software, is the hard part: platforms restrict and price their APIs.
+eaaa439cb8acc358	Free software still costs developer time, hosting and maintenance.
+b7f9896535595321	Use open source for focused research; use a platform when you need many sources, markets and languages every week.
+b78b469e86acce97	What does an open-source listening stack look like?
+4c1185381f0e24bb	Typical open-source options
+30c54a96f8011b39	Collection
+d69ca3f436cdb7ea	Gets posts and comments from sources
+cbe9a492c85b8aed	Official API clients, RSS readers, web scrapers where allowed
+9e092dda4f0e27d0	Storage
+097e4d90c4427bf3	Keeps the data and its history
+dabc5b632bc68daa	Open-source databases and search engines
+0671cc132e023364	Language detection, sentiment, topics, entities
+a55181d1306b2046	Python NLP libraries and open language models
+75de88191d754c46	Shows trends and alerts
+1fdcfba57d577880	Open-source BI and charting tools
+88ac8c95ed9fdcba	Where do open-source tools stop?
+bc4bc5a48b611f74	<g1>Access to data.</g1> The main platforms decide who can collect what. X ended free access to its API in {1} and moved to paid tiers, Reddit started charging for heavy API use the same year, and Meta shut down CrowdTangle in August {2}, pointing researchers to its Meta Content Library instead. Scraping can break platform terms. Open-source code does not solve these limits.
+2ba0f969d5152719	<g1>History.</g1> Most tools only see what you collect from the day you start. Paid platforms often hold archives.
+9a3b614d22c5d15b	<g1>Languages and images.</g1> Sentiment models trained mostly on English often miss slang, mixed languages and meaning carried by images or video. Our article on <g2>multilingual and visual AI social listening</g2> explains why.
+edb59f3869656d15	<g1>Upkeep.</g1> APIs and page layouts change, and collectors break. Someone has to fix them.
+44114d2710e19a71	What does "free" really cost?
+95f1b28c35332bd7	Count developer time to build and maintain collectors, hosting and storage, paid API tiers, and the analyst time to check results. For a one-off study, this is often cheaper than a licence. For weekly reporting across several markets, the hidden costs add up. Our look at <g1>social listening pricing</g1> compares the cost models.
+9ba708e7cfcbac14	When is open source the right choice?
+d3ca5a1a2f82ba60	A research project with a clear question and a fixed time frame.
+b873683a6709aa22	Sources with open access, such as news sites, forums, blogs or your own channels.
+2ab4559bf3d54e4a	A team with developers who can maintain the stack.
+7e2b46f7bb0547df	Strict data rules that require everything to run on your own servers.
+2c217931e8470918	When does a platform pay off?
+d188900abed72b26	When you need many sources and markets, history, images and video, and results every week without maintaining code. Platforms also handle data agreements with the networks. Our list of the <g1>best social listening tools for agencies in {1}</g1> compares options. <g2>SOMIN Strategy</g2> combines listening with competitor ad tracking and audience insight, so the data turns into briefs, not just charts.
+25b223a024570bf1	Are there free social listening tools?
+5f90054a9ecc6743	Yes, as open-source software and free tiers. Open-source tools are free to use but need developers, hosting and data access.
+27e0ddcae720f921	Can open-source tools collect data from Instagram, TikTok or X?
+67eeceb710dad56c	Only within what each platform allows. Official APIs are limited or paid, and scraping can break platform terms.
+f5241f0ab70ec693	Is open-source sentiment analysis accurate?
+e3472fda64063f46	It can be good in English and on clean text. Accuracy drops with slang, mixed languages, sarcasm and images, so check samples by hand.
+9199a6aa2fa7818c	What replaced CrowdTangle?
+a2a4a303302c8e3c	Meta shut CrowdTangle down in August {1} and offers the Meta Content Library to approved researchers.
+ef1ca24167a3ca7f	<g1>Social Listening</g1><g2>Insights</g2><g3>Artificial Intelligence</g3>
+c680e835cf49e607	Eid al-Adha {1} date and marketing plan by market
+1411b1bad9575b0d	Eid al-Adha {1}: expected dates and how to…
+fae03804393a1710	Illustration: Eid al-Adha {1}: expected dates and how to plan campaigns by market
+99f08194df291d58	Eid al-Adha {1} is expected on Sunday {2} May or Monday {3} May {4}, with the Day of Arafat on {5} or {6} May. The UAE's Astronomy Centre gave these likely dates; the final date depends on the moon sighting that starts the month of Dhul Hijjah. Plan campaigns for both dates and confirm closer to the time.
+9ab50a7fb72c3f68	Expected dates: Day of Arafat {1} or {2} May {3}, Eid al-Adha {4} or {5} May {6}.
+47d3558a79a4fc96	Official dates are confirmed by moon sighting, and can differ by a day between countries.
+b27c766de5417793	Eid al-Adha follows the Hajj season and is about family, sacrifice, sharing and charity.
+6c09cd0bd9b3c10a	It has local names: Hari Raya Haji in Singapore and Malaysia, Idul Adha in Indonesia, Kurban Bayramı in Turkey.
+4b09c307fb370809	Book media and finish creative early, because holidays close offices and shift shopping.
+ff06fccdd3208d2f	When is Eid al-Adha {1}?
+f33432dc1358e7cf	Khaleej Times reported the UAE Astronomy Centre's estimates: the Day of Arafat likely on {1} or {2} May {3} and Eid al-Adha likely on {4} or {5} May {6} (<g1>Khaleej Times</g1>). The same estimates put the start of Ramadan {7} around {8} February and Eid al-Fitr on {9} or {10} March; our <g2>Ramadan and Eid al-Fitr {11} calendar</g2> covers that season.
+bd7227b8624b9c06	How does the season differ by market?
+4d9006516e558749	Local name
+1f8310ca5c9a79d5	What to plan for
+e272fc3291e24cdb	Gulf states
+c577f0d8cdab4d1b	Several days of public holiday, travel, family gatherings, gifting and shopping
+21c2f208c4dde698	Idul Adha
+4bcdfef2252453a0	Livestock purchase and qurban, family meals, charity
+a1c6640e3d493225	Malaysia and Singapore
+4d69b51bb86e47aa	Hari Raya Haji
+885410950f953dc5	Public holiday, prayers, qurban, smaller in retail than Hari Raya Aidilfitri
+d7153e6702b4ea48	Turkey
+ce13d3765705421a	Kurban Bayramı
+b48e9e3a9b45c193	Multi-day holiday, domestic travel, family visits
+82d220df17cebf5c	Pakistan
+cbf5a2299bfd9cb0	Eid ul-Adha
+18416ee1d16e9f17	Livestock markets, clothing, food and family visits
+cab21ca1bcfe1360	Check each government's announcement for the exact number of public holiday days, which is set every year.
+5066d83741e1945a	How should you plan campaigns?
+477bf75dc903542e	<g1>Six to eight weeks before:</g1> agree the message. Family, generosity and sharing fit the occasion; heavy discount messaging can feel out of place during the days of Eid itself.
+d2e201d159ab52f3	<g1>Four weeks before:</g1> finish creative in each local language and check imagery with local teams. Avoid casual use of religious symbols.
+4dfcca444168bd63	<g1>Two weeks before:</g1> run travel, gifting, fashion and food campaigns as people prepare.
+06d345cf1c76fe7e	<g1>During Eid:</g1> lighter, greeting-style content; many offices close, so B{1}B messages wait.
+24f35457691bf11e	<g1>After:</g1> back-to-routine and summer travel messages.
+8f442a49763111f9	What do competitors usually do?
+aa94fc4a38f6a831	In many categories, Eid content looks alike: greetings, lanterns and family tables. Looking at last year's competitor posts and ads shows which themes are crowded and which are open, for example practical help with travel or hosting, or charity partnerships. <g1>SOMIN Strategy</g1> tracks competitor content by market and theme, and our <g2>festive marketing calendar guide</g2> explains how to localise across markets.
+6235402860abbe5a	It is expected on {1} or {2} May {3}, depending on the moon sighting. The Day of Arafat is expected on {4} or {5} May.
+344e0e0e3d113735	Why can the date differ between countries?
+2a402e1a20934721	Islamic months start with the sighting of the new moon, and countries may confirm the sighting on different days.
+76792ae806e3dfdb	What is Hari Raya Haji?
+22771a2c4782038a	The name for Eid al-Adha in Singapore and Malaysia. It is a public holiday in both countries.
+140fe23dcfda6e3b	How early should brands plan?
+8d182be0f9e301b9	Six to eight weeks ahead for creative and media, with both possible dates in the plan.
+90b176067756ac78	Khaleej Times, <g1>When will UAE celebrate Ramadan, Eid Al Fitr, Eid Al Adha in {1}? Likely dates revealed</g1>.
+b80b3eb617aac621	How to track social media algorithm changes
+9e7ba35e51b23a6e	How to track social media algorithm changes…
+dec0022bb267b612	Illustration: How to track social media algorithm changes without chasing rumours
+2a6115c9527a5975	To track social media algorithm changes, follow each platform's official explanations, keep a simple log of your own results, and test a suspected change before you react. Most "algorithm update" posts are guesses. A drop in reach can come from your content, your posting pattern, the season or competitors, so check those before you blame the platform.
+9ca2e3bbc9e39f86	Use official sources first: platform help pages, transparency pages and statements by platform leads.
+017335540d3312f9	Keep a weekly log of reach and engagement by format, so you can spot real shifts.
+48a2b4a2fc9b91e4	Compare with a benchmark, such as competitors in the same category, before you blame the algorithm.
+c7b5d19c575c5dc8	Test a change on a small share of posts for a few weeks before you change the whole plan.
+90a58542bcecc780	Where do platforms explain their ranking?
+fedf079a02ee7e61	Each large platform publishes some explanation of how it ranks content. Meta has published system cards that describe how AI systems rank content on Facebook and Instagram, in its Transparency Center. TikTok explains how videos are recommended in its newsroom and help pages. YouTube describes its recommendations on its "How YouTube works" site, and LinkedIn's engineering team writes about its feed. Heads of platforms, such as Instagram's head Adam Mosseri, also share changes in their own posts and videos. These sources rarely give formulas, but they tell you which signals matter.
+f3e41a0cdcdd30b4	How do you tell a real change from noise?
+510fce69f97386f1	<g1>Log the basics weekly:</g1> posts, reach, engagement and saves or shares, split by format (short video, image, carousel, text).
+abb6b08d452406a2	<g1>Look for a pattern across several weeks,</g1> not one bad post. A real shift shows up across many posts.
+97c296e88021bdf7	<g1>Check other causes:</g1> fewer posts, a new format, a holiday, a viral post the week before, or paid support ending.
+84c6761ccbb28d3b	<g1>Compare with peers.</g1> If competitors' reach fell at the same time, the cause is likely the platform or the season. If only yours fell, look at your content.
+1f18a5049b38da55	Our summary of <g1>social media algorithm changes in {1}</g1> lists the signals platforms have said they reward.
+221c161bd3a7d79d	How should you test a suspected change?
+80784c855c71670d	Turn the rumour into a question you can test. For example: "Do carousels now reach more people than single images for us?" Post both formats on similar topics for three to four weeks, at similar times, and compare the median result, not the best post. If the difference is small, do not rebuild your plan around it.
+74e57c3c1b0ea1e5	What should you change, and what should you keep?
+9d13472022cf2599	Platforms change details often, but some things hold: content that people watch to the end, save, share or reply to tends to travel further. Keep the parts of your plan that produce those reactions. Change the format mix only when your own data, not a rumour, shows a shift.
+1e48ac9d7f9ac68d	Why do competitor benchmarks matter?
+8ecfa6bf2cca099e	Your own account is a small sample. Looking at what competitors post and how their content performs shows whether a format is rising across the category. <g1>SOMIN Strategy</g1> tracks competitor posts and ads by format and engagement, so you can compare your trend with the category's.
+b1804052056279ee	Constantly, in small ways. Platforms test and adjust ranking all the time and announce only some changes, which is why your own log matters.
+b28deac2346a45b5	My reach dropped this week. Is it the algorithm?
+d08964fa58549002	Not necessarily. Check your posting frequency, formats, timing, the season and competitors' reach first. One week is too short to call a trend.
+4d8ffcdf8fa08fdd	Where can I find official information?
+589572efd8011348	Platform help centres, transparency pages, engineering blogs and posts by platform leads. Treat third-party claims as hypotheses to test.
+6cd69379110df127	Should I change my strategy after every update?
+7c99f3822bd3b50a	No. Change your format mix when your own data shows a shift over several weeks.
+0dc9802ca84af8df	<g1>Social Media Marketing</g1><g2>Insights</g2><g3>Digital Advertising</g3>
+6318d3bf6788382b	AI community manager: what to automate and keep human
+0f2f2a23ca798ffe	AI community manager: what to automate in…
+4dea165c031983d4	Illustration: AI community manager: what to automate in comments and DMs, and what to keep human
+4a2a7c9d1639eff7	An AI community manager is an agent that reads comments and direct messages, sorts them, drafts replies and sends the right ones to people. Automate the repetitive, low-risk work: tagging, routing, answers to common questions and first replies. Keep complaints, crises, legal or medical questions, influencer and press contacts, and anything emotional with a person.
+75910bb3c8578756	Start with sorting and drafting, not with auto-posting.
+9877a15dbdafeffa	Write the rules first: topics the agent may answer, topics it must pass on, and the tone it uses.
+5e1ce31d1bc50240	Give the agent approved answers to draw from, so it does not invent facts.
+4f4d3f1acb63a1e0	Measure response time and escalation quality, not just volume.
+2654827ff213671f	What can an AI community manager do?
+67b69a742b317709	It can do four jobs well. It sorts incoming comments and messages by topic, sentiment and urgency. It drafts replies from your approved answers. It routes messages to the right team, such as sales, support or PR. And it reports on what people are asking about, which is useful for content and product teams. Our overview of <g1>what AI social media manager agents can run</g1> covers the wider role.
+856b5146b7eb4c9a	Which replies should you automate?
+ac64fdb17647525e	Thank-you replies to positive comments
+3629a4e53ff06363	Complaints and refund requests
+52765baf6c13bb59	Opening hours, prices, links, stock questions
+84cf201765f63584	Anything about health, safety, legal or money advice
+18ccf61a8f5a1886	Hiding obvious spam and scams, following your policy
+9ecbcc2925407097	Crises, outages and viral negative threads
+9a8c7969bffa1361	Tagging and routing DMs to the right team
+13fd86099de88a4e	Press, influencer and partnership messages
+faa2c5127aa63650	First reply to a support question with a next step
+ad5fe104e5ad4edf	Upset or vulnerable people
+2217f99de754d0cf	A good middle ground is draft-and-approve: the agent writes the reply, a person clicks send. Move a topic to full automation only when its drafts have needed no edits for several weeks.
+683c72275e608dc7	How do you set the rules before switching it on?
+a286e65988a20810	<g1>List the topics.</g1> Export a month of comments and DMs and group them. Most brands find a handful of topics make up most of the volume.
+1b7a4039ea721d8a	<g1>Write approved answers.</g1> One short answer per common question, with links. The agent should only state facts that are in these answers.
+b300a6564154c9b7	<g1>Define escalation.</g1> Name the words, topics and sentiment that send a message to a person, and who that person is.
+b51e350ace37eee6	<g1>Set the tone.</g1> Give examples of good replies in your brand voice, in each language you support.
+dc962e4655731401	<g1>Decide the hours.</g1> If people only review drafts in office hours, say so in the first auto-reply.
+35edd408bf5656b1	What should you measure?
+ac8ae2cff71cf7f1	Track time to first reply, the share of messages resolved without a person, the share of drafts edited before sending, and escalations that came too late. Read a sample of automated replies every week. A rising edit rate means the answers or rules need updating.
+acea30ce5d6dbafd	What are the risks?
+0abbb1ed3112b29a	The main risks are wrong facts, a tone that feels robotic, and replying to the wrong thing, such as a joke or sarcasm. Platforms also have their own rules for automated messaging, so check each platform's policies. Tell people when they are talking to an automated assistant if your market or platform expects it.
+8229f803482b5325	How does SOMIN help?
+68634b535ff0994b	The <g1>SOMIN Social Media Manager</g1> plans and drafts content from competitor and audience data, and the questions people ask in your comments are one of the best inputs for that plan. See <g2>how the SOMIN social media manager agent works</g2>.
+0d02ee97ce0c4be0	What is an AI community manager?
+9e816a4d82475195	An AI agent that reads comments and messages on social media, sorts them, drafts replies and passes sensitive ones to people.
+c09c8f1f48fd57a8	Will an AI community manager replace people?
+18f6b46ea2426de1	It takes over repetitive replies and sorting. People still handle complaints, crises, partnerships and judgement calls, and they own the rules the agent follows.
+dcec545a1f8e2d42	Should replies be posted automatically?
+1460c36aec1f941e	Start with draft-and-approve. Automate a topic fully only after its drafts have been accurate for several weeks.
+7a6b2a55ec1409a8	Can it reply in several languages?
+58fbf931c3b2f271	Yes, but give it approved answers and tone examples in each language, and have a native speaker review samples.
+1c51178a3cd8b169	<g1>AI Agents</g1><g2>Social Media Marketing</g2><g3>Insights</g3>
+5727a6839cbadd9a	Meta ads MCP: {1} prompts to audit campaigns in Claude
+7400c8d025e75178	Meta ads MCP: {1} prompts to audit campaigns…
+4864faf80fa067fd	Illustration: Meta ads MCP: {1} prompts to audit campaigns in Claude or ChatGPT
+ddcc4cd2bd5ca4e4	An MCP connector for Meta ads lets an AI assistant such as Claude or ChatGPT read your ad accounts: campaigns, ad sets, ads, creative, results and account activity. The fastest way to get value is a fixed set of audit prompts that you run every week. Below are ten, from spend pacing to creative fatigue, plus the rules we use before letting an assistant change anything.
+f5e4f46e1992eace	Start read-only: audits and questions first, edits only with a human check.
+ea3e8b3a96e0a13a	Name the account, date range and metric in every prompt, so answers can be compared week to week.
+ab41a6c5be0b33f0	Ask the assistant to show the numbers it used, not just its conclusion.
+42f688f45a6bad16	Combine your own results with competitor data to explain why something works.
+4f63e3287d0350b9	What can an ads MCP connector do?
+67f95c01a1af1d37	MCP (Model Context Protocol) is a standard way to give an AI assistant tools. A Meta ads connector exposes tools to list ad accounts, read campaigns and their results, look at creative and read the account's change history. Some connectors can also create or update campaigns. How to connect one is covered in <g1>connecting Meta's AI connectors to Claude, ChatGPT and Manus</g1>; what it means for agencies is in <g2>MCP for marketing agencies</g2>.
+fcb95b4e3cdd0791	Which {1} prompts should you run?
+deaebdaa0ac3df27	<g1>Spend pacing:</g1> "For account [name], compare spend in the last {1} days with the {2} days before, by campaign. Flag any campaign whose spend changed by more than {3}%."
+0e859519206d851f	<g1>Cost per result:</g1> "List active campaigns with their objective, results and cost per result for the last {1} days. Sort by cost per result and mark the worst three."
+232796c7e13ed02a	<g1>Creative fatigue:</g1> "For ads with spend in the last {1} days, show frequency and click-through rate by week. Which ads have rising frequency and falling click-through?"
+84983f3e081f1b84	<g1>Winning creative:</g1> "Which five ads had the highest click-through rate with at least [N] impressions in the last {1} days? Describe what their creative has in common."
+a2a52a7d458e80cc	<g1>Placements:</g1> "Break down results by placement for campaign [name]. Which placements take spend but bring few results?"
+f75993c6ffe7452e	<g1>Audiences:</g1> "Compare ad sets in campaign [name] by audience. Which audience has the lowest cost per result, and how many results is that based on?"
+bafb7e018d716433	<g1>Account changes:</g1> "What changed in this account in the last {1} days: budgets, statuses, new ads? List the changes by date and by who made them."
+bc8755387c15bb9f	<g1>Ads not delivering:</g1> "Which active ads had no impressions in the last {1} days, and what status or review issue do they show?"
+e91e3c7e25e881a7	<g1>Tracking check:</g1> "Do the conversion events used by my campaigns record data in the last {1} days? Flag any that look broken."
+9a9bf3b0baa491e6	<g1>Weekly summary:</g1> "Write a five-line summary of this week for the client: spend, results, the best ad, the main issue and one recommendation, with the numbers."
+9e5d47dbe6ad752a	How do you keep the answers reliable?
+e3d692efdc12a073	Give the assistant the same frame every time: account, date range, attribution setting and minimum volume. Ask it to quote the figures it used, and spot-check one or two in Ads Manager. Small numbers mislead, so set a minimum number of impressions or results before ranking anything. Our note on why <g1>a faster agent is not a smarter one</g1> explains why checks still matter.
+52b3b8f2e156870d	When should the assistant make changes?
+419b72672e7c4ace	Only after a person approves. Good rules are: the assistant proposes, a person confirms; budgets and status changes are always confirmed; and every change is logged in the account history. Start with reversible changes such as pausing a clearly fatigued ad, and keep new campaigns paused until reviewed.
+1ef123bde6a8a769	Where does competitor data fit?
+3abb94783515d805	Your account tells you what worked for you, not why or what rivals do differently. The SOMIN MCP server adds competitor ads, audience insight and creative scoring to the same chat; see <g1>the SOMIN MCP server</g1> and <g2>SOMIN Paid Media</g2>.
+c14bb43ab2971efa	What is a Meta ads MCP?
+823634a7c97f6849	An MCP server that gives an AI assistant tools to read, and sometimes change, Meta ad accounts. You connect it to an assistant such as Claude or ChatGPT and ask questions in plain language.
+f881c69eb9ef0e91	Can the assistant change my campaigns?
+1a7669989a3b394d	Some connectors include tools to create or update campaigns. Keep a human approval step for every change, especially budgets and status.
+94df4abde77ed13c	Is the data the same as in Ads Manager?
+56e42932940528d3	It comes from the same account, but settings such as date range and attribution change the numbers. Use the same settings in both when you compare.
+6bb809280422d9b9	How often should I run these prompts?
+35a51d2cc26ef53e	Weekly for most accounts, daily during launches or big sales periods.
+ea696318b676b2e6	<g1>Meta Advertising</g1><g2>AI Agents</g2><g3>Performance Advertising</g3>
+08686a410823887c	Japan marketing calendar {1}: Golden Week and holidays
+eb936c6268eed5c0	Plan {1} campaigns in Japan: all {2} national holidays, Golden Week from {3} April to {4} May, Obon, the year-end break and the shopping peaks brands build around.
+69926a7d1ce91cfa	Japan marketing calendar {1}: holidays, Golden Week and shopping peaks
+30070773678db2a1	Japan marketing calendar {1}: holidays,…
+f04343ed3da1c9d0	Illustration: Japan marketing calendar {1}: holidays, Golden Week and shopping peaks
+bdd3b379c0d7e724	Japan has {1} national holidays in {2}. The biggest planning window is Golden Week, from Thursday {3} April to Wednesday {4} May, with three holidays in a row from {5} to {6} May. Other peaks for brands are the New Year, Valentine's Day and White Day, the start of the business and school year in April, summer Obon, Black Friday and the year-end gift season.
+17fbe17101be94db	Golden Week {1} runs from {2} April to {3} May; {4} April is a working day, so many people take it off.
+c98ae7c4b3d98617	Vernal Equinox Day falls on a Sunday, so Monday {1} March is the substitute holiday.
+792485db56ec0f0f	There is no Silver Week in September {1}, because the holidays on {2} and {3} September are not joined.
+c124f3acd424754c	Obon in mid-August is not a public holiday, but many people travel.
+6e570fc72303c9b6	April is the start of the fiscal and school year, a key moment for new routines and purchases.
+3dcfe9be726bab6d	What are Japan's national holidays in {1}?
+77b4b0493351b0bb	Friday {1} January
+ceae457b6a63561e	Monday {1} January
+5c2eaf9886abaa46	Coming of Age Day
+49767acbfafcb6b0	Thursday {1} February
+8e93ef7fa21d202a	Tuesday {1} February
+afc80098e2cb2f12	The Emperor's Birthday
+83f00cc71de03c75	Monday {1} March
+7f9dec0212cdba09	Vernal Equinox Day (substitute; the equinox is on Sunday {1} March)
+c8455e4c7f43840f	Thursday {1} April
+10e2a2761c127946	Showa Day
+3692153bf9f945d6	Monday {1} May
+4a54bb7921e790c2	Constitution Memorial Day
+96b47d9efa9d20b1	Tuesday {1} May
+ae5eb89b5e619724	Greenery Day
+85bc211b248b2ab1	Wednesday {1} May
+2c727eaf5485290e	Children's Day
+b21648546cd3581b	Monday {1} July
+fe7d205b3e7cfd42	Marine Day
+3106e888a36f8f75	Wednesday {1} August
+07717fc42435b3e7	Mountain Day
+27bffaceb23cd7fa	Monday {1} September
+cdc02c59bfee7b41	Respect for the Aged Day
+693fb6cab674a4de	Thursday {1} September
+232a8176515ed4fc	Autumnal Equinox Day
+a0ff099a51b03ab3	Monday {1} October
+f3bd99f50573aeb1	Sports Day
+dfb424555c8aebc0	Wednesday {1} November
+abfadf945bb6428e	Culture Day
+38753033abf8313a	Tuesday {1} November
+7c3b669a37f7ec77	Labour Thanksgiving Day
+8c09ef937c3335d9	Dates from the <g1>Office Holidays calendar for Japan {1}</g1>. Check the Cabinet Office list before you lock media plans.
+a14d1e9bfbff6b83	How should you plan around Golden Week {1}?
+0699cda5ea164c12	Golden Week starts with Showa Day on Thursday {1} April. Friday {2} April is a working day, then the weekend and three holidays run from Saturday {3} May to Wednesday {4} May. People who take {5} April off get a seven-day break. Travel, leisure, outdoor and food brands peak before and during the break; many B{6}B audiences are hard to reach that week. Run travel and booking ads from March, and shift B{7}B campaigns to the weeks around it.
+3a78e2eaf08d053a	Which shopping peaks matter beyond the holidays?
+f66947a2e3076295	<g1>New Year:</g1> lucky bags (fukubukuro) and first sales in early January.
+cabb0078c730fdbb	<g1>Valentine's Day, {1} February, and White Day, {2} March:</g1> chocolate and gifts, with the return gift a month later.
+5b90757ec02e587c	<g1>April:</g1> the new fiscal and school year, with new employees, students and moves.
+1e188fddcee3ef52	<g1>Summer:</g1> the mid-year gift season and Obon travel in mid-August.
+a969df1ac45c690c	<g1>Black Friday, {1} November:</g1> now common among Japanese retailers; see <g2>Black Friday {2} by market</g2>.
+a2567023d5cb0713	<g1>December:</g1> year-end gifts, Christmas and the year-end break, when many companies close from about {1} December.
+e666be7320caaf69	How do you localise campaigns for Japan?
+c2773fdf88f64bc8	Translate the idea, not just the words. Japanese audiences respond to detail, product information and trust signals, and seasonal cues such as cherry blossom or autumn leaves are widely used, so a seasonal angle alone may not stand out. Check what competitors ran in the same season last year. Our <g1>APAC festive calendar</g1> and <g2>Korea marketing calendar {1}</g2> cover neighbouring markets, and <g3>SOMIN Strategy</g3> shows which seasonal themes your rivals already use.
+0cfa7163e51c5024	From Thursday {1} April to Wednesday {2} May {3}. Friday {4} April is a working day; the holidays on {5}, {6} and {7} May follow a weekend.
+720f63203b9ffb48	Is there a Silver Week in {1}?
+3288ef94b3746905	No. Respect for the Aged Day is on Monday {1} September and Autumnal Equinox Day on Thursday {2} September, with working days in between.
+31edcdca05fe76af	Is Obon a public holiday?
+e108417b37c6e5d2	No, but many people take time off around {1} to {2} August to visit family, so travel demand peaks.
+485a7f01da963b3c	How many national holidays does Japan have in {1}?
+6db1c5111720c0d8	Sixteen, including the substitute holiday for Vernal Equinox Day on Monday {1} March.
+9c049dd08566084f	Office Holidays, <g1>National Holidays in Japan in {1}</g1>.
+bbf56dde127d6867	Biblioteca de anuncios de Meta: Spain and Latin America
+7fae8d595f95f8cb	Biblioteca de anuncios de Meta: how do you…
+f26fdfb09d674f65	Illustration: Biblioteca de anuncios de Meta: how do you analyse competitors in Spain and Latin America?
+c2b58f22d09a0761	The Biblioteca de anuncios de Meta is the Spanish name for the Meta Ad Library, Meta's public archive of ads running on its apps. To analyse competitors in Spain and Latin America, search one country at a time, find each rival's Page, record every active ad with the date, and tag the ads with one shared codebook. It shows what rivals say, not how well their ads perform.
+e3fb1ab1722aa481	"Biblioteca de anuncios" is the Spanish name of the Meta Ad Library; Brazilian teams search for "Biblioteca de Anúncios".
+aac5fde26d46f55a	Run each country separately: Spain, Mexico, Colombia, Argentina and Chile differ in offers and wording.
+d64b6baf06c7b092	Search by the advertiser's Page, not only by keyword.
+8c6caf3e3fc9175c	Ads delivered in Spain fall under EU rules, so they carry more detail than ads seen only in Latin America.
+6625344b0d37bc35	Capture ads while they run, with a screenshot and a date.
+512d9c9f818d38dd	What is the Biblioteca de anuncios de Meta?
+12d1e0555cb9dd06	It is the same tool as the Meta Ad Library, shown in Spanish. In {1} Meta said the library would show "all active ads any Page is running" and could be searched by Page as well as by keyword (<g1>Meta, {2}</g1>). Searches such as biblioteca de anuncios meta, biblioteca meta or meta anuncios biblioteca all lead to it.
+8d85b5e214469d9d	How do you search it country by country?
+538de8f5f5ee9c43	Open the library and choose the country first. Do not mix Spain and Mexico in one search; their offers and language differ.
+5cca28039185a8ee	Keep the category on all ads, unless you study political or social-issue ads.
+a05fcac1ce00628b	Type the brand name and pick the Page from the suggestions. A keyword search also returns other advertisers whose ads contain the word.
+602ba64ad8e6f592	Filter by status, platform or language if the interface offers it.
+abf63f4192d5df49	Open each ad and note the start date, status and format.
+d53c5b28d5f17dfa	Save the link, ad ID, screenshot and capture date.
+3e41be2730ba0799	Repeat the same searches each week or month, so changes are easy to see. Our <g1>guide to researching competitor ads in the Meta Ad Library</g1> includes a recording sheet you can reuse.
+14fdd15e7b7addb0	What is different for Spain?
+6048c24795fe6bb4	Spain is in the EU, so the Digital Services Act applies. Meta said in {1} that ads targeting people in the EU would be stored in the library for a year, with information on age, gender and location targeting and the dates they ran (<g1>Meta, {2}</g1>). That makes Spain the easiest market to study over time. For Latin American countries we found no equivalent statement, so treat the library there as a view of what is active now.
+d25e6ce2249651d1	What should you record for each ad?
+15fecdb20f3a1a03	Discount, instalments (meses sin intereses in Mexico, cuotas in Argentina), free shipping, free trial
+061e56bbe504ebec	Language and tone
+e4c402b45f31e75f	Tú or usted, local slang, neutral Spanish for several markets
+15811f9c050ae7fe	Video, image, carousel, creator content
+95c9c0e0456f9eb7	Call to action
+aac05f7564316b39	Buy, sign up, send a message (WhatsApp is common in the region)
+ff99f5b5f7948dfa	Start date
+4f3e8fd5d8649ea7	How long a rival keeps an idea running
+a8a30a783e9d12b3	Write the tags in one language and keep the original Spanish copy next to them. Remove near-identical variations before counting, or one heavily tested ad will look like a trend.
+c22d845b4e2317a1	What can you not see?
+b53d967e85cd5ca9	For ordinary commercial ads you should not expect spend, reach or results. The library tells you which messages a rival is paying for, not which ones work. Long-running ads are a hint, not proof, that an ad performs.
+ab107ce9aef06ae3	How do you turn the findings into a plan?
+c50aa1579f3a2460	Count the patterns per country: which offers, tones and formats dominate, and which are missing. The gaps are your options. Our guide to <g1>marketing whitespace</g1> explains how to choose among them, and the <g2>Brazil guide</g2> covers the Portuguese-language market next door. If you track many brands in several countries, <g3>SOMIN Strategy</g3> collects and tags competitor ads for you, so the counts stay up to date.
+66c0fc7eccd6624e	Is the Biblioteca de anuncios free?
+268724de3f484f79	Yes. Anyone can search it without an ad account. You need a Facebook login only for some extra tools.
+f8542ebd33da2d5a	Can I see how much a competitor spends in Mexico or Spain?
+8c38bde1b711c899	Not for ordinary commercial ads. Spend and reach ranges are shown for political and social-issue ads. For ads targeting the EU, Meta adds targeting and delivery details, but not spend.
+bcf2d1f1e6415c34	Why do I see different ads for the same brand in each country?
+df6b022652ebf0e7	Brands often run separate Pages or campaigns per market. Choose the country first and check which Page runs the ads there.
+282e6fb4bce0d725	How often should I check the library?
+f2d88e4fcb60d1cc	Weekly in fast categories such as retail and fintech, monthly in slower ones. Keep the same searches each time.
+6cd74ae5acff60d4	Cyber Monday {1} date: Monday {2} November | SOMIN Blog
+24fe5ede2888c65f	When is Cyber Monday {1}, and how should you…
+61ebd2abc228ca51	Illustration: When is Cyber Monday {1}, and how should you plan Cyber Week ads?
+ad793c43bab59978	Cyber Monday {1} is on Monday {2} November {3}. It is the Monday after US Thanksgiving, which falls on Thursday {4} November {5}, so Black Friday is Friday {6} November. Together the days from Thanksgiving to Cyber Monday are often called Cyber Week or the Black Friday weekend. Several countries also run their own "Cyber" events on dates set by local organisers.
+496bd2c62eab8254	Cyber Monday {1} is Monday {2} November, four days after US Thanksgiving.
+51cde592fb2b0fa7	The date is set by a rule, so work it out from Thanksgiving each year.
+016f193b484689ba	Many retailers run deals across the whole week, so plan a window, not one day.
+82f65ddb382bbcb8	Local Cyber events, such as those in Chile and Argentina, have their own dates; check the organiser.
+1db86ace79f34bb8	Prepare creative and audiences weeks ahead, because ad costs tend to rise in this period.
+fbd23a7b1b64da1e	How is the Cyber Monday date set?
+c63f05ca36d7b5a2	Cyber Monday is the Monday after the fourth Thursday of November, which is US Thanksgiving. In {1} that Thursday is {2} November, Black Friday is {3} November and Cyber Monday is {4} November. Our guide to <g1>Black Friday {5} by market</g1> explains the Thanksgiving rule and the sources behind it.
+987b9ced08d4ac5d	Day
+89807de4225a6d2f	Date in {1}
+b6b3a6352850216c	US Thanksgiving
+2349a8176522a4e7	Thursday {1} November
+856711030815fe05	Friday {1} November
+9b63e4432d3b27a6	Small Business Saturday (US)
+67205bbcae390a46	Saturday {1} November
+210db276a422945b	Cyber Monday
+8148dc863516f2df	Monday {1} November
+e5c39f8a30ac71ec	What is Cyber Week?
+678c282c5d2ab08e	Cyber Week is the informal name for the stretch from Thanksgiving to Cyber Monday, and sometimes the days after it. Many online shops now start their offers earlier in November and keep them running past Monday. For ad planning, treat it as one season with three peaks: the early-access period, the Black Friday weekend and Cyber Monday itself.
+b4073712563bf9dd	Are local "Cyber" events on the same day?
+2ac2824e87384e1a	Not always. In Latin America, searches such as "cyber {1} fechas" usually refer to national online sales events. Chile's CyberDay is organised by the Santiago Chamber of Commerce, and Argentina's CyberMonday by the Argentine Chamber of Electronic Commerce (CACE). Their dates are announced by the organisers and do not follow the US calendar, so check the official event sites before you plan. In Asia, the main peaks are {2} and {3}, covered in our <g1>APAC mega-sale calendar</g1>.
+5792354ccb6f5ce9	How should you plan Cyber Week ads?
+689ad79104c90c82	Start early and split the season into phases.
+b40741fd96e1a516	<g1>Six to eight weeks before:</g1> review what competitors ran last year and decide your offer. Look at which offers were common, so yours stands out.
+386ec043ee9b064d	<g1>Four weeks before:</g1> build audiences. Warm up new customers with useful content, so you have people to retarget during the peak.
+1bb69265e822b397	<g1>Two weeks before:</g1> finish creative for each phase: teaser, main offer, last chance. Prepare more variations than usual, because creative tires faster when people see many ads.
+8014183e9b0d6338	<g1>During the week:</g1> move budget towards the ads and audiences that convert, and keep a reserve for Cyber Monday.
+7b943bc766d213a0	<g1>After:</g1> record what ran and what worked while the data is fresh, for next year.
+cab27c9e455878a2	Why plan the offer around competitors?
+e3255c0e0699817c	In a week full of discounts, a similar offer is easy to ignore. Check rivals' active ads in the <g1>Meta Ad Library</g1> and note their discount levels, bundles, free shipping and deadlines. <g2>SOMIN Strategy</g2> tracks competitor offers across markets and shows which angles nobody is using, so you can choose a message that is different, not just cheaper.
+1b30fd8d556ae80e	Monday {1} November {2}. It is the Monday after US Thanksgiving on Thursday {3} November and Black Friday on Friday {4} November.
+eba8c167e85e5e90	Monday {1} November {2}. US Thanksgiving {3} is on Thursday {4} November and Black Friday on Friday {5} November.
+f3e64895b6499ca5	Is Cyber Monday only for online shopping?
+eb1948661ba65b41	It started as an online shopping day, but many retailers now run the same offers in stores and online across the whole week.
+1349fe71e3868c9c	When are CyberDay Chile and CyberMonday Argentina in {1}?
+461a9aebf9fb0a24	Their dates are set by the local organisers and announced on the official event sites. Check there rather than using the US date.
+7ea61eabf40504df	Latest · Artificial Intelligence
