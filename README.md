@@ -149,7 +149,7 @@ star-rating widget needs a paid G2 plan, so the badges are SOMIN-styled and link
 **Case-study heroes.** Every case-study page has its own topic background generated with SOMIN image-generate
 (`static/assets/img/cases/bg/`).
 
-**Case-study hub.** `/cases-ai-marketing-strategy/` lists all 45 case studies (27 brands, 12 agencies, 6 creators) with
+**Case-study hub.** `/cases-ai-marketing-strategy/` lists all 45 case studies (27 brands, 11 agencies, 7 creators) with
 section filters and search, built from `data/case-studies.json` (`hub` blocks carry the tile title, sector, market and
 summary from the Leadpages hub). Every tile's **Get the PDF** opens the case-study Typeform; tiles with a full story page
 also link to it.

@@ -1,0 +1,119 @@
+{
+  "key": "karl-storz-apac",
+  "slug": "brands-karl-storz-case-study",
+  "section": "brands",
+  "client": "KARL STORZ",
+  "client_short": "KARL STORZ",
+  "seo_title": "KARL STORZ Case Study: Meta Lead Click-Through | SOMIN",
+  "description": "With SOMIN, KARL STORZ moved APAC Meta ads for 11 markets into accounts it owns, and link click-through on lead campaigns rose 33%, from 0.69% to 0.91%.",
+  "eyebrow": "Brand case study · Medical technology · Asia Pacific",
+  "h1": "KARL STORZ owns its APAC Meta ads, and lead click-through rose 33%",
+  "h1_em": "lead click-through rose 33%",
+  "lede": "KARL STORZ moved its Asia Pacific Meta advertising into accounts it owns. With SOMIN, its regional team runs paid social for 11 markets and plans creative with competitor and audience data. Link click-through on lead campaigns rose by a third, from 0.69% to 0.91%.",
+  "meta_line": "A SOMIN results case study · Facebook and Instagram lead campaigns · 20 Apr to 4 Nov, 2025 against 2026",
+  "stats": [
+    {
+      "num": "+33",
+      "unit": "%",
+      "label": "Lead-campaign click-through"
+    },
+    {
+      "num": "11",
+      "unit": "",
+      "label": "Markets in owned accounts"
+    },
+    {
+      "num": "15",
+      "unit": "days",
+      "label": "Creative cycle"
+    }
+  ],
+  "challenge": {
+    "title": "Why KARL STORZ wanted to own its paid social",
+    "body": "KARL STORZ reaches clinicians in 11 Asia Pacific markets, with small budgets per market and strict rules on medical-device advertising. In 2025 its Meta ad account and pixel sat with its agency, and its own team had partial access. The brief asked for ownership of the account and pixel, competitor and audience insight to act on, and support for strategy and creative."
+  },
+  "approach": {
+    "title": "Five steps SOMIN and KARL STORZ took across 11 markets",
+    "points": [
+      "Moved campaigns to owned accounts, so the team sees every campaign's data directly.",
+      "Tested AI audiences beside specialty audiences in the same campaigns, comparable by market and week.",
+      "Built competitor analysis into planning: one dashboard tracks rivals' posts and paid ads by market and specialty.",
+      "Found open ground in gynaecology, where no brand published diagnostic education, and built a new campaign on that gap.",
+      "Used SOMIN personas and concepts as starting points, finished with real product imagery, brand elements and regulatory review."
+    ]
+  },
+  "findings_title": "KARL STORZ click-through by lead offer, 2025 against 2026",
+  "findings": [
+    {
+      "title": "Content offers rose 55%",
+      "body": "Guides, eBooks and webinars went from 0.63% to 0.99% link click-through on Facebook and Instagram."
+    },
+    {
+      "title": "Event and course sign-ups rose 22%",
+      "body": "Courses, congresses and services went from 0.72% to 0.87% link click-through."
+    },
+    {
+      "title": "The rise holds country by country",
+      "body": "All lead campaigns went from 0.69% to 0.91%, a range of +18% to +50%, and the changes hold when each country is compared only with itself."
+    }
+  ],
+  "delivered": {
+    "title": "What changed in KARL STORZ's creative and planning",
+    "points": [
+      "Video grew from 7% to 34% of ad spend, from Meta Ads Manager, 28 Aug to 4 Nov in both years",
+      "Creative diversity rose from 71 to 78 on SOMIN's Meta Diversity score, 39 creatives in each period",
+      "One dashboard of competitors' public posts and ads, where every insight opens the original ad or post",
+      "New creative across the region every 15 days, briefed from competitor activity and audience research"
+    ]
+  },
+  "quote": {
+    "text": "SOMIN helps the creative team to ideate newer campaign assets that they haven't considered.",
+    "source": "Digital Marketing Manager, South East Asia and Taiwan, KARL STORZ"
+  },
+  "outcome": {
+    "title": "A like-for-like before and after for KARL STORZ",
+    "body": "Click-through rose for content offers and for event sign-ups once KARL STORZ ran its own accounts. The two periods ran in different accounts with different campaigns, so this is a before and after, not a controlled test."
+  },
+  "faq": [
+    {
+      "q": "How is click-through measured here?",
+      "a": "Link click-through: clicks to the landing page divided by impressions. Meta's \"CTR (all)\" also counts likes and expands, so it reads higher. Changes are calculated from unrounded rates."
+    },
+    {
+      "q": "Why is Audience Network left out?",
+      "a": "Meta's automatic placements moved about 29% of 2026 lead spend there, against under 1% in 2025, and its clicks rarely reach the page."
+    },
+    {
+      "q": "Which periods are compared?",
+      "a": "Lead campaigns on Facebook and Instagram from 20 April to 4 November 2025, in the agency account, against the same dates in 2026, in the KARL STORZ account. Campaigns are grouped by their offer."
+    },
+    {
+      "q": "What does the 15-day creative cycle involve?",
+      "a": "Read competitor activity in the market, find the open angle and the audience to target, draft concepts from personas and whitespace, build and review the ads with real assets, then launch in the owned account and report back."
+    },
+    {
+      "q": "Where does the competitor data come from?",
+      "a": "From public posts and ads that SOMIN collects. The dashboard covers tactics, communication and activities, from offers and channels to launches and the latest competitor moves."
+    }
+  ],
+  "slides": [
+    {
+      "file": "/assets/img/cases/slides/karl-storz-apac-1.webp",
+      "caption": "Click-through by lead offer, 2025 against 2026",
+      "alt": "Bar chart of link click-through on KARL STORZ lead campaigns, 2025 against 2026: all lead campaigns from 0.69% to 0.91% (+33%), content offers from 0.63% to 0.99% (+55%), event and course sign-ups from 0.72% to 0.87% (+22%)."
+    },
+    {
+      "file": "/assets/img/cases/slides/karl-storz-apac-2.webp",
+      "caption": "SOMIN creative concepts for KARL STORZ",
+      "alt": "Twelve SOMIN-generated social creative concepts for KARL STORZ in blue and white, covering veterinary endoscopy, hands-on surgical training at IRCAD Taiwan and ENT office endoscopy."
+    },
+    {
+      "file": "/assets/img/cases/slides/karl-storz-apac-3.webp",
+      "caption": "Inside the paid and market insights dashboard",
+      "alt": "Two SOMIN dashboard screens for KARL STORZ: what works at each funnel stage, with concepts that help or hold back click-through and leads, and the latest competitor moves from public posts and ads."
+    }
+  ],
+  "image_prompt": "A cool, cinematic close-up of a surgeon's gloved hands holding a rigid endoscope beside a glowing monitor in a modern operating theatre, deep teal and navy tones, subject on the right, soft focus on the left. No text, no logos, no brand marks, no recognisable people.",
+  "cta_body": "All three pages: the like-for-like results, how the 15-day creative cycle runs and the dashboard behind it. Free, straight after a short form.",
+  "published": "2026-11-22"
+}
