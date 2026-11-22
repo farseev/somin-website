@@ -1,0 +1,59 @@
+<!--meta
+{
+ "slug": "blog/meta-ads-mcp-prompts-campaign-audit",
+ "layout": "post",
+ "type": "blog_post",
+ "title": "Meta ads MCP: 10 prompts to audit campaigns in Claude or ChatGPT",
+ "seo_title": "Meta ads MCP: 10 prompts to audit campaigns in Claude",
+ "description": "Connected Meta's ads MCP to Claude or ChatGPT? Use these 10 prompts to audit spend, creative fatigue, audiences and account changes, and keep a human check before edits.",
+ "published": "2026-12-07T08:00:00Z",
+ "author": "SOMIN Team",
+ "tags": [
+  "Meta Advertising",
+  "AI Agents",
+  "Performance Advertising"
+ ],
+ "image_prompt": "Isometric dark-teal 3D illustration of a chat window connected by glowing cables to a dashboard of ad campaign tiles on a deep ink-green surface, bright teal highlights, no text and no logos.",
+ "words": 740,
+ "reading_minutes": 4,
+ "image": "/assets/img/blog/meta-ads-mcp-prompts-campaign-audit.webp",
+ "image_card": "/assets/img/blog/meta-ads-mcp-prompts-campaign-audit-card.webp",
+ "og_image": "/assets/img/og/blog-meta-ads-mcp-prompts-campaign-audit.jpg",
+ "image_generated": false,
+ "robots": "index,follow"
+}
+-->
+<p>An MCP connector for Meta ads lets an AI assistant such as Claude or ChatGPT read your ad accounts: campaigns, ad sets, ads, creative, results and account activity. The fastest way to get value is a fixed set of audit prompts that you run every week. Below are ten, from spend pacing to creative fatigue, plus the rules we use before letting an assistant change anything.</p>
+<h2>Key takeaways</h2>
+<ul>
+<li>Start read-only: audits and questions first, edits only with a human check.</li>
+<li>Name the account, date range and metric in every prompt, so answers can be compared week to week.</li>
+<li>Ask the assistant to show the numbers it used, not just its conclusion.</li>
+<li>Combine your own results with competitor data to explain why something works.</li>
+</ul>
+<h2>What can an ads MCP connector do?</h2>
+<p>MCP (Model Context Protocol) is a standard way to give an AI assistant tools. A Meta ads connector exposes tools to list ad accounts, read campaigns and their results, look at creative and read the account's change history. Some connectors can also create or update campaigns. How to connect one is covered in <a href="/blog/connect-meta-ai-connectors-mcp-to-claude-chatgpt-manus/">connecting Meta's AI connectors to Claude, ChatGPT and Manus</a>; what it means for agencies is in <a href="/blog/mcp-for-marketing-agencies-what-changes-in-2026/">MCP for marketing agencies</a>.</p>
+<h2>Which 10 prompts should you run?</h2>
+<ol>
+<li><strong>Spend pacing:</strong> "For account [name], compare spend in the last 7 days with the 7 days before, by campaign. Flag any campaign whose spend changed by more than 30%."</li>
+<li><strong>Cost per result:</strong> "List active campaigns with their objective, results and cost per result for the last 14 days. Sort by cost per result and mark the worst three."</li>
+<li><strong>Creative fatigue:</strong> "For ads with spend in the last 30 days, show frequency and click-through rate by week. Which ads have rising frequency and falling click-through?"</li>
+<li><strong>Winning creative:</strong> "Which five ads had the highest click-through rate with at least [N] impressions in the last 30 days? Describe what their creative has in common."</li>
+<li><strong>Placements:</strong> "Break down results by placement for campaign [name]. Which placements take spend but bring few results?"</li>
+<li><strong>Audiences:</strong> "Compare ad sets in campaign [name] by audience. Which audience has the lowest cost per result, and how many results is that based on?"</li>
+<li><strong>Account changes:</strong> "What changed in this account in the last 14 days: budgets, statuses, new ads? List the changes by date and by who made them."</li>
+<li><strong>Ads not delivering:</strong> "Which active ads had no impressions in the last 3 days, and what status or review issue do they show?"</li>
+<li><strong>Tracking check:</strong> "Do the conversion events used by my campaigns record data in the last 7 days? Flag any that look broken."</li>
+<li><strong>Weekly summary:</strong> "Write a five-line summary of this week for the client: spend, results, the best ad, the main issue and one recommendation, with the numbers."</li>
+</ol>
+<h2>How do you keep the answers reliable?</h2>
+<p>Give the assistant the same frame every time: account, date range, attribution setting and minimum volume. Ask it to quote the figures it used, and spot-check one or two in Ads Manager. Small numbers mislead, so set a minimum number of impressions or results before ranking anything. Our note on why <a href="/blog/a-faster-agent-is-not-the-same-thing-as-a-smarter-one/">a faster agent is not a smarter one</a> explains why checks still matter.</p>
+<h2>When should the assistant make changes?</h2>
+<p>Only after a person approves. Good rules are: the assistant proposes, a person confirms; budgets and status changes are always confirmed; and every change is logged in the account history. Start with reversible changes such as pausing a clearly fatigued ad, and keep new campaigns paused until reviewed.</p>
+<h2>Where does competitor data fit?</h2>
+<p>Your account tells you what worked for you, not why or what rivals do differently. The SOMIN MCP server adds competitor ads, audience insight and creative scoring to the same chat; see <a href="/blog/somin-mcp-server-for-claude-chatgpt-manus/">the SOMIN MCP server</a> and <a href="/somin-paid-media/">SOMIN Paid Media</a>.</p>
+<h2>FAQ</h2>
+<details><summary>What is a Meta ads MCP?</summary><p>An MCP server that gives an AI assistant tools to read, and sometimes change, Meta ad accounts. You connect it to an assistant such as Claude or ChatGPT and ask questions in plain language.</p></details>
+<details><summary>Can the assistant change my campaigns?</summary><p>Some connectors include tools to create or update campaigns. Keep a human approval step for every change, especially budgets and status.</p></details>
+<details><summary>Is the data the same as in Ads Manager?</summary><p>It comes from the same account, but settings such as date range and attribution change the numbers. Use the same settings in both when you compare.</p></details>
+<details><summary>How often should I run these prompts?</summary><p>Weekly for most accounts, daily during launches or big sales periods.</p></details>
