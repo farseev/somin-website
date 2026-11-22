@@ -4,14 +4,13 @@ f3b7aaa3967dcf6b	<g1><x2/><g3>Cool Vendor in Marketing AI</g3></g1><g4><x5/><g6>
 f880d6928726027d	Users Love Us
 6baebdfb29f9a36e	AI community manager: what to automate in comments and DMs, and what to keep human
 360796dbbeb6b93f	An AI community manager can sort, draft and route comments and DMs. See which replies to automate, which to keep human, and how to set rules before you switch it on.
-59ed6754923405fa	How to track social media algorithm changes without chasing rumours
-797b8019182c84e9	Social media algorithm updates spread as rumours. Learn which official sources to follow, how to test changes on your own account and when to change your content plan.
 9882f8cd8add5837	Meta ads MCP: {1} prompts to audit campaigns in Claude or ChatGPT
 4a5defc5b2ca3040	Connected Meta's ads MCP to Claude or ChatGPT? Use these {1} prompts to audit spend, creative fatigue, audiences and account changes, and keep a human check before edits.
-252dc59e5198b2bc	When is Cyber Monday {1}, and how should you plan Cyber Week ads?
-4aec9880fa8dfab0	Cyber Monday {1} is Monday {2} November. See how the date is set, how Cyber Week fits around Black Friday, how local Cyber events differ and how to plan ads.
-6c6c32dc46705230	Biblioteca de anuncios de Meta: how do you analyse competitors in Spain and Latin America?
-db87606a2fc59eda	The Biblioteca de anuncios de Meta shows a rival's active ads. Learn how to search it country by country in Spain and Latin America, what to record and what is missing.
+59ed6754923405fa	How to track social media algorithm changes without chasing rumours
+797b8019182c84e9	Social media algorithm updates spread as rumours. Learn which official sources to follow, how to test changes on your own account and when to change your content plan.
+69926a7d1ce91cfa	Japan marketing calendar {1}: holidays, Golden Week and shopping peaks
+7ea61eabf40504df	Latest · Artificial Intelligence
+eb936c6268eed5c0	Plan {1} campaigns in Japan: all {2} national holidays, Golden Week from {3} April to {4} May, Obon, the year-end break and the shopping peaks brands build around.
 2f28d7a3c464580d	Science & Press at SOMIN: {1} peer-reviewed papers you can download, Forbes and e{2} columns by Prof. Aleks Farseev, press coverage of SOMIN and its founders, and talks.
 c0eb5099904a6ba8	e{1} columnist
 d3842e9d3bc382da	Forbes Technology Council and e{1} columns by Prof. Aleks Farseev
@@ -274,8 +273,6 @@ f881c69eb9ef0e91	Can the assistant change my campaigns?
 35a51d2cc26ef53e	Weekly for most accounts, daily during launches or big sales periods.
 ea696318b676b2e6	<g1>Meta Advertising</g1><g2>AI Agents</g2><g3>Performance Advertising</g3>
 08686a410823887c	Japan marketing calendar {1}: Golden Week and holidays
-eb936c6268eed5c0	Plan {1} campaigns in Japan: all {2} national holidays, Golden Week from {3} April to {4} May, Obon, the year-end break and the shopping peaks brands build around.
-69926a7d1ce91cfa	Japan marketing calendar {1}: holidays, Golden Week and shopping peaks
 30070773678db2a1	Japan marketing calendar {1}: holidays,…
 f04343ed3da1c9d0	Illustration: Japan marketing calendar {1}: holidays, Golden Week and shopping peaks
 bdd3b379c0d7e724	Japan has {1} national holidays in {2}. The biggest planning window is Golden Week, from Thursday {3} April to Wednesday {4} May, with three holidays in a row from {5} to {6} May. Other peaks for brands are the New Year, Valentine's Day and White Day, the start of the business and school year in April, summer Obon, Black Friday and the year-end gift season.
@@ -335,86 +332,3 @@ e108417b37c6e5d2	No, but many people take time off around {1} to {2} August to v
 485a7f01da963b3c	How many national holidays does Japan have in {1}?
 6db1c5111720c0d8	Sixteen, including the substitute holiday for Vernal Equinox Day on Monday {1} March.
 9c049dd08566084f	Office Holidays, <g1>National Holidays in Japan in {1}</g1>.
-bbf56dde127d6867	Biblioteca de anuncios de Meta: Spain and Latin America
-7fae8d595f95f8cb	Biblioteca de anuncios de Meta: how do you…
-f26fdfb09d674f65	Illustration: Biblioteca de anuncios de Meta: how do you analyse competitors in Spain and Latin America?
-c2b58f22d09a0761	The Biblioteca de anuncios de Meta is the Spanish name for the Meta Ad Library, Meta's public archive of ads running on its apps. To analyse competitors in Spain and Latin America, search one country at a time, find each rival's Page, record every active ad with the date, and tag the ads with one shared codebook. It shows what rivals say, not how well their ads perform.
-e3fb1ab1722aa481	"Biblioteca de anuncios" is the Spanish name of the Meta Ad Library; Brazilian teams search for "Biblioteca de Anúncios".
-aac5fde26d46f55a	Run each country separately: Spain, Mexico, Colombia, Argentina and Chile differ in offers and wording.
-d64b6baf06c7b092	Search by the advertiser's Page, not only by keyword.
-8c6caf3e3fc9175c	Ads delivered in Spain fall under EU rules, so they carry more detail than ads seen only in Latin America.
-6625344b0d37bc35	Capture ads while they run, with a screenshot and a date.
-512d9c9f818d38dd	What is the Biblioteca de anuncios de Meta?
-12d1e0555cb9dd06	It is the same tool as the Meta Ad Library, shown in Spanish. In {1} Meta said the library would show "all active ads any Page is running" and could be searched by Page as well as by keyword (<g1>Meta, {2}</g1>). Searches such as biblioteca de anuncios meta, biblioteca meta or meta anuncios biblioteca all lead to it.
-8d85b5e214469d9d	How do you search it country by country?
-538de8f5f5ee9c43	Open the library and choose the country first. Do not mix Spain and Mexico in one search; their offers and language differ.
-5cca28039185a8ee	Keep the category on all ads, unless you study political or social-issue ads.
-a05fcac1ce00628b	Type the brand name and pick the Page from the suggestions. A keyword search also returns other advertisers whose ads contain the word.
-602ba64ad8e6f592	Filter by status, platform or language if the interface offers it.
-abf63f4192d5df49	Open each ad and note the start date, status and format.
-d53c5b28d5f17dfa	Save the link, ad ID, screenshot and capture date.
-3e41be2730ba0799	Repeat the same searches each week or month, so changes are easy to see. Our <g1>guide to researching competitor ads in the Meta Ad Library</g1> includes a recording sheet you can reuse.
-14fdd15e7b7addb0	What is different for Spain?
-6048c24795fe6bb4	Spain is in the EU, so the Digital Services Act applies. Meta said in {1} that ads targeting people in the EU would be stored in the library for a year, with information on age, gender and location targeting and the dates they ran (<g1>Meta, {2}</g1>). That makes Spain the easiest market to study over time. For Latin American countries we found no equivalent statement, so treat the library there as a view of what is active now.
-d25e6ce2249651d1	What should you record for each ad?
-15fecdb20f3a1a03	Discount, instalments (meses sin intereses in Mexico, cuotas in Argentina), free shipping, free trial
-061e56bbe504ebec	Language and tone
-e4c402b45f31e75f	Tú or usted, local slang, neutral Spanish for several markets
-15811f9c050ae7fe	Video, image, carousel, creator content
-95c9c0e0456f9eb7	Call to action
-aac05f7564316b39	Buy, sign up, send a message (WhatsApp is common in the region)
-ff99f5b5f7948dfa	Start date
-4f3e8fd5d8649ea7	How long a rival keeps an idea running
-a8a30a783e9d12b3	Write the tags in one language and keep the original Spanish copy next to them. Remove near-identical variations before counting, or one heavily tested ad will look like a trend.
-c22d845b4e2317a1	What can you not see?
-b53d967e85cd5ca9	For ordinary commercial ads you should not expect spend, reach or results. The library tells you which messages a rival is paying for, not which ones work. Long-running ads are a hint, not proof, that an ad performs.
-ab107ce9aef06ae3	How do you turn the findings into a plan?
-c50aa1579f3a2460	Count the patterns per country: which offers, tones and formats dominate, and which are missing. The gaps are your options. Our guide to <g1>marketing whitespace</g1> explains how to choose among them, and the <g2>Brazil guide</g2> covers the Portuguese-language market next door. If you track many brands in several countries, <g3>SOMIN Strategy</g3> collects and tags competitor ads for you, so the counts stay up to date.
-66c0fc7eccd6624e	Is the Biblioteca de anuncios free?
-268724de3f484f79	Yes. Anyone can search it without an ad account. You need a Facebook login only for some extra tools.
-f8542ebd33da2d5a	Can I see how much a competitor spends in Mexico or Spain?
-8c38bde1b711c899	Not for ordinary commercial ads. Spend and reach ranges are shown for political and social-issue ads. For ads targeting the EU, Meta adds targeting and delivery details, but not spend.
-bcf2d1f1e6415c34	Why do I see different ads for the same brand in each country?
-df6b022652ebf0e7	Brands often run separate Pages or campaigns per market. Choose the country first and check which Page runs the ads there.
-282e6fb4bce0d725	How often should I check the library?
-f2d88e4fcb60d1cc	Weekly in fast categories such as retail and fintech, monthly in slower ones. Keep the same searches each time.
-6cd74ae5acff60d4	Cyber Monday {1} date: Monday {2} November | SOMIN Blog
-24fe5ede2888c65f	When is Cyber Monday {1}, and how should you…
-61ebd2abc228ca51	Illustration: When is Cyber Monday {1}, and how should you plan Cyber Week ads?
-ad793c43bab59978	Cyber Monday {1} is on Monday {2} November {3}. It is the Monday after US Thanksgiving, which falls on Thursday {4} November {5}, so Black Friday is Friday {6} November. Together the days from Thanksgiving to Cyber Monday are often called Cyber Week or the Black Friday weekend. Several countries also run their own "Cyber" events on dates set by local organisers.
-496bd2c62eab8254	Cyber Monday {1} is Monday {2} November, four days after US Thanksgiving.
-51cde592fb2b0fa7	The date is set by a rule, so work it out from Thanksgiving each year.
-016f193b484689ba	Many retailers run deals across the whole week, so plan a window, not one day.
-82f65ddb382bbcb8	Local Cyber events, such as those in Chile and Argentina, have their own dates; check the organiser.
-1db86ace79f34bb8	Prepare creative and audiences weeks ahead, because ad costs tend to rise in this period.
-fbd23a7b1b64da1e	How is the Cyber Monday date set?
-c63f05ca36d7b5a2	Cyber Monday is the Monday after the fourth Thursday of November, which is US Thanksgiving. In {1} that Thursday is {2} November, Black Friday is {3} November and Cyber Monday is {4} November. Our guide to <g1>Black Friday {5} by market</g1> explains the Thanksgiving rule and the sources behind it.
-987b9ced08d4ac5d	Day
-89807de4225a6d2f	Date in {1}
-b6b3a6352850216c	US Thanksgiving
-2349a8176522a4e7	Thursday {1} November
-856711030815fe05	Friday {1} November
-9b63e4432d3b27a6	Small Business Saturday (US)
-67205bbcae390a46	Saturday {1} November
-210db276a422945b	Cyber Monday
-8148dc863516f2df	Monday {1} November
-e5c39f8a30ac71ec	What is Cyber Week?
-678c282c5d2ab08e	Cyber Week is the informal name for the stretch from Thanksgiving to Cyber Monday, and sometimes the days after it. Many online shops now start their offers earlier in November and keep them running past Monday. For ad planning, treat it as one season with three peaks: the early-access period, the Black Friday weekend and Cyber Monday itself.
-b4073712563bf9dd	Are local "Cyber" events on the same day?
-2ac2824e87384e1a	Not always. In Latin America, searches such as "cyber {1} fechas" usually refer to national online sales events. Chile's CyberDay is organised by the Santiago Chamber of Commerce, and Argentina's CyberMonday by the Argentine Chamber of Electronic Commerce (CACE). Their dates are announced by the organisers and do not follow the US calendar, so check the official event sites before you plan. In Asia, the main peaks are {2} and {3}, covered in our <g1>APAC mega-sale calendar</g1>.
-5792354ccb6f5ce9	How should you plan Cyber Week ads?
-689ad79104c90c82	Start early and split the season into phases.
-b40741fd96e1a516	<g1>Six to eight weeks before:</g1> review what competitors ran last year and decide your offer. Look at which offers were common, so yours stands out.
-386ec043ee9b064d	<g1>Four weeks before:</g1> build audiences. Warm up new customers with useful content, so you have people to retarget during the peak.
-1bb69265e822b397	<g1>Two weeks before:</g1> finish creative for each phase: teaser, main offer, last chance. Prepare more variations than usual, because creative tires faster when people see many ads.
-8014183e9b0d6338	<g1>During the week:</g1> move budget towards the ads and audiences that convert, and keep a reserve for Cyber Monday.
-7b943bc766d213a0	<g1>After:</g1> record what ran and what worked while the data is fresh, for next year.
-cab27c9e455878a2	Why plan the offer around competitors?
-e3255c0e0699817c	In a week full of discounts, a similar offer is easy to ignore. Check rivals' active ads in the <g1>Meta Ad Library</g1> and note their discount levels, bundles, free shipping and deadlines. <g2>SOMIN Strategy</g2> tracks competitor offers across markets and shows which angles nobody is using, so you can choose a message that is different, not just cheaper.
-1b30fd8d556ae80e	Monday {1} November {2}. It is the Monday after US Thanksgiving on Thursday {3} November and Black Friday on Friday {4} November.
-eba8c167e85e5e90	Monday {1} November {2}. US Thanksgiving {3} is on Thursday {4} November and Black Friday on Friday {5} November.
-f3e64895b6499ca5	Is Cyber Monday only for online shopping?
-eb1948661ba65b41	It started as an online shopping day, but many retailers now run the same offers in stores and online across the whole week.
-1349fe71e3868c9c	When are CyberDay Chile and CyberMonday Argentina in {1}?
-461a9aebf9fb0a24	Their dates are set by the local organisers and announced on the official event sites. Check there rather than using the US date.
-7ea61eabf40504df	Latest · Artificial Intelligence
