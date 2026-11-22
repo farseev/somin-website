@@ -1328,8 +1328,10 @@ def build_case_pages(manifest):
             body += (f'<section class="sec sec--mist cs-related"><div class="container"><div class="sec-head"><p class="eyebrow eyebrow--ink">Related case studies</p>'
                      f'<h2>More {SECTION_LABEL[c["section"]][0].lower()} case studies</h2></div><div class="cs-rel-grid">{cards}</div>'
                      f'<p class="cs-rel-all"><a href="/cases-ai-marketing-strategy/#{SECTION_LABEL[c["section"]][1]}" data-gtm-id="case_{gid}_all_cases">All case studies</a></p></div></section>\n')
+        cta_body = c.get('cta_body') or (f'Every page of the {SECTION_LABEL[c["section"]][0].lower()} {"pitch" if c["section"] == "agencies" else "briefing"}: '
+                                         'the data, the whitespace, the personas and the creative. Free, straight after a short form.')
         body += (f'<section class="cta-band"><div class="container"><h2>Get the full <em>{E(cs)}</em> case study</h2>'
-                 f'<p>Every page of the {E(SECTION_LABEL[c["section"]][0].lower())} {"pitch" if c["section"] == "agencies" else "briefing"}: the data, the whitespace, the personas and the creative. Free, straight after a short form.</p>'
+                 f'<p>{E(cta_body)}</p>'
                  f'<div class="cta-row"><a class="btn btn--solid" {dl} data-gtm-id="case_{gid}_footer_download">Get the full case study</a>'
                  f'<a class="btn btn--ghost" href="{CAL_CASES}" data-gtm-id="case_{gid}_footer_call">Book a walkthrough</a></div></div></section>')
         meta['og_title'] = meta['twitter_title'] = c['h1']

@@ -268,5 +268,11 @@
   "eyebrow": "Research · built by marketers and an AI professor",
   "title": "The peer-reviewed AI research behind SOMIN",
   "image": "static/assets/img/brand/hero-research.webp"
+ },
+ {
+  "name": "case-karl-storz-apac",
+  "slug": "brands-karl-storz-case-study",
+  "eyebrow": "Brand case study · KARL STORZ",
+  "image": "static/assets/img/cases/karl-storz-apac.webp"
  }
 ]
